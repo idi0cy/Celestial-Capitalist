@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://qx5el6ayusn4"]
+
+[ext_resource type="Texture2D" uid="uid://31p7ceegtlwx" path="res://assets/Sprites/titleScreenBackground.png" id="1_v6p8y"]
+[ext_resource type="Texture2D" uid="uid://cuqfwc464b7le" path="res://assets/Sprites/ButtonInner.png" id="2_05l2w"]
+[ext_resource type="Script" uid="uid://bsnrta7b1gesp" path="res://startGameButton.gd" id="2_ak2if"]
+[ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="4_hafda"]
+
+[node name="TitleScreen" type="Node2D" unique_id=926425417]
+metadata/_edit_horizontal_guides_ = [-1.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=193297278]
+position = Vector2(562, 324)
+scale = Vector2(2.5312498, 2.5312498)
+texture = ExtResource("1_v6p8y")
+
+[node name="startGame" type="Node2D" parent="." unique_id=1246533282]
+
+[node name="startGameButton" type="TextureButton" parent="startGame" unique_id=712802232]
+offset_left = 437.0
+offset_top = 350.0
+offset_right = 687.0
+offset_bottom = 400.0
+scale = Vector2(1.039609, 1.039609)
+texture_normal = ExtResource("2_05l2w")
+stretch_mode = 0
+script = ExtResource("2_ak2if")
+
+[node name="Label" type="Label" parent="startGame/startGameButton" unique_id=1855928442]
+layout_mode = 0
+offset_left = 45.2093
+offset_top = 7.6952024
+offset_right = 207.2093
+offset_bottom = 42.6952
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_hafda")
+theme_override_font_sizes/font_size = 25
+text = "Start Game"

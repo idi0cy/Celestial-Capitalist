@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://qx5el6ayusn4"]
+
+[ext_resource type="Texture2D" uid="uid://31p7ceegtlwx" path="res://assets/Sprites/titleScreenBackground.png" id="1_v6p8y"]
+
+[node name="TitleScreen" type="Node2D" unique_id=926425417]
+metadata/_edit_horizontal_guides_ = [-1.0]
+
+[node name="background" type="Sprite2D" parent="." unique_id=193297278]
+z_index = -5
+position = Vector2(562, 324)
+scale = Vector2(2.5312498, 2.5312498)
+texture = ExtResource("1_v6p8y")
