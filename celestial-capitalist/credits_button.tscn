@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://bnjamtaxxttyi"]
+[gd_scene format=3 uid="uid://be0pumf7t75ro"]
 
-[ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="2_nw27a"]
-[ext_resource type="Texture2D" uid="uid://uv5uyw06plsh" path="res://assets/Sprites/starIconTemp.png" id="2_v4i60"]
-[ext_resource type="Texture2D" uid="uid://bb1dupv4y0m1a" path="res://assets/Sprites/buttonOuter.png" id="2_yaqkv"]
-[ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://outer_sprite.gd" id="5_6bnjb"]
+[ext_resource type="Script" uid="uid://dclqq1iwvtfta" path="res://credits_button.gd" id="1_b1j5g"]
+[ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="1_oyfyv"]
+[ext_resource type="Texture2D" uid="uid://uv5uyw06plsh" path="res://assets/Sprites/starIconTemp.png" id="2_b1j5g"]
+[ext_resource type="Texture2D" uid="uid://bb1dupv4y0m1a" path="res://assets/Sprites/buttonOuter.png" id="3_wybxm"]
+[ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://outer_sprite.gd" id="4_47npg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4i60"]
 bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0.19607843)
@@ -21,8 +22,9 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[node name="startButton" type="Node2D" unique_id=620947473]
+[node name="creditsButton" type="Node2D" unique_id=620947473]
 position = Vector2(243, 213)
+script = ExtResource("1_b1j5g")
 
 [node name="interactable" type="Button" parent="." unique_id=1150279528]
 z_index = 3
@@ -39,19 +41,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("2_nw27a")
+theme_override_fonts/font = ExtResource("1_oyfyv")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_v4i60")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6bnjb")
-text = "Start Game"
-icon = ExtResource("2_v4i60")
+text = "Credits"
+icon = ExtResource("2_b1j5g")
 metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="." unique_id=110006459]
 z_index = 1
-scale = Vector2(7.5430217, 1.4920406)
-texture = ExtResource("2_yaqkv")
-script = ExtResource("5_6bnjb")
+scale = Vector2(5.6230216, 1.4920406)
+texture = ExtResource("3_wybxm")
+script = ExtResource("4_47npg")
 
 [connection signal="mouse_entered" from="interactable" to="." method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="interactable" to="." method="_on_interactable_mouse_exited"]

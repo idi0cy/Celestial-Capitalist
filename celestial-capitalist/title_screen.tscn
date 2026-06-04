@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://qx5el6ayusn4"]
 
 [ext_resource type="Texture2D" uid="uid://31p7ceegtlwx" path="res://assets/Sprites/titleScreenBackground.png" id="1_v6p8y"]
+[ext_resource type="PackedScene" uid="uid://bnjamtaxxttyi" path="res://basic_button.tscn" id="2_ak2if"]
+[ext_resource type="Script" uid="uid://dnlvkudr02nmb" path="res://start_game_button.gd" id="3_ig5kc"]
+[ext_resource type="PackedScene" uid="uid://be0pumf7t75ro" path="res://credits_button.tscn" id="4_05l2w"]
+[ext_resource type="PackedScene" uid="uid://v0don3cicb02" path="res://settings_button.tscn" id="5_hafda"]
+[ext_resource type="Texture2D" uid="uid://bije7xsqr2hsc" path="res://assets/Sprites/titleCardP1.png" id="6_jqemp"]
+[ext_resource type="Script" uid="uid://mc21ag5yr8f8" path="res://celestial_title.gd" id="7_8vmu4"]
+[ext_resource type="Texture2D" uid="uid://dg0mu8ugee6vr" path="res://assets/Sprites/titleCardP2.png" id="7_013yr"]
+[ext_resource type="Script" uid="uid://dip2gm821vj3s" path="res://capitalist_title.gd" id="9_xfn3p"]
 
 [node name="TitleScreen" type="Node2D" unique_id=926425417]
 metadata/_edit_horizontal_guides_ = [-1.0]
@@ -10,3 +18,49 @@ z_index = -5
 position = Vector2(562, 324)
 scale = Vector2(2.5312498, 2.5312498)
 texture = ExtResource("1_v6p8y")
+
+[node name="startButton" parent="." unique_id=620947473 instance=ExtResource("2_ak2if")]
+position = Vector2(-200, 375)
+script = ExtResource("3_ig5kc")
+
+[node name="creditsButton" parent="." unique_id=940156557 instance=ExtResource("4_05l2w")]
+position = Vector2(-200, 450)
+
+[node name="settingsButton" parent="." unique_id=1781230591 instance=ExtResource("5_hafda")]
+position = Vector2(-200, 525)
+
+[node name="Timers" type="Node" parent="." unique_id=488666059]
+
+[node name="creditsDelay" type="Timer" parent="Timers" unique_id=1886783693]
+wait_time = 7.25
+
+[node name="menuDelay1" type="Timer" parent="Timers" unique_id=952057293]
+wait_time = 6.5
+
+[node name="settingsDelay" type="Timer" parent="Timers" unique_id=1025065977]
+wait_time = 8.0
+
+[node name="celestialTimer" type="Timer" parent="Timers" unique_id=324342797]
+wait_time = 2.5
+
+[node name="capitalistTimer" type="Timer" parent="Timers" unique_id=1581970482]
+wait_time = 4.0
+
+[node name="CelestialTitle" type="Sprite2D" parent="." unique_id=174117281]
+z_index = 1
+position = Vector2(1861, 320)
+scale = Vector2(10, 10)
+texture = ExtResource("6_jqemp")
+script = ExtResource("7_8vmu4")
+
+[node name="CapitalistTitle" type="Sprite2D" parent="." unique_id=169912188]
+position = Vector2(1861, 320)
+scale = Vector2(10, 10)
+texture = ExtResource("7_013yr")
+script = ExtResource("9_xfn3p")
+
+[connection signal="timeout" from="Timers/creditsDelay" to="creditsButton" method="_on_credits_delay_timeout"]
+[connection signal="timeout" from="Timers/menuDelay1" to="startButton" method="_on_menu_delay_1_timeout"]
+[connection signal="timeout" from="Timers/settingsDelay" to="settingsButton" method="_on_settings_delay_timeout"]
+[connection signal="timeout" from="Timers/celestialTimer" to="CelestialTitle" method="_on_celestial_timer_timeout"]
+[connection signal="timeout" from="Timers/capitalistTimer" to="CapitalistTitle" method="_on_capitalist_timer_timeout"]
