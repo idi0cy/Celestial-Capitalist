@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://cbhf4smoiyhw6"]
+
+[ext_resource type="Texture2D" uid="uid://20fi5jm87hbv" path="res://assets/Sprites/RockBottom/quotaBackgroundRockBottom.png" id="1_5xa78"]
+[ext_resource type="Texture2D" uid="uid://dn4ude6bpmn1j" path="res://assets/Sprites/RockBottom/quotaBorderRB.png" id="2_5xa78"]
+[ext_resource type="Texture2D" uid="uid://nw7xmbeqtfjo" path="res://assets/Sprites/RockBottom/quotaProgressRB.png" id="3_32v4e"]
+[ext_resource type="PackedScene" uid="uid://me6dpqlc2kap" path="res://ButtonScenes/RockBottom/scavenge_button.tscn" id="4_w43jm"]
+[ext_resource type="PackedScene" uid="uid://cexo5p5cylqbs" path="res://ButtonScenes/RockBottom/sell_button.tscn" id="5_1bthl"]
+[ext_resource type="PackedScene" uid="uid://d2e5kd40yy1wi" path="res://ButtonScenes/RockBottom/event_log.tscn" id="6_vc60y"]
+[ext_resource type="PackedScene" uid="uid://dsff4ik6t3wem" path="res://ButtonScenes/RockBottom/ledger_button.tscn" id="7_js5gw"]
+[ext_resource type="PackedScene" uid="uid://byo2ya3kbbunn" path="res://ButtonScenes/RockBottom/quota_button.tscn" id="8_6ui7u"]
+[ext_resource type="PackedScene" uid="uid://cpnuniqlelilx" path="res://ButtonScenes/RockBottom/inventory_button.tscn" id="9_fivl0"]
+[ext_resource type="Texture2D" uid="uid://bi63gw14ucljt" path="res://assets/Sprites/RockBottom/sidewalkBackground.png" id="10_2evtq"]
+[ext_resource type="Texture2D" uid="uid://dofqnqf3kg1gi" path="res://assets/Sprites/RockBottom/bottomBackground.png" id="11_qt56r"]
+[ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="12_knhbb"]
+[ext_resource type="PackedScene" uid="uid://dka81hse17tx8" path="res://ButtonScenes/RockBottom/buy_button.tscn" id="13_iu7b3"]
+[ext_resource type="PackedScene" uid="uid://drhv43e6bxsud" path="res://ButtonScenes/RockBottom/vitals_button.tscn" id="14_5xa78"]
+[ext_resource type="Texture2D" uid="uid://bmt81y7nucgbq" path="res://assets/Sprites/RockBottom/RBcenterBackground.png" id="15_32v4e"]
+[ext_resource type="Script" uid="uid://cvlc7n8ubrne" path="res://Scripts/RockBottom/inventory.gd" id="16_lfg33"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
+bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
+
+[node name="RockBottom" type="Node2D" unique_id=1024261337]
+
+[node name="CelestialSegment" type="Node2D" parent="." unique_id=1451961114]
+
+[node name="Sprite2D" type="Sprite2D" parent="CelestialSegment" unique_id=1196262753]
+position = Vector2(576, 60)
+scale = Vector2(6, 6)
+texture = ExtResource("1_5xa78")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CelestialSegment" unique_id=1760451467]
+offset_left = 27.0
+offset_top = 23.0
+offset_right = 219.0
+offset_bottom = 43.0
+scale = Vector2(7, 7)
+value = 50.0
+texture_under = ExtResource("2_5xa78")
+texture_progress = ExtResource("3_32v4e")
+metadata/_edit_use_anchors_ = true
+
+[node name="eventBar" type="Node2D" parent="." unique_id=2089661544]
+position = Vector2(538, 596)
+
+[node name="ProgressBar" type="ProgressBar" parent="eventBar" unique_id=1190351937]
+offset_left = -215.0
+offset_right = 291.0
+offset_bottom = 27.0
+theme_override_constants/outline_size = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_iu7b3")
+value = 75.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="eventBar" unique_id=2092248988]
+offset_left = -96.0
+offset_top = 2.0
+offset_right = 159.0
+offset_bottom = 26.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 18
+text = "Until Next Random Event"
+metadata/_edit_use_anchors_ = true
+
+[node name="InitButtons" type="Node2D" parent="." unique_id=235710331]
+
+[node name="scavengeButton" parent="InitButtons" unique_id=620947473 instance=ExtResource("4_w43jm")]
+position = Vector2(149, 167)
+
+[node name="sellButton" parent="InitButtons" unique_id=495763558 instance=ExtResource("5_1bthl")]
+position = Vector2(1005, 168)
+
+[node name="EventLog" parent="InitButtons" unique_id=1112858218 instance=ExtResource("6_vc60y")]
+position = Vector2(1004, 606)
+
+[node name="LedgerButton" parent="InitButtons" unique_id=190051087 instance=ExtResource("7_js5gw")]
+position = Vector2(1004, 548)
+
+[node name="QuotaButton" parent="InitButtons" unique_id=72723482 instance=ExtResource("8_6ui7u")]
+position = Vector2(1004, 62)
+
+[node name="InventoryButton" parent="InitButtons" unique_id=1083763648 instance=ExtResource("9_fivl0")]
+position = Vector2(149, 241)
+
+[node name="BuyButton" parent="InitButtons" unique_id=1848460173 instance=ExtResource("13_iu7b3")]
+position = Vector2(149, 316)
+
+[node name="VitalsButton" parent="InitButtons" unique_id=725722638 instance=ExtResource("14_5xa78")]
+position = Vector2(148, 596)
+
+[node name="Backgrounds" type="Node2D" parent="." unique_id=865378262]
+
+[node name="backGround1" type="Sprite2D" parent="Backgrounds" unique_id=1217940793]
+position = Vector2(148, 384)
+rotation = 1.5707964
+scale = Vector2(8, 8)
+texture = ExtResource("10_2evtq")
+
+[node name="backGround2" type="Sprite2D" parent="Backgrounds" unique_id=712188722]
+position = Vector2(1004, 384)
+rotation = 1.5707964
+scale = Vector2(8, 8)
+texture = ExtResource("10_2evtq")
+
+[node name="bottomBackground" type="Sprite2D" parent="Backgrounds" unique_id=594824330]
+position = Vector2(576, 584)
+scale = Vector2(8, 8)
+texture = ExtResource("11_qt56r")
+
+[node name="centerBackground" type="Sprite2D" parent="Backgrounds" unique_id=1782579843]
+position = Vector2(576, 319)
+rotation = 1.5707964
+scale = Vector2(8, 8)
+texture = ExtResource("15_32v4e")
+
+[node name="CenterWindows" type="Node2D" parent="." unique_id=97508153]
+
+[node name="inventoryWind" type="Node2D" parent="CenterWindows" unique_id=718695114]
+script = ExtResource("16_lfg33")
+
+[node name="GridContainer" type="GridContainer" parent="CenterWindows/inventoryWind" unique_id=339440393]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 325.0
+offset_top = 143.0
+offset_right = 825.0
+offset_bottom = 393.0
+columns = 10
+
+[connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/inventoryWind" method="_on_scavenge_button_open_scav_wind"]
+[connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/inventoryWind" method="_on_sell_button_open_sell_wind"]
+[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/inventoryWind" method="_on_event_log_open_log"]
+[connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/inventoryWind" method="_on_ledger_button_open_ledger"]
+[connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/inventoryWind" method="_on_quota_button_open_quota"]
+[connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/inventoryWind" method="_on_inventory_button_open_inventory"]
+[connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/inventoryWind" method="_on_buy_button_open_shop"]
+[connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/inventoryWind" method="_on_vitals_button_open_vitals"]

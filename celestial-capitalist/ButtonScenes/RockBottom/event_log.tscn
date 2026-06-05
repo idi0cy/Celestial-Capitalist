@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://d2e5kd40yy1wi"]
+
+[ext_resource type="Script" uid="uid://brocl1si06mm8" path="res://Scripts/RockBottom/event_log_button.gd" id="1_7gyfo"]
+[ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="1_lqtd6"]
+[ext_resource type="Texture2D" uid="uid://d2gxg50tkryp3" path="res://assets/Sprites/RockBottom/eventLogIcon.png" id="2_lqtd6"]
+[ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="3_4cxjx"]
+[ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="4_0i31r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4i60"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gyfo"]
+bg_color = Color(0, 0, 0, 0)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bnjb"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="EventLogButton" type="Node2D" unique_id=620947473]
+position = Vector2(243, 213)
+script = ExtResource("1_7gyfo")
+
+[node name="interactable" type="Button" parent="." unique_id=1150279528]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -18.0
+offset_right = 82.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_lqtd6")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_v4i60")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7gyfo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6bnjb")
+text = "Event Log"
+icon = ExtResource("2_lqtd6")
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="." unique_id=110006459]
+z_index = 1
+scale = Vector2(3, 3)
+texture = ExtResource("3_4cxjx")
+script = ExtResource("4_0i31r")
+
+[connection signal="mouse_entered" from="interactable" to="." method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="interactable" to="." method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="interactable" to="." method="_on_interactable_pressed"]
