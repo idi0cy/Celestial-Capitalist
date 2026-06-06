@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dqjhvf80mgd3n"]
+
+[ext_resource type="Texture2D" uid="uid://chvamhcj6xefc" path="res://assets/Sprites/RockBottom/inventoryIcons/defaultInvSquare.png" id="1_dtvay"]
+[ext_resource type="Texture2D" uid="uid://bpf0rrvf8rp21" path="res://assets/Sprites/RockBottom/inventoryIcons/defaultInvsquareSmaller.png" id="2_due5a"]
+[ext_resource type="Script" uid="uid://imcp8ylly0jj" path="res://Scripts/RockBottom/InvItem.gd" id="3_h7qwh"]
+
+[node name="exampleForInventory" type="TextureButton" unique_id=1742220940]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_dtvay")
+texture_pressed = ExtResource("2_due5a")
+script = ExtResource("3_h7qwh")
