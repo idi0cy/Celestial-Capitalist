@@ -31,7 +31,6 @@ func _on_timer_timeout() -> void:
 			interactable.text = str(floor(theTime/60)) + ":0" + str(theTime % 60) + " AM"
 		else:
 			interactable.text = str(floor(theTime/60)) + ":" + str(theTime%60) + " AM"
-	print(theTime)
 
 func _ready():
 	pass

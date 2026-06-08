@@ -1,27 +1,22 @@
-extends Node2D
+extends Node
 
 @onready var outerSprite = $outerSprite
-@onready var interactable = $interactable
-@onready var enterDelay = get_node("../Timers/menuDelay1")
-@onready var paddingSize = Vector2(6.423, 1.492)
-@onready var hoverScale = Vector2(paddingSize[0] + 0.5, paddingSize[1] + 0.5)
+@onready var paddingSize = outerSprite.theScale
+@onready var hoverScale = Vector2(paddingSize[0] + 0.35, paddingSize[1] + 0.35)
 var placeHolder = Vector2(0,0)
 var hovering = false
 var growSpeed = 0.1
-var moveSpeed = 2.0
-var movement = false
+
+signal approachStranger
 
 func _ready():
-	interactable.text = "Start Game"
-	enterDelay.start()
+	pass
 
-func _process(delta):
+func _process(_delta):
 	if hovering == true:
 		placeHolder = outerSprite.scale.lerp(hoverScale, growSpeed)
 	else:
 		placeHolder = outerSprite.scale.lerp(paddingSize, growSpeed)
-	if movement == true:
-		position = position.lerp(Vector2(1000,375), delta*moveSpeed)
 	outerSprite.scale = placeHolder
 
 func _on_interactable_mouse_entered() -> void:
@@ -32,7 +27,5 @@ func _on_interactable_mouse_exited() -> void:
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
-	print(self)
-
-func _on_menu_delay_1_timeout() -> void:
-	movement = true
+	approachStranger.emit()
+	outerSprite.scale = paddingSize

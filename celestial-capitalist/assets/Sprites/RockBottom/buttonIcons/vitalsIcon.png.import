@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwi3dqsf2yslg"
-path="res://.godot/imported/inventoryIcon.png-71e2d1b3c188d5d994f1e453269c7241.ctex"
+uid="uid://b5svpxflyd7pe"
+path="res://.godot/imported/vitalsIcon.png-e67b2efc3be1ce971c1ab9a7537899ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/RockBottom/inventoryIcon.png"
-dest_files=["res://.godot/imported/inventoryIcon.png-71e2d1b3c188d5d994f1e453269c7241.ctex"]
+source_file="res://assets/Sprites/RockBottom/buttonIcons/vitalsIcon.png"
+dest_files=["res://.godot/imported/vitalsIcon.png-e67b2efc3be1ce971c1ab9a7537899ad.ctex"]
 
 [params]
 

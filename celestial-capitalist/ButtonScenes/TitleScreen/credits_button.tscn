@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dclqq1iwvtfta" path="res://Scripts/TitleScreen/TitleButtonScripts/credits_button.gd" id="1_b1j5g"]
 [ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="1_oyfyv"]
-[ext_resource type="Texture2D" uid="uid://uv5uyw06plsh" path="res://assets/Sprites/TitleScreen/starIconTemp.png" id="2_b1j5g"]
 [ext_resource type="Texture2D" uid="uid://bb1dupv4y0m1a" path="res://assets/Sprites/buttonOuter.png" id="3_wybxm"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="4_47npg"]
 
@@ -46,12 +45,11 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_v4i60")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6bnjb")
 text = "Credits"
-icon = ExtResource("2_b1j5g")
 metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="." unique_id=110006459]
 z_index = 1
-scale = Vector2(5.6230216, 1.4920406)
+scale = Vector2(4.4630213, 1.4920406)
 texture = ExtResource("3_wybxm")
 script = ExtResource("4_47npg")
 

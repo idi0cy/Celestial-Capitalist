@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://21tqqtqyuukm"
-path="res://.godot/imported/skillTreeIcon.png-f91149253b17a4920d0a5bf45e0dd6e6.ctex"
+uid="uid://b0k6vwp6tmdq0"
+path="res://.godot/imported/clockIcon.png-cafadb94ff655aa3edd218016251446d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/RockBottom/skillTreeIcon.png"
-dest_files=["res://.godot/imported/skillTreeIcon.png-f91149253b17a4920d0a5bf45e0dd6e6.ctex"]
+source_file="res://assets/Sprites/RockBottom/buttonIcons/clockIcon.png"
+dest_files=["res://.godot/imported/clockIcon.png-cafadb94ff655aa3edd218016251446d.ctex"]
 
 [params]
 

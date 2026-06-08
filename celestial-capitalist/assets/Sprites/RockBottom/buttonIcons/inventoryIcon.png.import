@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpmpivvoxivvj"
-path="res://.godot/imported/DollarBillLogo.png-9b6e81d3aecadeb127e78aa09479657f.ctex"
+uid="uid://cwi3dqsf2yslg"
+path="res://.godot/imported/inventoryIcon.png-7d0ca1623089ff92ffe520dd1418379a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/RockBottom/DollarBillLogo.png"
-dest_files=["res://.godot/imported/DollarBillLogo.png-9b6e81d3aecadeb127e78aa09479657f.ctex"]
+source_file="res://assets/Sprites/RockBottom/buttonIcons/inventoryIcon.png"
+dest_files=["res://.godot/imported/inventoryIcon.png-7d0ca1623089ff92ffe520dd1418379a.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@ extends Node2D
 @onready var outerSprite = $outerSprite
 @onready var interactable = $interactable
 @onready var enterDelay = get_node("../Timers/settingsDelay")
-@onready var paddingSize = Vector2(6.103, 1.492)
+@onready var paddingSize = Vector2(4.983, 1.492)
 @onready var hoverScale = Vector2(paddingSize[0] + 0.5, paddingSize[1] + 0.5)
 var placeHolder = Vector2(0,0)
 var hovering = false

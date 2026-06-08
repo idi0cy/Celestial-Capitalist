@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5svpxflyd7pe"
-path="res://.godot/imported/vitalsIcon.png-c7ef744e711e77e4e04243ff417c6ef6.ctex"
+uid="uid://dr3gtg5ep2e3q"
+path="res://.godot/imported/butItemIcon.png-0c2f483e2e380331cb0319032efb47a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/RockBottom/vitalsIcon.png"
-dest_files=["res://.godot/imported/vitalsIcon.png-c7ef744e711e77e4e04243ff417c6ef6.ctex"]
+source_file="res://assets/Sprites/RockBottom/buttonIcons/butItemIcon.png"
+dest_files=["res://.godot/imported/butItemIcon.png-0c2f483e2e380331cb0319032efb47a0.ctex"]
 
 [params]
 

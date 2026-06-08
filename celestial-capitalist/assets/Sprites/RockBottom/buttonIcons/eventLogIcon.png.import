@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2gxg50tkryp3"
-path="res://.godot/imported/eventLogIcon.png-1e0350d1ffbb8453541bff4680f08adb.ctex"
+path="res://.godot/imported/eventLogIcon.png-47fe28d1078b280e844f41bf624ad971.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/RockBottom/eventLogIcon.png"
-dest_files=["res://.godot/imported/eventLogIcon.png-1e0350d1ffbb8453541bff4680f08adb.ctex"]
+source_file="res://assets/Sprites/RockBottom/buttonIcons/eventLogIcon.png"
+dest_files=["res://.godot/imported/eventLogIcon.png-47fe28d1078b280e844f41bf624ad971.ctex"]
 
 [params]
 

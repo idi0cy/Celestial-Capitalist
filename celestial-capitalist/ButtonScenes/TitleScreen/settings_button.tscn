@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://jknvwbo3nugs" path="res://Scripts/TitleScreen/TitleButtonScripts/settings_button.gd" id="1_dg8lo"]
 [ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="2_0yvny"]
-[ext_resource type="Texture2D" uid="uid://uv5uyw06plsh" path="res://assets/Sprites/TitleScreen/starIconTemp.png" id="3_qcudk"]
 [ext_resource type="Texture2D" uid="uid://bb1dupv4y0m1a" path="res://assets/Sprites/buttonOuter.png" id="4_y4sjn"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="5_e7vhd"]
 
@@ -46,12 +45,11 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_v4i60")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6bnjb")
 text = "Settings"
-icon = ExtResource("3_qcudk")
 metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="." unique_id=110006459]
 z_index = 1
-scale = Vector2(6.1030316, 1.4920406)
+scale = Vector2(4.9830317, 1.4920406)
 texture = ExtResource("4_y4sjn")
 script = ExtResource("5_e7vhd")
 

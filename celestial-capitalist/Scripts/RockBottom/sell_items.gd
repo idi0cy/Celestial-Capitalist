@@ -9,9 +9,6 @@ var growSpeed = 0.1
 
 signal openSellWind
 
-func _ready():
-	pass
-
 func _process(_delta):
 	if hovering == true:
 		placeHolder = outerSprite.scale.lerp(hoverScale, growSpeed)
@@ -21,7 +18,6 @@ func _process(_delta):
 
 func _on_interactable_mouse_entered() -> void:
 	hovering = true
-
 func _on_interactable_mouse_exited() -> void:
 	hovering = false
 

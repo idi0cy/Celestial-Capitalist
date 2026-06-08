@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="1_b0j46"]
 [ext_resource type="Script" uid="uid://csfb53fek7npm" path="res://Scripts/RockBottom/scavenge_button.gd" id="1_inxc3"]
 [ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="3_1d24r"]
-[ext_resource type="Texture2D" uid="uid://ccklvl3jbm3nh" path="res://assets/Sprites/RockBottom/ScavengeLogo.png" id="3_inxc3"]
+[ext_resource type="Texture2D" uid="uid://ccklvl3jbm3nh" path="res://assets/Sprites/RockBottom/buttonIcons/ScavengeLogo.png" id="3_inxc3"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="4_dv8us"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4i60"]

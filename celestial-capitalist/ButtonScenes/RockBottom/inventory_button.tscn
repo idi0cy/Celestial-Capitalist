@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pbo755re5kt7" path="res://Scripts/RockBottom/inventory_button.gd" id="1_0nnmr"]
 [ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="1_bgckw"]
-[ext_resource type="Texture2D" uid="uid://cwi3dqsf2yslg" path="res://assets/Sprites/RockBottom/inventoryIcon.png" id="3_0nnmr"]
+[ext_resource type="Texture2D" uid="uid://cwi3dqsf2yslg" path="res://assets/Sprites/RockBottom/buttonIcons/inventoryIcon.png" id="3_0nnmr"]
 [ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="3_p8ruh"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="4_g60mb"]
 

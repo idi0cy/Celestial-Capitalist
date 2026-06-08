@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0k6vwp6tmdq0"
-path="res://.godot/imported/clockIcon.png-7c9de0ded5a1f5c9f207c94387256a45.ctex"
+uid="uid://ccklvl3jbm3nh"
+path="res://.godot/imported/ScavengeLogo.png-e9f1fb0fc39c3706bd09829f10403ef2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/RockBottom/clockIcon.png"
-dest_files=["res://.godot/imported/clockIcon.png-7c9de0ded5a1f5c9f207c94387256a45.ctex"]
+source_file="res://assets/Sprites/RockBottom/buttonIcons/ScavengeLogo.png"
+dest_files=["res://.godot/imported/ScavengeLogo.png-e9f1fb0fc39c3706bd09829f10403ef2.ctex"]
 
 [params]
 

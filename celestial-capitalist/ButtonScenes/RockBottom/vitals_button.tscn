@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="1_pu71m"]
 [ext_resource type="Script" uid="uid://b6ggxgyo1br22" path="res://Scripts/RockBottom/vitals_button.gd" id="1_qgqb8"]
 [ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="2_g2xh6"]
-[ext_resource type="Texture2D" uid="uid://b5svpxflyd7pe" path="res://assets/Sprites/RockBottom/vitalsIcon.png" id="2_qgqb8"]
+[ext_resource type="Texture2D" uid="uid://b5svpxflyd7pe" path="res://assets/Sprites/RockBottom/buttonIcons/vitalsIcon.png" id="2_qgqb8"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="3_qgqb8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4i60"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccklvl3jbm3nh"
-path="res://.godot/imported/ScavengeLogo.png-175f9d56c0099f132538a3ee8a2811b4.ctex"
+uid="uid://21tqqtqyuukm"
+path="res://.godot/imported/skillTreeIcon.png-4e8ea12c13afc5e02e5fd204c4d57a8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/RockBottom/ScavengeLogo.png"
-dest_files=["res://.godot/imported/ScavengeLogo.png-175f9d56c0099f132538a3ee8a2811b4.ctex"]
+source_file="res://assets/Sprites/RockBottom/buttonIcons/skillTreeIcon.png"
+dest_files=["res://.godot/imported/skillTreeIcon.png-4e8ea12c13afc5e02e5fd204c4d57a8b.ctex"]
 
 [params]
 
