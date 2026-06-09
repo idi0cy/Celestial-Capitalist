@@ -24,6 +24,14 @@
 [ext_resource type="Texture2D" uid="uid://gep8dwo88u7w" path="res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png" id="21_0m4ur"]
 [ext_resource type="Script" uid="uid://277f1o8ppiay" path="res://Scripts/RockBottom/text_spawn_label.gd" id="22_2of7g"]
 [ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="22_tdnta"]
+[ext_resource type="Texture2D" uid="uid://cskmc21byixa2" path="res://assets/Sprites/RockBottom/terminalRB.png" id="24_bgfic"]
+[ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="25_leuqs"]
+[ext_resource type="Script" uid="uid://b4ceulnew7o8x" path="res://Scripts/RockBottom/actions/sales_pitch.gd" id="25_phiw1"]
+[ext_resource type="Script" uid="uid://bspc8qf77tcj0" path="res://Scripts/RockBottom/actions/beg.gd" id="27_6xp14"]
+[ext_resource type="Script" uid="uid://bb0wmseld6y20" path="res://Scripts/RockBottom/actions/fake_injury.gd" id="28_18hvv"]
+[ext_resource type="Script" uid="uid://chef3jgn53ya4" path="res://Scripts/RockBottom/actions/steal.gd" id="29_qs7pq"]
+[ext_resource type="Script" uid="uid://brfeppu43d5ll" path="res://Scripts/RockBottom/actions/con_action.gd" id="30_033t1"]
+[ext_resource type="Script" uid="uid://ern6euvtapxk" path="res://Scripts/RockBottom/actions/confirm_action.gd" id="31_18hvv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -37,6 +45,29 @@ bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phiw1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5fyum"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phiw1"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fyum"]
+bg_color = Color(0, 0, 0, 0)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gccyc"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [node name="RockBottom" type="Node2D" unique_id=1024261337]
 
@@ -115,23 +146,27 @@ position = Vector2(1005, 240)
 [node name="Backgrounds" type="Node2D" parent="." unique_id=865378262]
 
 [node name="backGround1" type="Sprite2D" parent="Backgrounds" unique_id=1217940793]
+z_index = -5
 position = Vector2(148, 384)
 rotation = 1.5707964
 scale = Vector2(8, 8)
 texture = ExtResource("10_2evtq")
 
 [node name="backGround2" type="Sprite2D" parent="Backgrounds" unique_id=712188722]
+z_index = -5
 position = Vector2(1004, 384)
 rotation = 1.5707964
 scale = Vector2(8, 8)
 texture = ExtResource("10_2evtq")
 
 [node name="bottomBackground" type="Sprite2D" parent="Backgrounds" unique_id=594824330]
+z_index = -5
 position = Vector2(576, 584)
 scale = Vector2(8, 8)
 texture = ExtResource("11_qt56r")
 
 [node name="centerBackground" type="Sprite2D" parent="Backgrounds" unique_id=1782579843]
+z_index = -5
 position = Vector2(576, 320)
 rotation = 1.5707964
 scale = Vector2(8, 8)
@@ -179,10 +214,10 @@ theme_override_fonts/font = ExtResource("12_knhbb")
 text = "Value: 0.0"
 
 [node name="sellWind" type="Node2D" parent="CenterWindows" unique_id=1492757036]
-visible = false
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
+visible = false
 
 [node name="PeopleList" type="HBoxContainer" parent="CenterWindows/sellWind/PickTarget" unique_id=2057357323]
 offset_left = 325.0
@@ -209,7 +244,7 @@ horizontal_alignment = 1
 script = ExtResource("22_2of7g")
 
 [node name="approachButton" type="Node2D" parent="CenterWindows/sellWind/PickTarget" unique_id=1926417860]
-position = Vector2(576, 470)
+position = Vector2(576, 400)
 
 [node name="Button" type="Button" parent="CenterWindows/sellWind/PickTarget/approachButton" unique_id=125082814]
 z_index = 2
@@ -231,7 +266,7 @@ text = "Approach"
 scale = Vector2(4, 4)
 texture = ExtResource("22_tdnta")
 
-[node name="Directive" type="Label" parent="CenterWindows/sellWind" unique_id=1692433799]
+[node name="Directive" type="Label" parent="CenterWindows/sellWind/PickTarget" unique_id=1692433799]
 offset_left = 376.0
 offset_top = 135.0
 offset_right = 776.0
@@ -241,6 +276,233 @@ theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_font_sizes/font_size = 25
 text = "Pedestrians Identified"
 horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+
+[node name="postApproach" type="Node2D" parent="CenterWindows/sellWind" unique_id=1469147129]
+
+[node name="Terminal" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1548338584]
+position = Vector2(512, 391)
+
+[node name="termText" type="Label" parent="CenterWindows/sellWind/postApproach/Terminal" unique_id=47641209]
+z_index = 3
+offset_left = -163.0
+offset_top = 6.0
+offset_right = 291.0
+offset_bottom = 91.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+text = "> System: Filler Text"
+autowrap_mode = 2
+
+[node name="termBackground" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Terminal" unique_id=88375434]
+position = Vector2(64, 49)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="theGuy" type="Sprite2D" parent="CenterWindows/sellWind/postApproach" unique_id=872769702]
+position = Vector2(576, 228)
+scale = Vector2(2, 2)
+texture = ExtResource("21_0m4ur")
+
+[node name="Actions" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1846174536]
+
+[node name="Sales Pitch" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=872168034]
+position = Vector2(393, 170)
+script = ExtResource("25_phiw1")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" unique_id=5823537]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Sales Pitch"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" unique_id=1631136714]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="Beg" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=1373708636]
+position = Vector2(393, 220)
+script = ExtResource("27_6xp14")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/Beg" unique_id=815617344]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Beg"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/Beg" unique_id=1049977813]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="Fake Injury" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=41384712]
+position = Vector2(759, 170)
+script = ExtResource("28_18hvv")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/Fake Injury" unique_id=1512911175]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Fake Injury"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/Fake Injury" unique_id=268340808]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="Steal" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=962512209]
+position = Vector2(759, 220)
+script = ExtResource("29_qs7pq")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/Steal" unique_id=1728315950]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Steal"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/Steal" unique_id=178528958]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="Con" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=155143526]
+position = Vector2(759, 270)
+script = ExtResource("30_033t1")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/Con" unique_id=1961101140]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Con"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/Con" unique_id=2084000827]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="takeAction" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=1511560941]
+position = Vector2(577, 350)
+script = ExtResource("31_18hvv")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/takeAction" unique_id=884800544]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Take Action"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/takeAction" unique_id=1986578377]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
 
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
@@ -263,5 +525,23 @@ position = Vector2(402, 554)
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/sellWind" method="_on_vitals_button_open_vitals"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/inventoryWind" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/sellWind" method="_on_skills_button_open_skill_tree"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Beg/interactable" to="CenterWindows/sellWind/postApproach/Actions/Beg" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Beg/interactable" to="CenterWindows/sellWind/postApproach/Actions/Beg" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Beg/interactable" to="CenterWindows/sellWind/postApproach/Actions/Beg" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Fake Injury/interactable" to="CenterWindows/sellWind/postApproach/Actions/Fake Injury" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Fake Injury/interactable" to="CenterWindows/sellWind/postApproach/Actions/Fake Injury" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Fake Injury/interactable" to="CenterWindows/sellWind/postApproach/Actions/Fake Injury" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Steal/interactable" to="CenterWindows/sellWind/postApproach/Actions/Steal" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Steal/interactable" to="CenterWindows/sellWind/postApproach/Actions/Steal" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Steal/interactable" to="CenterWindows/sellWind/postApproach/Actions/Steal" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Con/interactable" to="CenterWindows/sellWind/postApproach/Actions/Con" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Con/interactable" to="CenterWindows/sellWind/postApproach/Actions/Con" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Con/interactable" to="CenterWindows/sellWind/postApproach/Actions/Con" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_pressed"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]
