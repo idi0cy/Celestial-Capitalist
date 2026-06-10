@@ -6,6 +6,7 @@ extends Node
 
 @onready var takeAction = get_node("../takeAction")
 @onready var terminalText = get_node("../../Terminal/termText")
+@onready var sellWind = get_node("../../../../sellWind")
 
 var placeHolder = Vector2(0,0)
 var hovering = false
@@ -31,8 +32,9 @@ func _on_interactable_mouse_exited() -> void:
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
-	takeAction.action = "Fake Injury"
-	terminalText.targetText = "> System: Convince the target they have mortally wounded you, or convince the public to pressure them. Demand compensation."
-	terminalText.fillText()
-	fakeInjury.emit()
-	outerSprite.scale = paddingSize
+	if sellWind.initiatingAction == false:
+		takeAction.action = "Fake Injury"
+		terminalText.targetText = "> System: Convince the target they have mortally wounded you, or convince the public to pressure them. Demand compensation."
+		terminalText.fillText()
+		fakeInjury.emit()
+		outerSprite.scale = paddingSize

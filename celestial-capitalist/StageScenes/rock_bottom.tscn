@@ -32,6 +32,8 @@
 [ext_resource type="Script" uid="uid://chef3jgn53ya4" path="res://Scripts/RockBottom/actions/steal.gd" id="29_qs7pq"]
 [ext_resource type="Script" uid="uid://brfeppu43d5ll" path="res://Scripts/RockBottom/actions/con_action.gd" id="30_033t1"]
 [ext_resource type="Script" uid="uid://ern6euvtapxk" path="res://Scripts/RockBottom/actions/confirm_action.gd" id="31_18hvv"]
+[ext_resource type="Script" uid="uid://bic2idahcuw4a" path="res://Scripts/RockBottom/minigames/pick_to_sell.gd" id="32_qs7pq"]
+[ext_resource type="Script" uid="uid://dot5q14stmjoh" path="res://Scripts/RockBottom/minigames/confirm_selection.gd" id="33_033t1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -68,6 +70,16 @@ expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qs7pq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_033t1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_op3i2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6uy1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bituw"]
 
 [node name="RockBottom" type="Node2D" unique_id=1024261337]
 
@@ -505,6 +517,85 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("22_tdnta")
 script = ExtResource("25_leuqs")
 
+[node name="minigameWindows" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=611419590]
+
+[node name="pickToSell" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=371395790]
+z_index = 5
+script = ExtResource("32_qs7pq")
+
+[node name="popupBg" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=54092830]
+position = Vector2(576, 320)
+rotation = 1.5707964
+scale = Vector2(9, 9)
+texture = ExtResource("15_32v4e")
+
+[node name="InvGrid" type="GridContainer" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=1749365955]
+offset_left = 325.0
+offset_top = 155.0
+offset_right = 825.0
+offset_bottom = 455.0
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 10
+
+[node name="Directive" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=1354870666]
+offset_left = 442.0
+offset_top = 109.0
+offset_right = 715.0
+offset_bottom = 142.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 25
+text = "Pick an Item to Sell"
+
+[node name="infoBarOne" type="HBoxContainer" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=1974959952]
+offset_left = 329.0
+offset_top = 432.0
+offset_right = 829.0
+offset_bottom = 488.0
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("18_vxl8v")
+
+[node name="Item" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/infoBarOne" unique_id=438323656]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Item:"
+
+[node name="Quality" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/infoBarOne" unique_id=2131385162]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Quality: 0.0"
+
+[node name="Value" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/infoBarOne" unique_id=1639813112]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Value: 0.0"
+
+[node name="confirm" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=1130010631]
+position = Vector2(570, 511)
+script = ExtResource("33_033t1")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" unique_id=1537377677]
+position = Vector2(7, -5)
+scale = Vector2(3, 3)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" unique_id=1355126608]
+offset_left = -51.0
+offset_top = -25.0
+offset_right = 65.0
+offset_bottom = 8.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qs7pq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_033t1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_op3i2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_i6uy1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bituw")
+text = "Confirm"
+
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
 
@@ -545,5 +636,8 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" method="_on_interactable_pressed"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]

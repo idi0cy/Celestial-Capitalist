@@ -6,6 +6,7 @@ extends Node
 
 @onready var takeAction = get_node("../takeAction")
 @onready var terminalText = get_node("../../Terminal/termText")
+@onready var sellWind = get_node("../../../../sellWind")
 
 var placeHolder = Vector2(0,0)
 var hovering = false
@@ -31,8 +32,9 @@ func _on_interactable_mouse_exited() -> void:
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
-	takeAction.action = "Sales Pitch"
-	terminalText.targetText = "> System: Sell an item to this stranger. Minigame performance partially determines success."
-	terminalText.fillText()
-	salesPitch.emit()
-	outerSprite.scale = paddingSize
+	if sellWind.initiatingAction == false:
+		takeAction.action = "Sales Pitch"
+		terminalText.targetText = "> System: Sell an item to this stranger. Minigame performance partially determines success."
+		terminalText.fillText()
+		salesPitch.emit()
+		outerSprite.scale = paddingSize
