@@ -37,6 +37,7 @@
 [ext_resource type="Script" uid="uid://c17ic64r1ge7f" path="res://Scripts/RockBottom/minigames/haggle.gd" id="34_op3i2"]
 [ext_resource type="Script" uid="uid://c526rf1um5u44" path="res://Scripts/RockBottom/minigames/haggle_bar.gd" id="35_i6uy1"]
 [ext_resource type="Script" uid="uid://b8m8hdrfm7w2a" path="res://Scripts/RockBottom/minigames/fearmonger.gd" id="36_bituw"]
+[ext_resource type="Texture2D" uid="uid://bsdxnepn4mb73" path="res://assets/Sprites/RockBottom/RBblankBackground.png" id="33_op3i2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -205,17 +206,17 @@ script = ExtResource("16_lfg33")
 
 [node name="InvGrid" type="GridContainer" parent="CenterWindows/inventoryWind" unique_id=339440393]
 custom_minimum_size = Vector2(75, 75)
-offset_left = 325.0
-offset_top = 143.0
-offset_right = 825.0
-offset_bottom = 393.0
+offset_left = 350.0
+offset_top = 144.0
+offset_right = 850.0
+offset_bottom = 394.0
+scale = Vector2(1.0051254, 1)
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-columns = 10
+columns = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="infoBarOne" type="HBoxContainer" parent="CenterWindows/inventoryWind" unique_id=322301107]
-visible = false
 offset_left = 325.0
 offset_top = 403.0
 offset_right = 825.0
@@ -226,16 +227,19 @@ script = ExtResource("18_vxl8v")
 
 [node name="Item" type="Label" parent="CenterWindows/inventoryWind/infoBarOne" unique_id=1333200894]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("12_knhbb")
 text = "Item: \"\""
 
 [node name="Quality" type="Label" parent="CenterWindows/inventoryWind/infoBarOne" unique_id=288988637]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("12_knhbb")
 text = "Quality: 0.0"
 
 [node name="Value" type="Label" parent="CenterWindows/inventoryWind/infoBarOne" unique_id=1576207804]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("12_knhbb")
 text = "Value: 0.0"
 
@@ -243,7 +247,6 @@ text = "Value: 0.0"
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
-visible = false
 
 [node name="PeopleList" type="HBoxContainer" parent="CenterWindows/sellWind/PickTarget" unique_id=2057357323]
 offset_left = 325.0
@@ -315,6 +318,7 @@ offset_left = -163.0
 offset_top = 6.0
 offset_right = 291.0
 offset_bottom = 91.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_font_sizes/font_size = 15
 text = "> System: Filler Text"
@@ -329,7 +333,7 @@ texture = ExtResource("24_bgfic")
 [node name="theGuy" type="Sprite2D" parent="CenterWindows/sellWind/postApproach" unique_id=872769702]
 visible = false
 position = Vector2(576, 228)
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 texture = ExtResource("21_0m4ur")
 
 [node name="Actions" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1846174536]
@@ -544,7 +548,7 @@ script = ExtResource("32_qs7pq")
 position = Vector2(576, 320)
 rotation = 1.5707964
 scale = Vector2(9, 9)
-texture = ExtResource("15_32v4e")
+texture = ExtResource("33_op3i2")
 
 [node name="InvGrid" type="GridContainer" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=1749365955]
 offset_left = 325.0

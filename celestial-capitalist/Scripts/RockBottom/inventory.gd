@@ -31,7 +31,7 @@ const allItems = ["Water Bottle", "Pencil", "Burger"]
 
 #replace when implimenting save game function (WHYYYYY DO I HAVE TO FIGURE THAT OUT?????)
 @export var currentInv = [["Water Bottle", 25], ["Water Bottle", 50], ["Burger", 75], ["Pencil", 10],
-["Burger", 25]]
+["Burger", 25], ["Burger", 25], ["Burger", 25]]
 
 func _process(_delta):
 	if hiding == true:
