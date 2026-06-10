@@ -1,6 +1,13 @@
 extends Label
 
 var targetText = ""
+var textDone = false
+
+func _process(_delta):
+	if text == targetText:
+		textDone = true
+	else:
+		textDone = false
 
 func fillText():
 	text = ""

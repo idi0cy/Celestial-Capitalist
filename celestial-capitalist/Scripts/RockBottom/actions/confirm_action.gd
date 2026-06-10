@@ -12,8 +12,9 @@ var personIndex
 var placeHolder = Vector2(0,0)
 var hovering = false
 var growSpeed = 0.1
+var action = "No Action"
 
-signal confirmAction
+signal confirmAction(theAction, target)
 
 func _ready():
 	pass
@@ -33,5 +34,5 @@ func _on_interactable_mouse_exited() -> void:
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
-	confirmAction.emit()
+	confirmAction.emit(action, personIndex)
 	outerSprite.scale = paddingSize

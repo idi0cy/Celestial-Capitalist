@@ -11,6 +11,7 @@ extends Node2D
 @onready var directiveFirst = get_node("PickTarget/Directive")
 @onready var postApproach = get_node("postApproach")
 @onready var confirmAction = get_node("postApproach/Actions/takeAction")
+@onready var terminalText = get_node("postApproach/Terminal/termText")
 
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
@@ -58,6 +59,9 @@ func _process(_delta):
 		self.show()
 
 func _on_sell_button_open_sell_wind() -> void:
+	postApproach.hide()
+	terminalText.targetText = ""
+	terminalText.fillText()
 	blankSlate()
 	sellWindowOpen = not sellWindowOpen
 	if sellWindowOpen == true:
@@ -128,6 +132,52 @@ func approachStranger(index):
 	approachButtonGeneral.hide()
 	postApproach.show()
 	PeopleList.peopleListHidden = true
+	
+func _on_take_action_confirm_action(theAction, target) -> void:
+	if theAction == "No Action":
+		noAction(target)
+	elif theAction == "Sales Pitch":
+		salesPitch(target)
+	elif theAction == "Beg":
+		begAction(target)
+	elif theAction == "Fake Injury":
+		fakeInjury(target)
+	elif theAction == "Steal":
+		steal(target)
+	elif theAction == "Con":
+		conTarget(target)
+	else:
+		noAction(target)
+
+func noAction(target):
+	print(target)
+	terminalText.targetText = "> System: No action taken. Please select an action before taking it."
+	terminalText.fillText()
+
+func salesPitch(target):
+	print(target)
+	terminalText.targetText = "> System: Trying to impress customers..."
+	terminalText.fillText()
+
+func begAction(target):
+	print(target)
+	terminalText.targetText = "> System: Preparing to cry..."
+	terminalText.fillText()
+
+func fakeInjury(target):
+	print(target)
+	terminalText.targetText = "> System: Weakening ankles..."
+	terminalText.fillText()
+
+func steal(target):
+	print(target)
+	terminalText.targetText = "> System: Eyeing enemy pockets..."
+	terminalText.fillText()
+
+func conTarget(target):
+	print(target)
+	terminalText.targetText = "> System: Ideating new scams..."
+	terminalText.fillText()
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	sellWindowOpen = false
