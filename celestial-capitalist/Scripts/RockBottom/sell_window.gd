@@ -12,6 +12,8 @@ extends Node2D
 @onready var postApproach = get_node("postApproach")
 @onready var confirmAction = get_node("postApproach/Actions/takeAction")
 @onready var terminalText = get_node("postApproach/Terminal/termText")
+@onready var minigameWindows = get_node("postApproach/minigameWindows")
+@onready var pickToSell = get_node("postApproach/minigameWindows/pickToSell")
 
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
@@ -26,6 +28,7 @@ var alreadyFound = []
 var placeHolder
 var needToFind
 var strangerButton
+var initiatingAction = false
 
 #try to have more success rate the higher the values are for uniformity
 #index 0 is name of person, index 1 is wealth, index 2 is approachability
@@ -150,34 +153,48 @@ func _on_take_action_confirm_action(theAction, target) -> void:
 		noAction(target)
 
 func noAction(target):
-	print(target)
-	terminalText.targetText = "> System: No action taken. Please select an action before taking it."
-	terminalText.fillText()
+	if initiatingAction == false:
+		print(target)
+		terminalText.targetText = "> System: No action taken. Please select an action before taking it."
+		terminalText.fillText()
 
 func salesPitch(target):
-	print(target)
-	terminalText.targetText = "> System: Trying to impress customers..."
-	terminalText.fillText()
+	if initiatingAction == false:
+		initiatingAction = true
+		print(target)
+		terminalText.targetText = "> System: Trying to impress customers..."
+		terminalText.fillText()
+		#maybe play cool sound effect while waiting
+		await get_tree().create_timer(2).timeout
+		pickToSell.openPickToSell()
 
 func begAction(target):
-	print(target)
-	terminalText.targetText = "> System: Preparing to cry..."
-	terminalText.fillText()
+	if initiatingAction == false:
+		initiatingAction = true
+		print(target)
+		terminalText.targetText = "> System: Preparing to cry..."
+		terminalText.fillText()
 
 func fakeInjury(target):
-	print(target)
-	terminalText.targetText = "> System: Weakening ankles..."
-	terminalText.fillText()
+	if initiatingAction == false:
+		initiatingAction = true
+		print(target)
+		terminalText.targetText = "> System: Weakening ankles..."
+		terminalText.fillText()
 
 func steal(target):
-	print(target)
-	terminalText.targetText = "> System: Eyeing enemy pockets..."
-	terminalText.fillText()
+	if initiatingAction == false:
+		initiatingAction = true
+		print(target)
+		terminalText.targetText = "> System: Eyeing enemy pockets..."
+		terminalText.fillText()
 
 func conTarget(target):
-	print(target)
-	terminalText.targetText = "> System: Ideating new scams..."
-	terminalText.fillText()
+	if initiatingAction == false:
+		initiatingAction = true
+		print(target)
+		terminalText.targetText = "> System: Ideating new scams..."
+		terminalText.fillText()
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	sellWindowOpen = false
