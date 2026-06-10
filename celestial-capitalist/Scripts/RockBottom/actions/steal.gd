@@ -3,6 +3,10 @@ extends Node2D
 @onready var outerSprite = $outerSprite
 @onready var paddingSize = outerSprite.theScale
 @onready var hoverScale = Vector2(paddingSize[0] + 0.2, paddingSize[1] + 0.2)
+
+@onready var takeAction = get_node("../takeAction")
+@onready var terminalText = get_node("../../Terminal/termText")
+
 var placeHolder = Vector2(0,0)
 var hovering = false
 var growSpeed = 0.1
@@ -27,5 +31,8 @@ func _on_interactable_mouse_exited() -> void:
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
+	takeAction.action = "Steal"
+	terminalText.targetText = "> System: Take the target's possessions without their consent."
+	terminalText.fillText()
 	stealStuff.emit()
 	outerSprite.scale = paddingSize
