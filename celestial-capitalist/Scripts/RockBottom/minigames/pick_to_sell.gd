@@ -10,6 +10,7 @@ extends Node2D
 @onready var qualDisplay = get_node("infoBarOne/Quality")
 @onready var valDisplay = get_node("infoBarOne/Value")
 @onready var realInventory = get_node("../../../../inventoryWind")
+@onready var confirmButton = get_node("confirm")
 
 @onready var waterBottleInvIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/waterInventoryItem.png")
 @onready var waterBottleInvIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/waterInvIconSmall.png")
@@ -87,15 +88,20 @@ func generateInfo(index):
 	var itemName
 	var itemVal
 	var itemQual
+	var selectedItem
 	for item in InvGrid.get_children():
 		count2 += 1
 		if count2 == index:
+			selectedItem = item
+			print(selectedItem)
 			itemName = item.myItem[0]
 			itemQual = item.myItem[1]
 			itemVal = item.myItem[1] * item.baseItem[2] * 0.01
 			itemNameDisplay.text = "Item: " + str(itemName)
 			qualDisplay.text = "Quality: " + str(itemQual)
 			valDisplay.text = "Value: $" + str(itemVal)
+			confirmButton.selected = item
+			confirmButton.hiding = false
 			infoBarOne.itemSelected = true
 
 func closeIcons():
