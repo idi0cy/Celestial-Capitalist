@@ -34,6 +34,9 @@
 [ext_resource type="Script" uid="uid://ern6euvtapxk" path="res://Scripts/RockBottom/actions/confirm_action.gd" id="31_18hvv"]
 [ext_resource type="Script" uid="uid://bic2idahcuw4a" path="res://Scripts/RockBottom/minigames/pick_to_sell.gd" id="32_qs7pq"]
 [ext_resource type="Script" uid="uid://dot5q14stmjoh" path="res://Scripts/RockBottom/minigames/confirm_selection.gd" id="33_033t1"]
+[ext_resource type="Script" uid="uid://c17ic64r1ge7f" path="res://Scripts/RockBottom/minigames/haggle.gd" id="34_op3i2"]
+[ext_resource type="Script" uid="uid://c526rf1um5u44" path="res://Scripts/RockBottom/minigames/haggle_bar.gd" id="35_i6uy1"]
+[ext_resource type="Script" uid="uid://b8m8hdrfm7w2a" path="res://Scripts/RockBottom/minigames/fearmonger.gd" id="36_bituw"]
 [ext_resource type="Texture2D" uid="uid://bsdxnepn4mb73" path="res://assets/Sprites/RockBottom/RBblankBackground.png" id="33_op3i2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
@@ -81,6 +84,17 @@ expand_margin_bottom = 5.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6uy1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bituw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_033t1"]
+bg_color = Color(1, 0.39215687, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w6tiq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_511oo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l2ux3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_546nq"]
 
 [node name="RockBottom" type="Node2D" unique_id=1024261337]
 
@@ -317,11 +331,13 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="theGuy" type="Sprite2D" parent="CenterWindows/sellWind/postApproach" unique_id=872769702]
+visible = false
 position = Vector2(576, 228)
 scale = Vector2(3, 3)
 texture = ExtResource("21_0m4ur")
 
 [node name="Actions" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1846174536]
+visible = false
 
 [node name="Sales Pitch" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=872168034]
 position = Vector2(393, 170)
@@ -524,6 +540,7 @@ script = ExtResource("25_leuqs")
 [node name="minigameWindows" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=611419590]
 
 [node name="pickToSell" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=371395790]
+visible = false
 z_index = 5
 script = ExtResource("32_qs7pq")
 
@@ -600,6 +617,57 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_i6uy1")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bituw")
 text = "Confirm"
 
+[node name="Haggle" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=686576947]
+script = ExtResource("34_op3i2")
+
+[node name="haggleBox" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=174875371]
+position = Vector2(576, 293)
+scale = Vector2(8, 9.75)
+texture = ExtResource("24_bgfic")
+
+[node name="Directive" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=1529393965]
+offset_left = 495.0
+offset_top = 132.0
+offset_right = 668.0
+offset_bottom = 170.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 30
+text = "PROGRESS"
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+
+[node name="haggleBar" type="ProgressBar" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=1679955001]
+offset_left = 374.0
+offset_top = 174.0
+offset_right = 774.0
+offset_bottom = 201.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_033t1")
+value = 40.0
+script = ExtResource("35_i6uy1")
+
+[node name="fearmonger" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=1385566250]
+position = Vector2(410, 250)
+script = ExtResource("36_bituw")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/fearmonger" unique_id=2004178133]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/fearmonger" unique_id=77828735]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Fearmonger"
+
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
 
@@ -640,8 +708,12 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_pressed"]
+[connection signal="confirmSelection" from="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" to="CenterWindows/sellWind" method="_on_confirm_confirm_selection"]
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/fearmonger/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/fearmonger" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/fearmonger/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/fearmonger" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/fearmonger/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/fearmonger" method="_on_interactable_pressed"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]

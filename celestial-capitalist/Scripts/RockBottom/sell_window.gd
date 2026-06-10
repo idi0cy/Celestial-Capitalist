@@ -10,10 +10,13 @@ extends Node2D
 @onready var PeopleList = get_node("PickTarget/PeopleList")
 @onready var directiveFirst = get_node("PickTarget/Directive")
 @onready var postApproach = get_node("postApproach")
+@onready var actions = get_node("postApproach/Actions")
+@onready var strangerSprite = get_node("postApproach/theGuy")
 @onready var confirmAction = get_node("postApproach/Actions/takeAction")
 @onready var terminalText = get_node("postApproach/Terminal/termText")
 @onready var minigameWindows = get_node("postApproach/minigameWindows")
 @onready var pickToSell = get_node("postApproach/minigameWindows/pickToSell")
+@onready var haggle = get_node("postApproach/minigameWindows/Haggle")
 
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
@@ -39,14 +42,15 @@ const richAndOld = ["Rich Old Person", 0.9, 0.4, 0.5, 0.4, 0.7, 0.5, 0.8, 0.2]
 const anotherHomeless = ["Homeless", 0.1, 0.8, 0.2, 0.1, 0.1, 0.7, 0.5, 0.7]
 const middleAgedAverage = ["Average Middle Aged", 0.6, 0.7, 0.7, 0.6, 0.5, 0.3, 0.2, 0.5]
 #For the kid, only display "kid", and have them be harder to predict
-const niceKid = ["Kid", 0.2, 0.6, 0.9, 0.8, 0.0, 0.9, 0.5, 1, 0.8]
-const skepticKid = ["Kid2", 0.3, 0.4, 0.2, 0.2, 0.0, 0.7, 1, 0.2]
+const niceKid = ["Child", 0.2, 0.6, 0.9, 0.8, 0.0, 0.9, 0.5, 1, 0.8]
+const skepticKid = ["Child 2", 0.3, 0.4, 0.2, 0.2, 0.0, 0.7, 1, 0.2]
 const charityWorker = ["Charity Worker", 0.5, 1, 0.9, 0.5, 0.4, 0.3, 0.4, 0.2]
 
 const allStrangers = [richAndOld, anotherHomeless, middleAgedAverage, niceKid, skepticKid, charityWorker]
 
 func _ready():
 	postApproach.hide()
+	haggle.hide()
 	$PickTarget.show()
 	personNameLabel.targetText = ""
 	personNameLabel.text = ""
@@ -134,6 +138,10 @@ func approachStranger(index):
 	$PickTarget/personName.hide()
 	approachButtonGeneral.hide()
 	postApproach.show()
+	$postApproach/Actions.show()
+	$postApproach/theGuy.show()
+	$postApproach/Terminal.show()
+	$postApproach/minigameWindows.hide()
 	PeopleList.peopleListHidden = true
 	
 func _on_take_action_confirm_action(theAction, target) -> void:
@@ -166,6 +174,7 @@ func salesPitch(target):
 		terminalText.fillText()
 		#maybe play cool sound effect while waiting
 		await get_tree().create_timer(2).timeout
+		$postApproach/minigameWindows.show()
 		pickToSell.openPickToSell()
 
 func begAction(target):
@@ -195,6 +204,14 @@ func conTarget(target):
 		print(target)
 		terminalText.targetText = "> System: Ideating new scams..."
 		terminalText.fillText()
+
+func _on_confirm_confirm_selection() -> void:
+	pass # Replace with function body.
+	actions.hide()
+	strangerSprite.hide()
+	terminalText.targetText = "System: 5 tries remaining"
+	terminalText.fillText()
+	haggle.show()
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	sellWindowOpen = false
