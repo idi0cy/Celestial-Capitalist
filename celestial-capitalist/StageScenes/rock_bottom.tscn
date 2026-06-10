@@ -34,10 +34,10 @@
 [ext_resource type="Script" uid="uid://ern6euvtapxk" path="res://Scripts/RockBottom/actions/confirm_action.gd" id="31_18hvv"]
 [ext_resource type="Script" uid="uid://bic2idahcuw4a" path="res://Scripts/RockBottom/minigames/pick_to_sell.gd" id="32_qs7pq"]
 [ext_resource type="Script" uid="uid://dot5q14stmjoh" path="res://Scripts/RockBottom/minigames/confirm_selection.gd" id="33_033t1"]
+[ext_resource type="Texture2D" uid="uid://bsdxnepn4mb73" path="res://assets/Sprites/RockBottom/RBblankBackground.png" id="33_op3i2"]
 [ext_resource type="Script" uid="uid://c17ic64r1ge7f" path="res://Scripts/RockBottom/minigames/haggle.gd" id="34_op3i2"]
 [ext_resource type="Script" uid="uid://c526rf1um5u44" path="res://Scripts/RockBottom/minigames/haggle_bar.gd" id="35_i6uy1"]
 [ext_resource type="Script" uid="uid://b8m8hdrfm7w2a" path="res://Scripts/RockBottom/minigames/fearmonger.gd" id="36_bituw"]
-[ext_resource type="Texture2D" uid="uid://bsdxnepn4mb73" path="res://assets/Sprites/RockBottom/RBblankBackground.png" id="33_op3i2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -247,6 +247,7 @@ text = "Value: 0.0"
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
+visible = false
 
 [node name="PeopleList" type="HBoxContainer" parent="CenterWindows/sellWind/PickTarget" unique_id=2057357323]
 offset_left = 325.0
@@ -318,6 +319,7 @@ offset_left = -163.0
 offset_top = 6.0
 offset_right = 291.0
 offset_bottom = 91.0
+theme_override_colors/font_color = Color(0.39232534, 0.3923254, 0.39232522, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_font_sizes/font_size = 15
@@ -557,7 +559,7 @@ offset_right = 825.0
 offset_bottom = 455.0
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-columns = 10
+columns = 5
 
 [node name="Directive" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=1354870666]
 offset_left = 442.0
