@@ -1,6 +1,8 @@
 extends ProgressBar
 
-var haggleProgress = 0
+@onready var haggle = get_node("../../Haggle")
+@export var haggleProgress = 0
+
 
 func _process(_delta):
-	haggleProgress = value
+	value = haggle.progress

@@ -17,10 +17,10 @@ extends Node2D
 @onready var minigameWindows = get_node("postApproach/minigameWindows")
 @onready var pickToSell = get_node("postApproach/minigameWindows/pickToSell")
 @onready var haggle = get_node("postApproach/minigameWindows/Haggle")
+@onready var haggleDialogue = get_node("postApproach/minigameWindows/Haggle/dialogue")
 
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
-
 @onready var personButtonScript = load("res://Scripts/RockBottom/stranger_button.gd")
 
 var sellWindowOpen = false
@@ -33,12 +33,14 @@ var needToFind
 var strangerButton
 var initiatingAction = false
 
+#AS OF NOW INDEX 2 IS VESTIGIAL IN FUNCTION UNLESS WE WANT INSTANT REJECTIONS FROM STRANGERS
+
 #try to have more success rate the higher the values are for uniformity
 #index 0 is name of person, index 1 is wealth, index 2 is approachability
 #3 empathy (beg effectiveness), 4 persuadable (sales), 5 guillable (fake injury)
 #6 unassuming (steal stealth), 7 weakness (steal strength)
-#8 risk taking (con)
-const richAndOld = ["Rich Old Person", 0.9, 0.4, 0.5, 0.4, 0.7, 0.5, 0.8, 0.2]
+#8 risk taking (con) 0.4
+const richAndOld = ["Rich Old Person", 0.9, 0.4, 0.5, 0.5, 0.7, 0.5, 0.8, 0.2]
 const anotherHomeless = ["Homeless", 0.1, 0.8, 0.2, 0.1, 0.1, 0.7, 0.5, 0.7]
 const middleAgedAverage = ["Average Middle Aged", 0.6, 0.7, 0.7, 0.6, 0.5, 0.3, 0.2, 0.5]
 #For the kid, only display "kid", and have them be harder to predict
@@ -49,6 +51,7 @@ const charityWorker = ["Charity Worker", 0.5, 1, 0.9, 0.5, 0.4, 0.3, 0.4, 0.2]
 const allStrangers = [richAndOld, anotherHomeless, middleAgedAverage, niceKid, skepticKid, charityWorker]
 
 func _ready():
+	haggleDialogue.hide()
 	postApproach.hide()
 	haggle.hide()
 	$PickTarget.show()
@@ -66,6 +69,7 @@ func _process(_delta):
 		self.show()
 
 func _on_sell_button_open_sell_wind() -> void:
+	haggleDialogue.hide()
 	postApproach.hide()
 	terminalText.targetText = ""
 	terminalText.fillText()
@@ -176,6 +180,7 @@ func salesPitch(target):
 		await get_tree().create_timer(2).timeout
 		$postApproach/minigameWindows.show()
 		pickToSell.openPickToSell()
+		haggle.target = target
 
 func begAction(target):
 	if initiatingAction == false:
@@ -211,7 +216,9 @@ func _on_confirm_confirm_selection() -> void:
 	strangerSprite.hide()
 	terminalText.targetText = "System: 5 tries remaining"
 	terminalText.fillText()
+	haggle.tries = 5
 	haggle.show()
+	haggleDialogue.show()
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	sellWindowOpen = false
