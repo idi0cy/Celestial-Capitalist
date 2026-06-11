@@ -17,15 +17,15 @@ func initiate(incType, magnitude):
 	self.pressed.connect(gotPressed)
 	await get_tree().create_timer(time).timeout
 	if incType == "good":
-		haggle.progress -= 5 * magnitude / 2
+		haggle.progress -= 10 * magnitude / 2
 	get_parent().remove_child(self)
 	self.queue_free()
 
 func gotPressed():
 	var temp = 1/time
 	if type == "good":
-		haggle.progress += 5 * temp
+		haggle.progress += 10 * temp
 	else:
-		haggle.progress -= 5 * temp
+		haggle.progress -= 10 * temp
 	get_parent().remove_child(self)
 	self.queue_free()
