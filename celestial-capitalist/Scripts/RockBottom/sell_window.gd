@@ -24,6 +24,8 @@ extends Node2D
 @onready var haggleDirective = get_node("postApproach/minigameWindows/Haggle/Directive")
 @onready var aimTrainZone = get_node("postApproach/minigameWindows/Haggle/aimTrainZone")
 @onready var spectrumOfBall = get_node("postApproach/minigameWindows/Haggle/pricing/spectrumOfBall")
+@onready var refreshExplanation = get_node("PickTarget/explanation")
+@onready var refreshTimer = get_node("PickTarget/strangerRefresh")
 
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
@@ -95,10 +97,22 @@ func onButton():
 		personNameLabel.show()
 		directiveFirst.targetText = "Pedestrians Identified"
 		directiveFirst.fillText()
+		refreshExplanation.targetText = "Until new strangers"
+		refreshExplanation.fillText()
 		directiveFirst.show()
 		#genStrangers()
 
 func genStrangers():
+	for item in PeopleList.get_children():
+		PeopleList.remove_child(item)
+		item.queue_free()
+	
+	if approachButton.pressed.is_connected(approachStranger):
+		approachButton.pressed.disconnect(self.approachStranger)
+	approachButtonGeneral.hide()
+	personNameLabel.targetText = ""
+	personNameLabel.fillText()
+	
 	if clock.theTime >= 1320 or clock.theTime <= 300:
 		random = randi_range(0,1)
 	elif clock.theTime > 300 and clock.theTime <= 420:
@@ -146,6 +160,10 @@ func removeStranger(index):
 
 func blankSlate():
 	curSelPlace = "None"
+	refreshExplanation.targetText = ""
+	refreshExplanation.fillText()
+	if approachButton.pressed.is_connected(approachStranger):
+		approachButton.pressed.disconnect(self.approachStranger)
 	directiveFirst.show()
 	personNameLabel.show()
 	#for item in PeopleList.get_children():
@@ -258,6 +276,11 @@ func _on_confirm_confirm_selection() -> void:
 	haggleDialogue.show()
 	haggleBar.show()
 	haggleDirective.show()
+
+func _on_stranger_refresh_why_do_i_need_this(theValue: Variant) -> void:
+	pass # Replace with function body.
+	if theValue == 0:
+		genStrangers()
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	sellWindowOpen = false

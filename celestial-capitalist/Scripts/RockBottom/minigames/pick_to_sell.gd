@@ -60,9 +60,9 @@ func openPickToSell():
 		InvGrid.add_child(invItem)
 		count += 1
 	
-	if hiding == false:
-		closeIcons()
-	hiding = not hiding
+	#if hiding == false:
+		#closeIcons()
+	hiding = false
 
 func generateInfo(index):
 	count2 = -1

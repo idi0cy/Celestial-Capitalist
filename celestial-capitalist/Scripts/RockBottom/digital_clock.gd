@@ -8,8 +8,9 @@ var placeHolder = Vector2(0,0)
 var hovering = false
 var growSpeed = 0.1
 
-@export var theTime = 720
+var theTime = 720
 signal openTime
+signal onTimeChanged
 
 func _on_timer_timeout() -> void:
 	theTime += 1
@@ -31,6 +32,7 @@ func _on_timer_timeout() -> void:
 			interactable.text = str(floor(theTime/60)) + ":0" + str(theTime % 60) + " AM"
 		else:
 			interactable.text = str(floor(theTime/60)) + ":" + str(theTime%60) + " AM"
+	onTimeChanged.emit()
 
 func _ready():
 	pass
