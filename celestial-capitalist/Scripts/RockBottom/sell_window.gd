@@ -24,12 +24,16 @@ extends Node2D
 @onready var haggleDirective = get_node("postApproach/minigameWindows/Haggle/Directive")
 @onready var aimTrainZone = get_node("postApproach/minigameWindows/Haggle/aimTrainZone")
 @onready var spectrumOfBall = get_node("postApproach/minigameWindows/Haggle/pricing/spectrumOfBall")
+@onready var refreshExplanation = get_node("PickTarget/explanation")
+@onready var refreshTimer = get_node("PickTarget/strangerRefresh")
 
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
 @onready var personButtonScript = load("res://Scripts/RockBottom/stranger_button.gd")
 
 var sellWindowOpen = false
+var count
+var count2
 var random
 var random2
 var temporaryList = []
@@ -38,6 +42,8 @@ var placeHolder
 var needToFind
 var strangerButton
 var initiatingAction = false
+var targetIndex
+var curSelPlace
 
 #AS OF NOW INDEX 2 IS VESTIGIAL IN FUNCTION UNLESS WE WANT INSTANT REJECTIONS FROM STRANGERS
 
@@ -91,10 +97,22 @@ func onButton():
 		personNameLabel.show()
 		directiveFirst.targetText = "Pedestrians Identified"
 		directiveFirst.fillText()
+		refreshExplanation.targetText = "Until new strangers"
+		refreshExplanation.fillText()
 		directiveFirst.show()
 		#genStrangers()
 
 func genStrangers():
+	for item in PeopleList.get_children():
+		PeopleList.remove_child(item)
+		item.queue_free()
+	
+	if approachButton.pressed.is_connected(approachStranger):
+		approachButton.pressed.disconnect(self.approachStranger)
+	approachButtonGeneral.hide()
+	personNameLabel.targetText = ""
+	personNameLabel.fillText()
+	
 	if clock.theTime >= 1320 or clock.theTime <= 300:
 		random = randi_range(0,1)
 	elif clock.theTime > 300 and clock.theTime <= 420:
@@ -115,6 +133,7 @@ func genStrangers():
 		temporaryList.append(item)
 	
 	alreadyFound = []
+	count2 = 0
 	for i in random:
 		random2 = randi_range(0, (len(temporaryList) - 1))
 		while alreadyFound.has(random2):
@@ -124,11 +143,27 @@ func genStrangers():
 		strangerButton.name = str(allStrangers[random2][0])
 		strangerButton.set_script(personButtonScript)
 		strangerButton.baseInfo = allStrangers[random2]
-		strangerButton.pressed.connect(identifyTarget.bind((random2)))
+		strangerButton.index = count2
+		strangerButton.pressed.connect(identifyTarget.bind(random2, count2))
 		PeopleList.add_child(strangerButton)
 		alreadyFound.append(random2)
+		
+		count2 += 1
+
+func removeStranger(index):
+	count = 0
+	for obj in PeopleList.get_children():
+		if count == index:
+			PeopleList.remove_child(obj)
+			obj.queue_free()
+		count += 1
 
 func blankSlate():
+	curSelPlace = "None"
+	refreshExplanation.targetText = ""
+	refreshExplanation.fillText()
+	if approachButton.pressed.is_connected(approachStranger):
+		approachButton.pressed.disconnect(self.approachStranger)
 	directiveFirst.show()
 	personNameLabel.show()
 	#for item in PeopleList.get_children():
@@ -142,23 +177,24 @@ func blankSlate():
 	spectrumOfBall.hide()
 	terminalText.targetText = ""
 	terminalText.fillText()
+	pickToSell.closeIcons()
 	haggleBar.hide()
 	haggleDirective.hide()
 	terminal.hide()
-	
+	initiatingAction = false
 	approachButtonGeneral.hide()
 
-func identifyTarget(index):
+func identifyTarget(index, place):
 	personNameLabel.targetText = allStrangers[index][0]
 	personNameLabel.fillText()
 	if approachButton.pressed.is_connected(approachStranger):
 		approachButton.pressed.disconnect(self.approachStranger)
-	approachButton.pressed.connect(approachStranger.bind(index))
+	approachButton.pressed.connect(approachStranger.bind(index, place))
 	approachButtonGeneral.show()
 
-func approachStranger(index):
+func approachStranger(index, place):
 	confirmAction.personIndex = index
-	
+	curSelPlace = place
 	directiveFirst.hide()
 	$PickTarget/personName.hide()
 	approachButtonGeneral.hide()
@@ -232,7 +268,6 @@ func conTarget(target):
 		terminalText.fillText()
 
 func _on_confirm_confirm_selection() -> void:
-	pass # Replace with function body.
 	actions.hide()
 	strangerSprite.hide()
 	terminalText.targetText = "System: Use above strategies to convince the target. Each strategy has different risk factor to it, which determines both difficulty and reward."
@@ -241,6 +276,11 @@ func _on_confirm_confirm_selection() -> void:
 	haggleDialogue.show()
 	haggleBar.show()
 	haggleDirective.show()
+
+func _on_stranger_refresh_why_do_i_need_this(theValue: Variant) -> void:
+	pass # Replace with function body.
+	if theValue == 0:
+		genStrangers()
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	sellWindowOpen = false

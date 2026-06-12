@@ -10,6 +10,7 @@ var hovering = false
 var growSpeed = 0.1
 
 var selected
+var selectedIndex
 var hiding = true
 
 signal confirmSelection
@@ -38,5 +39,6 @@ func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
 	hiding = true
 	pickToSell.hiding = true
+	print(selectedIndex)
 	confirmSelection.emit()
 	outerSprite.scale = paddingSize

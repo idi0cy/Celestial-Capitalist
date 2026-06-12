@@ -25,6 +25,7 @@
 [ext_resource type="Script" uid="uid://277f1o8ppiay" path="res://Scripts/RockBottom/text_spawn_label.gd" id="22_2of7g"]
 [ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="22_tdnta"]
 [ext_resource type="Texture2D" uid="uid://cskmc21byixa2" path="res://assets/Sprites/RockBottom/terminalRB.png" id="24_bgfic"]
+[ext_resource type="Script" uid="uid://bedf55ioah07x" path="res://Scripts/RockBottom/until_new_strangers.gd" id="24_xwnj6"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="25_leuqs"]
 [ext_resource type="Script" uid="uid://b4ceulnew7o8x" path="res://Scripts/RockBottom/actions/sales_pitch.gd" id="25_phiw1"]
 [ext_resource type="Script" uid="uid://bspc8qf77tcj0" path="res://Scripts/RockBottom/actions/beg.gd" id="27_6xp14"]
@@ -61,6 +62,9 @@ bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phiw1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5fyum"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dstdv"]
+bg_color = Color(0.101960786, 0.61960787, 1, 0.75686276)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phiw1"]
 bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
@@ -212,6 +216,7 @@ texture = ExtResource("15_32v4e")
 [node name="CenterWindows" type="Node2D" parent="." unique_id=97508153]
 
 [node name="inventoryWind" type="Node2D" parent="CenterWindows" unique_id=718695114]
+visible = false
 script = ExtResource("16_lfg33")
 
 [node name="InvGrid" type="GridContainer" parent="CenterWindows/inventoryWind" unique_id=339440393]
@@ -257,7 +262,6 @@ text = "Value: 0.0"
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
-visible = false
 
 [node name="PeopleList" type="HBoxContainer" parent="CenterWindows/sellWind/PickTarget" unique_id=2057357323]
 offset_left = 325.0
@@ -318,7 +322,28 @@ text = "Pedestrians Identified"
 horizontal_alignment = 1
 script = ExtResource("22_2of7g")
 
+[node name="strangerRefresh" type="ProgressBar" parent="CenterWindows/sellWind/PickTarget" unique_id=567960496]
+offset_left = 383.0
+offset_top = 482.0
+offset_right = 783.0
+offset_bottom = 505.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/fill = SubResource("StyleBoxFlat_dstdv")
+max_value = 30.0
+script = ExtResource("24_xwnj6")
+
+[node name="explanation" type="Label" parent="CenterWindows/sellWind/PickTarget" unique_id=1367941442]
+offset_left = 483.0
+offset_top = 455.0
+offset_right = 673.0
+offset_bottom = 478.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "until new strangers"
+script = ExtResource("22_2of7g")
+
 [node name="postApproach" type="Node2D" parent="CenterWindows/sellWind" unique_id=1469147129]
+visible = false
 
 [node name="Terminal" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1548338584]
 position = Vector2(512, 391)
@@ -879,6 +904,7 @@ position = Vector2(402, 554)
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/sellWind" method="_on_vitals_button_open_vitals"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/inventoryWind" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/sellWind" method="_on_skills_button_open_skill_tree"]
+[connection signal="whyDoINeedThis" from="CenterWindows/sellWind/PickTarget/strangerRefresh" to="CenterWindows/sellWind" method="_on_stranger_refresh_why_do_i_need_this"]
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_pressed"]
@@ -930,5 +956,6 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_pressed"]
+[connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/sellWind/PickTarget/strangerRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]

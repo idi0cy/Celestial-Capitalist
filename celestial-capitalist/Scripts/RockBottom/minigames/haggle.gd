@@ -9,8 +9,10 @@ extends Node2D
 @onready var confirmItem = get_node("../pickToSell/confirm")
 @onready var spectrumOfBall = get_node("pricing/spectrumOfBall")
 @onready var ledger = get_node("../../../../Ledger")
-@onready var allStrangers = sellWindow.allStrangers
 @onready var pickToSell = get_node("../pickToSell")
+@onready var absInventory = get_node("../../../../inventoryWind")
+@onready var allStrangers = sellWindow.allStrangers
+
 
 @onready var goodTarget = load("res://assets/Sprites/RockBottom/buttonIcons/goodTarget.png")
 @onready var badTarget = load("res://assets/Sprites/RockBottom/buttonIcons/badTarget.png")
@@ -62,12 +64,12 @@ func _on_urgency_urgency() -> void:
 func _on_recommend_recommend() -> void:
 	terminalText.targetText = "> You: I would highly recommend this prodcut. \n"
 	terminalText.fillText()
-	universalMinigame(1)
+	universalMinigame(1.0)
 
 func _on_fearmonger_fear_monger() -> void:
 	terminalText.targetText = "> You: If you don't buy this, you'll die. \n"
 	terminalText.fillText()
-	universalMinigame(2)
+	universalMinigame(2.0)
 
 func universalMinigame(risk):
 	dialogueOptions.hide()
@@ -120,9 +122,11 @@ func _on_goldilocks_ball() -> void:
 	#print((random2 * 100) *(arguedValue / normalValue))
 	if (random2 * 100) * (arguedValue / normalValue) < progress:
 		ledger.money += arguedValue
-		terminalText.targetText += "> " + allStrangers[target][0] + ": I'll take it."
+		terminalText.targetText = "> " + allStrangers[target][0] + ": I'll take it."
+		absInventory.removeItem(confirmItem.selectedIndex)
 	else:
-		terminalText.targetText += "> " + allStrangers[target][0] + ": Never speak to me ever again."
+		terminalText.targetText = "> " + allStrangers[target][0] + ": Never speak to me ever again."
+		sellWindow.removeStranger(sellWindow.curSelPlace)
 	terminalText.fillText()
 	await get_tree().create_timer(2).timeout
 	progress = 0
