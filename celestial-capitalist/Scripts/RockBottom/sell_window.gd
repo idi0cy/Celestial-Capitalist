@@ -13,11 +13,17 @@ extends Node2D
 @onready var actions = get_node("postApproach/Actions")
 @onready var strangerSprite = get_node("postApproach/theGuy")
 @onready var confirmAction = get_node("postApproach/Actions/takeAction")
+@onready var terminal = get_node("postApproach/Terminal")
 @onready var terminalText = get_node("postApproach/Terminal/termText")
 @onready var minigameWindows = get_node("postApproach/minigameWindows")
 @onready var pickToSell = get_node("postApproach/minigameWindows/pickToSell")
 @onready var haggle = get_node("postApproach/minigameWindows/Haggle")
 @onready var haggleDialogue = get_node("postApproach/minigameWindows/Haggle/dialogue")
+@onready var hagglePricing = get_node("postApproach/minigameWindows/Haggle/pricing")
+@onready var haggleBar = get_node("postApproach/minigameWindows/Haggle/haggleBar")
+@onready var haggleDirective = get_node("postApproach/minigameWindows/Haggle/Directive")
+@onready var aimTrainZone = get_node("postApproach/minigameWindows/Haggle/aimTrainZone")
+@onready var spectrumOfBall = get_node("postApproach/minigameWindows/Haggle/pricing/spectrumOfBall")
 
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
@@ -69,6 +75,10 @@ func _process(_delta):
 		self.show()
 
 func _on_sell_button_open_sell_wind() -> void:
+	onButton()
+
+func onButton():
+	initiatingAction = false
 	haggleDialogue.hide()
 	postApproach.hide()
 	terminalText.targetText = ""
@@ -125,6 +135,17 @@ func blankSlate():
 		#PeopleList.remove_child(item)
 		#item.queue_free()
 	personNameLabel.text = ""
+	haggle.hide()
+	haggleDialogue.hide()
+	hagglePricing.hide()
+	aimTrainZone.hide()
+	spectrumOfBall.hide()
+	terminalText.targetText = ""
+	terminalText.fillText()
+	haggleBar.hide()
+	haggleDirective.hide()
+	terminal.hide()
+	
 	approachButtonGeneral.hide()
 
 func identifyTarget(index):
@@ -216,9 +237,10 @@ func _on_confirm_confirm_selection() -> void:
 	strangerSprite.hide()
 	terminalText.targetText = "System: 5 tries remaining"
 	terminalText.fillText()
-	haggle.tries = 5
 	haggle.show()
 	haggleDialogue.show()
+	haggleBar.show()
+	haggleDirective.show()
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	sellWindowOpen = false

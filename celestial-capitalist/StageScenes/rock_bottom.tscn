@@ -42,6 +42,12 @@
 [ext_resource type="Script" uid="uid://bdl26m8nm4j5m" path="res://Scripts/RockBottom/minigames/urgency.gd" id="39_7pdp4"]
 [ext_resource type="Script" uid="uid://c6sy7jg6d6jot" path="res://Scripts/RockBottom/minigames/promote.gd" id="40_107vu"]
 [ext_resource type="Script" uid="uid://dpqbgkio045lx" path="res://Scripts/RockBottom/minigames/haggle_target.gd" id="41_7pdp4"]
+[ext_resource type="Script" uid="uid://cn6bbpxhxsu0y" path="res://Scripts/RockBottom/minigames/lowball.gd" id="42_f1xoi"]
+[ext_resource type="Script" uid="uid://df8wwu8lfasdn" path="res://Scripts/RockBottom/minigames/highball.gd" id="43_rhay2"]
+[ext_resource type="Script" uid="uid://sui84r707mwc" path="res://Scripts/RockBottom/minigames/ball.gd" id="44_rhay2"]
+[ext_resource type="Texture2D" uid="uid://322ur6jb8nsa" path="res://assets/Sprites/RockBottom/spectrumOfBall.png" id="45_vl0u8"]
+[ext_resource type="Script" uid="uid://chlqvccm1symp" path="res://Scripts/RockBottom/minigames/haggle_marker.gd" id="46_6xhon"]
+[ext_resource type="Script" uid="uid://c4rm5jon1insh" path="res://Scripts/RockBottom/ledger.gd" id="47_dstdv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -751,6 +757,107 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("41_7pdp4")
 
+[node name="pricing" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=479323230]
+
+[node name="lowball" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing" unique_id=1782483640]
+position = Vector2(430, 249)
+script = ExtResource("42_f1xoi")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" unique_id=505359049]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" unique_id=1746876569]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Lower"
+
+[node name="highball" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing" unique_id=795596011]
+position = Vector2(723, 249)
+script = ExtResource("43_rhay2")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" unique_id=1718686327]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" unique_id=97004360]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Raise"
+
+[node name="Goldilocks" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing" unique_id=1442818377]
+position = Vector2(576, 249)
+script = ExtResource("44_rhay2")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" unique_id=1513157766]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" unique_id=1864887799]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Settle"
+
+[node name="spectrumOfBall" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing" unique_id=45208805]
+position = Vector2(576, 286)
+texture = ExtResource("45_vl0u8")
+
+[node name="lowball" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/spectrumOfBall" unique_id=1936462858]
+offset_left = -230.0
+offset_top = -11.0
+offset_right = -154.0
+offset_bottom = 12.0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Lowball"
+
+[node name="highball" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/spectrumOfBall" unique_id=955880997]
+offset_left = 156.0
+offset_top = -11.0
+offset_right = 232.0
+offset_bottom = 12.0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Highball"
+
+[node name="marker" type="ColorRect" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/spectrumOfBall" unique_id=1591843477]
+offset_left = 142.0
+offset_top = -10.0
+offset_right = 182.0
+offset_bottom = 30.0
+scale = Vector2(0.145, 0.5)
+script = ExtResource("46_6xhon")
+
+[node name="Ledger" type="Node2D" parent="CenterWindows" unique_id=893953733]
+script = ExtResource("47_dstdv")
+
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
 
@@ -811,5 +918,17 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote" method="_on_interactable_pressed"]
+[connection signal="lowball" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" method="_on_lowball_lowball"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" method="_on_interactable_pressed"]
+[connection signal="highball" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" method="_on_highball_highball"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" method="_on_interactable_pressed"]
+[connection signal="ball" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" method="_on_goldilocks_ball"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_pressed"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]

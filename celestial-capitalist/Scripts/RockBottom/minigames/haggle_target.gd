@@ -2,12 +2,19 @@ extends TextureButton
 
 var type = "good"
 var time = 1
+var baseProgress = 10
+var modProgress
+var target
 #signal uhhPressedBro(magnitude)
 
 @onready var haggle = get_node("../../../Haggle")
+@onready var sellWindow = get_node("../../../../../../sellWind")
+@onready var allStrangers = sellWindow.allStrangers
 
 func initiate(incType, magnitude):
 	#this is so vestigial but i'm keeping it anyways
+	target = haggle.target
+	modProgress = baseProgress * allStrangers[target][4]
 	type = incType
 	time = (1 / magnitude)
 	if type == "good":
@@ -24,7 +31,7 @@ func initiate(incType, magnitude):
 func gotPressed():
 	var temp = 1/time
 	if type == "good":
-		haggle.progress += 10 * temp
+		haggle.progress += modProgress * temp
 	else:
 		haggle.progress -= 10 * temp
 	get_parent().remove_child(self)
