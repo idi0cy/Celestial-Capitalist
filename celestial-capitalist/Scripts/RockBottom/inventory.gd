@@ -50,6 +50,9 @@ func _process(_delta):
 	else:
 		self.show()
 
+func removeItem(index):
+	currentInv.remove_at(index)
+
 func _on_inventory_button_open_inventory() -> void:
 	infoBarOne.itemSelected = false
 	count = 0

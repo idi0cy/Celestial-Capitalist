@@ -81,6 +81,7 @@ func generateInfo(index):
 			itemNameDisplay.text = "Item: " + str(itemName)
 			qualDisplay.text = "Quality: " + str(itemQual)
 			valDisplay.text = "Value: $" + str(itemVal)
+			confirmButton.selectedIndex = count2
 			confirmButton.selected = item
 			confirmButton.hiding = false
 			infoBarOne.itemSelected = true

@@ -123,6 +123,7 @@ func _on_goldilocks_ball() -> void:
 	if (random2 * 100) * (arguedValue / normalValue) < progress:
 		ledger.money += arguedValue
 		terminalText.targetText = "> " + allStrangers[target][0] + ": I'll take it."
+		absInventory.removeItem(confirmItem.selectedIndex)
 	else:
 		terminalText.targetText = "> " + allStrangers[target][0] + ": Never speak to me ever again."
 	terminalText.fillText()
