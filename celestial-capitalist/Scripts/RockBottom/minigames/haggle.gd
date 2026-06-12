@@ -126,6 +126,7 @@ func _on_goldilocks_ball() -> void:
 		absInventory.removeItem(confirmItem.selectedIndex)
 	else:
 		terminalText.targetText = "> " + allStrangers[target][0] + ": Never speak to me ever again."
+		sellWindow.removeStranger(sellWindow.curSelPlace)
 	terminalText.fillText()
 	await get_tree().create_timer(2).timeout
 	progress = 0

@@ -30,6 +30,8 @@ extends Node2D
 @onready var personButtonScript = load("res://Scripts/RockBottom/stranger_button.gd")
 
 var sellWindowOpen = false
+var count
+var count2
 var random
 var random2
 var temporaryList = []
@@ -38,6 +40,8 @@ var placeHolder
 var needToFind
 var strangerButton
 var initiatingAction = false
+var targetIndex
+var curSelPlace
 
 #AS OF NOW INDEX 2 IS VESTIGIAL IN FUNCTION UNLESS WE WANT INSTANT REJECTIONS FROM STRANGERS
 
@@ -115,6 +119,7 @@ func genStrangers():
 		temporaryList.append(item)
 	
 	alreadyFound = []
+	count2 = 0
 	for i in random:
 		random2 = randi_range(0, (len(temporaryList) - 1))
 		while alreadyFound.has(random2):
@@ -124,11 +129,23 @@ func genStrangers():
 		strangerButton.name = str(allStrangers[random2][0])
 		strangerButton.set_script(personButtonScript)
 		strangerButton.baseInfo = allStrangers[random2]
-		strangerButton.pressed.connect(identifyTarget.bind((random2)))
+		strangerButton.index = count2
+		strangerButton.pressed.connect(identifyTarget.bind(random2, count2))
 		PeopleList.add_child(strangerButton)
 		alreadyFound.append(random2)
+		
+		count2 += 1
+
+func removeStranger(index):
+	count = 0
+	for obj in PeopleList.get_children():
+		if count == index:
+			PeopleList.remove_child(obj)
+			obj.queue_free()
+		count += 1
 
 func blankSlate():
+	curSelPlace = "None"
 	directiveFirst.show()
 	personNameLabel.show()
 	#for item in PeopleList.get_children():
@@ -149,17 +166,17 @@ func blankSlate():
 	initiatingAction = false
 	approachButtonGeneral.hide()
 
-func identifyTarget(index):
+func identifyTarget(index, place):
 	personNameLabel.targetText = allStrangers[index][0]
 	personNameLabel.fillText()
 	if approachButton.pressed.is_connected(approachStranger):
 		approachButton.pressed.disconnect(self.approachStranger)
-	approachButton.pressed.connect(approachStranger.bind(index))
+	approachButton.pressed.connect(approachStranger.bind(index, place))
 	approachButtonGeneral.show()
 
-func approachStranger(index):
+func approachStranger(index, place):
 	confirmAction.personIndex = index
-	
+	curSelPlace = place
 	directiveFirst.hide()
 	$PickTarget/personName.hide()
 	approachButtonGeneral.hide()
@@ -233,7 +250,6 @@ func conTarget(target):
 		terminalText.fillText()
 
 func _on_confirm_confirm_selection() -> void:
-	pass # Replace with function body.
 	actions.hide()
 	strangerSprite.hide()
 	terminalText.targetText = "System: Use above strategies to convince the target. Each strategy has different risk factor to it, which determines both difficulty and reward."
