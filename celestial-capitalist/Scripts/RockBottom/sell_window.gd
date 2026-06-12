@@ -235,7 +235,7 @@ func _on_confirm_confirm_selection() -> void:
 	pass # Replace with function body.
 	actions.hide()
 	strangerSprite.hide()
-	terminalText.targetText = "System: 5 tries remaining"
+	terminalText.targetText = "System: Use above strategies to convince the target. Each strategy has different risk factor to it, which determines both difficulty and reward."
 	terminalText.fillText()
 	haggle.show()
 	haggleDialogue.show()
