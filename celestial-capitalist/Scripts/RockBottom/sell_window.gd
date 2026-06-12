@@ -142,10 +142,11 @@ func blankSlate():
 	spectrumOfBall.hide()
 	terminalText.targetText = ""
 	terminalText.fillText()
+	pickToSell.closeIcons()
 	haggleBar.hide()
 	haggleDirective.hide()
 	terminal.hide()
-	
+	initiatingAction = false
 	approachButtonGeneral.hide()
 
 func identifyTarget(index):

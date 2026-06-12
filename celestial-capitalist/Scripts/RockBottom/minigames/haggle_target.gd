@@ -17,6 +17,7 @@ func initiate(incType, magnitude):
 	modProgress = baseProgress * allStrangers[target][4]
 	type = incType
 	time = (1 / magnitude)
+	#print(time)
 	if type == "good":
 		z_index = 8
 	else:
