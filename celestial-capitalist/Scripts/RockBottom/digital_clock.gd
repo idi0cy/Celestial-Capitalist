@@ -18,19 +18,27 @@ func _on_timer_timeout() -> void:
 		theTime = 0
 	if theTime > 720:
 		if theTime % 60 < 10:
+			@warning_ignore("integer_division")
 			if (theTime/60) - 12 == 0:
+				@warning_ignore("integer_division")
 				interactable.text = str(floor(theTime/60)) + ":0" + str(theTime % 60) + " PM"
 			else:
+				@warning_ignore("integer_division")
 				interactable.text = str(floor(theTime/60) -12) + ":0" + str(theTime % 60) + " PM"
 		else:
+			@warning_ignore("integer_division")
 			if (theTime/60) - 12 == 0:
+				@warning_ignore("integer_division")
 				interactable.text = str(floor(theTime/60)) + ":" + str(theTime % 60) + " PM"
 			else:
+				@warning_ignore("integer_division")
 				interactable.text = str(floor(theTime/60) -12) + ":" + str(theTime % 60) + " PM"
 	else:
 		if theTime % 60 < 10:
+			@warning_ignore("integer_division")
 			interactable.text = str(floor(theTime/60)) + ":0" + str(theTime % 60) + " AM"
 		else:
+			@warning_ignore("integer_division")
 			interactable.text = str(floor(theTime/60)) + ":" + str(theTime%60) + " AM"
 	onTimeChanged.emit()
 
@@ -54,3 +62,7 @@ func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
 	openTime.emit()
 	outerSprite.scale = paddingSize
+	
+func _input(event):
+	if event.is_action_pressed("addhour"):
+		theTime += 60
