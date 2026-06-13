@@ -15,10 +15,14 @@
 [ext_resource type="PackedScene" uid="uid://38prov7apsjs" path="res://ButtonScenes/RockBottom/skills_button.tscn" id="13_a71iy"]
 [ext_resource type="PackedScene" uid="uid://dka81hse17tx8" path="res://ButtonScenes/RockBottom/buy_button.tscn" id="13_iu7b3"]
 [ext_resource type="PackedScene" uid="uid://drhv43e6bxsud" path="res://ButtonScenes/RockBottom/vitals_button.tscn" id="14_5xa78"]
-[ext_resource type="Texture2D" uid="uid://bmt81y7nucgbq" path="res://assets/Sprites/RockBottom/RBcenterBackground.png" id="15_32v4e"]
+[ext_resource type="Texture2D" uid="uid://dvdhvyej05u7" path="res://assets/Sprites/RockBottom/RBCentreDay.png" id="16_f1xoi"]
 [ext_resource type="Script" uid="uid://cvlc7n8ubrne" path="res://Scripts/RockBottom/inventory.gd" id="16_lfg33"]
+[ext_resource type="Shader" uid="uid://lcam0ndnm6qi" path="res://Scripts/RockBottom/util/maskDynamicBG.gdshader" id="16_rhay2"]
+[ext_resource type="Script" uid="uid://daddnfwqw3hx6" path="res://Scripts/RockBottom/dynamicBGDay.gd" id="17_107vu"]
+[ext_resource type="Script" uid="uid://csa1yedfaimrv" path="res://Scripts/RockBottom/dynamicBGNight.gd" id="18_vl0u8"]
 [ext_resource type="Script" uid="uid://ciwoyq73san62" path="res://Scripts/RockBottom/info_bar_1.gd" id="18_vxl8v"]
 [ext_resource type="Script" uid="uid://tlmh7w1b0d8t" path="res://Scripts/RockBottom/sell_window.gd" id="19_kqawt"]
+[ext_resource type="Texture2D" uid="uid://bgfq4ps0t7whn" path="res://assets/Sprites/RockBottom/RBCenterNight.png" id="19_rhay2"]
 [ext_resource type="PackedScene" uid="uid://cgtikku8eqwdt" path="res://ButtonScenes/RockBottom/timeCounter.tscn" id="19_tsiob"]
 [ext_resource type="Script" uid="uid://cci7hvxg1bco" path="res://Scripts/RockBottom/people_icon_list.gd" id="20_fkxer"]
 [ext_resource type="Texture2D" uid="uid://gep8dwo88u7w" path="res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png" id="21_0m4ur"]
@@ -45,6 +49,14 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6xhon"]
+resource_local_to_scene = true
+shader = ExtResource("16_rhay2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vl0u8"]
+resource_local_to_scene = true
+shader = ExtResource("16_rhay2")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2of7g"]
 
@@ -196,12 +208,25 @@ position = Vector2(576, 584)
 scale = Vector2(8, 8)
 texture = ExtResource("11_qt56r")
 
-[node name="centerBackground" type="Sprite2D" parent="Backgrounds" unique_id=1782579843]
-z_index = -5
+[node name="centerBackgroundNight" type="Sprite2D" parent="Backgrounds" unique_id=1782579843]
+z_index = -6
+texture_filter = 1
+material = SubResource("ShaderMaterial_6xhon")
 position = Vector2(576, 320)
 rotation = 1.5707964
 scale = Vector2(8, 8)
-texture = ExtResource("15_32v4e")
+texture = ExtResource("19_rhay2")
+script = ExtResource("18_vl0u8")
+
+[node name="centerBackgroundDay" type="Sprite2D" parent="Backgrounds" unique_id=1775767700]
+z_index = -6
+texture_filter = 1
+material = SubResource("ShaderMaterial_vl0u8")
+position = Vector2(576, 320)
+rotation = 1.5707964
+scale = Vector2(8, 8)
+texture = ExtResource("16_f1xoi")
+script = ExtResource("17_107vu")
 
 [node name="CenterWindows" type="Node2D" parent="." unique_id=97508153]
 
