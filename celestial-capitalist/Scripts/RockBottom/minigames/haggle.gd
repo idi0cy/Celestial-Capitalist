@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var clock  = get_node("../../../../../digitalClock")
 @onready var haggleBar = get_node("haggleBar")
 @onready var terminalText = get_node("../../Terminal/termText")
 @onready var sellWindow = get_node("../../../../sellWind")
@@ -122,6 +123,7 @@ func _on_goldilocks_ball() -> void:
 	#print((random2 * 100) *(arguedValue / normalValue))
 	if (random2 * 100) * (arguedValue / normalValue) < progress:
 		ledger.money += arguedValue
+		ledger.addEntry(arguedValue, clock.theTime, allStrangers[target][0], confirmItem.selected.myItem)
 		terminalText.targetText = "> " + allStrangers[target][0] + ": I'll take it."
 		absInventory.removeItem(confirmItem.selectedIndex)
 	else:

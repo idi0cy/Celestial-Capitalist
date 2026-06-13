@@ -32,6 +32,7 @@
 [ext_resource type="Script" uid="uid://bedf55ioah07x" path="res://Scripts/RockBottom/until_new_strangers.gd" id="24_xwnj6"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="25_leuqs"]
 [ext_resource type="Script" uid="uid://b4ceulnew7o8x" path="res://Scripts/RockBottom/actions/sales_pitch.gd" id="25_phiw1"]
+[ext_resource type="LabelSettings" uid="uid://7c2o7y03811e" path="res://assets/defaultText.tres" id="26_dls5t"]
 [ext_resource type="Script" uid="uid://bspc8qf77tcj0" path="res://Scripts/RockBottom/actions/beg.gd" id="27_6xp14"]
 [ext_resource type="Script" uid="uid://bb0wmseld6y20" path="res://Scripts/RockBottom/actions/fake_injury.gd" id="28_18hvv"]
 [ext_resource type="Script" uid="uid://chef3jgn53ya4" path="res://Scripts/RockBottom/actions/steal.gd" id="29_qs7pq"]
@@ -46,6 +47,7 @@
 [ext_resource type="Script" uid="uid://ciglg4feghf3b" path="res://Scripts/RockBottom/minigames/recommend.gd" id="38_l2ux3"]
 [ext_resource type="Script" uid="uid://bdl26m8nm4j5m" path="res://Scripts/RockBottom/minigames/urgency.gd" id="39_7pdp4"]
 [ext_resource type="Script" uid="uid://c6sy7jg6d6jot" path="res://Scripts/RockBottom/minigames/promote.gd" id="40_107vu"]
+[ext_resource type="LabelSettings" uid="uid://dr4h1i2bok7vu" path="res://assets/defaultText16.tres" id="40_nv3e3"]
 [ext_resource type="Script" uid="uid://dpqbgkio045lx" path="res://Scripts/RockBottom/minigames/haggle_target.gd" id="41_7pdp4"]
 [ext_resource type="Script" uid="uid://cn6bbpxhxsu0y" path="res://Scripts/RockBottom/minigames/lowball.gd" id="42_f1xoi"]
 [ext_resource type="Script" uid="uid://df8wwu8lfasdn" path="res://Scripts/RockBottom/minigames/highball.gd" id="43_rhay2"]
@@ -53,6 +55,10 @@
 [ext_resource type="Texture2D" uid="uid://322ur6jb8nsa" path="res://assets/Sprites/RockBottom/spectrumOfBall.png" id="45_vl0u8"]
 [ext_resource type="Script" uid="uid://chlqvccm1symp" path="res://Scripts/RockBottom/minigames/haggle_marker.gd" id="46_6xhon"]
 [ext_resource type="Script" uid="uid://c4rm5jon1insh" path="res://Scripts/RockBottom/ledger.gd" id="47_dstdv"]
+[ext_resource type="Texture2D" uid="uid://bwoj1v2iqk8w3" path="res://assets/Sprites/RockBottom/ledgerWindow/balanceBG.png" id="55_6kuie"]
+[ext_resource type="PackedScene" uid="uid://cat2m625ivp1q" path="res://ButtonScenes/RockBottom/account.tscn" id="56_6kuie"]
+[ext_resource type="PackedScene" uid="uid://dihqg6xpa46ng" path="res://ButtonScenes/RockBottom/dailyCosts.tscn" id="57_r7ujp"]
+[ext_resource type="PackedScene" uid="uid://cw35novf3su5u" path="res://ButtonScenes/RockBottom/dailyProfits.tscn" id="58_ta34y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -77,6 +83,15 @@ shader = ExtResource("16_rhay2")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dstdv"]
 bg_color = Color(0.101960786, 0.61960787, 1, 0.75686276)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r7ujp"]
+font = ExtResource("12_knhbb")
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ta34y"]
+font = ExtResource("12_knhbb")
+font_size = 15
+shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phiw1"]
 bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
@@ -241,7 +256,6 @@ script = ExtResource("17_107vu")
 [node name="CenterWindows" type="Node2D" parent="." unique_id=97508153]
 
 [node name="inventoryWind" type="Node2D" parent="CenterWindows" unique_id=718695114]
-visible = false
 script = ExtResource("16_lfg33")
 
 [node name="InvGrid" type="GridContainer" parent="CenterWindows/inventoryWind" unique_id=339440393]
@@ -305,10 +319,8 @@ offset_left = 376.0
 offset_top = 316.0
 offset_right = 776.0
 offset_bottom = 366.0
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("12_knhbb")
-theme_override_font_sizes/font_size = 25
 text = "Person \"Name\""
+label_settings = ExtResource("26_dls5t")
 horizontal_alignment = 1
 script = ExtResource("22_2of7g")
 
@@ -340,10 +352,8 @@ offset_left = 376.0
 offset_top = 135.0
 offset_right = 776.0
 offset_bottom = 185.0
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("12_knhbb")
-theme_override_font_sizes/font_size = 25
 text = "Pedestrians Identified"
+label_settings = ExtResource("26_dls5t")
 horizontal_alignment = 1
 script = ExtResource("22_2of7g")
 
@@ -365,6 +375,7 @@ offset_right = 673.0
 offset_bottom = 478.0
 theme_override_fonts/font = ExtResource("12_knhbb")
 text = "until new strangers"
+label_settings = SubResource("LabelSettings_r7ujp")
 script = ExtResource("22_2of7g")
 
 [node name="postApproach" type="Node2D" parent="CenterWindows/sellWind" unique_id=1469147129]
@@ -379,11 +390,8 @@ offset_left = -163.0
 offset_top = 6.0
 offset_right = 291.0
 offset_bottom = 91.0
-theme_override_colors/font_color = Color(0.39232534, 0.3923254, 0.39232522, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("12_knhbb")
-theme_override_font_sizes/font_size = 15
 text = "> System: Filler Text"
+label_settings = SubResource("LabelSettings_ta34y")
 autowrap_mode = 2
 script = ExtResource("22_2of7g")
 
@@ -393,13 +401,11 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="theGuy" type="Sprite2D" parent="CenterWindows/sellWind/postApproach" unique_id=872769702]
-visible = false
 position = Vector2(576, 228)
 scale = Vector2(3, 3)
 texture = ExtResource("21_0m4ur")
 
 [node name="Actions" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1846174536]
-visible = false
 
 [node name="Sales Pitch" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=872168034]
 position = Vector2(393, 170)
@@ -602,7 +608,6 @@ script = ExtResource("25_leuqs")
 [node name="minigameWindows" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=611419590]
 
 [node name="pickToSell" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=371395790]
-visible = false
 z_index = 5
 script = ExtResource("32_qs7pq")
 
@@ -641,18 +646,18 @@ script = ExtResource("18_vxl8v")
 
 [node name="Item" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/infoBarOne" unique_id=438323656]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("12_knhbb")
 text = "Item:"
+label_settings = ExtResource("40_nv3e3")
 
 [node name="Quality" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/infoBarOne" unique_id=2131385162]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("12_knhbb")
 text = "Quality: 0.0"
+label_settings = ExtResource("40_nv3e3")
 
 [node name="Value" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/infoBarOne" unique_id=1639813112]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("12_knhbb")
 text = "Value: 0.0"
+label_settings = ExtResource("40_nv3e3")
 
 [node name="confirm" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=1130010631]
 position = Vector2(570, 511)
@@ -908,27 +913,73 @@ script = ExtResource("46_6xhon")
 [node name="Ledger" type="Node2D" parent="CenterWindows" unique_id=893953733]
 script = ExtResource("47_dstdv")
 
+[node name="sidebar" type="Node2D" parent="CenterWindows/Ledger" unique_id=1895109815]
+
+[node name="balanceBG" type="Sprite2D" parent="CenterWindows/Ledger/sidebar" unique_id=617956844]
+position = Vector2(755.99994, 265)
+scale = Vector2(6.320001, 6.320001)
+texture = ExtResource("55_6kuie")
+
+[node name="balance" type="Label" parent="CenterWindows/Ledger/sidebar" unique_id=257651775]
+offset_left = 711.0
+offset_top = 246.0
+offset_right = 786.0
+offset_bottom = 279.0
+text = "+$10"
+label_settings = ExtResource("26_dls5t")
+horizontal_alignment = 1
+
+[node name="account" parent="CenterWindows/Ledger/sidebar" unique_id=495495416 instance=ExtResource("56_6kuie")]
+position = Vector2(760, 370.00003)
+scale = Vector2(0.6, 0.6)
+
+[node name="dailyCosts" parent="CenterWindows/Ledger/sidebar" unique_id=139047216 instance=ExtResource("57_r7ujp")]
+position = Vector2(760, 410.00003)
+scale = Vector2(0.6, 0.6)
+
+[node name="dailyProfits" parent="CenterWindows/Ledger/sidebar" unique_id=144393318 instance=ExtResource("58_ta34y")]
+position = Vector2(760, 450.00003)
+scale = Vector2(0.6, 0.6)
+
+[node name="transactionContainer" type="ScrollContainer" parent="CenterWindows/Ledger" unique_id=17181476]
+offset_left = 341.0
+offset_top = 139.0
+offset_right = 625.0
+offset_bottom = 502.0
+
+[node name="innerTransactionContainer" type="VBoxContainer" parent="CenterWindows/Ledger/transactionContainer" unique_id=253266392]
+layout_mode = 2
+
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
 
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/inventoryWind" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/sellWind" method="_on_scavenge_button_open_scav_wind"]
+[connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/Ledger" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/inventoryWind" method="_on_sell_button_open_sell_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/sellWind" method="_on_sell_button_open_sell_wind"]
+[connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/Ledger" method="_on_sell_button_open_sell_wind"]
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/inventoryWind" method="_on_event_log_open_log"]
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/sellWind" method="_on_event_log_open_log"]
+[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/Ledger" method="_on_event_log_open_log"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/inventoryWind" method="_on_ledger_button_open_ledger"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/sellWind" method="_on_ledger_button_open_ledger"]
+[connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/Ledger" method="_on_open_ledger"]
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/inventoryWind" method="_on_quota_button_open_quota"]
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/sellWind" method="_on_quota_button_open_quota"]
+[connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/Ledger" method="_on_quota_button_open_quota"]
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/inventoryWind" method="_on_inventory_button_open_inventory"]
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/sellWind" method="_on_inventory_button_open_inventory"]
+[connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/Ledger" method="_on_inventory_button_open_inventory"]
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/inventoryWind" method="_on_buy_button_open_shop"]
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/sellWind" method="_on_buy_button_open_shop"]
+[connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/Ledger" method="_on_buy_button_open_shop"]
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/inventoryWind" method="_on_vitals_button_open_vitals"]
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/sellWind" method="_on_vitals_button_open_vitals"]
+[connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/Ledger" method="_on_vitals_button_open_vitals"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/inventoryWind" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/sellWind" method="_on_skills_button_open_skill_tree"]
+[connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/Ledger" method="_on_skills_button_open_skill_tree"]
 [connection signal="whyDoINeedThis" from="CenterWindows/sellWind/PickTarget/strangerRefresh" to="CenterWindows/sellWind" method="_on_stranger_refresh_why_do_i_need_this"]
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_mouse_exited"]
@@ -984,3 +1035,4 @@ position = Vector2(402, 554)
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/sellWind/PickTarget/strangerRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]
+[connection signal="openTime" from="digitalClock" to="CenterWindows/Ledger" method="_on_digital_clock_open_time"]

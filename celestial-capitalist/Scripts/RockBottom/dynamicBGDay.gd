@@ -9,7 +9,6 @@ func _ready() -> void:
 	_image = Image.create(50, 70, false, Image.FORMAT_RGBA8)
 	_image.fill(Color(0, 0, 0, 0))
 
-
 func _process(_delta):
 	# for every 1 hour, paint 7 columns i think
 	var time = clock.theTime
