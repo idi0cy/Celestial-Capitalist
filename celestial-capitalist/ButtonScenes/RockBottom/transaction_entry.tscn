@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://bc88ytrkhxiax"]
+
+[ext_resource type="Script" uid="uid://f8n3j700qkm" path="res://Scripts/RockBottom/transaction_entry.gd" id="1_xr1gd"]
+[ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="2_hprrn"]
+[ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="3_nq2xc"]
+[ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="4_hjhbq"]
+[ext_resource type="Texture2D" uid="uid://clopp251fqsfr" path="res://assets/Sprites/RockBottom/ledgerWindow/transactionEntry.png" id="5_rjfaa"]
+[ext_resource type="LabelSettings" uid="uid://dr4h1i2bok7vu" path="res://assets/defaultText16.tres" id="6_bega6"]
+[ext_resource type="Texture2D" uid="uid://chvl5amt7cywu" path="res://assets/Sprites/RockBottom/inventoryIcons/hamburgInvIcon.png" id="7_8l724"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qp50"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6e8so"]
+bg_color = Color(0, 0, 0, 0)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryc35"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="transactionEntry" type="Control" unique_id=1585920748]
+custom_minimum_size = Vector2(267, 67)
+layout_mode = 3
+anchor_left = 0.011000001
+anchor_top = 0.018000001
+anchor_right = 0.23500001
+anchor_bottom = 0.119
+offset_left = -12.672001
+offset_top = -11.6640005
+offset_right = -270.72003
+offset_bottom = -77.112
+script = ExtResource("1_xr1gd")
+metadata/_edit_use_anchors_ = true
+
+[node name="interactable" type="Button" parent="." unique_id=1187099417]
+z_index = 3
+custom_minimum_size = Vector2(210, 38)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 10.0
+offset_right = 240.00002
+offset_bottom = 48.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_hprrn")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1qp50")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6e8so")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ryc35")
+text = "$amount | time"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="." unique_id=1329110646]
+z_index = 1
+position = Vector2(139, 35)
+scale = Vector2(4, 4)
+texture = ExtResource("3_nq2xc")
+script = ExtResource("4_hjhbq")
+
+[node name="expandedWindow" type="Sprite2D" parent="." unique_id=1564335222]
+position = Vector2(139, 117)
+scale = Vector2(4, 4)
+texture = ExtResource("5_rjfaa")
+
+[node name="soldBought" type="Label" parent="expandedWindow" unique_id=2087261335]
+offset_left = -30.0
+offset_top = -0.5
+offset_right = 163.0
+offset_bottom = 50.5
+scale = Vector2(0.25, 0.25)
+text = "sold/bought: item"
+label_settings = ExtResource("6_bega6")
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="fromTo" type="Label" parent="expandedWindow" unique_id=1314549001]
+offset_left = -30.25
+offset_top = -12.0
+offset_right = 210.75
+offset_bottom = 37.0
+scale = Vector2(0.25, 0.25)
+text = "from/to: party"
+label_settings = ExtResource("6_bega6")
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="itemSprite" type="Sprite2D" parent="expandedWindow" unique_id=469506924]
+position = Vector2(21, 7.5)
+scale = Vector2(0.13937496, 0.13937496)
+texture = ExtResource("7_8l724")
+
+[connection signal="mouse_entered" from="interactable" to="." method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="interactable" to="." method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="interactable" to="." method="_on_interactable_pressed"]
