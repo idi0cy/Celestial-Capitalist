@@ -64,7 +64,7 @@ var curSelPlace
 #3 empathy (beg effectiveness), 4 persuadable (sales), 5 guillable (fake injury)
 #6 unassuming (steal stealth), 7 weakness (steal strength)
 #8 risk taking (con) 0.4
-const richAndOld = ["Rich Old Person", 0.9, 0.4, 0.5, 0.5, 0.7, 0.5, 0.8, 0.2]
+const richAndOld = ["Rich Old Person", 0.9, 0.4, 0.5, 0.5, 0.6, 0.5, 0.8, 0.2]
 const anotherHomeless = ["Homeless", 0.1, 0.8, 0.2, 0.1, 0.1, 0.7, 0.5, 0.7]
 const middleAgedAverage = ["Average Middle Aged", 0.6, 0.7, 0.7, 0.6, 0.5, 0.3, 0.2, 0.5]
 #For the kid, only display "kid", and have them be harder to predict

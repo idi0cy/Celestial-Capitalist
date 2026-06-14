@@ -1090,6 +1090,7 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="severityPick" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=569409684]
+visible = false
 
 [node name="raise" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=2125256835]
 position = Vector2(714, 272)
@@ -1185,6 +1186,8 @@ offset_top = 297.0
 offset_right = 808.0
 offset_bottom = 317.0
 text = "Extreme"
+
+[node name="postFailure" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=2135451184]
 
 [node name="Ledger" type="Node2D" parent="CenterWindows" unique_id=893953733]
 visible = false
@@ -1336,6 +1339,7 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" method="_on_interactable_pressed"]
+[connection signal="settleSeverity" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" method="_on_settle_settle_severity"]
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" method="_on_interactable_pressed"]
