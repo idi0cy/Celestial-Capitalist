@@ -3,13 +3,12 @@ extends Node
 @onready var outerSprite = $outerSprite
 @onready var paddingSize = outerSprite.theScale
 @onready var hoverScale = Vector2(paddingSize[0] + 0.35, paddingSize[1] + 0.35)
-@onready var sellWindow = get_node("../../CenterWindows/sellWind")
 
 var placeHolder = Vector2(0,0)
 var hovering = false
 var growSpeed = 0.1
 
-signal openLog
+signal begConfirm
 
 func _ready():
 	pass
@@ -28,6 +27,6 @@ func _on_interactable_mouse_exited() -> void:
 	hovering = false
 
 func _on_interactable_pressed() -> void:
-	if sellWindow.initiatingAction == false:
-		openLog.emit()
-		outerSprite.scale = paddingSize
+	#insert the function of this placeholder button here
+	begConfirm.emit()
+	outerSprite.scale = paddingSize

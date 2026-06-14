@@ -55,10 +55,17 @@
 [ext_resource type="Texture2D" uid="uid://322ur6jb8nsa" path="res://assets/Sprites/RockBottom/spectrumOfBall.png" id="45_vl0u8"]
 [ext_resource type="Script" uid="uid://chlqvccm1symp" path="res://Scripts/RockBottom/minigames/haggle_marker.gd" id="46_6xhon"]
 [ext_resource type="Script" uid="uid://c4rm5jon1insh" path="res://Scripts/RockBottom/ledger.gd" id="47_dstdv"]
+[ext_resource type="Script" uid="uid://em057tfyifyv" path="res://Scripts/RockBottom/minigames/beg/beg.gd" id="54_ta34y"]
+[ext_resource type="Script" uid="uid://yotu2hpvjmv2" path="res://Scripts/RockBottom/minigames/beg/logos.gd" id="55_5sglw"]
 [ext_resource type="Texture2D" uid="uid://bwoj1v2iqk8w3" path="res://assets/Sprites/RockBottom/ledgerWindow/balanceBG.png" id="55_6kuie"]
+[ext_resource type="Script" uid="uid://bartb47nud7yx" path="res://Scripts/RockBottom/minigames/beg/beg_progress.gd" id="55_fawhf"]
 [ext_resource type="PackedScene" uid="uid://cat2m625ivp1q" path="res://ButtonScenes/RockBottom/account.tscn" id="56_6kuie"]
+[ext_resource type="Script" uid="uid://gcktkb8ai22r" path="res://Scripts/RockBottom/minigames/beg/pathos.gd" id="56_kol8n"]
+[ext_resource type="Script" uid="uid://cp7hmaxipw18p" path="res://Scripts/RockBottom/minigames/beg/ethos.gd" id="57_r1x1d"]
 [ext_resource type="PackedScene" uid="uid://dihqg6xpa46ng" path="res://ButtonScenes/RockBottom/dailyCosts.tscn" id="57_r7ujp"]
+[ext_resource type="Script" uid="uid://c7yigllmgxl4u" path="res://Scripts/RockBottom/minigames/beg/beg_confirm.gd" id="58_kol8n"]
 [ext_resource type="PackedScene" uid="uid://cw35novf3su5u" path="res://ButtonScenes/RockBottom/dailyProfits.tscn" id="58_ta34y"]
+[ext_resource type="Script" uid="uid://b3b0gcbfnktlo" path="res://Scripts/RockBottom/minigames/beg/done.gd" id="59_r1x1d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -136,6 +143,9 @@ bg_color = Color(1, 0.39215687, 0, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l2ux3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_546nq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fawhf"]
+bg_color = Color(0.3254902, 1, 0.33333334, 1)
 
 [node name="RockBottom" type="Node2D" unique_id=1024261337]
 
@@ -256,6 +266,7 @@ script = ExtResource("17_107vu")
 [node name="CenterWindows" type="Node2D" parent="." unique_id=97508153]
 
 [node name="inventoryWind" type="Node2D" parent="CenterWindows" unique_id=718695114]
+visible = false
 script = ExtResource("16_lfg33")
 
 [node name="InvGrid" type="GridContainer" parent="CenterWindows/inventoryWind" unique_id=339440393]
@@ -301,6 +312,7 @@ text = "Value: 0.0"
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
+visible = false
 
 [node name="PeopleList" type="HBoxContainer" parent="CenterWindows/sellWind/PickTarget" unique_id=2057357323]
 offset_left = 325.0
@@ -379,7 +391,6 @@ label_settings = SubResource("LabelSettings_r7ujp")
 script = ExtResource("22_2of7g")
 
 [node name="postApproach" type="Node2D" parent="CenterWindows/sellWind" unique_id=1469147129]
-visible = false
 
 [node name="Terminal" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1548338584]
 position = Vector2(512, 391)
@@ -390,10 +401,11 @@ offset_left = -163.0
 offset_top = 6.0
 offset_right = 291.0
 offset_bottom = 91.0
-text = "> System: Filler Text"
+text = "> System: Placeholder"
 label_settings = SubResource("LabelSettings_ta34y")
 autowrap_mode = 2
 script = ExtResource("22_2of7g")
+metadata/_edit_use_anchors_ = true
 
 [node name="termBackground" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Terminal" unique_id=88375434]
 position = Vector2(64, 49)
@@ -401,11 +413,13 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="theGuy" type="Sprite2D" parent="CenterWindows/sellWind/postApproach" unique_id=872769702]
+visible = false
 position = Vector2(576, 228)
 scale = Vector2(3, 3)
 texture = ExtResource("21_0m4ur")
 
 [node name="Actions" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1846174536]
+visible = false
 
 [node name="Sales Pitch" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=872168034]
 position = Vector2(393, 170)
@@ -608,6 +622,7 @@ script = ExtResource("25_leuqs")
 [node name="minigameWindows" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=611419590]
 
 [node name="pickToSell" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=371395790]
+visible = false
 z_index = 5
 script = ExtResource("32_qs7pq")
 
@@ -685,6 +700,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_bituw")
 text = "Confirm"
 
 [node name="Haggle" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=686576947]
+visible = false
 script = ExtResource("34_op3i2")
 
 [node name="haggleBox" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=174875371]
@@ -910,7 +926,151 @@ offset_bottom = 30.0
 scale = Vector2(0.145, 0.5)
 script = ExtResource("46_6xhon")
 
+[node name="Beg" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=1389438078]
+script = ExtResource("54_ta34y")
+
+[node name="Progress" type="ProgressBar" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg" unique_id=378608658]
+offset_left = 377.0
+offset_top = 181.0
+offset_right = 777.0
+offset_bottom = 206.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_fawhf")
+script = ExtResource("55_fawhf")
+metadata/_edit_use_anchors_ = true
+
+[node name="Directive" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg" unique_id=978461654]
+offset_left = 482.0
+offset_top = 137.0
+offset_right = 662.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 30
+text = "PROGRESS"
+metadata/_edit_use_anchors_ = true
+
+[node name="begBox" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg" unique_id=2033369081]
+position = Vector2(576, 295)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="Dialogue" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg" unique_id=112485640]
+
+[node name="Logos" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue" unique_id=389819142]
+position = Vector2(420, 262)
+script = ExtResource("55_5sglw")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" unique_id=2072180074]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" unique_id=1736819550]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Logos"
+metadata/_edit_use_anchors_ = true
+
+[node name="Pathos" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue" unique_id=83971021]
+position = Vector2(576, 262)
+script = ExtResource("56_kol8n")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" unique_id=2049789925]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" unique_id=1461827232]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Pathos"
+metadata/_edit_use_anchors_ = true
+
+[node name="Ethos" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue" unique_id=77595044]
+position = Vector2(730, 261)
+script = ExtResource("57_r1x1d")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" unique_id=1543373792]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" unique_id=1192327880]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Ethos"
+metadata/_edit_use_anchors_ = true
+
+[node name="Confirm" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue" unique_id=128938334]
+position = Vector2(494, 328)
+script = ExtResource("58_kol8n")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm" unique_id=164372448]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm" unique_id=457141358]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Confirm"
+metadata/_edit_use_anchors_ = true
+
+[node name="Done" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue" unique_id=854696243]
+position = Vector2(659, 328)
+script = ExtResource("59_r1x1d")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" unique_id=1980470319]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" unique_id=218619754]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Done"
+metadata/_edit_use_anchors_ = true
+
 [node name="Ledger" type="Node2D" parent="CenterWindows" unique_id=893953733]
+visible = false
 script = ExtResource("47_dstdv")
 
 [node name="sidebar" type="Node2D" parent="CenterWindows/Ledger" unique_id=1895109815]
@@ -1032,6 +1192,25 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_pressed"]
+[connection signal="logos" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg" method="_on_logos_logos"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" method="_on_interactable_pressed"]
+[connection signal="pathos" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg" method="_on_pathos_pathos"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" method="_on_interactable_pressed"]
+[connection signal="ethos" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg" method="_on_ethos_ethos"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm" method="_on_interactable_pressed"]
+[connection signal="stopBegging" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg" method="_on_done_stop_begging"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" method="_on_interactable_pressed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/sellWind/PickTarget/strangerRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]
