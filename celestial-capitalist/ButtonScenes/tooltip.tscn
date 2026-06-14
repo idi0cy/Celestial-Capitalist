@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cora30ddhy5h0"]
+
+[ext_resource type="Texture2D" uid="uid://be4rvkge6ii37" path="res://assets/Sprites/tooltipBG.png" id="1_2hwv4"]
+[ext_resource type="Script" uid="uid://b3wrigmmw3riq" path="res://ButtonScenes/tooltip.gd" id="1_j2pdf"]
+[ext_resource type="LabelSettings" uid="uid://dr4h1i2bok7vu" path="res://assets/defaultText16.tres" id="2_j2pdf"]
+[ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="3_1ujb6"]
+[ext_resource type="Texture2D" uid="uid://m50vuk87w4rb" path="res://assets/Sprites/tooltipBreaker.png" id="4_ajrqs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fo6hq"]
+font = ExtResource("3_1ujb6")
+font_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="tooltip" type="VBoxContainer" unique_id=1983789892]
+custom_minimum_size = Vector2(256, 125)
+anchors_preset = -1
+anchor_right = 0.22200002
+anchor_bottom = 0.19100001
+offset_right = 0.25598145
+offset_bottom = 1.231987
+script = ExtResource("1_j2pdf")
+
+[node name="control" type="Control" parent="." unique_id=658307445]
+z_index = 1
+layout_mode = 2
+
+[node name="title" type="Label" parent="control" unique_id=1799635771]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 244.0
+offset_bottom = 27.0
+text = "title"
+label_settings = ExtResource("2_j2pdf")
+
+[node name="content" type="Label" parent="control" unique_id=2099862682]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 33.0
+offset_right = 244.0
+offset_bottom = 112.0
+text = "content"
+label_settings = SubResource("LabelSettings_fo6hq")
+
+[node name="bg" type="Sprite2D" parent="." unique_id=854664909]
+position = Vector2(128, 62)
+scale = Vector2(4, 4)
+texture = ExtResource("1_2hwv4")
+
+[node name="breaker" type="Sprite2D" parent="." unique_id=681719320]
+position = Vector2(128, 32)
+scale = Vector2(4, 4)
+texture = ExtResource("4_ajrqs")

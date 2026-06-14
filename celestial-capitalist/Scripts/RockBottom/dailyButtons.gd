@@ -3,13 +3,10 @@ extends Node2D
 @onready var outerSprite = $outerSprite
 @onready var interactable = $interactable
 @onready var paddingSize = outerSprite.theScale
-@onready var textBox = $accountWind/textBox
 @onready var hoverScale = Vector2(paddingSize[0] + 0.35, paddingSize[1] + 0.35)
 var placeHolder = Vector2(0,0)
 var hovering = false
 var growSpeed = 0.1
-
-signal openAccWind
 
 func _ready():
 	pass
@@ -20,8 +17,6 @@ func _process(_delta):
 	else:
 		placeHolder = outerSprite.scale.lerp(paddingSize, growSpeed)
 	outerSprite.scale = placeHolder
-	if !(textBox.text.is_empty()):
-		interactable.text = textBox.text
 
 func _on_interactable_mouse_entered() -> void:
 	hovering = true
@@ -29,6 +24,11 @@ func _on_interactable_mouse_entered() -> void:
 func _on_interactable_mouse_exited() -> void:
 	hovering = false
 
-func _on_interactable_pressed() -> void:
-	openAccWind.emit()
-	outerSprite.scale = paddingSize
+func _input(event):
+	if event.is_action_pressed("debug"):
+		writeToTooltip(1, "god")
+
+#whenever a daily money source is enabled call this method
+#int amount, string source
+func writeToTooltip(amount, source):
+	interactable.writeValues(amount, source)

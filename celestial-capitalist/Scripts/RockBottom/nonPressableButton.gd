@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var outerSprite = $outerSprite
+@onready var interactable = $interactable
 @onready var paddingSize = outerSprite.theScale
 @onready var hoverScale = Vector2(paddingSize[0] + 0.35, paddingSize[1] + 0.35)
 var placeHolder = Vector2(0,0)
