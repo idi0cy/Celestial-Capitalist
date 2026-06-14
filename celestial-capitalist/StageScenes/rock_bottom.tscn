@@ -66,6 +66,11 @@
 [ext_resource type="Script" uid="uid://c7yigllmgxl4u" path="res://Scripts/RockBottom/minigames/beg/beg_confirm.gd" id="58_kol8n"]
 [ext_resource type="PackedScene" uid="uid://cw35novf3su5u" path="res://ButtonScenes/RockBottom/dailyProfits.tscn" id="58_ta34y"]
 [ext_resource type="Script" uid="uid://b3b0gcbfnktlo" path="res://Scripts/RockBottom/minigames/beg/done.gd" id="59_r1x1d"]
+[ext_resource type="Script" uid="uid://7ongknv645n1" path="res://Scripts/RockBottom/minigames/fakeInjury/fake_injury.gd" id="61_62asa"]
+[ext_resource type="Script" uid="uid://dlvjs28qaxhdg" path="res://Scripts/RockBottom/minigames/fakeInjury/raise_severity.gd" id="62_sukrf"]
+[ext_resource type="Script" uid="uid://ceuoobhtlrnfu" path="res://Scripts/RockBottom/minigames/fakeInjury/lower_severity.gd" id="63_k80dl"]
+[ext_resource type="Script" uid="uid://bf8i2xklorm6e" path="res://Scripts/RockBottom/minigames/fakeInjury/severity_marker.gd" id="64_rgwub"]
+[ext_resource type="Script" uid="uid://degkooxp0v53m" path="res://Scripts/RockBottom/minigames/fakeInjury/settle_severity.gd" id="64_voxua"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -146,6 +151,12 @@ bg_color = Color(1, 0.39215687, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fawhf"]
 bg_color = Color(0.3254902, 1, 0.33333334, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62asa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sukrf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k80dl"]
 
 [node name="RockBottom" type="Node2D" unique_id=1024261337]
 
@@ -927,6 +938,7 @@ scale = Vector2(0.145, 0.5)
 script = ExtResource("46_6xhon")
 
 [node name="Beg" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=1389438078]
+visible = false
 script = ExtResource("54_ta34y")
 
 [node name="Progress" type="ProgressBar" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg" unique_id=378608658]
@@ -1068,6 +1080,111 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
 theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
 text = "Done"
 metadata/_edit_use_anchors_ = true
+
+[node name="FakeInjury" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=482562965]
+script = ExtResource("61_62asa")
+
+[node name="FIbox" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=1025160326]
+position = Vector2(576, 304)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="severityPick" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=569409684]
+
+[node name="raise" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=2125256835]
+position = Vector2(714, 272)
+script = ExtResource("62_sukrf")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" unique_id=129770989]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" unique_id=907458601]
+offset_left = -48.0
+offset_top = -27.0
+offset_right = 58.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_62asa")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sukrf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k80dl")
+text = "Raise"
+
+[node name="lower" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=1830026727]
+position = Vector2(438, 272)
+script = ExtResource("63_k80dl")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" unique_id=2045241308]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" unique_id=1748256085]
+offset_left = -48.0
+offset_top = -27.0
+offset_right = 58.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_62asa")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sukrf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k80dl")
+text = "Lower"
+
+[node name="settle" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=1749936996]
+position = Vector2(576, 272)
+script = ExtResource("64_voxua")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" unique_id=1400981236]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" unique_id=656099050]
+offset_left = -48.0
+offset_top = -27.0
+offset_right = 58.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_62asa")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sukrf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k80dl")
+text = "Settle"
+
+[node name="severityBar" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=936698528]
+position = Vector2(576, 308)
+texture = ExtResource("45_vl0u8")
+
+[node name="marker" type="ColorRect" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=1345885706]
+offset_left = 428.0
+offset_top = 298.0
+offset_right = 468.0
+offset_bottom = 338.0
+scale = Vector2(0.145, 0.5)
+script = ExtResource("64_rgwub")
+
+[node name="labels" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=1414203571]
+
+[node name="Mild" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/labels" unique_id=859767203]
+offset_left = 392.0
+offset_top = 297.0
+offset_right = 432.0
+offset_bottom = 317.0
+text = "Mild"
+
+[node name="barDescription" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/labels" unique_id=567328202]
+offset_left = 498.0
+offset_top = 328.0
+offset_right = 654.0
+offset_bottom = 348.0
+text = "Injury Severity"
+
+[node name="Extreme" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/labels" unique_id=1331903720]
+offset_left = 728.0
+offset_top = 297.0
+offset_right = 808.0
+offset_bottom = 317.0
+text = "Extreme"
 
 [node name="Ledger" type="Node2D" parent="CenterWindows" unique_id=893953733]
 visible = false
@@ -1211,6 +1328,17 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" method="_on_interactable_pressed"]
+[connection signal="raiseSeverity" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" method="_on_raise_raise_severity"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" method="_on_interactable_pressed"]
+[connection signal="lowerSeverity" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" method="_on_lower_lower_severity"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" method="_on_interactable_pressed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/sellWind/PickTarget/strangerRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]

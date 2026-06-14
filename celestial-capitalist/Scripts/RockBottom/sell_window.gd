@@ -35,6 +35,10 @@ extends Node2D
 #minigame BEG
 @onready var begWindow = get_node("postApproach/minigameWindows/Beg")
 
+#minigame FAKE INJURY
+@onready var fakeInjury = get_node("postApproach/minigameWindows/FakeInjury")
+@onready var fakeInjurySeverity = get_node("postApproach/minigameWindows/FakeInjury/severityPick")
+
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
 @onready var personButtonScript = load("res://Scripts/RockBottom/stranger_button.gd")
@@ -191,6 +195,10 @@ func blankSlate():
 	#beg window
 	begWindow.hide()
 	
+	#fake injury window
+	fakeInjury.hide()
+	fakeInjurySeverity.hide()
+	
 	initiatingAction = false
 
 func identifyTarget(index, place):
@@ -222,7 +230,7 @@ func _on_take_action_confirm_action(theAction, target) -> void:
 	elif theAction == "Beg":
 		begAction(target)
 	elif theAction == "Fake Injury":
-		fakeInjury(target)
+		fakeInjuryAction(target)
 	elif theAction == "Steal":
 		steal(target)
 	elif theAction == "Con":
@@ -257,12 +265,16 @@ func begAction(target):
 		begWindow.initiate(target)
 		minigameWindows.show()
 
-func fakeInjury(target):
+func fakeInjuryAction(target):
 	if initiatingAction == false:
 		initiatingAction = true
-		print(target)
 		terminalText.targetText = "> System: Weakening ankles..."
 		terminalText.fillText()
+		await get_tree().create_timer(2).timeout
+		#This better work as a substitute
+		onStartBeg()
+		fakeInjury.initiate(target)
+		minigameWindows.show()
 
 func steal(target):
 	if initiatingAction == false:
