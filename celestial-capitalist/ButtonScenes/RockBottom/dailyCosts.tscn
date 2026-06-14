@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dihqg6xpa46ng"]
 
-[ext_resource type="Script" uid="uid://cc8pownj5qmqi" path="res://Scripts/RockBottom/nonPressableButton.gd" id="1_uctke"]
+[ext_resource type="Script" uid="uid://crvjug1txqd1u" path="res://Scripts/RockBottom/dailyButtons.gd" id="1_wmlxu"]
 [ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="2_wmlxu"]
 [ext_resource type="Texture2D" uid="uid://byyq187le2nqs" path="res://assets/Sprites/RockBottom/buttonIcons/dailyCosts.png" id="3_wmlxu"]
 [ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="4_v04hp"]
+[ext_resource type="Script" uid="uid://dgm8i73yoc0ha" path="res://ButtonScenes/dailyCosts.gd" id="4_wmlxu"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="5_jjmub"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qp50"]
@@ -31,7 +32,7 @@ expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
 [node name="dailyCosts" type="Node2D" unique_id=495495416]
-script = ExtResource("1_uctke")
+script = ExtResource("1_wmlxu")
 
 [node name="interactable" type="Button" parent="." unique_id=1277428372]
 z_index = 3
@@ -55,6 +56,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_6e8so")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ryc35")
 text = "Daily Costs"
 icon = ExtResource("3_wmlxu")
+script = ExtResource("4_wmlxu")
 metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="." unique_id=1329110646]
