@@ -22,10 +22,10 @@ func _process(_delta):
 func openLedger():
 	ledgerOpen = not ledgerOpen
 
-func addEntry(amount, time, party, item):
+func addEntry(amount, time, party, subject, texture):
 	var entry_instance = entry_scene.instantiate()
 	innerTransactionContainer.add_child(entry_instance)
-	entry_instance.writeTransaction(amount, time, party, item)
+	entry_instance.writeTransaction(amount, time, party, subject, texture)
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	ledgerOpen = false

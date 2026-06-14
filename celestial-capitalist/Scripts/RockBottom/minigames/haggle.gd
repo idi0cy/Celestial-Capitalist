@@ -123,7 +123,7 @@ func _on_goldilocks_ball() -> void:
 	#print((random2 * 100) *(arguedValue / normalValue))
 	if (random2 * 100) * (arguedValue / normalValue) < progress:
 		ledger.money += arguedValue
-		ledger.addEntry(arguedValue, clock.theTime, allStrangers[target][0], confirmItem.selected.myItem)
+		ledger.addEntry(arguedValue, clock.theTime, allStrangers[target][0], confirmItem.selected.myItem[0][0], confirmItem.selected.myItem[0][-1])
 		terminalText.targetText = "> " + allStrangers[target][0] + ": I'll take it."
 		absInventory.removeItem(confirmItem.selectedIndex)
 	else:
