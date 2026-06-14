@@ -65,11 +65,12 @@ func wrapItUp():
 			terminalText.targetText = "> " + str(allStrangers[targetStranger][0]) + ": No thanks... Please don't talk to me again."
 			sellWindow.removeStranger(sellWindow.curSelPlace)
 		else:
+			var donationIcon = preload("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 			begVal = 1 * ((begProgress * 0.01) + 0.25) * (allStrangers[targetStranger][1] + 0.5)
 			begVal = (floor((begVal * 100))) / 100.0
 			terminalText.targetText = "> " + str(allStrangers[targetStranger][0]) + ": Take $" + str(begVal) + "."
 			ledger.money += begVal
-			ledger.addEntry(begVal, clock.theTime, allStrangers[targetStranger][0], [["donation", texture]])
+			ledger.addEntry(begVal, clock.theTime, allStrangers[targetStranger][0], "Donated", donationIcon)
 		print(begVal)
 		terminalText.fillText()
 		initiatingDone = true

@@ -30,14 +30,14 @@ func _process(_delta):
 		expandedWindow.show()
 		self.custom_minimum_size = Vector2(267, 179)
 
-# int amount, int time, string party, array item
-func writeTransaction(amount, time, party, item):
-	var texture : Texture2D
+# int amount, int time, string party, string subject, texture2d texture
+func writeTransaction(amount, time, party, subject, texture):
+	var posNegIcon : Texture2D
 	if (amount > 0):
-		texture = load("res://assets/Sprites/RockBottom/buttonIcons/dailyProfits.png")
+		posNegIcon = load("res://assets/Sprites/RockBottom/buttonIcons/dailyProfits.png")
 	else:
-		texture = load("res://assets/Sprites/RockBottom/buttonIcons/dailyCosts.png")
-	interactable.icon = texture
+		posNegIcon = load("res://assets/Sprites/RockBottom/buttonIcons/dailyCosts.png")
+	interactable.icon = posNegIcon
 	@warning_ignore("integer_division")
 	var hours : int = (floori(float(time) / 60))
 	var minutes : int = time - hours * 60
@@ -54,16 +54,15 @@ func writeTransaction(amount, time, party, item):
 	var convertedTime : String = convertedHours + ":" + convertedMinutes
 	interactable.text = "$" + str(abs(amount)) + "| " + convertedTime
 	
-	var itemArray = item[0]
-	print(party)
-	var itemTexture : Texture2D = itemArray[-1]
-	itemSprite.texture = itemTexture
+	itemSprite.texture = texture
 	
-	var itemName = str(itemArray[0])
 	if(amount > 0):
-		soldbought.text = "Sold: " + itemName
+		if (subject == "Donated"):
+			soldbought.text = subject
+		else:
+			soldbought.text = "Sold: " + subject
 	else:
-		soldbought.text = "Bought: " + itemName
+		soldbought.text = "Bought: " + subject
 		
 	if(amount > 0):
 		fromto.text = "From: " + party
