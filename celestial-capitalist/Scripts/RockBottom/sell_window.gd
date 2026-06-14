@@ -3,18 +3,25 @@ extends Node2D
 #Options so far are as follows
 #Beg, Sales Pitch, Fake Injury, Steal, Con
 
+#general
 @onready var clock = get_node("../../digitalClock")
 @onready var personNameLabel = get_node("PickTarget/personName")
 @onready var approachButton = get_node("PickTarget/approachButton/Button")
 @onready var approachButtonGeneral = get_node("PickTarget/approachButton")
 @onready var PeopleList = get_node("PickTarget/PeopleList")
 @onready var directiveFirst = get_node("PickTarget/Directive")
+@onready var refreshExplanation = get_node("PickTarget/explanation")
+@onready var refreshTimer = get_node("PickTarget/strangerRefresh")
+
+#post approach
 @onready var postApproach = get_node("postApproach")
 @onready var actions = get_node("postApproach/Actions")
 @onready var strangerSprite = get_node("postApproach/theGuy")
 @onready var confirmAction = get_node("postApproach/Actions/takeAction")
 @onready var terminal = get_node("postApproach/Terminal")
 @onready var terminalText = get_node("postApproach/Terminal/termText")
+
+#minigame HAGGLE
 @onready var minigameWindows = get_node("postApproach/minigameWindows")
 @onready var pickToSell = get_node("postApproach/minigameWindows/pickToSell")
 @onready var haggle = get_node("postApproach/minigameWindows/Haggle")
@@ -24,8 +31,9 @@ extends Node2D
 @onready var haggleDirective = get_node("postApproach/minigameWindows/Haggle/Directive")
 @onready var aimTrainZone = get_node("postApproach/minigameWindows/Haggle/aimTrainZone")
 @onready var spectrumOfBall = get_node("postApproach/minigameWindows/Haggle/pricing/spectrumOfBall")
-@onready var refreshExplanation = get_node("PickTarget/explanation")
-@onready var refreshTimer = get_node("PickTarget/strangerRefresh")
+
+#minigame BEG
+@onready var begWindow = get_node("postApproach/minigameWindows/Beg")
 
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
@@ -45,7 +53,7 @@ var initiatingAction = false
 var targetIndex
 var curSelPlace
 
-#AS OF NOW INDEX 2 IS VESTIGIAL IN FUNCTION UNLESS WE WANT INSTANT REJECTIONS FROM STRANGERS
+#okay well this is going to be an absolute horror.
 
 #try to have more success rate the higher the values are for uniformity
 #index 0 is name of person, index 1 is wealth, index 2 is approachability
@@ -63,12 +71,7 @@ const charityWorker = ["Charity Worker", 0.5, 1, 0.9, 0.5, 0.4, 0.3, 0.4, 0.2]
 const allStrangers = [richAndOld, anotherHomeless, middleAgedAverage, niceKid, skepticKid, charityWorker]
 
 func _ready():
-	haggleDialogue.hide()
-	postApproach.hide()
-	haggle.hide()
-	$PickTarget.show()
-	personNameLabel.targetText = ""
-	personNameLabel.text = ""
+	blankSlate()
 	for item in PeopleList.get_children():
 		PeopleList.remove_child(item)
 		item.queue_free()
@@ -159,6 +162,7 @@ func removeStranger(index):
 		count += 1
 
 func blankSlate():
+	#normal sell window
 	curSelPlace = "None"
 	refreshExplanation.targetText = ""
 	refreshExplanation.fillText()
@@ -166,23 +170,28 @@ func blankSlate():
 		approachButton.pressed.disconnect(self.approachStranger)
 	directiveFirst.show()
 	personNameLabel.show()
-	#for item in PeopleList.get_children():
-		#PeopleList.remove_child(item)
-		#item.queue_free()
 	personNameLabel.text = ""
+	terminalText.targetText = ""
+	terminalText.fillText()
+	terminal.hide()
+	approachButtonGeneral.hide()
+	postApproach.hide()
+	$PickTarget.show()
+	
+	#haggle window
 	haggle.hide()
 	haggleDialogue.hide()
 	hagglePricing.hide()
 	aimTrainZone.hide()
 	spectrumOfBall.hide()
-	terminalText.targetText = ""
-	terminalText.fillText()
 	pickToSell.closeIcons()
 	haggleBar.hide()
 	haggleDirective.hide()
-	terminal.hide()
+	
+	#beg window
+	begWindow.hide()
+	
 	initiatingAction = false
-	approachButtonGeneral.hide()
 
 func identifyTarget(index, place):
 	personNameLabel.targetText = allStrangers[index][0]
@@ -230,21 +239,23 @@ func noAction(target):
 func salesPitch(target):
 	if initiatingAction == false:
 		initiatingAction = true
-		print(target)
 		terminalText.targetText = "> System: Trying to impress customers..."
 		terminalText.fillText()
 		#maybe play cool sound effect while waiting
 		await get_tree().create_timer(2).timeout
-		$postApproach/minigameWindows.show()
+		minigameWindows.show()
 		pickToSell.openPickToSell()
 		haggle.target = target
 
 func begAction(target):
 	if initiatingAction == false:
 		initiatingAction = true
-		print(target)
 		terminalText.targetText = "> System: Preparing to cry..."
 		terminalText.fillText()
+		await get_tree().create_timer(2).timeout
+		onStartBeg()
+		begWindow.initiate(target)
+		minigameWindows.show()
 
 func fakeInjury(target):
 	if initiatingAction == false:
@@ -276,6 +287,10 @@ func _on_confirm_confirm_selection() -> void:
 	haggleDialogue.show()
 	haggleBar.show()
 	haggleDirective.show()
+
+func onStartBeg():
+	actions.hide()
+	strangerSprite.hide()
 
 func _on_stranger_refresh_why_do_i_need_this(theValue: Variant) -> void:
 	pass # Replace with function body.
