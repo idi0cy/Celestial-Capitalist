@@ -24,9 +24,9 @@ func _on_interactable_mouse_entered() -> void:
 func _on_interactable_mouse_exited() -> void:
 	hovering = false
 
-func _input(event):
-	if event.is_action_pressed("debug"):
-		writeToTooltip(1, "god")
+#func _input(event):
+#	if event.is_action_pressed("debug"):
+#		writeToTooltip(1, "god")
 
 #whenever a daily money source is enabled call this method
 #int amount, string source
