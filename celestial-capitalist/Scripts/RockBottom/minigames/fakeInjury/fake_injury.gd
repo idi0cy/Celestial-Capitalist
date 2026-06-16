@@ -27,13 +27,14 @@ func _on_settle_settle_severity() -> void:
 
 func minigamePart():
 	theGuy.hide()
+	severitySelection.hide()
 	FIbox.show()
 	if severity > 0:
 		minigame.initiate(severity)
 	else:
 		minigame.initiate(1)
 
-func arbitration():
+func arbitration(points):
 	severitySelection.hide()
 	FIbox.hide()
 	theGuy.show()
@@ -47,13 +48,13 @@ func arbitration():
 		terminalText.targetText = "> You: Hey, you stepped on my chest and I think you broke my clavicle, what the heck?! Give me ten dollars."
 		arguedVal = 10
 	else:
-		terminalText.targetText = "> You: Hey, you stepped on my sould and I think you broke a bit of it, what the heck?! Give me twenty dollars."
+		terminalText.targetText = "> You: Hey, you stepped on my soul and I think you broke a bit of it, what the heck?! Give me twenty dollars."
 		arguedVal = 20
 	terminalText.fillText()
 	await get_tree().create_timer(2.0).timeout
 	
 	random = randf()
-	if random * allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) > (severity/100.0):
+	if random * allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2)> (severity/100.0):
 		ledger.money += arguedVal
 		terminalText.targetText = "> " + str(allStrangers[targetIndex][0]) + ": Okay, take $" + str(arguedVal) + "."
 	else:

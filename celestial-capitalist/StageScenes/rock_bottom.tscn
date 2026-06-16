@@ -74,7 +74,6 @@
 [ext_resource type="Texture2D" uid="uid://c0y12hft0cm1l" path="res://assets/Sprites/RockBottom/RGcolumn.png" id="66_b4tmt"]
 [ext_resource type="Script" uid="uid://lup2ffr673yi" path="res://Scripts/RockBottom/minigames/fakeInjury/fake_injury_funkin.gd" id="66_ljcqc"]
 [ext_resource type="Texture2D" uid="uid://bph4wlbx6yr4x" path="res://assets/Sprites/RockBottom/minigames/upArrowBox.png" id="67_dh0ol"]
-[ext_resource type="Texture2D" uid="uid://bfg48c6ijoj43" path="res://assets/Sprites/RockBottom/minigames/upArrowNote.png" id="75_bao8l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -1213,6 +1212,7 @@ texture = ExtResource("66_b4tmt")
 [node name="buttons" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1127936378]
 
 [node name="upButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=1040097883]
+z_index = 5
 offset_left = 368.0
 offset_top = 250.0
 offset_right = 392.0
@@ -1221,6 +1221,7 @@ pivot_offset = Vector2(12, 12)
 texture_normal = ExtResource("67_dh0ol")
 
 [node name="downButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=86675647]
+z_index = 5
 offset_left = 368.0
 offset_top = 278.0
 offset_right = 392.0
@@ -1230,6 +1231,7 @@ pivot_offset = Vector2(12, 12)
 texture_normal = ExtResource("67_dh0ol")
 
 [node name="leftButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=713911049]
+z_index = 5
 offset_left = 368.0
 offset_top = 306.0
 offset_right = 392.0
@@ -1239,6 +1241,7 @@ pivot_offset = Vector2(12, 12)
 texture_normal = ExtResource("67_dh0ol")
 
 [node name="rightButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=766912709]
+z_index = 5
 offset_left = 368.0
 offset_top = 334.0
 offset_right = 392.0
@@ -1246,6 +1249,8 @@ offset_bottom = 358.0
 rotation = 4.712389
 pivot_offset = Vector2(12, 12)
 texture_normal = ExtResource("67_dh0ol")
+
+[node name="targetDomain" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1554134541]
 
 [node name="takePublic" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=58030356]
 
@@ -1292,10 +1297,6 @@ layout_mode = 2
 
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=95160351]
-position = Vector2(756, 346)
-texture = ExtResource("75_bao8l")
 
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/inventoryWind" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/sellWind" method="_on_scavenge_button_open_scav_wind"]
