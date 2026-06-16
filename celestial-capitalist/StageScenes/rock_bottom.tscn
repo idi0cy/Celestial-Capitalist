@@ -44,6 +44,7 @@
 [ext_resource type="Script" uid="uid://c17ic64r1ge7f" path="res://Scripts/RockBottom/minigames/haggle.gd" id="34_op3i2"]
 [ext_resource type="Script" uid="uid://c526rf1um5u44" path="res://Scripts/RockBottom/minigames/haggle_bar.gd" id="35_i6uy1"]
 [ext_resource type="Script" uid="uid://b8m8hdrfm7w2a" path="res://Scripts/RockBottom/minigames/fearmonger.gd" id="36_bituw"]
+[ext_resource type="Script" uid="uid://dtih34gne5mbe" path="res://Scripts/RockBottom/dialogue_library.gd" id="38_62asa"]
 [ext_resource type="Script" uid="uid://ciglg4feghf3b" path="res://Scripts/RockBottom/minigames/recommend.gd" id="38_l2ux3"]
 [ext_resource type="Script" uid="uid://bdl26m8nm4j5m" path="res://Scripts/RockBottom/minigames/urgency.gd" id="39_7pdp4"]
 [ext_resource type="Script" uid="uid://c6sy7jg6d6jot" path="res://Scripts/RockBottom/minigames/promote.gd" id="40_107vu"]
@@ -312,7 +313,6 @@ text = "Value: 0.0"
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
-visible = false
 
 [node name="PeopleList" type="HBoxContainer" parent="CenterWindows/sellWind/PickTarget" unique_id=2057357323]
 offset_left = 325.0
@@ -413,13 +413,11 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="theGuy" type="Sprite2D" parent="CenterWindows/sellWind/postApproach" unique_id=872769702]
-visible = false
 position = Vector2(576, 228)
 scale = Vector2(3, 3)
 texture = ExtResource("21_0m4ur")
 
 [node name="Actions" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1846174536]
-visible = false
 
 [node name="Sales Pitch" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=872168034]
 position = Vector2(393, 170)
@@ -620,9 +618,10 @@ texture = ExtResource("22_tdnta")
 script = ExtResource("25_leuqs")
 
 [node name="minigameWindows" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=611419590]
+visible = false
+script = ExtResource("38_62asa")
 
 [node name="pickToSell" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=371395790]
-visible = false
 z_index = 5
 script = ExtResource("32_qs7pq")
 
@@ -700,7 +699,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_bituw")
 text = "Confirm"
 
 [node name="Haggle" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=686576947]
-visible = false
 script = ExtResource("34_op3i2")
 
 [node name="haggleBox" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=174875371]
@@ -1070,7 +1068,6 @@ text = "Done"
 metadata/_edit_use_anchors_ = true
 
 [node name="Ledger" type="Node2D" parent="CenterWindows" unique_id=893953733]
-visible = false
 script = ExtResource("47_dstdv")
 
 [node name="sidebar" type="Node2D" parent="CenterWindows/Ledger" unique_id=1895109815]
