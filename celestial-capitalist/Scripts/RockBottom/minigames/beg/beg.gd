@@ -9,6 +9,7 @@ extends Node2D
 @onready var sellWindow = get_node("../../../../sellWind")
 @onready var ledger = get_node("../../../../Ledger")
 @onready var clock = get_node("../../../../../digitalClock")
+@onready var dialogueLib = get_node("../../minigameWindows")
 
 @onready var allStrangers = sellWindow.allStrangers
 
@@ -44,13 +45,13 @@ func modifyProgress(type):
 		if tries > 0:
 			if type == "logos":
 				begProgress += (2.0/logosCount) * (allStrangers[targetStranger][4] + 0.5) * baseVal
-				terminalText.targetText = "> You: If you donate to me, you'll be helping me become a functioning member of society AND you won't have to pay taxes."
+				terminalText.targetText = "> You: " + dialogueLib.logosLines.pick_random()
 			elif type == "pathos":
 				begProgress += (2.0/pathosCount) * (allStrangers[targetStranger][3] + 0.5) * baseVal
-				terminalText.targetText = "> You: Please, don't you want to help those in need?"
+				terminalText.targetText = "> You: " + dialogueLib.pathosLines.pick_random()
 			elif type == "ethos":
 				begProgress += (2.0/ethosCount) + (allStrangers[targetStranger][2] + 0.5) * baseVal
-				terminalText.targetText = "> You: As an authority on homelessness, I can confirm it is very bad. Please help with the problem."
+				terminalText.targetText = "> You: " + dialogueLib.ethosLines.pick_random()
 			else:
 				terminalText.targetText = "> System: No dialogue choice selected. Please choose one."
 			tries -= 1
@@ -62,19 +63,20 @@ func modifyProgress(type):
 func wrapItUp():
 	if initiatingDone == false:
 		if begProgress < 25:
-			terminalText.targetText = "> " + str(allStrangers[targetStranger][0]) + ": No thanks... Please don't talk to me again."
+			terminalText.targetText = "> " + str(allStrangers[targetStranger][0]) + ": " + dialogueLib.rejectLines.pick_random()
 			sellWindow.removeStranger(sellWindow.curSelPlace)
 		else:
 			var donationIcon = preload("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 			begVal = 1 * ((begProgress * 0.01) + 0.25) * (allStrangers[targetStranger][1] + 0.5)
 			begVal = (floor((begVal * 100))) / 100.0
-			terminalText.targetText = "> " + str(allStrangers[targetStranger][0]) + ": Take $" + str(begVal) + "."
+			terminalText.targetText = "> " + str(allStrangers[targetStranger][0]) + ": " + dialogueLib.acceptLines.pick_random()
+			terminalText.targetText += "\n> System: Received $" + str(begVal)
 			ledger.money += begVal
 			ledger.addEntry(begVal, clock.theTime, allStrangers[targetStranger][0], "Donated", donationIcon)
 		print(begVal)
 		terminalText.fillText()
 		initiatingDone = true
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(4).timeout
 		
 		sellWindow.blankSlate()
 		sellWindow.onButton()

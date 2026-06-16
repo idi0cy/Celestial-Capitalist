@@ -12,6 +12,7 @@ extends Node2D
 @onready var ledger = get_node("../../../../Ledger")
 @onready var pickToSell = get_node("../pickToSell")
 @onready var absInventory = get_node("../../../../inventoryWind")
+@onready var dialogueLib = get_node("../../minigameWindows")
 @onready var allStrangers = sellWindow.allStrangers
 
 
@@ -53,22 +54,22 @@ func _process(_delta):
 
 
 func _on_promote_promote() -> void:
-	terminalText.targetText = "> You: This one can cure cancer! \n"
+	terminalText.targetText = "> You: " + dialogueLib.promoteLines.pick_random() + "\n"
 	terminalText.fillText()
 	universalMinigame(1.5)
 
 func _on_urgency_urgency() -> void:
-	terminalText.targetText = "> You: This won't be available tomorrow. \n"
+	terminalText.targetText = "> You: " + dialogueLib.urgencyLines.pick_random() + "\n"
 	terminalText.fillText()
 	universalMinigame(1.25)
 
 func _on_recommend_recommend() -> void:
-	terminalText.targetText = "> You: I would highly recommend this prodcut. \n"
+	terminalText.targetText = "> You: " + dialogueLib.recommendLines.pick_random() + "\n"
 	terminalText.fillText()
 	universalMinigame(1.0)
 
 func _on_fearmonger_fear_monger() -> void:
-	terminalText.targetText = "> You: If you don't buy this, you'll die. \n"
+	terminalText.targetText = "> You: " + dialogueLib.fearmongerLines.pick_random() + "\n"
 	terminalText.fillText()
 	universalMinigame(2.0)
 
@@ -124,13 +125,14 @@ func _on_goldilocks_ball() -> void:
 	if (random2 * 100) * (arguedValue / normalValue) < progress:
 		ledger.money += arguedValue
 		ledger.addEntry(arguedValue, clock.theTime, allStrangers[target][0], confirmItem.selected.myItem[0][0], confirmItem.selected.myItem[0][-1])
-		terminalText.targetText = "> " + allStrangers[target][0] + ": I'll take it."
+		terminalText.targetText = "> " + allStrangers[target][0] + ": " + dialogueLib.acceptLines.pick_random()
+		terminalText.targetText += "\n> System: Received $" + str(arguedValue)
 		absInventory.removeItem(confirmItem.selectedIndex)
 	else:
-		terminalText.targetText = "> " + allStrangers[target][0] + ": Never speak to me ever again."
+		terminalText.targetText = "> " + allStrangers[target][0] + ": " + dialogueLib.rejectLines.pick_random()
 		sellWindow.removeStranger(sellWindow.curSelPlace)
 	terminalText.fillText()
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(4).timeout
 	progress = 0
 	pickToSell.closeIcons()
 	sellWindow.blankSlate()
