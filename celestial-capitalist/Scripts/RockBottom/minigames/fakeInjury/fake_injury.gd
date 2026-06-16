@@ -6,6 +6,7 @@ extends Node2D
 @onready var terminalText = get_node("../../Terminal/termText")
 @onready var sellWind = get_node("../../../../sellWind")
 @onready var ledger = get_node("../../../../Ledger")
+@onready var minigame = get_node("minigamePart")
 @onready var allStrangers = sellWind.allStrangers
 
 var severity = 50
@@ -18,9 +19,21 @@ func initiate(target):
 	arguedVal = 0
 	severity = 50
 	severitySelection.show()
+	minigame.hide()
 	show()
 
 func _on_settle_settle_severity() -> void:
+	minigamePart()
+
+func minigamePart():
+	theGuy.hide()
+	FIbox.show()
+	if severity > 0:
+		minigame.initiate(severity)
+	else:
+		minigame.initiate(1)
+
+func arbitration():
 	severitySelection.hide()
 	FIbox.hide()
 	theGuy.show()
@@ -47,7 +60,11 @@ func _on_settle_settle_severity() -> void:
 		terminalText.targetText = "> " + str(allStrangers[targetIndex][0]) + ": Uhh, you're not even injured."
 	terminalText.fillText()
 	await get_tree().create_timer(1.5).timeout
-	
+	takePublic()
+
+func takePublic():
+	theGuy.hide()
+	FIbox.hide()
 
 func _on_lower_lower_severity() -> void:
 	if (severity - 10) >= 0:

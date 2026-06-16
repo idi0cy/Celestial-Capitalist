@@ -71,6 +71,10 @@
 [ext_resource type="Script" uid="uid://ceuoobhtlrnfu" path="res://Scripts/RockBottom/minigames/fakeInjury/lower_severity.gd" id="63_k80dl"]
 [ext_resource type="Script" uid="uid://bf8i2xklorm6e" path="res://Scripts/RockBottom/minigames/fakeInjury/severity_marker.gd" id="64_rgwub"]
 [ext_resource type="Script" uid="uid://degkooxp0v53m" path="res://Scripts/RockBottom/minigames/fakeInjury/settle_severity.gd" id="64_voxua"]
+[ext_resource type="Texture2D" uid="uid://c0y12hft0cm1l" path="res://assets/Sprites/RockBottom/RGcolumn.png" id="66_b4tmt"]
+[ext_resource type="Script" uid="uid://lup2ffr673yi" path="res://Scripts/RockBottom/minigames/fakeInjury/fake_injury_funkin.gd" id="66_ljcqc"]
+[ext_resource type="Texture2D" uid="uid://bph4wlbx6yr4x" path="res://assets/Sprites/RockBottom/minigames/upArrowBox.png" id="67_dh0ol"]
+[ext_resource type="Texture2D" uid="uid://bfg48c6ijoj43" path="res://assets/Sprites/RockBottom/minigames/upArrowNote.png" id="75_bao8l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -1187,7 +1191,63 @@ offset_right = 808.0
 offset_bottom = 317.0
 text = "Extreme"
 
-[node name="postFailure" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=2135451184]
+[node name="minigamePart" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=72861098]
+script = ExtResource("66_ljcqc")
+
+[node name="column1" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=2039916517]
+position = Vector2(568, 262)
+texture = ExtResource("66_b4tmt")
+
+[node name="column2" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1151597690]
+position = Vector2(568, 290)
+texture = ExtResource("66_b4tmt")
+
+[node name="column3" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1341818366]
+position = Vector2(568, 318)
+texture = ExtResource("66_b4tmt")
+
+[node name="column4" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1759541684]
+position = Vector2(568, 346)
+texture = ExtResource("66_b4tmt")
+
+[node name="buttons" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1127936378]
+
+[node name="upButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=1040097883]
+offset_left = 368.0
+offset_top = 250.0
+offset_right = 392.0
+offset_bottom = 274.0
+pivot_offset = Vector2(12, 12)
+texture_normal = ExtResource("67_dh0ol")
+
+[node name="downButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=86675647]
+offset_left = 368.0
+offset_top = 278.0
+offset_right = 392.0
+offset_bottom = 302.0
+rotation = 3.1415927
+pivot_offset = Vector2(12, 12)
+texture_normal = ExtResource("67_dh0ol")
+
+[node name="leftButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=713911049]
+offset_left = 368.0
+offset_top = 306.0
+offset_right = 392.0
+offset_bottom = 330.0
+rotation = 1.5707964
+pivot_offset = Vector2(12, 12)
+texture_normal = ExtResource("67_dh0ol")
+
+[node name="rightButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=766912709]
+offset_left = 368.0
+offset_top = 334.0
+offset_right = 392.0
+offset_bottom = 358.0
+rotation = 4.712389
+pivot_offset = Vector2(12, 12)
+texture_normal = ExtResource("67_dh0ol")
+
+[node name="takePublic" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=58030356]
 
 [node name="Ledger" type="Node2D" parent="CenterWindows" unique_id=893953733]
 visible = false
@@ -1232,6 +1292,10 @@ layout_mode = 2
 
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=95160351]
+position = Vector2(756, 346)
+texture = ExtResource("75_bao8l")
 
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/inventoryWind" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/sellWind" method="_on_scavenge_button_open_scav_wind"]
