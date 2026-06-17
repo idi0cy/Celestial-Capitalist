@@ -7,7 +7,10 @@ extends Node2D
 @onready var sellWind = get_node("../../../../sellWind")
 @onready var ledger = get_node("../../../../Ledger")
 @onready var minigame = get_node("minigamePart")
+@onready var clock = get_node("../../../../../digitalClock")
 @onready var allStrangers = sellWind.allStrangers
+
+@onready var donationIcon = load("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 
 var severity = 50
 var targetIndex
@@ -19,6 +22,7 @@ func initiate(target):
 	arguedVal = 0
 	severity = 50
 	severitySelection.show()
+	FIbox.show()
 	minigame.hide()
 	show()
 
@@ -35,37 +39,36 @@ func minigamePart():
 		minigame.initiate(1)
 
 func arbitration(points):
+	print("arbitrating")
 	severitySelection.hide()
 	FIbox.hide()
 	theGuy.show()
 	if severity < 25:
-		terminalText.targetText = "> You: Hey, you stepped on my foot, what the heck?! Give me a dollar."
-		arguedVal = 1
+		terminalText.targetText = "> You: Hey, you stepped on my foot, what the heck?! Give me money, or I'll tell everyone."
 	elif severity < 50:
-		terminalText.targetText = "> You: Hey, you stepped on my arm, what the heck?! Give me three dollars."
-		arguedVal = 3
+		terminalText.targetText = "> You: Hey, you stepped on my arm, what the heck?! Give me money, or I'll tell everyone."
 	elif severity < 75:
-		terminalText.targetText = "> You: Hey, you stepped on my chest and I think you broke my clavicle, what the heck?! Give me ten dollars."
-		arguedVal = 10
+		terminalText.targetText = "> You: Hey, you stepped on my chest and I think you broke my clavicle, what the heck?! Give me money or I'll tell everyone."
 	else:
-		terminalText.targetText = "> You: Hey, you stepped on my soul and I think you broke a bit of it, what the heck?! Give me twenty dollars."
-		arguedVal = 20
+		terminalText.targetText = "> You: Hey, you stepped on my soul and I think you broke a bit of it, what the heck?! Give me money or I'll tell everyone."
+	arguedVal = severity * 0.1
 	terminalText.fillText()
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	
 	random = randf()
 	if random * allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2)> (severity/100.0):
 		ledger.money += arguedVal
+		ledger.addEntry(arguedVal, clock.theTime, allStrangers[targetIndex][0], "Blackmail", donationIcon)
 		terminalText.targetText = "> " + str(allStrangers[targetIndex][0]) + ": Okay, take $" + str(arguedVal) + "."
 	else:
 		terminalText.targetText = "> " + str(allStrangers[targetIndex][0]) + ": Uhh, you're not even injured."
 	terminalText.fillText()
 	await get_tree().create_timer(1.5).timeout
-	takePublic()
+	wrapItUp()
 
-func takePublic():
-	theGuy.hide()
-	FIbox.hide()
+func wrapItUp():
+	sellWind.removeStranger(sellWind.curSelPlace)
+	sellWind.onButton()
 
 func _on_lower_lower_severity() -> void:
 	if (severity - 10) >= 0:

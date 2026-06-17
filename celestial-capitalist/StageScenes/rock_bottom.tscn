@@ -74,6 +74,8 @@
 [ext_resource type="Texture2D" uid="uid://c0y12hft0cm1l" path="res://assets/Sprites/RockBottom/RGcolumn.png" id="66_b4tmt"]
 [ext_resource type="Script" uid="uid://lup2ffr673yi" path="res://Scripts/RockBottom/minigames/fakeInjury/fake_injury_funkin.gd" id="66_ljcqc"]
 [ext_resource type="Texture2D" uid="uid://bph4wlbx6yr4x" path="res://assets/Sprites/RockBottom/minigames/upArrowBox.png" id="67_dh0ol"]
+[ext_resource type="Script" uid="uid://b4yaspksfgp" path="res://Scripts/RockBottom/minigames/fakeInjury/four_buttons.gd" id="68_fyvno"]
+[ext_resource type="Script" uid="uid://r6btpk761d2i" path="res://Scripts/RockBottom/minigames/fakeInjury/point_counter.gd" id="69_bao8l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -1210,6 +1212,7 @@ position = Vector2(568, 346)
 texture = ExtResource("66_b4tmt")
 
 [node name="buttons" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1127936378]
+script = ExtResource("68_fyvno")
 
 [node name="upButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=1040097883]
 z_index = 5
@@ -1236,7 +1239,7 @@ offset_left = 368.0
 offset_top = 306.0
 offset_right = 392.0
 offset_bottom = 330.0
-rotation = 1.5707964
+rotation = 4.712389
 pivot_offset = Vector2(12, 12)
 texture_normal = ExtResource("67_dh0ol")
 
@@ -1246,11 +1249,29 @@ offset_left = 368.0
 offset_top = 334.0
 offset_right = 392.0
 offset_bottom = 358.0
-rotation = 4.712389
+rotation = 1.5707964
 pivot_offset = Vector2(12, 12)
 texture_normal = ExtResource("67_dh0ol")
 
 [node name="targetDomain" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1554134541]
+
+[node name="pointCounter" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=616349410]
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/pointCounter" unique_id=1301620602]
+position = Vector2(577, 185)
+scale = Vector2(4, 4)
+texture = ExtResource("22_tdnta")
+
+[node name="pointLabel" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/pointCounter" unique_id=1428612339]
+offset_left = 461.0
+offset_top = 161.0
+offset_right = 693.0
+offset_bottom = 205.0
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("69_bao8l")
 
 [node name="takePublic" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=58030356]
 

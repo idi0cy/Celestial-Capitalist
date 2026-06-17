@@ -6,33 +6,37 @@ var dead = 0
 var perfectX = 379
 var deadX = 357
 var myDirection
+var targetScale = Vector2(1, 1)
+var stopIt = false
+var stopIt2 = false
+var activateColour
 signal signalDead
 signal imPressed(dist)
 
 #MANY ISSUES STARTING WITH SCALE
 
 func _process(_delta):
-	print(scale)
 	if dead == 0:
-		scale.lerp(Vector2(1, 1), 10)
+		scale = scale.lerp(targetScale, 0.1)
 		position.x -= speed
 		if position.x < 10:
 			within = true
 	elif dead == 1:
-		scale.lerp(Vector2(0.01, 0.01), 5)
-		modulate.a -= 5
+		scale = scale.lerp(Vector2(0.01, 0.01), 0.05)
+		if stopIt == false:
+			deathAnimation()
 	elif dead == 2:
-		scale.lerp(Vector2(2,2), 15)
-		modulate.a -= 20
+		scale = scale.lerp(Vector2(3,3), 0.1)
+		if stopIt2 == false:
+			gotItAnimation()
 	if position.x < 357:
 		dead = 1
-	if modulate.a < 10 and dead == 1:
-		signalDead.emit()
-		get_parent().remove_child(self)
+	if modulate.a <= 0.1 and dead == 1:
+		#get_parent().remove_child(self)
 		queue_free()
-	elif modulate.a < 10 and dead == 2:
+	elif modulate.a <= 0.0 and dead == 2:
 		imPressed.emit(abs(perfectX - position.x))
-		get_parent().remove_child(self)
+		#get_parent().remove_child(self)
 		queue_free()
 	
 	if Input.is_action_just_pressed(myDirection):
@@ -40,22 +44,44 @@ func _process(_delta):
 			dead = 2
 
 func initiate(severity, direction):
+	stopIt = false
+	stopIt2 = false
+	dead = 0
 	myDirection = direction
-	speed = severity/20
+	speed = severity/25.0
+	if speed < 0.5:
+		speed = 0.5
 	if direction == "up":
-		texture = load("res://assets/Sprites/RockBottom/minigames/upArrowBox.png")
-		rotation = 0.0
+		texture = load("res://assets/Sprites/RockBottom/minigames/upArrowNote.png")
+		activateColour = Color(0.0, 1.0, 0.0, 1.0)
+		rotation_degrees = 0.0
 		position = Vector2(756, 262)
 	elif direction == "down":
 		texture = load("res://assets/Sprites/RockBottom/minigames/downArrowBox.png")
-		rotation = 180.0
+		activateColour = Color(1.0, 0.0, 0.0, 1.0)
+		rotation_degrees = 180.0
 		position = Vector2(756, 290)
 	elif direction == "left":
 		texture = load("res://assets/Sprites/RockBottom/minigames/leftArrowBox.png")
-		rotation = 90.0
+		activateColour = Color(0.0, 0.0, 1.0, 1.0)
+		rotation_degrees = 270.0
 		position = Vector2(756, 318)
 	elif direction == "right":
 		texture = load("res://assets/Sprites/RockBottom/minigames/rightArrowBox.png")
-		rotation = 270.0
+		activateColour = Color(0.929, 0.91, 0.0, 1.0)
+		rotation_degrees = 90.0
 		position = Vector2(756, 346)
 	scale = Vector2(0.1, 0.1)
+
+func gotItAnimation():
+	stopIt2 = true
+	for i in 25:
+		await get_tree().create_timer(0.01).timeout
+		modulate.a -= 0.04
+
+func deathAnimation():
+	signalDead.emit()
+	stopIt = true
+	for i in 50:
+		await get_tree().create_timer(0.01).timeout
+		modulate.a -= 0.02

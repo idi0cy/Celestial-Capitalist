@@ -38,6 +38,7 @@ extends Node2D
 #minigame FAKE INJURY
 @onready var fakeInjury = get_node("postApproach/minigameWindows/FakeInjury")
 @onready var fakeInjurySeverity = get_node("postApproach/minigameWindows/FakeInjury/severityPick")
+@onready var fakeInjuryMinigame = get_node("postApproach/minigameWindows/FakeInjury/minigamePart")
 
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
@@ -198,6 +199,7 @@ func blankSlate():
 	#fake injury window
 	fakeInjury.hide()
 	fakeInjurySeverity.hide()
+	fakeInjuryMinigame.hide()
 	
 	initiatingAction = false
 
