@@ -35,6 +35,11 @@ extends Node2D
 #minigame BEG
 @onready var begWindow = get_node("postApproach/minigameWindows/Beg")
 
+#minigame FAKE INJURY
+@onready var fakeInjury = get_node("postApproach/minigameWindows/FakeInjury")
+@onready var fakeInjurySeverity = get_node("postApproach/minigameWindows/FakeInjury/severityPick")
+@onready var fakeInjuryMinigame = get_node("postApproach/minigameWindows/FakeInjury/minigamePart")
+
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
 @onready var personButtonScript = load("res://Scripts/RockBottom/stranger_button.gd")
@@ -60,7 +65,7 @@ var curSelPlace
 #3 empathy (beg effectiveness), 4 persuadable (sales), 5 guillable (fake injury)
 #6 unassuming (steal stealth), 7 weakness (steal strength)
 #8 risk taking (con) 0.4
-const richAndOld = ["Rich Old Person", 0.9, 0.4, 0.5, 0.5, 0.7, 0.5, 0.8, 0.2]
+const richAndOld = ["Rich Old Person", 0.9, 0.4, 0.5, 0.5, 0.6, 0.5, 0.8, 0.2]
 const anotherHomeless = ["Homeless", 0.1, 0.8, 0.2, 0.1, 0.1, 0.7, 0.5, 0.7]
 const middleAgedAverage = ["Average Middle Aged", 0.6, 0.7, 0.7, 0.6, 0.5, 0.3, 0.2, 0.5]
 #For the kid, only display "kid", and have them be harder to predict
@@ -191,6 +196,11 @@ func blankSlate():
 	#beg window
 	begWindow.hide()
 	
+	#fake injury window
+	fakeInjury.hide()
+	fakeInjurySeverity.hide()
+	fakeInjuryMinigame.hide()
+	
 	initiatingAction = false
 
 func identifyTarget(index, place):
@@ -222,7 +232,7 @@ func _on_take_action_confirm_action(theAction, target) -> void:
 	elif theAction == "Beg":
 		begAction(target)
 	elif theAction == "Fake Injury":
-		fakeInjury(target)
+		fakeInjuryAction(target)
 	elif theAction == "Steal":
 		steal(target)
 	elif theAction == "Con":
@@ -257,12 +267,16 @@ func begAction(target):
 		begWindow.initiate(target)
 		minigameWindows.show()
 
-func fakeInjury(target):
+func fakeInjuryAction(target):
 	if initiatingAction == false:
 		initiatingAction = true
-		print(target)
 		terminalText.targetText = "> System: Weakening ankles..."
 		terminalText.fillText()
+		await get_tree().create_timer(2).timeout
+		#This better work as a substitute
+		onStartBeg()
+		fakeInjury.initiate(target)
+		minigameWindows.show()
 
 func steal(target):
 	if initiatingAction == false:

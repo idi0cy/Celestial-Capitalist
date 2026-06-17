@@ -59,6 +59,8 @@ func writeTransaction(amount, time, party, subject, texture):
 	if(amount > 0):
 		if (subject == "Donated"):
 			soldbought.text = subject
+		elif (subject == "Blackmail"):
+			soldbought.text = subject
 		else:
 			soldbought.text = "Sold: " + subject
 	else:
