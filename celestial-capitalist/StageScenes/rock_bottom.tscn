@@ -329,6 +329,7 @@ text = "Value: 0.0"
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
+visible = false
 
 [node name="PeopleList" type="HBoxContainer" parent="CenterWindows/sellWind/PickTarget" unique_id=2057357323]
 offset_left = 325.0
@@ -407,6 +408,7 @@ label_settings = SubResource("LabelSettings_r7ujp")
 script = ExtResource("22_2of7g")
 
 [node name="postApproach" type="Node2D" parent="CenterWindows/sellWind" unique_id=1469147129]
+visible = false
 
 [node name="Terminal" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1548338584]
 position = Vector2(512, 391)
@@ -1274,6 +1276,7 @@ script = ExtResource("69_bao8l")
 [node name="takePublic" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=58030356]
 
 [node name="Ledger" type="Node2D" parent="CenterWindows" unique_id=893953733]
+visible = false
 script = ExtResource("47_dstdv")
 
 [node name="sidebar" type="Node2D" parent="CenterWindows/Ledger" unique_id=1895109815]
