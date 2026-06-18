@@ -63,6 +63,6 @@ func _on_interactable_pressed() -> void:
 	openTime.emit()
 	outerSprite.scale = paddingSize
 	
-func _input(event):
-	if event.is_action_pressed("addhour"):
-		theTime += 60
+#func _input(event):
+#	if event.is_action_pressed("addhour"):
+#		theTime += 60

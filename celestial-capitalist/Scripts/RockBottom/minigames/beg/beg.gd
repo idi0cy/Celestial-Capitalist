@@ -73,7 +73,7 @@ func wrapItUp():
 			terminalText.targetText += "\n> System: Received $" + str(begVal)
 			ledger.money += begVal
 			ledger.addEntry(begVal, clock.theTime, allStrangers[targetStranger][0], "Donated", donationIcon)
-		print(begVal)
+		#print(begVal)
 		terminalText.fillText()
 		initiatingDone = true
 		await get_tree().create_timer(4).timeout

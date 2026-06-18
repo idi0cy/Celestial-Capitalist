@@ -16,7 +16,7 @@ var rejectLines = [
 	"I don't speak English.",
 	"I haven't got money on me...",
 	"Good luck?",
-	"No thanks... Please don't talk to me again."
+	"Please don't talk to me again."
 	]
 
 var acceptLines = [

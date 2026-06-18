@@ -5,10 +5,12 @@ extends Node2D
 
 @onready var invItemScript = load("res://Scripts/RockBottom/InvItem.gd")
 @onready var InvGrid = get_node("InvGrid")
-@onready var infoBarOne = get_node("infoBarOne")
-@onready var itemNameDisplay = get_node("infoBarOne/Item")
-@onready var qualDisplay = get_node("infoBarOne/Quality")
-@onready var valDisplay = get_node("infoBarOne/Value")
+@onready var itemDesc = get_node("itemDesc")
+@onready var itemNameDisplay = get_node("itemDesc/Item")
+@onready var qualDisplay = get_node("itemDesc/infoBarOne/Quality")
+@onready var valDisplay = get_node("itemDesc/infoBarOne/Value")
+@onready var itemIcon = get_node("itemDesc/itemIcon")
+@onready var flavourText = get_node("itemDesc/flavourText")
 
 @onready var waterBottleInvIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/waterInventoryItem.png")
 @onready var waterBottleInvIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/waterInvIconSmall.png")
@@ -16,6 +18,12 @@ extends Node2D
 @onready var pencilInvIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/pencilInvIconSmall.png")
 @onready var hamburIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/hamburgInvIcon.png")
 @onready var hamburIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/Kaydengamesmallhamburger.png")
+
+const quality1 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality1.png")
+const quality2 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality2.png")
+const quality3 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality3.png")
+const quality4 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality4.png")
+const quality5 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality5.png")
 
 var count
 var count2
@@ -25,19 +33,45 @@ var hiding = true
 #ITEM PROPERTIES STORED HERE SHOULD NEVER BE CHANGED
 #They aren't consts because those can't be @onreadied
 
-#Index 0 is item name, 1 is type, 2 is value, 3 is hydration value, 4 is food value for eating
+#Indexes:
+#0 is item name,
+#1 is type,
+#2 is value,
+#3 is hydration value,
+#4 is food value for eating,
+#5 is flavour text
 #interpret values with "null" in them as not having that property/value attached to the item
 
 #IMPORTANT NEGATIVE INDICES: Index -1 will be the normal TEXTURE of the item in question
 #index -2 will be the shrunken texture of the item
 
+@onready var allItems = []
 
-@onready var waterBottle = ["Water Bottle", "Consumable", 2, 50, waterBottleInvIconSmall,
-	waterBottleInvIcon]
-@onready var pencil = ["Pencil", "Garbage", 1, "null", "null", pencilInvIconSmall, pencilInvIcon]
-@onready var burger = ["Burger", "Consumable", 10, 10, 50, hamburIconSmall, hamburIcon]
+@onready var waterBottle = newItem("Water Bottle", "Consumable",
+	2,
+	"null", 50,
+	"A bottle of dihydrogen monoxide - very acidic and toxic. Handle with care.",
+	waterBottleInvIconSmall, waterBottleInvIcon)
+@onready var pencil = newItem("Pencil", "Garbage",
+	1,
+	"null", "null",
+	"You're very hungry and feel like taking a bite. The smell leads you on.",
+	pencilInvIconSmall, pencilInvIcon)
+@onready var burger = newItem("Burger", "Consumable",
+	10,
+	10, 50,
+	"Too many calories - but simply too enticing... you must...",
+	hamburIconSmall, hamburIcon)
 
-@onready var allItems = [waterBottle, pencil, burger]
+func newItem(
+	itemName : String, itemType : String,
+	cost : int,
+	hydrationvalue, consumedvalue,
+	flavourtext : String,
+	smallTexture : Texture2D, texture : Texture2D):
+		var item = [itemName, itemType, cost, hydrationvalue, consumedvalue, flavourtext, smallTexture, texture]
+		allItems.append(item)
+		return item
 
 #replace when implimenting save game function (WHYYYYY DO I HAVE TO FIGURE THAT OUT?????)
 
@@ -54,7 +88,7 @@ func removeItem(index):
 	currentInv.remove_at(index)
 
 func _on_inventory_button_open_inventory() -> void:
-	infoBarOne.itemSelected = false
+	itemDesc.itemSelected = false
 	count = 0
 	for obj in currentInv:
 		invItem = TextureButton.new()
@@ -82,10 +116,25 @@ func generateInfo(index):
 			itemName = item.myItem[0][0]
 			itemQual = item.myItem[1]
 			itemVal = item.myItem[1] * item.baseItem[2] * 0.01
-			itemNameDisplay.text = "Item: " + str(itemName)
-			qualDisplay.text = "Quality: " + str(itemQual)
-			valDisplay.text = "Value: $" + str(itemVal)
-			infoBarOne.itemSelected = true
+			flavourText.text = item.myItem[0][5]
+			itemIcon.texture = item.myItem[0][-1]
+			itemNameDisplay.text = str(itemName)
+			qualDisplay.icon = getStars(itemQual)
+			qualDisplay.text = str(itemQual)
+			valDisplay.text = str(itemVal)
+			itemDesc.itemSelected = true
+
+func getStars(quality : int):
+	if (quality > 100):
+		return quality5
+	elif (quality > 75):
+		return quality4
+	elif (quality > 50):
+		return quality3
+	elif (quality > 25):
+		return quality2
+	else:
+		return quality1
 
 func closeIcons():
 	for item in InvGrid.get_children():
