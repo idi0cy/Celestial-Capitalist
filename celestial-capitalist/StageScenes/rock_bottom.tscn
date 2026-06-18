@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cbhf4smoiyhw6"]
+[gd_scene format=4 uid="uid://cbhf4smoiyhw6"]
 
 [ext_resource type="Texture2D" uid="uid://20fi5jm87hbv" path="res://assets/Sprites/RockBottom/quotaBackgroundRockBottom.png" id="1_5xa78"]
 [ext_resource type="Texture2D" uid="uid://dn4ude6bpmn1j" path="res://assets/Sprites/RockBottom/quotaBorderRB.png" id="2_5xa78"]
