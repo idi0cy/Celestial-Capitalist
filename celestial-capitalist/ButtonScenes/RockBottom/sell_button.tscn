@@ -53,7 +53,7 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_v4i60")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_etlhb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6bnjb")
-text = "Sell Items"
+text = "Get Money"
 icon = ExtResource("3_yum0w")
 metadata/_edit_use_anchors_ = true
 

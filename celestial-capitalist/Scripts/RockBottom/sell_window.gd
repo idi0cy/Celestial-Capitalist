@@ -242,7 +242,7 @@ func _on_take_action_confirm_action(theAction, target) -> void:
 
 func noAction(target):
 	if initiatingAction == false:
-		print(target)
+		#print(target)
 		terminalText.targetText = "> System: No action taken. Please select an action before taking it."
 		terminalText.fillText()
 
@@ -281,14 +281,14 @@ func fakeInjuryAction(target):
 func steal(target):
 	if initiatingAction == false:
 		initiatingAction = true
-		print(target)
+		#print(target)
 		terminalText.targetText = "> System: Eyeing enemy pockets..."
 		terminalText.fillText()
 
 func conTarget(target):
 	if initiatingAction == false:
 		initiatingAction = true
-		print(target)
+		#print(target)
 		terminalText.targetText = "> System: Ideating new scams..."
 		terminalText.fillText()
 

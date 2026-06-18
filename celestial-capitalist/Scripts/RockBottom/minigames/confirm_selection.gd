@@ -39,6 +39,6 @@ func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
 	hiding = true
 	pickToSell.hiding = true
-	print(selectedIndex)
+	#print(selectedIndex)
 	confirmSelection.emit()
 	outerSprite.scale = paddingSize

@@ -5,10 +5,12 @@ extends Node2D
 
 @onready var invItemScript = load("res://Scripts/RockBottom/InvItem.gd")
 @onready var InvGrid = get_node("InvGrid")
-@onready var infoBarOne = get_node("infoBarOne")
-@onready var itemNameDisplay = get_node("infoBarOne/Item")
-@onready var qualDisplay = get_node("infoBarOne/Quality")
-@onready var valDisplay = get_node("infoBarOne/Value")
+@onready var itemDesc = get_node("itemDesc")
+@onready var flavourText = get_node("itemDesc/flavourText")
+@onready var itemIcon = get_node("itemDesc/itemIcon")
+@onready var itemNameDisplay = get_node("itemDesc/Item")
+@onready var qualDisplay = get_node("itemDesc/infoBarOne/Quality")
+@onready var valDisplay = get_node("itemDesc/infoBarOne/Value")
 @onready var realInventory = get_node("../../../../inventoryWind")
 @onready var confirmButton = get_node("confirm")
 
@@ -18,6 +20,12 @@ extends Node2D
 @onready var pencilInvIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/pencilInvIconSmall.png")
 @onready var hamburIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/hamburgInvIcon.png")
 @onready var hamburIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/Kaydengamesmallhamburger.png")
+
+const quality1 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality1.png")
+const quality2 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality2.png")
+const quality3 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality3.png")
+const quality4 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality4.png")
+const quality5 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality5.png")
 
 var count
 var count2
@@ -45,7 +53,7 @@ func _process(_delta):
 
 #CHANGE THIS THINGY TO BE NOT THE INV BUTTON
 func openPickToSell():
-	infoBarOne.itemSelected = false
+	itemDesc.itemSelected = false
 	
 	count = 0
 	for obj in currentInv:
@@ -74,17 +82,33 @@ func generateInfo(index):
 		count2 += 1
 		if count2 == index:
 			selectedItem = item
-			print(selectedItem)
+			#print(selectedItem)
 			itemName = item.myItem[0][0]
 			itemQual = item.myItem[1]
 			itemVal = item.myItem[1] * item.baseItem[2] * 0.01
-			itemNameDisplay.text = "Item: " + str(itemName)
-			qualDisplay.text = "Quality: " + str(itemQual)
-			valDisplay.text = "Value: $" + str(itemVal)
+			flavourText.text = item.myItem[0][5]
+			itemIcon.texture = item.myItem[0][-1]
+			itemNameDisplay.text = str(itemName)
+			qualDisplay.icon = getStars(itemQual)
+			qualDisplay.text = str(itemQual)
+			valDisplay.text = str(itemVal)
+			itemDesc.itemSelected = true
 			confirmButton.selectedIndex = count2
 			confirmButton.selected = item
 			confirmButton.hiding = false
-			infoBarOne.itemSelected = true
+			
+
+func getStars(quality : int):
+	if (quality > 100):
+		return quality5
+	elif (quality > 75):
+		return quality4
+	elif (quality > 50):
+		return quality3
+	elif (quality > 25):
+		return quality2
+	else:
+		return quality1
 
 func closeIcons():
 	for item in InvGrid.get_children():

@@ -31,7 +31,8 @@ func _on_interactable_mouse_exited() -> void:
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
-	print(self)
+	#print(self)
+	pass
 
 func _on_settings_delay_timeout() -> void:
 	movement = true

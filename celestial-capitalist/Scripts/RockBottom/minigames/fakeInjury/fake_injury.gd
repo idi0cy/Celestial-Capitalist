@@ -8,9 +8,10 @@ extends Node2D
 @onready var ledger = get_node("../../../../Ledger")
 @onready var minigame = get_node("minigamePart")
 @onready var clock = get_node("../../../../../digitalClock")
+@onready var dialogueLib = get_node("../../minigameWindows")
 @onready var allStrangers = sellWind.allStrangers
 
-@onready var donationIcon = load("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
+@onready var blackmailIcon = load("res://assets/Sprites/RockBottom/ledgerWindow/blackmail.png")
 
 var severity = 50
 var targetIndex
@@ -39,7 +40,7 @@ func minigamePart():
 		minigame.initiate(1)
 
 func arbitration(points):
-	print("arbitrating")
+	#print("arbitrating")
 	severitySelection.hide()
 	FIbox.hide()
 	theGuy.show()
@@ -58,10 +59,11 @@ func arbitration(points):
 	random = randf()
 	if random * allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2)> (severity/100.0):
 		ledger.money += arguedVal
-		ledger.addEntry(arguedVal, clock.theTime, allStrangers[targetIndex][0], "Blackmail", donationIcon)
-		terminalText.targetText = "> " + str(allStrangers[targetIndex][0]) + ": Okay, take $" + str(arguedVal) + "."
+		ledger.addEntry(arguedVal, clock.theTime, allStrangers[targetIndex][0], "Blackmail", blackmailIcon)
+		terminalText.targetText = "> " + str(allStrangers[targetIndex][0]) + ": " + dialogueLib.acceptLines.pick_random()
+		terminalText.targetText += "\n> System: Received $" + str(arguedVal)
 	else:
-		terminalText.targetText = "> " + str(allStrangers[targetIndex][0]) + ": Uhh, you're not even injured."
+		terminalText.targetText = "> " + str(allStrangers[targetIndex][0]) + ": " + dialogueLib.rejectLines.pick_random()
 	terminalText.fillText()
 	await get_tree().create_timer(1.5).timeout
 	wrapItUp()
