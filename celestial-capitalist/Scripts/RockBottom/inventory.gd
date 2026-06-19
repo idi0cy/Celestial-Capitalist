@@ -120,7 +120,7 @@ func generateInfo(index):
 			itemIcon.texture = item.myItem[0][-1]
 			itemNameDisplay.text = str(itemName)
 			qualDisplay.icon = getStars(itemQual)
-			qualDisplay.text = str(itemQual)
+			qualDisplay.text = str(itemQual) + "/100"
 			valDisplay.text = str(itemVal)
 			itemDesc.itemSelected = true
 
