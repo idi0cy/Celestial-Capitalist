@@ -9,12 +9,11 @@ var target
 
 @onready var haggle = get_node("../../../Haggle")
 @onready var sellWindow = get_node("../../../../../../sellWind")
-@onready var allStrangers = sellWindow.allStrangers
 
 func initiate(incType, magnitude):
 	#this is so vestigial but i'm keeping it anyways
 	target = haggle.target
-	modProgress = baseProgress * allStrangers[target][4]
+	modProgress = baseProgress * sellWindow.allStrangers[target][4]
 	type = incType
 	time = (1 / magnitude)
 	#print(time)

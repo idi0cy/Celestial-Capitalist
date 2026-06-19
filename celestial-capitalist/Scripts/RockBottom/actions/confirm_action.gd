@@ -7,7 +7,6 @@ extends Node
 
 #i would export this, but apparently its not necessary
 var personIndex
-@onready var allStrangers = sellWind.allStrangers
 
 var placeHolder = Vector2(0,0)
 var hovering = false

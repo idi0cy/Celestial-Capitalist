@@ -13,7 +13,7 @@ extends Node2D
 @onready var pickToSell = get_node("../pickToSell")
 @onready var absInventory = get_node("../../../../inventoryWind")
 @onready var dialogueLib = get_node("../../minigameWindows")
-@onready var allStrangers = sellWindow.allStrangers
+@onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
 
 
 @onready var goodTarget = load("res://assets/Sprites/RockBottom/buttonIcons/goodTarget.png")
@@ -23,6 +23,7 @@ extends Node2D
 
 @onready var progress = 0
 
+var storedStrangerIndex : int
 var redBar = StyleBoxFlat.new()
 var greenBar = StyleBoxFlat.new()
 var random
@@ -118,18 +119,29 @@ func _on_highball_highball() -> void:
 		ballSpectrum += 10
 
 func _on_goldilocks_ball() -> void:
+	var regex = RegEx.new()
+	regex.compile("\\d")
+	var generatedName = peopleList.get_child(storedStrangerIndex).name
+	if (regex.search(generatedName)):
+		generatedName = generatedName.left(-1)
 	random2 = randf()
 	arguedValue = confirmItem.selected.myItem[1] * (confirmItem.selected.baseItem[2] * 0.01) * ((ballSpectrum * 0.01) + 0.5)
 	normalValue = confirmItem.selected.myItem[1] * (confirmItem.selected.baseItem[2] * 0.01)
 	#print((random2 * 100) *(arguedValue / normalValue))
 	if (random2 * 100) * (arguedValue / normalValue) < progress:
 		ledger.money += arguedValue
-		ledger.addEntry(arguedValue, clock.theTime, allStrangers[target][0], confirmItem.selected.myItem[0][0], confirmItem.selected.myItem[0][-1])
-		terminalText.targetText = "> " + allStrangers[target][0] + ": " + dialogueLib.acceptLines.pick_random()
+		ledger.addEntry(arguedValue, clock.theTime, sellWindow.allStrangers[target][0], confirmItem.selected.myItem[0][0], confirmItem.selected.myItem[0][-1])
+		if (dialogueLib.getEasterEggLine(generatedName) == "false"):
+			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.acceptLines.pick_random()
+		else:
+			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.getEasterEggLine(generatedName)
 		terminalText.targetText += "\n> System: Received $" + str(arguedValue)
 		absInventory.removeItem(confirmItem.selectedIndex)
 	else:
-		terminalText.targetText = "> " + allStrangers[target][0] + ": " + dialogueLib.rejectLines.pick_random()
+		if (dialogueLib.getEasterEggLine(generatedName) == "false"):
+			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.rejectLines.pick_random()
+		else:
+			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.getEasterEggLine(generatedName)
 		sellWindow.removeStranger(sellWindow.curSelPlace)
 	terminalText.fillText()
 	await get_tree().create_timer(4).timeout
