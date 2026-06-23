@@ -31,7 +31,7 @@ func initiate(repeats):
 	time = 2.0/repeats
 	severity = repeats
 	show()
-	terminalText.targetText = "> System: You know about friday night funkin, right? I'm sure you'll get the hang of it."
+	terminalText.targetText = "> System: Perform Friday Night Funkin' dance moves badly according to guideline to prove you are indeed injured."
 	terminalText.fillText()
 	await get_tree().create_timer(3).timeout
 	

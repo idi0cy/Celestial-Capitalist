@@ -27,6 +27,10 @@ func addEntry(amount, time, party, subject, texture):
 	innerTransactionContainer.add_child(entry_instance)
 	entry_instance.writeTransaction(amount, time, party, subject, texture)
 
+#func _input(event):
+#	if event.is_action_pressed("debug"):
+#		money += 20
+
 func _on_scavenge_button_open_scav_wind() -> void:
 	ledgerOpen = false
 func _on_sell_button_open_sell_wind() -> void:

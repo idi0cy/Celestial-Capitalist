@@ -4,7 +4,7 @@ extends Node2D
 #Index zero is list, index 1 is quality, index 2 is ...
 
 @onready var invItemScript = load("res://Scripts/RockBottom/InvItem.gd")
-@onready var InvGrid = get_node("InvGrid")
+@onready var InvGrid = get_node("scrollContainer/InvGrid")
 @onready var itemDesc = get_node("itemDesc")
 @onready var flavourText = get_node("itemDesc/flavourText")
 @onready var itemIcon = get_node("itemDesc/itemIcon")
@@ -85,7 +85,7 @@ func generateInfo(index):
 			#print(selectedItem)
 			itemName = item.myItem[0][0]
 			itemQual = item.myItem[1]
-			itemVal = item.myItem[1] * item.baseItem[2] * 0.01
+			itemVal = snapped((item.myItem[1] * item.baseItem[2] * 0.01), 0.01)
 			flavourText.text = item.myItem[0][5]
 			itemIcon.texture = item.myItem[0][-1]
 			itemNameDisplay.text = str(itemName)
@@ -99,13 +99,13 @@ func generateInfo(index):
 			
 
 func getStars(quality : int):
-	if (quality > 100):
+	if (quality > 80):
 		return quality5
-	elif (quality > 75):
+	elif (quality > 60):
 		return quality4
-	elif (quality > 50):
+	elif (quality > 40):
 		return quality3
-	elif (quality > 25):
+	elif (quality > 20):
 		return quality2
 	else:
 		return quality1
