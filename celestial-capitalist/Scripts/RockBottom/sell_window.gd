@@ -6,7 +6,7 @@ extends Node2D
 #general
 @onready var clock = get_node("../../digitalClock")
 @onready var personNameLabel = get_node("PickTarget/personName")
-@onready var approachButton = get_node("PickTarget/approachButton/Button")
+@onready var approachButton = get_node("PickTarget/approachButton/interactable")
 @onready var approachButtonGeneral = get_node("PickTarget/approachButton")
 @onready var PeopleList = get_node("PickTarget/PeopleList")
 @onready var directiveFirst = get_node("PickTarget/Directive")
@@ -51,7 +51,6 @@ var count2
 var random
 var random2
 var temporaryList = []
-var alreadyFound = []
 var placeHolder
 var needToFind
 var strangerButton
@@ -179,12 +178,9 @@ func genStrangers():
 	for item in allStrangers:
 		temporaryList.append(item)
 	
-	alreadyFound = []
 	count2 = 0
 	for i in random:
 		random2 = randi_range(0, (len(temporaryList) - 1))
-		while alreadyFound.has(random2):
-			random2 = randi_range(0, (len(temporaryList) - 1))
 		strangerButton = TextureButton.new()
 		strangerButton.texture_normal = allStrangers[random2][9]
 		var generatedName = genName(allStrangers[random2][0])
@@ -194,7 +190,6 @@ func genStrangers():
 		strangerButton.index = count2
 		strangerButton.pressed.connect(identifyTarget.bind(random2, count2, generatedName))
 		PeopleList.add_child(strangerButton)
-		alreadyFound.append(random2)
 		PeopleList.get_child(count2).name = generatedName
 		count2 += 1
 
