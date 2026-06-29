@@ -22,8 +22,6 @@ extends Node2D
 
 @onready var texture = load("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 
-@onready var allStrangers = sellWind.allStrangers
-
 var targetIndex
 
 #DO NOT MAKE THESE DIALOGUE OPTIONS TOO LONG, BECAUSE AFTER ONE SET OF LOADING THE TEXT THAT IS NOT
@@ -157,11 +155,11 @@ func _on_goldilocks_settle_risk() -> void:
 	
 	if (random2 * 100) * playerScore * successModifier > stakes * 12:
 		ledger.money += stakes
-		ledger.addEntry(stakes, clock.theTime, allStrangers[targetIndex][0], "Scammed", texture)
-		genericTerminalText.targetText = "> " + allStrangers[targetIndex][0] + ": " + strangerResponse
+		ledger.addEntry(stakes, clock.theTime, sellWind.allStrangers[targetIndex][0], "Scammed", texture)
+		genericTerminalText.targetText = "> " + sellWind.allStrangers[targetIndex][0] + ": " + strangerResponse
 		genericTerminalText.targetText += "\n> System: Received $" + str(stakes)
 	else:
-		genericTerminalText.targetText = "> " + allStrangers[targetIndex][0] + ": " + dialogue.conFailsDialogue.pick_random()
+		genericTerminalText.targetText = "> " + sellWind.allStrangers[targetIndex][0] + ": " + dialogue.conFailsDialogue.pick_random()
 	sellWind.removeStranger(sellWind.curSelPlace)
 	
 	conGuy.hide()
