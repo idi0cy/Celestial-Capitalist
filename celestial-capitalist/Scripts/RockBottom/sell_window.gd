@@ -41,6 +41,10 @@ extends Node2D
 @onready var fakeInjurySeverity = get_node("postApproach/minigameWindows/FakeInjury/severityPick")
 @onready var fakeInjuryMinigame = get_node("postApproach/minigameWindows/FakeInjury/minigamePart")
 
+#minigame CON
+@onready var conGame = get_node("postApproach/minigameWindows/Con")
+@onready var conRisk = get_node("postApproach/minigameWindows/Con/Severity")
+
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
 @onready var personButtonScript = load("res://Scripts/RockBottom/stranger_button.gd")
@@ -236,6 +240,10 @@ func blankSlate():
 	fakeInjurySeverity.hide()
 	fakeInjuryMinigame.hide()
 	
+	#con window
+	conGame.hide()
+	conRisk.hide()
+	
 	initiatingAction = false
 
 func identifyTarget(index, place, displayName):
@@ -342,6 +350,10 @@ func conTarget(target):
 		#print(target)
 		terminalText.targetText = "> System: Ideating new scams..."
 		terminalText.fillText()
+		await get_tree().create_timer(2).timeout
+		onStartBeg() #use this function as a substitute cuz it also works
+		conGame.initiate(target)
+		minigameWindows.show()
 
 func _on_confirm_confirm_selection() -> void:
 	actions.hide()
