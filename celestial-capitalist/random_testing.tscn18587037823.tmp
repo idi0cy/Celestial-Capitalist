@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://rq60kao4ts8k"]
+
+[ext_resource type="Script" uid="uid://dnnob1quqcc0r" path="res://random_testing.gd" id="1_wrvf8"]
+[ext_resource type="Script" uid="uid://coe4f0bkwaka4" path="res://Scripts/RockBottom/minigames/conAction/con_label.gd" id="2_ok8i4"]
+[ext_resource type="Script" uid="uid://bla8dt38tohkl" path="res://Scripts/RockBottom/minigames/conAction/theOptions/con_label_backing.gd" id="3_3o51v"]
+
+[node name="RandomTesting" type="Node2D" unique_id=977991068]
+script = ExtResource("1_wrvf8")
+
+[node name="terminalTypeBacking" type="Label" parent="." unique_id=1411859232]
+custom_maximum_size = Vector2(464, 182)
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 126.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.49747366, 0.49747366, 0.49747366, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "> System: Pla"
+autowrap_mode = 3
+script = ExtResource("3_3o51v")
+
+[node name="terminalType" type="RichTextLabel" parent="." unique_id=230624440]
+custom_minimum_size = Vector2(465, 181)
+custom_maximum_size = Vector2(464, 181)
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 470.0
+offset_bottom = 189.0
+theme_override_constants/line_separation = 3
+bbcode_enabled = true
+text = "> System: Placeholder"
+text_direction = 1
+script = ExtResource("2_ok8i4")
+
+[node name="ghostWriter" type="Label" parent="." unique_id=1027870642]
+custom_maximum_size = Vector2(464, 182)
+offset_left = 8.0
+offset_top = 460.0
+offset_right = 56.0
+offset_bottom = 549.0
+text = "SFD
+DFDS
+
+"
+autowrap_mode = 3

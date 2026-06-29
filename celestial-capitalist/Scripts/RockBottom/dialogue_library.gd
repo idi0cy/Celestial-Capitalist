@@ -151,7 +151,7 @@ var recommendLines = [
 var fearmongerLines = [
 	"If you don't buy this, you'll die.",
 	"Everyone has this now. Don't get left behind.",
-	"This - this is the future!",
+	"This - this is the future! Don't miss out.",
 	"Get with the times already. You might already be too late.",
 	"Lady Death is calling your name - but don't worry. This will save you!",
 	"You don't understand what is at stake yet. Act before you do.",
@@ -165,6 +165,96 @@ var fearmongerLines = [
 	"The newest pandemic is on the rise! Stop it before it reaches you!",
 	"This shall protect from all danger!"
 	]
+
+var conFailsDialogue = [
+	"Look here, I'm sure I look like a chump to the likes of you, but I'm not falling for it.",
+	"Oh please, don't make me laugh.",
+	"I only need 1.3 seconds to say no to that deal.",
+	"If you wish to scam me, train for a hundred years.",
+	"I, never, fall for scams.",
+	"I don't trust you.",
+	"I humbly request that you never speak with me ever again.",
+	"It's people like you that I never want to associate with.",
+	"You can pry my money from my cold, dead, hands, filthy con artist.",
+	"I don't want myself in your line of sight ever again.",
+	"Not even death is as final as my decision. It's a no.",
+	"Look at yourself. Did you really think that this would work?",
+	"There's a good reason I'm not in your position. I'm not a fool.",
+	"Right yeah, tooootally. Because you're the paragon of trust that I can place my hard earned money on.",
+	"What kind of dreadful ineptitude do you possess that made you think I'll accept this offer?"
+]
+
+var shadyGameScammedLines = [
+	"There's got to be a trick to this or something. Alright fine, you win.",
+	"Are you kidding me? There's no way that was fair!",
+	"So that's why mother always told me not to interact with homeless people.",
+	"Wow, you're really good at this!",
+	"We were joking about betting money on this, right?",
+	"Wait a minute... I'm losing money!",
+	"Well played homeless person, well played...",
+	"You'd better sleep with one eye open.",
+	"I'm never playing a game every again if this is what it gets me.",
+	"Oh, you think you're SO good don't you? Looking real smug? I would wipe that smirk off your face if I had more money to bet.",
+	"Damn it. I'm assuming you don't accept Arby's gift cards as payment? Yeah, didn't think so.",
+	"Woooooow. Maybe wealth inequality wasn't that bad of an idea after all.",
+	"Ending on a loss feels terrible, and ending in a deficit is worse. I've managed to achieve both.",
+	"Please, rematch? I know I don't have any more on me, but I can win this time! Do you accept credit?",
+	"I need to get back to work. This sucks."
+]
+
+var magicScammedLines = [
+	"Wow, you really are a wizard! My consciouss feels better already!",
+	"Thank you so much for the blessing, now I'll never have to live in fear of my murders being discovered.",
+	"Yeah, that spell will show my ex what they deserve.",
+	"Thanks to your spell, my rival nemesis will never sleep on a cool pillow ever again.",
+	"Wow, can't believe you really just sent my dead friend into heaven. Cool stuff.",
+	"Thanks, I'll be waiting on that job promotion tomorrow!",
+	"This better be worth it.",
+	"Wow, you're like Harry Potter from hit book series Harry Potter starring protagonist Harry Potter!",
+	"Maybe I can finally beat the bedwars sweats now...",
+	"My lifelong streak of being single might finally come to an end!",
+	"Great! I'll have to tell my doctor that I can drink all the alcohol I want now that the curse is gone!",
+	"Wow, you're like Reigen Arataka from hit show Mob Psycho 100 which I highly recommend to everyone!",
+	"This spell does mean that the IRS won't audit me anymore, right?",
+	"You're telling me that I'll be completely invisible to others with this seal? Cool!",
+	"I knew those eggheads were wrong when they told me ghosts weren't real.",
+]
+
+var oppurtunityScammedLines = [
+	"I'm about to be rich!",
+	"Wow, getting this oppurtunity feels like winning the lottery!",
+	"What a wonderful oppurtunity for me! It's almost too good to be real!",
+	"Now THIS is something that will cure my depression.",
+	"Call me sensible, because I'm in on this win-win deal.",
+	"First I was able to extend my car's warranty, and now I get this?! What a wonderful world!",
+	"After this, I'll no longer support taxing the rich!",
+	"Wow, I can't believe you're able to make so much money just by following whatever a homeless person tells you to do.",
+	"You're not lying right? Well, that's all I needed to hear.",
+	"Fortune favours the bold!",
+	"I only need 1.3 seconds to say yes to that deal.",
+	"Even I'm not dumb enough to pass up an oppurunity this good.",
+	"Finally, a business deal that isn't a scam! I needed a lucky break one of these days.",
+	"This is obviously a scam. And I'm falling for it!",
+	"All right, let's do this."
+]
+
+var fakeValueScammedLines = [
+	"I wouldn't sell my soul for that piece of crap, but my wallet sure would.",
+	"You really convinced me of this product's value.",
+	"I'll take it.",
+	"May your days be many, and your woes few.",
+	"I can feel the positive vibes practically jumping from this deal.",
+	"I really needed a good deal like this to liven my mood after I bought some guy Viktor 50 shots of Zafijo Anejo.",
+	"I put my complete faith in your word.",
+	"Every time someone says it says gullible is on the ceiling I just can't seem to find it...",
+	"My father told me to never trust a stranger. Good thing he's not here.",
+	"This object really is priceless after all! What's the price?",
+	"You've convinced me.",
+	"Sold! I can't let Vera get a hold of this before I do...",
+	"I was going to walk away, but when you said I shouldn't, that's the part that sold me.",
+	"Must the devs really be forced to write 15 lines of dialogue for each success in this game? That's just cruel.",
+	"I will be so cool after buying this."
+]
 
 func _ready() -> void:
 	pass
