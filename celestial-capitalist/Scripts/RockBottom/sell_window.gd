@@ -6,12 +6,13 @@ extends Node2D
 #general
 @onready var clock = get_node("../../digitalClock")
 @onready var personNameLabel = get_node("PickTarget/personName")
-@onready var approachButton = get_node("PickTarget/approachButton/Button")
+@onready var approachButton = get_node("PickTarget/approachButton/interactable")
 @onready var approachButtonGeneral = get_node("PickTarget/approachButton")
 @onready var PeopleList = get_node("PickTarget/PeopleList")
 @onready var directiveFirst = get_node("PickTarget/Directive")
 @onready var refreshExplanation = get_node("PickTarget/explanation")
 @onready var refreshTimer = get_node("PickTarget/strangerRefresh")
+@onready var dialogueLib = get_node("postApproach/minigameWindows")
 
 #post approach
 @onready var postApproach = get_node("postApproach")
@@ -54,7 +55,6 @@ var count2
 var random
 var random2
 var temporaryList = []
-var alreadyFound = []
 var placeHolder
 var needToFind
 var strangerButton
@@ -69,15 +69,53 @@ var curSelPlace
 #3 empathy (beg effectiveness), 4 persuadable (sales), 5 guillable (fake injury)
 #6 unassuming (steal stealth), 7 weakness (steal strength)
 #8 risk taking (con) 0.4
-const richAndOld = ["Rich Old Person", 0.9, 0.4, 0.5, 0.5, 0.6, 0.5, 0.8, 0.2]
-const anotherHomeless = ["Homeless", 0.1, 0.8, 0.2, 0.1, 0.1, 0.7, 0.5, 0.7]
-const middleAgedAverage = ["Average Middle Aged", 0.6, 0.7, 0.7, 0.6, 0.5, 0.3, 0.2, 0.5]
-#For the kid, only display "kid", and have them be harder to predict
-const niceKid = ["Child", 0.2, 0.6, 0.9, 0.8, 0.0, 0.9, 0.5, 1, 0.8]
-const skepticKid = ["Child 2", 0.3, 0.4, 0.2, 0.2, 0.0, 0.7, 1, 0.2]
-const charityWorker = ["Charity Worker", 0.5, 1, 0.9, 0.5, 0.4, 0.3, 0.4, 0.2]
+#9 texture
 
-const allStrangers = [richAndOld, anotherHomeless, middleAgedAverage, niceKid, skepticKid, charityWorker]
+@onready var allStrangers = []
+
+@onready var richAndOld = newStranger(
+	"Rich Old Person",
+	0.9, 0.4, 0.5, 0.5,
+	0.6, 0.5, 0.8, 0.2,
+	load("res://assets/Sprites/RockBottom/streetRoamers/richOld.png"))
+@onready var anotherHomeless = newStranger(
+	"Homeless",
+	0.1, 0.8, 0.2, 0.1,
+	0.1, 0.7, 0.5, 0.7,
+	load("res://assets/Sprites/RockBottom/streetRoamers/homeless.png"))
+@onready var middleAgedAverage = newStranger(
+	"Average Middle Aged",
+	0.6, 0.7, 0.7, 0.6,
+	0.5, 0.3, 0.2, 0.5,
+	load("res://assets/Sprites/RockBottom/streetRoamers/averageMiddleAged.png"))
+#For the kid, only display "kid", and have them be harder to predict
+@onready var niceKid = newStranger(
+	"Child",
+	0.2, 0.6, 0.9, 0.8,
+	0.9, 0.5, 1, 0.8,
+	load("res://assets/Sprites/RockBottom/streetRoamers/child.png"))
+@onready var skepticKid = newStranger(
+	"Child",
+	0.3, 0.4, 0.2, 0.2,
+	0.0, 0.7, 1, 0.2,
+	load("res://assets/Sprites/RockBottom/streetRoamers/child.png"))
+@onready var charityWorker = newStranger(
+	"Charity Worker",
+	0.5, 1, 0.9, 0.5,
+	0.4, 0.3, 0.4, 0.2,
+	load("res://assets/Sprites/RockBottom/streetRoamers/charityWorker.png"))
+
+func newStranger (
+	strangerName:String,
+	wealth:float, approachability:float, empathy:float, persuadability:float,
+	guilliblity:float, cluelessness:float, weakness:float, riskreceptibility:float,
+	texture:Texture2D):
+		var stranger = [strangerName,
+		wealth, approachability, empathy, persuadability,
+		guilliblity, cluelessness, weakness, riskreceptibility,
+		texture]
+		allStrangers.append(stranger)
+		return stranger
 
 func _ready():
 	blankSlate()
@@ -144,22 +182,19 @@ func genStrangers():
 	for item in allStrangers:
 		temporaryList.append(item)
 	
-	alreadyFound = []
 	count2 = 0
 	for i in random:
 		random2 = randi_range(0, (len(temporaryList) - 1))
-		while alreadyFound.has(random2):
-			random2 = randi_range(0, (len(temporaryList) - 1))
 		strangerButton = TextureButton.new()
-		strangerButton.texture_normal = psPlaceholder
-		strangerButton.name = str(allStrangers[random2][0])
+		strangerButton.texture_normal = allStrangers[random2][9]
+		var generatedName = genName(allStrangers[random2][0])
+		strangerButton.name = generatedName
 		strangerButton.set_script(personButtonScript)
 		strangerButton.baseInfo = allStrangers[random2]
 		strangerButton.index = count2
-		strangerButton.pressed.connect(identifyTarget.bind(random2, count2))
+		strangerButton.pressed.connect(identifyTarget.bind(random2, count2, generatedName))
 		PeopleList.add_child(strangerButton)
-		alreadyFound.append(random2)
-		
+		PeopleList.get_child(count2).name = generatedName
 		count2 += 1
 
 func removeStranger(index):
@@ -211,13 +246,28 @@ func blankSlate():
 	
 	initiatingAction = false
 
-func identifyTarget(index, place):
-	personNameLabel.targetText = allStrangers[index][0]
+func identifyTarget(index, place, displayName):
+	personNameLabel.targetText = displayName
 	personNameLabel.fillText()
+	haggle.storedStrangerIndex = place
+	fakeInjury.storedStrangerIndex = place
+	begWindow.storedStrangerIndex = place
 	if approachButton.pressed.is_connected(approachStranger):
 		approachButton.pressed.disconnect(self.approachStranger)
 	approachButton.pressed.connect(approachStranger.bind(index, place))
 	approachButtonGeneral.show()
+
+func genName(inputSeed):
+	var charList = []
+	for character in inputSeed:
+		charList.append(character)
+	charList.shuffle()
+	var generatedSeed = "".join(charList)
+	var generator = RandomNumberGenerator.new()
+	generator.seed = generatedSeed.hash()	
+	var firstName = generator.randi_range(0,len(dialogueLib.names)-1)
+	var surname = generator.randi_range(0,len(dialogueLib.names)-1)
+	return dialogueLib.names[firstName] + " " + dialogueLib.names[surname]
 
 func approachStranger(index, place):
 	confirmAction.personIndex = index
@@ -227,6 +277,7 @@ func approachStranger(index, place):
 	approachButtonGeneral.hide()
 	postApproach.show()
 	$postApproach/Actions.show()
+	strangerSprite.texture = allStrangers[index][9]
 	$postApproach/theGuy.show()
 	$postApproach/Terminal.show()
 	$postApproach/minigameWindows.hide()
@@ -250,7 +301,7 @@ func _on_take_action_confirm_action(theAction, target) -> void:
 
 func noAction(target):
 	if initiatingAction == false:
-		print(target)
+		#print(target)
 		terminalText.targetText = "> System: No action taken. Please select an action before taking it."
 		terminalText.fillText()
 
@@ -289,14 +340,14 @@ func fakeInjuryAction(target):
 func steal(target):
 	if initiatingAction == false:
 		initiatingAction = true
-		print(target)
+		#print(target)
 		terminalText.targetText = "> System: Eyeing enemy pockets..."
 		terminalText.fillText()
 
 func conTarget(target):
 	if initiatingAction == false:
 		initiatingAction = true
-		print(target)
+		#print(target)
 		terminalText.targetText = "> System: Ideating new scams..."
 		terminalText.fillText()
 		await get_tree().create_timer(2).timeout

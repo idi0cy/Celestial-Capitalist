@@ -8,14 +8,16 @@ extends Node2D
 @onready var ledger = get_node("../../../../Ledger")
 @onready var minigame = get_node("minigamePart")
 @onready var clock = get_node("../../../../../digitalClock")
-@onready var allStrangers = sellWind.allStrangers
+@onready var dialogueLib = get_node("../../minigameWindows")
+@onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
 
-@onready var donationIcon = load("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
+@onready var blackmailIcon = load("res://assets/Sprites/RockBottom/ledgerWindow/blackmail.png")
 
 var severity = 50
 var targetIndex
 var random
 var arguedVal = 0
+var storedStrangerIndex : int
 
 func initiate(target):
 	targetIndex = target
@@ -39,7 +41,7 @@ func minigamePart():
 		minigame.initiate(1)
 
 func arbitration(points):
-	print("arbitrating")
+	#print("arbitrating")
 	severitySelection.hide()
 	FIbox.hide()
 	theGuy.show()
@@ -55,13 +57,25 @@ func arbitration(points):
 	terminalText.fillText()
 	await get_tree().create_timer(3.0).timeout
 	
+	var regex = RegEx.new()
+	regex.compile("\\d")
+	var generatedName = peopleList.get_child(storedStrangerIndex).name
+	if (regex.search(generatedName)):
+		generatedName = generatedName.left(-1)
 	random = randf()
-	if random * allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2)> (severity/100.0):
+	if random * sellWind.allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2)> (severity/100.0):
 		ledger.money += arguedVal
-		ledger.addEntry(arguedVal, clock.theTime, allStrangers[targetIndex][0], "Blackmail", donationIcon)
-		terminalText.targetText = "> " + str(allStrangers[targetIndex][0]) + ": Okay, take $" + str(arguedVal) + "."
+		ledger.addEntry(arguedVal, clock.theTime, sellWind.allStrangers[targetIndex][0], "Blackmail", blackmailIcon)
+		if (dialogueLib.getEasterEggLine(generatedName) == "false"):
+			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.acceptLines.pick_random()
+		else:
+			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.getEasterEggLine(generatedName)
+		terminalText.targetText += "\n> System: Received $" + str(arguedVal)
 	else:
-		terminalText.targetText = "> " + str(allStrangers[targetIndex][0]) + ": Uhh, you're not even injured."
+		if (dialogueLib.getEasterEggLine(generatedName) == "false"):
+			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.rejectLines.pick_random()
+		else:
+			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.getEasterEggLine(generatedName)
 	terminalText.fillText()
 	await get_tree().create_timer(1.5).timeout
 	wrapItUp()

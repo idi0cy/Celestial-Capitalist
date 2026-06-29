@@ -1,5 +1,35 @@
 extends Node2D
 
+var generatedName : String
+
+func getEasterEggLine(inputName):
+	if (checkStringForArrayValue(inputName, easterEggNames) == true):
+		if ("Krath Isarlith" in inputName):
+			return krathLines.pick_random()
+		if ("Perit Ackermann" in inputName):
+			return ackerLines.pick_random()
+	else:
+		return "false"
+
+func checkStringForArrayValue(string:String, stringList:Array):
+	for eachString in stringList:
+		if eachString in string:
+			return true
+	return false
+
+var easterEggNames = [
+	"Krath Isarlith",
+	"Perit Ackermann"
+	]
+
+var krathLines = [
+	"I'm going to commit deicide."
+	]
+
+var ackerLines = [
+	"If a goose's parts are all replaced by new goose parts, is it the same goose?"
+	]
+
 var rejectLines = [
 	"Never speak to me ever again.",
 	"Pathetic.",
@@ -16,7 +46,7 @@ var rejectLines = [
 	"I don't speak English.",
 	"I haven't got money on me...",
 	"Good luck?",
-	"No thanks... Please don't talk to me again."
+	"Please don't talk to me again."
 	]
 
 var acceptLines = [
@@ -255,6 +285,78 @@ var fakeValueScammedLines = [
 	"Must the devs really be forced to write 15 lines of dialogue for each success in this game? That's just cruel.",
 	"I will be so cool after buying this."
 ]
+@onready var names = ["Alex","Oliver","Lily","Amanda","Murray","Albert","Porter","Fred",
+	"Mitchell","Vasquez","Richard","Hall","Steven","Torres","Randy","Gonzalez","Bailey",
+	"Earl","Martinez","Sean","Ruiz","Sharon","Moore","Terry","Evans","Shawn","Edward",
+	"Edwards","Donna", "Myers","Louise","Scott","Phillip","Miller","Ashley","Daniel",
+	"Daniels","Michael","Russell","Robert","Frances","Baker","Aryon","Ari","Hastor","Bia",
+	"Faelorn","Duskir","Castell","Rosa","Rosalith","Verosaven","Dan","Krath","Isarlith",
+	"Raelia","Mael","Vir","Drehbal","Anyr","Malsohm","Dahr","Keppelky","Arodorros","Nayirah",
+	"May","Lloyd","Limril","Ramuj","Drehn","Jason","Asano","Humphrey","Geller","Sophie","Melody",
+	"Jain","Will","Neil","Davone","Belinda","Callahan","Clive","Standish","Rufus","Remore",
+	"Arabelle","Gabriel", "Perit", "Ackermann", "Rebecca", "Mason", "Mary", "Patricia","Linda",
+	"Barbara","Elizabeth","Charist","Jennifer","Maria","Susan","Margaret","Dorothy","Lisa","Nancy",
+	"Karen","Betty","Helen","Sandra","Donna","Carol","Ruth","Sharon","Michelle","Laura","Sarah",
+	"Kimberly","Deborah","Jessica","Shirley","Cynthia","Angela","Melissa","Brenda","Amy","Anna",
+	"Virginia","Kathleen","Pamela","Martha","Debra","Stephanie","Carolyn","Christine","Marie",
+	"Janet","Catherine","Ann","Joyce","Diane","Julie","Heather","John","Matthews","Malie","Door",
+	"Guy","Ponder","Kali","Aimes","Max","Teresa","Doris","Gloria","Evelyn","Jean","Cheryl","Mildred",
+	"Joan","Judith","Rose","Janice","Kelly","Nicole","Judy","Christina","Kathy","Theresa","Beverly",
+	"Denise","Tammy","Jane","Lori","Rachel","Marilyn","Andrea","Kathryn","Sara","Anne","Jacqueline",
+	"Wanda","Bonnie","Julia","Lois","Ruby","Tina","Phyllis","Norma","Paula","Diana","Annie","Lillian",
+	"Emily","Robin","Hailon","Halos","Aleth","Baruch","Noka","Uzi","Doll","Siri","Keeton","Daniel",
+	"Bruks","Ell","Lull","Circe","Kira","Jim","Sunday","Ahzmundin","Viktor","Thalleous","Senn","Ria",
+	"Ingressus","Achillean","Nestoris","Kaltaris","Voltaris","Sendaris","Mendoris","Zulius","Sonya",
+	"Kyra","Kye","Democritus","Jinx","Violet","James","David","Kim","Liam","Vickers","Lee","Ham",
+	"Vinegars","Caitlyn","Grace","Ryland","Khive","Rihelma","Taihgel","Mytho","Vehmil","Baen","Thresa",
+	"Vera","Gohri","Zed","Kahmas","Orix","Cehein","Eleis","Koen","Verpyne","Devro","Ihb","Ekari","Zevve",
+	"Kai","Runt","Breeze","Wizard","Harry","Mel","Mossa","Asahi","Ayaka","Kazuma","Takei","Nakamura",
+	"Fujita","Max","Kirie","Ash","William","Charles","Joseph","Thomas","Christopher","Paul","Mark","Donald",
+	"Trump","George","Kenneth","Brian","Ronald","Anthony","Gary","Timothy","Jose","Larry","Jeffrey",
+	"Frank","Eric","Raymond","Holt","Joshua","Jerry","Dennis","Jeremy","Joel","Walter","Patrick","Peter",
+	"Watts","Harold","Douglas","Henry","Carl","Arthur","Ryan","Roger","Joe","Juan","Jack","Jonathan",
+	"Justin","Terry","Gerald","Keith","Samuel","Ralph","Lawrence","Fox","Fosh","Nicholas","Roy","Benjamin",
+	"Maurice","Bruce","Brandon","Adam","Wayne","Billy","Steve","Louis","Aaron","Howard","Eugene","Carlos",
+	"Russell","Victor","Martin","Ernest","Todd","Jesse","Craig","Alan","Shawn","Clarence","Chris","Johnny",
+	"Antonio","Jimmy","Smith","Johnson","Brown","Jones","Miller","Davis","Garcia","Rodriguez","Wilson",
+	"Anderson","Taylor","Hernandez","Martin","Jackson","Thompson","White","Lopez","Gonzalez","Zhang","Harris",
+	"Clark","Washington","Lewis","Robinson","Walker","Perez","Young","Allen","Sanchez","Wright","King",
+	"Green","Baker","Adams","Nelson","Hill","Ramirez","Campbell","Mitchell","Roberts","Carter","Turner",
+	"Parker","Collins","Stewart","Flores","Morris","Nguyen","Murphy","Rivera","Cook","Rogers","Morgan",
+	"Peterson","Cooper","Reed","Bailey","Bell","Gomez","Kelly","Howard","Ward","Cox","Diaz","Richardson",
+	"Wood","Watson","Brooks","Benett","Gray","Reyes","Cruz","Hughes","Price","Long","Foster","Sanders",
+	"Ross","Morales","Powell","Miles","Sullivan","Sulliman","Ortiz","Jenkins","Gutierrez","Perry","Butler",
+	"Barnes","Fisher","Henderson","Coleman","Simmons","Patterson","Jordan","Reynolds","Hamilton","Alexander",
+	"Ramos","Wallace","Amos","Pensinata","Rimaros","Mercer","Griffin","West","Cole","Hayes","Chavez","Gibson",
+	"Amouz","Bryant","Ellis","Ford","Marshall","Owen","Harrison","Kennedy","Wells","Alvarez","Mendoza",
+	"Castillo","Olson","Webb","Tucker","Freeman","Burns","Snyder","Simpson","Crawford","Jimenez","Shaw","Gordon",
+	"Wagner","Hunter","Romero","Romeo","Juliet","Hicks","Dixon","Hunt","Palmer","Robertson","Black","Holmes",
+	"Sherlock","Stone","Meter","Boyd","Mills","Warren","Rice","Moreno","Schmidt","Patel","Sherry","Sawchuk",
+	"Valente","Giovanni","Manhas","Ferguson","Nichols","Herrera","Medina","Fernandez","Weaver","Gardner",
+	"Payne","Kelley","Dunn","Pierce","Arnold","Tran","Spencer","Peters","Hawkins","Cunningham","Grant",
+	"Hansen","Castro","Hoffman","Hart","Elliott","Knight","Bradley","Millicent","Alinor","Eleanor","Agnes",
+	"Avice","Beatrice","Cecily","Emma","Isabella","Juliana","Matilda","Roh","Kethleen","Annabel","Mabel",
+	"Meredith","Geoffrey","Gilbert","Hugh","Nicholas","Ralf","Albin","Bayard","Edwin","Erwin","Percival",
+	"Godfrey","Glad","Tall","Mont","Lov","Rain","Craft","Lion","Ship","Quiver","Ashdown","Baker","Bigge",
+	"Brickenden","Brooker","Browne","Carpenter","Cheeseman","Clarke","Fletcher","Payne","Rolfe","Webb","Abbey",
+	"Baxter","Arkwright","Bauer","Brewster","Chamberlain","Chandler","Chapman","Collier","Dempster","Harper",
+	"Koch","Saylor","Scrivens","Sommer","Steele","Spinner","Stoddard","Swit","Toller","Wainwright","Aimar",
+	"Blythe","Bonner","Bullard","Chance","Curtis","Daft","Everett","Hardy","Keen","Pratt","Proude","Rey","Russ",
+	"Terrell","Truman","Campbell","Dunn","Lola","Zeria","Myriad","Lovelace","Cassidy","Bob","Borbon","Bradbury",
+	"Isaac","Werber","Alastor","Star","Aelia","Amelia","Agrippa","Aurelia","Aurelius","Camilla","Claudia","Cornelia",
+	"Lucia","Octavia","Priscilla","Paula","Valerie","Claudius","Cassius","Cornelius","Dominus","Julius","Caesar",
+	"Amirlith","Arithine","Criodun","Aethein","Daethai","Dysphorium","Haelborne","Heathborne","Verion",
+	"Diorvana","Diansu","Vulkarch","Lux","Moriya","Dune","Kaal","Jes","Fin","Boris","Allev","Fel","Roril",
+	"Sehrogate","Alluvlos","Atlantan","Aunper","Delira","Edenthein","Eorwin","Altegan","Ando","Balvant","Cor",
+	"Delvo","Naf","Neidle","Noro","Seymont","Sojas","Takyoth","Therton","Verth","Ahnoa","Alleveis","Dawe",
+	"Kandor","Kynor","Ruryon","Sahrongard","Carioneth","Feykang","Haelcrien","Dewlos","Haequar","Evedast",
+	"Javen","Roriodo","Troltano","Avertine","Rueleva","Dawne","Aethereanil","Aether","Aethe","Mirhro","Dustheus",
+	"Anaslithim","Doroclob","Leforgoj","Prieniad","Akhloroma","Prieniad","Savestinov","Elzorn","Almveth","Arkenturia",
+	"Lilianaera","Calchime","Lillina","Shwombosia","Sol","Varuhn","Veruhkt","Arkeje","Aelon","Greyspire","Ihted",
+	"Rihanar","Yriel","Palaesida","Naharja","Avsal","Avsohm","Caer","Hovadchear","Drehua","Loraga","Sahd","Sal",
+	"Drahbes","Faehrcyle","Yav","Casai","Lorahn","Kahl","Zithis","Carrow","Vayel","Drabyel","Dusps","Mohta","Okeke",
+	"Elvett","Marahza","Schlonko","Tahva"
+	]
 
 func _ready() -> void:
 	pass
