@@ -13,6 +13,9 @@ extends Node2D
 @onready var flavourText = get_node("itemDesc/flavourText")
 @onready var terminal = get_node("../terminal")
 @onready var terminalText = get_node("../terminal/termText")
+@onready var vitals = get_node("../vitals")
+@onready var ledger = get_node("../Ledger")
+@onready var clock = get_node("../../digitalClock")
 
 const quality1 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality1.png")
 const quality2 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality2.png")
@@ -25,6 +28,9 @@ var count2
 var invItem
 var maxInvSize = 20
 var hiding = true
+var itemSelected = false
+var selectedItemInstance:Array
+var selectedItemIndex
 
 #ITEM PROPERTIES STORED HERE SHOULD NEVER BE CHANGED
 #They aren't consts because those can't be @onreadied
@@ -78,10 +84,22 @@ func _process(_delta):
 
 func removeItem(index):
 	currentInv.remove_at(index)
+	print("removed at " + str(index))
 
 func _on_inventory_button_open_inventory() -> void:
+	refreshInventory()
+	if hiding == false:
+		closeIcons()
+	hiding = not hiding
+	
+func refreshInventory():
 	itemDesc.itemSelected = false
+	itemSelected = false
+	selectedItemInstance = []
 	count = 0
+	for child in InvGrid.get_children():
+		InvGrid.remove_child(child)
+		child.queue_free()
 	for obj in currentInv:
 		invItem = TextureButton.new()
 		invItem.name = "inv" + str(count)
@@ -93,9 +111,6 @@ func _on_inventory_button_open_inventory() -> void:
 		invItem.pressed.connect(generateInfo.bind(count, obj[0][0]))
 		InvGrid.add_child(invItem)
 		count += 1
-	if hiding == false:
-		closeIcons()
-	hiding = not hiding
 
 func generateInfo(index, itemName):
 	count2 = -1
@@ -112,7 +127,11 @@ func generateInfo(index, itemName):
 			qualDisplay.icon = getStars(itemQual)
 			qualDisplay.text = str(itemQual) + "/100"
 			valDisplay.text = str(itemVal)
+			itemSelected = true
+			selectedItemIndex = index
+			selectedItemInstance = item.myItem
 			itemDesc.itemSelected = true
+			itemDesc.selectedItem = item.myItem[0]
 
 func getStars(quality : int):
 	if (quality > 80):
@@ -130,6 +149,39 @@ func closeIcons():
 	for item in InvGrid.get_children():
 		InvGrid.remove_child(item)
 		item.queue_free()
+
+func _on_use_item() -> void:
+	var itemVal
+	var satiation
+	var hydration
+	if (selectedItemInstance):
+		if (selectedItemInstance != []):
+			if (selectedItemInstance[0][1] == "Currency"):
+				itemVal = snapped((selectedItemInstance[1] * selectedItemInstance[0][2] * 0.01), 0.01)
+				ledger.money += itemVal
+				ledger.addEntry(itemVal, clock.theTime, selectedItemInstance[0][0], "Redeemed", coinIcon)
+				removeItem(selectedItemIndex)
+				itemDesc.itemSelected = false
+				itemSelected = false
+				refreshInventory()
+			elif (selectedItemInstance[0][1] == "Consumable"):
+				if !(selectedItemInstance[0][3] is String):
+					satiation = snapped((selectedItemInstance[1] * selectedItemInstance[0][3] * 0.01), 1)
+					if (vitals.satiation + satiation > 100):
+						vitals.satiation = 100
+					else:
+						vitals.satiation += satiation
+				if !(selectedItemInstance[0][4] is String):
+					hydration = snapped((selectedItemInstance[1] * selectedItemInstance[0][4] * 0.01), 1)
+					if (vitals.hydration + hydration > 100):
+						vitals.hydration = 100
+					else:
+						vitals.hydration += hydration
+				removeItem(selectedItemIndex)
+				itemDesc.itemSelected = false
+				itemSelected = false
+				refreshInventory()
+
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	closeIcons()
@@ -225,7 +277,7 @@ func _on_digital_clock_open_time() -> void:
 	pencilInvIconSmall, pencilInvIcon)
 @onready var burger = newItem("Burger", "Consumable",
 	20,
-	20, 50,
+	25, "null",
 	"Too many calories - but simply too enticing... you must...",
 	hamburIconSmall, hamburIcon)
 @onready var appliance = newItem("Appliance", "Object",
@@ -345,4 +397,4 @@ func _on_digital_clock_open_time() -> void:
 	bondIconSmall, bondIcon)
 
 @onready var currentInv = [[waterBottle, 25], [waterBottle, 50], [waterBottle, 75], [pencil, 10],
-[burger, 25], [burger, 50], [appliance, 25]]
+[burger, 25], [burger, 50], [bond, 50]]

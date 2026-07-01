@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dngg2yuhdno4i"]
+
+[ext_resource type="Script" uid="uid://ey2s4gc043nc" path="res://ButtonScenes/button.gd" id="1_k777p"]
+[ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="2_28fc2"]
+[ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="2_ptki0"]
+[ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="3_ptki0"]
+[ext_resource type="Texture2D" uid="uid://c66n0lk6h0usx" path="res://assets/Sprites/quotaIcon.png" id="3_t3hdk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7p2s"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
+corner_detail = 1
+expand_margin_left = 30.0
+expand_margin_top = 9.0
+expand_margin_right = 30.0
+expand_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5vnf"]
+bg_color = Color(0, 0, 0, 0)
+expand_margin_left = 30.0
+expand_margin_top = 9.0
+expand_margin_right = 30.0
+expand_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a7d8"]
+bg_color = Color(0, 0, 0, 0)
+corner_detail = 1
+expand_margin_left = 30.0
+expand_margin_top = 9.0
+expand_margin_right = 30.0
+expand_margin_bottom = 9.0
+
+[node name="button" type="Node2D" unique_id=1684606739]
+script = ExtResource("1_k777p")
+
+[node name="interactable" type="Button" parent="." unique_id=1496977085]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -30.0
+offset_right = 88.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_ptki0")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_t7p2s")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j5vnf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1a7d8")
+text = "text"
+icon = ExtResource("3_t3hdk")
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="." unique_id=198252796]
+z_index = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_28fc2")
+script = ExtResource("3_ptki0")
+
+[connection signal="mouse_entered" from="interactable" to="." method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="interactable" to="." method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="interactable" to="." method="_on_interactable_pressed"]

@@ -1,17 +1,21 @@
-extends Node
-
+extends Node2D
 @onready var outerSprite = $outerSprite
+@onready var interactable = $interactable
 @onready var paddingSize = outerSprite.theScale
 @onready var hoverScale = Vector2(paddingSize[0] + 0.35, paddingSize[1] + 0.35)
+
+@export var icon:Texture2D
+@export var text:String
 
 var placeHolder = Vector2(0,0)
 var hovering = false
 var growSpeed = 0.1
 
-signal opportunity
+signal buttonPressed
 
 func _ready():
-	pass
+	interactable.icon = icon
+	interactable.text = text
 
 func _process(_delta):
 	if hovering == true:
@@ -27,5 +31,5 @@ func _on_interactable_mouse_exited() -> void:
 	hovering = false
 
 func _on_interactable_pressed() -> void:
-	opportunity.emit()
+	buttonPressed.emit()
 	outerSprite.scale = paddingSize

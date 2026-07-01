@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://gep8dwo88u7w" path="res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png" id="21_0m4ur"]
 [ext_resource type="Script" uid="uid://277f1o8ppiay" path="res://Scripts/RockBottom/text_spawn_label.gd" id="22_2of7g"]
 [ext_resource type="Script" uid="uid://bynnyas48ihh5" path="res://StageScenes/item_desc.gd" id="22_pr0nw"]
+[ext_resource type="Script" uid="uid://dxq4uto7riqih" path="res://Scripts/RockBottom/inv_item_desc.gd" id="22_qjqh3"]
 [ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="22_tdnta"]
 [ext_resource type="Texture2D" uid="uid://chvl5amt7cywu" path="res://assets/Sprites/RockBottom/inventoryIcons/hamburgInvIcon.png" id="23_6q42e"]
 [ext_resource type="Texture2D" uid="uid://cskmc21byixa2" path="res://assets/Sprites/RockBottom/terminalRB.png" id="24_bgfic"]
@@ -40,7 +41,9 @@
 [ext_resource type="Script" uid="uid://bspc8qf77tcj0" path="res://Scripts/RockBottom/actions/beg.gd" id="27_6xp14"]
 [ext_resource type="LabelSettings" uid="uid://bq8y73c2234yr" path="res://assets/defaultText12.tres" id="27_l771o"]
 [ext_resource type="Script" uid="uid://bb0wmseld6y20" path="res://Scripts/RockBottom/actions/fake_injury.gd" id="28_18hvv"]
+[ext_resource type="PackedScene" uid="uid://dngg2yuhdno4i" path="res://ButtonScenes/button.tscn" id="29_koopg"]
 [ext_resource type="Script" uid="uid://chef3jgn53ya4" path="res://Scripts/RockBottom/actions/steal.gd" id="29_qs7pq"]
+[ext_resource type="Texture2D" uid="uid://21tqqtqyuukm" path="res://assets/Sprites/RockBottom/buttonIcons/skillTreeIcon.png" id="30_1m3vn"]
 [ext_resource type="Script" uid="uid://brfeppu43d5ll" path="res://Scripts/RockBottom/actions/con_action.gd" id="30_033t1"]
 [ext_resource type="Script" uid="uid://ern6euvtapxk" path="res://Scripts/RockBottom/actions/confirm_action.gd" id="31_18hvv"]
 [ext_resource type="Script" uid="uid://bic2idahcuw4a" path="res://Scripts/RockBottom/minigames/pick_to_sell.gd" id="32_qs7pq"]
@@ -110,6 +113,7 @@
 [ext_resource type="StyleBox" uid="uid://ffru7d21j2sh" path="res://assets/defaultButton.tres" id="93_0mu2e"]
 [ext_resource type="Script" uid="uid://dkklbad6thd6k" path="res://Scripts/RockBottom/take_button.gd" id="94_y6hgw"]
 [ext_resource type="Script" uid="uid://djrfysfxot2yp" path="res://Scripts/RockBottom/terminal.gd" id="96_y6hgw"]
+[ext_resource type="Script" uid="uid://bm0swrp8b7v53" path="res://Scripts/RockBottom/vitals.gd" id="113_v5jsb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -359,7 +363,7 @@ theme_override_constants/v_separation = 10
 columns = 5
 
 [node name="itemDesc" type="Node2D" parent="CenterWindows/inventoryWind" unique_id=1774760650]
-script = ExtResource("22_pr0nw")
+script = ExtResource("22_qjqh3")
 
 [node name="itemIcon" type="Sprite2D" parent="CenterWindows/inventoryWind/itemDesc" unique_id=1125223612]
 position = Vector2(372, 423)
@@ -417,6 +421,11 @@ text = "this is where flavour text would go"
 label_settings = ExtResource("27_l771o")
 autowrap_mode = 3
 clip_text = true
+
+[node name="button" parent="CenterWindows/inventoryWind/itemDesc" unique_id=1684606739 instance=ExtResource("29_koopg")]
+position = Vector2(576, 349)
+icon = ExtResource("30_1m3vn")
+text = "Use Item"
 
 [node name="termBackground" type="Sprite2D" parent="CenterWindows/inventoryWind" unique_id=1838963976]
 z_index = -1
@@ -1505,16 +1514,16 @@ theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
 text = "Shady Game"
 metadata/_edit_use_anchors_ = true
 
-[node name="oppurtunity" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options" unique_id=229965476]
+[node name="opportunity" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options" unique_id=229965476]
 position = Vector2(576, 296)
 script = ExtResource("76_bk7c7")
 
-[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/oppurtunity" unique_id=922148354]
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity" unique_id=922148354]
 scale = Vector2(2, 2)
 texture = ExtResource("22_tdnta")
 script = ExtResource("25_leuqs")
 
-[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/oppurtunity" unique_id=1809617399]
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity" unique_id=1809617399]
 offset_left = -59.0
 offset_top = -18.0
 offset_right = 61.0
@@ -1720,6 +1729,7 @@ offset_bottom = 502.0
 layout_mode = 2
 
 [node name="scavenge" type="Node2D" parent="CenterWindows" unique_id=1291356382]
+visible = false
 script = ExtResource("81_f2vcc")
 
 [node name="pickLootable" type="Node2D" parent="CenterWindows/scavenge" unique_id=799710811]
@@ -1971,7 +1981,8 @@ autowrap_mode = 3
 clip_text = true
 
 [node name="terminal" type="Node2D" parent="CenterWindows" unique_id=191115621]
-position = Vector2(512, 399)
+visible = false
+position = Vector2(512, 391)
 script = ExtResource("96_y6hgw")
 
 [node name="termText" type="Label" parent="CenterWindows/terminal" unique_id=71639279]
@@ -1990,6 +2001,9 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(64, 49)
 scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
+
+[node name="vitals" type="Node2D" parent="CenterWindows" unique_id=953947443]
+script = ExtResource("113_v5jsb")
 
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
@@ -2030,6 +2044,7 @@ position = Vector2(402, 554)
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/sellWind" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/Ledger" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/scavenge" method="_on_skills_button_open_skill_tree"]
+[connection signal="buttonPressed" from="CenterWindows/inventoryWind/itemDesc/button" to="CenterWindows/inventoryWind" method="_on_use_item"]
 [connection signal="mouse_entered" from="CenterWindows/sellWind/PickTarget/approachButton/interactable" to="CenterWindows/sellWind/PickTarget/approachButton" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/PickTarget/approachButton/interactable" to="CenterWindows/sellWind/PickTarget/approachButton" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/PickTarget/approachButton/interactable" to="CenterWindows/sellWind/PickTarget/approachButton" method="_on_interactable_pressed"]
@@ -2122,10 +2137,9 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame" method="_on_interactable_pressed"]
-[connection signal="oppurtunity" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/oppurtunity" to="CenterWindows/sellWind/postApproach/minigameWindows/Con" method="_on_oppurtunity_oppurtunity"]
-[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/oppurtunity/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/oppurtunity" method="_on_interactable_mouse_entered"]
-[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/oppurtunity/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/oppurtunity" method="_on_interactable_mouse_exited"]
-[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/oppurtunity/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/oppurtunity" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity" method="_on_interactable_pressed"]
 [connection signal="fakeValue" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue" to="CenterWindows/sellWind/postApproach/minigameWindows/Con" method="_on_fake_value_fake_value"]
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue" method="_on_interactable_mouse_exited"]
