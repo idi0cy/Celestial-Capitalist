@@ -247,17 +247,18 @@ func removeProduct(listIndex):
 
 
 func buy(item, listIndex, itemQual, itemDisplayName, itemTrueValue, itemTexture):
-	$pickProduct/itemDesc.hide()
-	if ((listIndex <= productList.get_child_count() - 1)):
-		if (productList.get_child(listIndex) != null):
-			var obj = productList.get_child(listIndex)
-			inventory.addItem(item, itemQual, itemDisplayName)
-			ledger.money -= itemTrueValue
-			ledger.addEntry(-itemTrueValue, clock.theTime, currentStall[0], itemDisplayName, itemTexture)
-			productList.remove_child(obj)
-			obj.queue_free()
-			if (productList.get_child_count() == 0):
-				marketOpen = false
+	if itemTrueValue < ledger.money:
+		$pickProduct/itemDesc.hide()
+		if ((listIndex <= productList.get_child_count() - 1)):
+			if (productList.get_child(listIndex) != null):
+				var obj = productList.get_child(listIndex)
+				inventory.addItem(item, itemQual, itemDisplayName)
+				ledger.money -= itemTrueValue
+				ledger.addEntry(-itemTrueValue, clock.theTime, currentStall[0], itemDisplayName, itemTexture)
+				productList.remove_child(obj)
+				obj.queue_free()
+				if (productList.get_child_count() == 0):
+					marketOpen = false
 
 func onButton():
 	marketOpen = not marketOpen
