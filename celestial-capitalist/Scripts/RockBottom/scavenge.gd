@@ -38,7 +38,6 @@ var count
 var lootableButton
 var lootableCount
 var lootCount
-var curSelPlace
 var allLootables = []
 var storedLootable:int
 
@@ -79,7 +78,12 @@ var storedLootable:int
 		inventory.bag: 4,
 		inventory.headphones: 3,
 		inventory.paper: 8,
-		inventory.clothes: 5,
+		inventory.shirt: 7,
+		inventory.pants: 7,
+		inventory.shorts: 5,
+		inventory.hat: 5,
+		inventory.sunglasses: 6,
+		inventory.hoodie: 5,
 		inventory.toiletPaper: 6,
 		inventory.ponder: 1,
 		inventory.skincare: 3,
@@ -101,7 +105,12 @@ var storedLootable:int
 		inventory.soySauce: 5,
 		inventory.bag: 8,
 		inventory.headphones: 3,
-		inventory.clothes: 7,
+		inventory.shirt: 7,
+		inventory.pants: 7,
+		inventory.shorts: 5,
+		inventory.hat: 6,
+		inventory.sunglasses: 7,
+		inventory.hoodie: 6,
 		inventory.toiletPaper: 7,
 		inventory.ponder: 1,
 		inventory.skincare: 4,
@@ -117,7 +126,10 @@ var storedLootable:int
 		inventory.cardboard: 7,
 		inventory.headphones: 6,
 		inventory.paper: 8,
-		inventory.clothes: 9,
+		inventory.shirt: 7,
+		inventory.pants: 7,
+		inventory.shorts: 7,
+		inventory.hoodie: 8,
 		inventory.ponder: 1,
 		inventory.skincare: 8,
 		inventory.computer: 2,
@@ -127,7 +139,8 @@ var storedLootable:int
 	load("res://assets/Sprites/RockBottom/lootSprites/briefcase.png"),
 	{
 		inventory.paper: 6,
-		inventory.clothes: 5,
+		inventory.sunglasses: 6,
+		inventory.hoodie: 5,
 		inventory.toiletPaper: 4,
 		inventory.ponder: 1,
 		inventory.skincare: 5,
@@ -235,7 +248,6 @@ func removeLootable(listIndex):
 
 #registryIndex refers to allLootables, listIndex refers to the lootableList node
 func loot(registryIndex, listIndex):
-	curSelPlace = listIndex
 	directive.hide()
 	$pickLootable/lootableDesc.hide()
 	lootButtonContainer.hide()
@@ -261,7 +273,6 @@ func loot(registryIndex, listIndex):
 	
 
 func reset():
-	curSelPlace = "None"
 	refreshExplanation.targetText = ""
 	refreshExplanation.fillText()
 	if lootButton.pressed.is_connected(loot):
@@ -405,7 +416,7 @@ func genLoot():
 			var finalItem = tempLootTableResults.pick_random()
 			
 			var scorePercentage = snapped((drawn.score / reference.pixelCount), 0.01)
-			# percentage scored * lootable tier * 25, rounded to the nearest whole
+			# percentage scored * lootable tier, rounded to the nearest whole
 			var qualityPreDeviation = snapped((allLootables[storedLootable][1] * scorePercentage), 1)
 			# add deviation to quality - larger deviation range to lower qualities
 			var itemQual = randi_range(qualityPreDeviation - 15, qualityPreDeviation + 5)

@@ -11,7 +11,7 @@ func _on_open_ledger() -> void:
 
 func _process(_delta):
 	if (money < 0):
-		balance.text = "-$" + str(money)
+		balance.text = "-$" + str(abs(money))
 	else:
 		balance.text = "$" + str(money)
 	if ledgerOpen == false:
