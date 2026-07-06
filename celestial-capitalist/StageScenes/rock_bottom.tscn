@@ -114,6 +114,8 @@
 [ext_resource type="Script" uid="uid://dkklbad6thd6k" path="res://Scripts/RockBottom/take_button.gd" id="94_y6hgw"]
 [ext_resource type="Script" uid="uid://djrfysfxot2yp" path="res://Scripts/RockBottom/terminal.gd" id="96_y6hgw"]
 [ext_resource type="Script" uid="uid://bm0swrp8b7v53" path="res://Scripts/RockBottom/vitals.gd" id="113_v5jsb"]
+[ext_resource type="Script" uid="uid://t1ittnl6l63o" path="res://Scripts/RockBottom/market.gd" id="114_ugxq0"]
+[ext_resource type="Script" uid="uid://bdaqeiwch0r0g" path="res://Scripts/RockBottom/product_list.gd" id="115_v60go"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -347,6 +349,7 @@ script = ExtResource("17_107vu")
 [node name="CenterWindows" type="Node2D" parent="." unique_id=97508153]
 
 [node name="inventoryWind" type="Node2D" parent="CenterWindows" unique_id=718695114]
+visible = false
 script = ExtResource("16_lfg33")
 
 [node name="scrollContainer" type="ScrollContainer" parent="CenterWindows/inventoryWind" unique_id=666278843]
@@ -2003,7 +2006,144 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="vitals" type="Node2D" parent="CenterWindows" unique_id=953947443]
+visible = false
 script = ExtResource("113_v5jsb")
+
+[node name="market" type="Node2D" parent="CenterWindows" unique_id=1209370336]
+script = ExtResource("114_ugxq0")
+
+[node name="pickProduct" type="Node2D" parent="CenterWindows/market" unique_id=1584957141]
+
+[node name="productList" type="HBoxContainer" parent="CenterWindows/market/pickProduct" unique_id=1606768443]
+offset_left = 488.0
+offset_top = 200.0
+offset_right = 825.0
+offset_bottom = 265.0
+theme_override_constants/separation = 10
+script = ExtResource("115_v60go")
+
+[node name="product" type="TextureButton" parent="CenterWindows/market/pickProduct/productList" unique_id=2059650964]
+layout_mode = 2
+
+[node name="itemDesc" type="Node2D" parent="CenterWindows/market/pickProduct" unique_id=4666398]
+script = ExtResource("22_pr0nw")
+
+[node name="itemIcon" type="Sprite2D" parent="CenterWindows/market/pickProduct/itemDesc" unique_id=1444959831]
+position = Vector2(372, 423)
+scale = Vector2(0.5134483, 0.5134483)
+texture = ExtResource("23_6q42e")
+
+[node name="Item" type="Label" parent="CenterWindows/market/pickProduct/itemDesc" unique_id=1218447850]
+offset_left = 399.0
+offset_top = 398.0
+offset_right = 789.0
+offset_bottom = 418.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Item: \"\""
+
+[node name="infoBarOne" type="HBoxContainer" parent="CenterWindows/market/pickProduct/itemDesc" unique_id=1892788132]
+offset_left = 399.0
+offset_top = 415.0
+offset_right = 792.0
+offset_bottom = 447.0
+
+[node name="Value" type="Button" parent="CenterWindows/market/pickProduct/itemDesc/infoBarOne" unique_id=1051077322]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("25_r5csn")
+
+[node name="Quality" type="Button" parent="CenterWindows/market/pickProduct/itemDesc/infoBarOne" unique_id=1956361338]
+layout_mode = 2
+tooltip_text = "Quality"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eiodv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i7mkg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eb6av")
+text = "0.0"
+icon = ExtResource("24_m6h73")
+
+[node name="inventoryBreaker" type="Sprite2D" parent="CenterWindows/market/pickProduct/itemDesc" unique_id=1599206314]
+position = Vector2(572, 452)
+scale = Vector2(8, 8)
+texture = ExtResource("26_r5csn")
+
+[node name="flavourText" type="Label" parent="CenterWindows/market/pickProduct/itemDesc" unique_id=1762766217]
+offset_left = 352.0
+offset_top = 458.0
+offset_right = 792.0
+offset_bottom = 503.0
+text = "this is where flavour text would go"
+label_settings = ExtResource("27_l771o")
+autowrap_mode = 3
+clip_text = true
+
+[node name="buyButton" type="Node2D" parent="CenterWindows/market/pickProduct" unique_id=1040636274]
+position = Vector2(640, 349)
+script = ExtResource("83_8gpbd")
+
+[node name="interactable" type="Button" parent="CenterWindows/market/pickProduct/buyButton" unique_id=1045370183]
+offset_left = -90.0
+offset_top = -27.0
+offset_right = 90.0
+offset_bottom = 14.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vcog2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s3w6n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0eeoo")
+text = "Buy"
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/market/pickProduct/buyButton" unique_id=342494564]
+z_index = -1
+scale = Vector2(4, 4)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="directive" type="Label" parent="CenterWindows/market/pickProduct" unique_id=1095906769]
+offset_left = 376.0
+offset_top = 135.0
+offset_right = 776.0
+offset_bottom = 185.0
+text = "Lootables Identified"
+label_settings = ExtResource("26_dls5t")
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+
+[node name="termBackground" type="Sprite2D" parent="CenterWindows/market/pickProduct" unique_id=610626409]
+z_index = -1
+position = Vector2(576, 448)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="owned" type="Label" parent="CenterWindows/market/pickProduct" unique_id=1540450020]
+offset_left = 375.0
+offset_top = 169.0
+offset_right = 441.0
+offset_bottom = 189.0
+text = "owned by"
+label_settings = ExtResource("27_l771o")
+
+[node name="ownerPortrait" type="Sprite2D" parent="CenterWindows/market/pickProduct" unique_id=1316825490]
+position = Vector2(408, 254)
+scale = Vector2(2, 2)
+texture = ExtResource("21_0m4ur")
+
+[node name="ownerName" type="Label" parent="CenterWindows/market/pickProduct" unique_id=1531367203]
+offset_left = 329.0
+offset_top = 317.0
+offset_right = 489.0
+offset_bottom = 351.0
+text = "ownerName"
+label_settings = ExtResource("81_yt8l6")
+horizontal_alignment = 1
 
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
@@ -2012,38 +2152,47 @@ position = Vector2(402, 554)
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/sellWind" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/Ledger" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/scavenge" method="_on_scavenge_button_open_scav_wind"]
+[connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/market" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/inventoryWind" method="_on_sell_button_open_sell_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/sellWind" method="_on_sell_button_open_sell_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/Ledger" method="_on_sell_button_open_sell_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/scavenge" method="_on_sell_button_open_sell_wind"]
+[connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/market" method="_on_sell_button_open_sell_wind"]
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/inventoryWind" method="_on_event_log_open_log"]
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/sellWind" method="_on_event_log_open_log"]
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/Ledger" method="_on_event_log_open_log"]
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/scavenge" method="_on_event_log_open_log"]
+[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/market" method="_on_event_log_open_log"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/inventoryWind" method="_on_ledger_button_open_ledger"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/sellWind" method="_on_ledger_button_open_ledger"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/Ledger" method="_on_open_ledger"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/scavenge" method="_on_ledger_button_open_ledger"]
+[connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/market" method="_on_ledger_button_open_ledger"]
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/inventoryWind" method="_on_quota_button_open_quota"]
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/sellWind" method="_on_quota_button_open_quota"]
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/Ledger" method="_on_quota_button_open_quota"]
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/scavenge" method="_on_quota_button_open_quota"]
+[connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/market" method="_on_quota_button_open_quota"]
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/inventoryWind" method="_on_inventory_button_open_inventory"]
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/sellWind" method="_on_inventory_button_open_inventory"]
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/Ledger" method="_on_inventory_button_open_inventory"]
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/scavenge" method="_on_inventory_button_open_inventory"]
+[connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/market" method="_on_inventory_button_open_inventory"]
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/inventoryWind" method="_on_buy_button_open_shop"]
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/sellWind" method="_on_buy_button_open_shop"]
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/Ledger" method="_on_buy_button_open_shop"]
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/scavenge" method="_on_buy_button_open_shop"]
+[connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/market" method="_on_buy_button_open_shop"]
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/inventoryWind" method="_on_vitals_button_open_vitals"]
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/sellWind" method="_on_vitals_button_open_vitals"]
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/Ledger" method="_on_vitals_button_open_vitals"]
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/scavenge" method="_on_vitals_button_open_vitals"]
+[connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/market" method="_on_vitals_button_open_vitals"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/inventoryWind" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/sellWind" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/Ledger" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/scavenge" method="_on_skills_button_open_skill_tree"]
+[connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/market" method="_on_skills_button_open_skill_tree"]
 [connection signal="buttonPressed" from="CenterWindows/inventoryWind/itemDesc/button" to="CenterWindows/inventoryWind" method="_on_use_item"]
 [connection signal="mouse_entered" from="CenterWindows/sellWind/PickTarget/approachButton/interactable" to="CenterWindows/sellWind/PickTarget/approachButton" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/PickTarget/approachButton/interactable" to="CenterWindows/sellWind/PickTarget/approachButton" method="_on_interactable_mouse_exited"]
@@ -2170,6 +2319,9 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/scavenge/lootResult/lootTurnout/takeButton/interactable" to="CenterWindows/scavenge/lootResult/lootTurnout/takeButton" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/scavenge/lootResult/lootTurnout/takeButton/interactable" to="CenterWindows/scavenge/lootResult/lootTurnout/takeButton" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/scavenge/lootResult/lootTurnout/takeButton/interactable" to="CenterWindows/scavenge/lootResult/lootTurnout/takeButton" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/market/pickProduct/buyButton/interactable" to="CenterWindows/market/pickProduct/buyButton" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/market/pickProduct/buyButton/interactable" to="CenterWindows/market/pickProduct/buyButton" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/market/pickProduct/buyButton/interactable" to="CenterWindows/market/pickProduct/buyButton" method="_on_interactable_pressed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/sellWind/PickTarget/strangerRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/scavenge/pickLootable/lootRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/scavenge/lootResult/minigameWindow/timer" method="_on_digital_clock_on_time_changed"]

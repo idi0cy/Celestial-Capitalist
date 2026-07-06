@@ -154,6 +154,7 @@ func _on_use_item() -> void:
 	var itemVal
 	var satiation
 	var hydration
+	var health
 	if (selectedItemInstance):
 		if (selectedItemInstance != []):
 			if (selectedItemInstance[0][1] == "Currency"):
@@ -181,6 +182,16 @@ func _on_use_item() -> void:
 				itemDesc.itemSelected = false
 				itemSelected = false
 				refreshInventory()
+			elif (selectedItemInstance[0][1] == "Medication"):
+				health = snapped((selectedItemInstance[1] * selectedItemInstance[0][4] * 0.01), 1)
+				if (vitals.health + health > 100):
+					vitals.health = 100
+				else:
+					vitals.health += health
+				removeItem(selectedItemIndex)
+				itemDesc.itemSelected = false
+				itemSelected = false
+				refreshInventory() 
 
 
 func _on_scavenge_button_open_scav_wind() -> void:
@@ -241,8 +252,6 @@ func _on_digital_clock_open_time() -> void:
 @onready var headphonesIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/headphonesSmall.png")
 @onready var paperIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/paper.png")
 @onready var paperIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/paperSmall.png")
-@onready var clothesIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/clothes.png")
-@onready var clothesIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/clothesSmall.png")
 @onready var toiletPaperIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/toiletPaper.png")
 @onready var toiletPaperIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/toiletPaperSmall.png")
 @onready var ponderIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/ponder.png")
@@ -264,6 +273,18 @@ func _on_digital_clock_open_time() -> void:
 @onready var bondIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/bond.png")
 @onready var bondIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/bondSmall.png")
 
+@onready var shirtIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/shirt.png")
+@onready var shirtIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/shirtSmall.png")
+@onready var sunglassesIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/sunglasses.png")
+@onready var sunglassesIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/sunglassesSmall.png")
+@onready var hatIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/hat.png")
+@onready var hatIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/hatSmall.png")
+@onready var pantsIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/pants.png")
+@onready var pantsIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/pantsSmall.png")
+@onready var shortsIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/shorts.png")
+@onready var shortsIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/shortsSmall.png")
+@onready var hoodieIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/hoodie.png")
+@onready var hoodieIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/hoodieSmall.png")
 
 @onready var waterBottle = newItem("Water Bottle", "Consumable",
 	8,
@@ -340,11 +361,36 @@ func _on_digital_clock_open_time() -> void:
 	2, "null",
 	"It's just compressed plants, right?! Surely you can eat this!",
 	paperIconSmall, paperIcon)
-@onready var clothes = newItem("Clothes", "0bject",
-	70,
+@onready var hoodie = newItem("Hoodie", "Clothing",
+	40,
 	"null", "null",
 	"Warm... soft... or maybe you're just hypothermic...",
-	clothesIconSmall, clothesIcon)
+	hoodieIconSmall, hoodieIcon)
+@onready var shirt = newItem("Shirt", "Clothing",
+	50,
+	"null", "null",
+	"It's a plain t-shirt. A white void...",
+	shirtIconSmall, shirtIcon)
+@onready var pants = newItem("Pants", "Clothing",
+	50,
+	"null", "null",
+	"Neither thick enough nor thin enough. Uncomfortable.",
+	pantsIconSmall, pantsIcon)
+@onready var sunglasses = newItem("Sunglasses", "Clothing",
+	50,
+	"null", "null",
+	"The smog blocks the sun either way. Sunglasses are falling out of favour these days.",
+	sunglassesIconSmall, sunglassesIcon)
+@onready var hat = newItem("Hat", "Clothing",
+	30,
+	"null", "null",
+	"It's a hat... and I don't know what else to say here... if it's only this one that's 4th walling it's fine...",
+	hatIconSmall, hatIcon)
+@onready var shorts = newItem("Shorts", "Clothing",
+	40,
+	"null", "null",
+	"They seem kind of long for shorts?",
+	shortsIconSmall, shortsIcon)
 @onready var toiletPaper = newItem("Toilet Paper", "Object",
 	30,
 	2, "null",
