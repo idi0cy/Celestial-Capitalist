@@ -1,57 +1,131 @@
 [gd_scene format=3 uid="uid://rq60kao4ts8k"]
 
 [ext_resource type="Script" uid="uid://dnnob1quqcc0r" path="res://random_testing.gd" id="1_wrvf8"]
-[ext_resource type="Script" uid="uid://coe4f0bkwaka4" path="res://Scripts/RockBottom/minigames/conAction/con_label.gd" id="2_ok8i4"]
-[ext_resource type="Script" uid="uid://bla8dt38tohkl" path="res://Scripts/RockBottom/minigames/conAction/theOptions/con_label_backing.gd" id="3_3o51v"]
-[ext_resource type="Script" uid="uid://bc37hkwar7uoo" path="res://Scripts/RockBottom/minigames/conAction/type_timer.gd" id="4_3o51v"]
+[ext_resource type="Script" uid="uid://dtysg8tsdrbwx" path="res://Scripts/RockBottom/minigames/steal/stealth_game.gd" id="2_wpew3"]
+[ext_resource type="Texture2D" uid="uid://cskmc21byixa2" path="res://assets/Sprites/RockBottom/terminalRB.png" id="3_vhmrr"]
+[ext_resource type="Texture2D" uid="uid://dn4ude6bpmn1j" path="res://assets/Sprites/RockBottom/quotaBorderRB.png" id="4_3e4j7"]
+[ext_resource type="Texture2D" uid="uid://dxylp3s4soqvu" path="res://assets/Sprites/RockBottom/inventoryIcons/valueIcon.png" id="5_jx31m"]
+[ext_resource type="Script" uid="uid://rq8u3tta7jj7" path="res://Scripts/RockBottom/minigames/steal/stealth_target.gd" id="5_vhmrr"]
+[ext_resource type="Texture2D" uid="uid://d2ojxuvkfvtiy" path="res://assets/Sprites/RockBottom/minigames/forStealthFill.png" id="7_3e4j7"]
+[ext_resource type="Script" uid="uid://cs4uvmivhuu5v" path="res://Scripts/RockBottom/minigames/steal/stealth_animation.gd" id="8_f6w18"]
+[ext_resource type="Texture2D" uid="uid://66r0s4h2ab4p" path="res://assets/Sprites/RockBottom/minigames/wallet.png" id="8_uhpxe"]
+[ext_resource type="Texture2D" uid="uid://21tqqtqyuukm" path="res://assets/Sprites/RockBottom/buttonIcons/skillTreeIcon.png" id="9_f6w18"]
+[ext_resource type="Script" uid="uid://7crunth4q0lp" path="res://Scripts/RockBottom/minigames/steal/strength_game.gd" id="11_7wead"]
+[ext_resource type="Texture2D" uid="uid://be4rvkge6ii37" path="res://assets/Sprites/tooltipBG.png" id="11_ql21o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhpxe"]
+size = Vector2(41, 36)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6w18"]
+radius = 4.472136
 
 [node name="RandomTesting" type="Node2D" unique_id=977991068]
 script = ExtResource("1_wrvf8")
 
-[node name="terminalTypeBacking" type="Label" parent="." unique_id=1411859232]
-custom_maximum_size = Vector2(464, 182)
-offset_left = 6.0
-offset_top = 8.0
-offset_right = 470.0
-offset_bottom = 189.0
-theme_override_colors/font_color = Color(0.49747366, 0.49747366, 0.49747366, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-text = "> You: Hey there, you seem like you're ready for some action, financial, action. Now I've been told to keep pretty quiet about this, but I think I can make exceptions for capable individuals. Me and my associates are starting an investment firm, and we're looking for early members. Any amount will do fine, and I promise you the returns will be worth it"
-autowrap_mode = 3
-script = ExtResource("3_3o51v")
+[node name="stealthGame" type="Node2D" parent="." unique_id=831488655]
+visible = false
+script = ExtResource("2_wpew3")
 
-[node name="terminalType" type="RichTextLabel" parent="." unique_id=230624440]
-custom_minimum_size = Vector2(464, 181)
-custom_maximum_size = Vector2(464, 181)
-offset_left = 6.0
-offset_top = 8.0
-offset_right = 470.0
-offset_bottom = 189.0
-theme_override_constants/line_separation = 3
-bbcode_enabled = true
-text = "> You: Hey there, you seem like you're ready for some action, financial, action. Now I've been told to keep pretty quiet about this, but I think I can make exceptions for capable individuals. Me and my associates are starting an investment firm, and we're looking for early members. Any amount will do fine, and I promise you the returns"
-scroll_active = false
-text_direction = 1
-script = ExtResource("2_ok8i4")
+[node name="backing" type="Sprite2D" parent="stealthGame" unique_id=1217170257]
+position = Vector2(576, 440)
+scale = Vector2(8, 8)
+texture = ExtResource("3_vhmrr")
 
-[node name="ghostWriter" type="Label" parent="." unique_id=1027870642]
-custom_maximum_size = Vector2(464, 182)
-offset_left = 6.0
-offset_top = 429.0
-offset_right = 54.0
-offset_bottom = 610.0
-text = "SFD
-DFDS
+[node name="playerBar" type="Node2D" parent="stealthGame" unique_id=1217428101]
 
+[node name="playerBarVisual" type="ColorRect" parent="stealthGame/playerBar" unique_id=1917757905]
+offset_left = 364.0
+offset_top = 440.0
+offset_right = 405.0
+offset_bottom = 476.0
+color = Color(0, 1, 0, 1)
 
+[node name="PBarea" type="Area2D" parent="stealthGame/playerBar" unique_id=1026920176]
+position = Vector2(364, 440)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stealthGame/playerBar/PBarea" unique_id=278396251]
+position = Vector2(20, 18)
+shape = SubResource("RectangleShape2D_uhpxe")
 
+[node name="frame" type="Sprite2D" parent="stealthGame" unique_id=802821461]
+position = Vector2(576, 458)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("4_3e4j7")
 
-"
-autowrap_mode = 3
+[node name="target" type="Node2D" parent="stealthGame" unique_id=883391538]
+position = Vector2(379, 457)
+script = ExtResource("5_vhmrr")
 
-[node name="typeTimer" type="Timer" parent="." unique_id=1797382037]
-script = ExtResource("4_3o51v")
+[node name="targetSprite" type="Sprite2D" parent="stealthGame/target" unique_id=291121621]
+texture = ExtResource("5_jx31m")
 
-[connection signal="timeout" from="typeTimer" to="typeTimer" method="_on_timeout"]
+[node name="Area2D" type="Area2D" parent="stealthGame/target" unique_id=1583855091]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stealthGame/target/Area2D" unique_id=309224540]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_f6w18")
+
+[node name="progressBar" type="Node2D" parent="stealthGame" unique_id=1092365960]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="stealthGame/progressBar" unique_id=1470278730]
+offset_left = 432.00003
+offset_top = 394.00003
+offset_right = 528.0
+offset_bottom = 434.00003
+scale = Vector2(3, 3)
+step = 0.1
+value = 25.0
+texture_under = ExtResource("4_3e4j7")
+texture_progress = ExtResource("7_3e4j7")
+
+[node name="goofyAnimation" type="Node2D" parent="stealthGame" unique_id=2043167315]
+script = ExtResource("8_f6w18")
+
+[node name="walletSprite" type="Sprite2D" parent="stealthGame/goofyAnimation" unique_id=920617656]
+z_index = 4
+position = Vector2(736, 211)
+scale = Vector2(8, 8)
+texture = ExtResource("8_uhpxe")
+flip_h = true
+
+[node name="handcomposite" type="Node2D" parent="stealthGame/goofyAnimation" unique_id=1794364779]
+position = Vector2(150, 0)
+
+[node name="hand" type="Sprite2D" parent="stealthGame/goofyAnimation/handcomposite" unique_id=1924294274]
+z_index = 1
+position = Vector2(410, 207)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("9_f6w18")
+
+[node name="coin" type="Sprite2D" parent="stealthGame/goofyAnimation/handcomposite" unique_id=552520911]
+z_index = 2
+position = Vector2(454, 209)
+scale = Vector2(4, 4)
+texture = ExtResource("5_jx31m")
+
+[node name="strengthGame" type="Node2D" parent="." unique_id=1231205440]
+script = ExtResource("11_7wead")
+
+[node name="board" type="Sprite2D" parent="strengthGame" unique_id=1391392883]
+position = Vector2(576, 380)
+scale = Vector2(8, 8)
+texture = ExtResource("11_ql21o")
+
+[node name="cloneZone" type="Node2D" parent="strengthGame" unique_id=211089548]
+
+[node name="changingText" type="Label" parent="strengthGame" unique_id=1397288598]
+custom_minimum_size = Vector2(300, 24)
+custom_maximum_size = Vector2(300, 200)
+offset_left = 427.0
+offset_top = 227.0
+offset_right = 727.0
+offset_bottom = 251.0
+text = "TARGETS REMAINING: 15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="finished" from="stealthGame" to="." method="_on_stealth_game_finished"]
+[connection signal="area_entered" from="stealthGame/target/Area2D" to="stealthGame" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="stealthGame/target/Area2D" to="stealthGame" method="_on_area_2d_area_exited"]
+[connection signal="allDone" from="strengthGame" to="." method="_on_strength_game_all_done"]
