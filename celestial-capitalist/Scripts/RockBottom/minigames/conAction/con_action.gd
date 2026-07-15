@@ -13,7 +13,7 @@ extends Node2D
 @onready var conTerminal = get_node("conTerminal")
 @onready var options = get_node("options")
 @onready var shadyGame = get_node("options/shadyGame")
-@onready var oppurtunity = get_node("options/oppurtunity")
+@onready var opportunity = get_node("options/opportunity")
 @onready var fakeValue = get_node("options/fakeValue")
 @onready var magic = get_node("options/magic")
 @onready var typeTimer = get_node("conTerminal/typeGame/typeTimer")
@@ -39,10 +39,10 @@ var magicText = [
 	"Hey there. Do you ever wish to know things that you maybe shouldn't? Any supernatural wonders you've wanted to experience? Well I can quench that thirst right here for only a couple bucks. Any person, any time. Dead, or alive. I'll be a medium for their brief return to talk with you. It's not a joke. If there's anyone you need to talk to, the offer is right here, and for a limited time only. I'm very fluid with my living situation.",
 	"You look like you have desire. One strong enough to warrant... divine intervention. Any will of yours may very well be imparted by the gods themselves on this very day. I'm able to give blessings, place cursings, on anyone, it just can't be yourself. Even a ruler has rules. What do you say to this deal? Only takes your time and a bit of money."
 ]
-var oppurtunityText = [
+var opportunityText = [
 	"Hey there, you seem like you're ready for some action, financial, action. Now I've been told to keep pretty quiet about this, but I think I can make exceptions for capable individuals. Me and my associates are starting an investment firm, and we're looking for early members. Any amount will do fine, and I promise you the returns will be great! I'll take cash now, then contact me at Ice Station Zebra Associates' office for more.",
-	"It's your lucky day, because it appears that you've just won an exclusive draw to test a cutting edge new product made by EM sports! I'm here representing the company, and we're scouting individuals who we believe would make for good game testers of the new game, Celestial Capitalist. You've been chosen as one of the contestents, and have the chance to preorder the game with me here now.",
-	"You there! Yes, you! You have been selected to participate in a special TV show called lucky bastards, where you and other contestants participate in various games of chance and skill, such as poker, to win a huge cash prize, and rewards for those who do good. The oppurtunity is here now, but we'll have to take a small payment to authorize yourself into the show. If you're interested, agents such as myself can accept cash now."
+	"It's your lucky day, because it appears that you've just won an exclusive draw to test a cutting edge new product made by EM sports! I'm here representing the company, and we're scouting individuals who we believe would make for good game testers of the new game, Celestial Capitalist. You've been chosen as one of the contestants, and have the chance to preorder the game with me here now.",
+	"You there! Yes, you! You have been selected to participate in a special TV show called lucky bastards, where you and other contestants participate in various games of chance and skill, such as poker, to win a huge cash prize, and rewards for those who do good. The opportunity is here now, but we'll have to take a small payment to authorize yourself into the show. If you're interested, agents such as myself can accept cash now."
 ]
 var fakeValueText = [
 	"Hey dude, I'm in a bit of a tough situation right now, could I interest you in something that would be worth your time? My family isn't the most well off, but we've been passing down this for generations by now. It's a coin, minted in the rare year of ninteen eighty four. These are one of a kind, and they are going to be worth a lot more than what I'm willing to sell them to you for.",
@@ -94,8 +94,8 @@ func startTyping(type):
 		query = magicText[random]
 		successModifier = sellWind.allStrangers[targetIndex][5] + 0.5
 		baseStakes = 10.0
-	elif type  == "oppurtunity":
-		query = oppurtunityText[random]
+	elif type  == "opportunity":
+		query = opportunityText[random]
 		successModifier = sellWind.allStrangers[targetIndex][4] + 0.5
 		baseStakes = 7.5
 	elif type == "shady game":
@@ -119,9 +119,9 @@ func _on_fake_value_fake_value() -> void:
 	startTyping("fake value")
 	strangerResponse = dialogue.fakeValueScammedLines.pick_random()
 
-func _on_oppurtunity_oppurtunity() -> void:
-	startTyping("oppurtunity")
-	strangerResponse = dialogue.oppurtunityScammedLines.pick_random()
+func _on_opportunity_opportunity() -> void:
+	startTyping("opportunity")
+	strangerResponse = dialogue.opportunityScammedLines.pick_random()
 
 func _on_shady_game_shady_game() -> void:
 	startTyping("shady game")

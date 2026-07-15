@@ -250,10 +250,10 @@ var magicScammedLines = [
 	"I knew those eggheads were wrong when they told me ghosts weren't real.",
 ]
 
-var oppurtunityScammedLines = [
+var opportunityScammedLines = [
 	"I'm about to be rich!",
-	"Wow, getting this oppurtunity feels like winning the lottery!",
-	"What a wonderful oppurtunity for me! It's almost too good to be real!",
+	"Wow, getting this opportunity feels like winning the lottery!",
+	"What a wonderful opportunity for me! It's almost too good to be real!",
 	"Now THIS is something that will cure my depression.",
 	"Call me sensible, because I'm in on this win-win deal.",
 	"First I was able to extend my car's warranty, and now I get this?! What a wonderful world!",

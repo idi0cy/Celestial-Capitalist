@@ -13,6 +13,9 @@ extends Node2D
 @onready var flavourText = get_node("itemDesc/flavourText")
 @onready var terminal = get_node("../terminal")
 @onready var terminalText = get_node("../terminal/termText")
+@onready var vitals = get_node("../vitals")
+@onready var ledger = get_node("../Ledger")
+@onready var clock = get_node("../../digitalClock")
 
 const quality1 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality1.png")
 const quality2 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality2.png")
@@ -25,6 +28,9 @@ var count2
 var invItem
 var maxInvSize = 20
 var hiding = true
+var itemSelected = false
+var selectedItemInstance:Array
+var selectedItemIndex
 
 #ITEM PROPERTIES STORED HERE SHOULD NEVER BE CHANGED
 #They aren't consts because those can't be @onreadied
@@ -78,10 +84,22 @@ func _process(_delta):
 
 func removeItem(index):
 	currentInv.remove_at(index)
+	print("removed at " + str(index))
 
 func _on_inventory_button_open_inventory() -> void:
+	refreshInventory()
+	if hiding == false:
+		closeIcons()
+	hiding = not hiding
+	
+func refreshInventory():
 	itemDesc.itemSelected = false
+	itemSelected = false
+	selectedItemInstance = []
 	count = 0
+	for child in InvGrid.get_children():
+		InvGrid.remove_child(child)
+		child.queue_free()
 	for obj in currentInv:
 		invItem = TextureButton.new()
 		invItem.name = "inv" + str(count)
@@ -93,9 +111,6 @@ func _on_inventory_button_open_inventory() -> void:
 		invItem.pressed.connect(generateInfo.bind(count, obj[0][0]))
 		InvGrid.add_child(invItem)
 		count += 1
-	if hiding == false:
-		closeIcons()
-	hiding = not hiding
 
 func generateInfo(index, itemName):
 	count2 = -1
@@ -112,7 +127,11 @@ func generateInfo(index, itemName):
 			qualDisplay.icon = getStars(itemQual)
 			qualDisplay.text = str(itemQual) + "/100"
 			valDisplay.text = str(itemVal)
+			itemSelected = true
+			selectedItemIndex = index
+			selectedItemInstance = item.myItem
 			itemDesc.itemSelected = true
+			itemDesc.selectedItem = item.myItem[0]
 
 func getStars(quality : int):
 	if (quality > 80):
@@ -130,6 +149,50 @@ func closeIcons():
 	for item in InvGrid.get_children():
 		InvGrid.remove_child(item)
 		item.queue_free()
+
+func _on_use_item() -> void:
+	var itemVal
+	var satiation
+	var hydration
+	var health
+	if (selectedItemInstance):
+		if (selectedItemInstance != []):
+			if (selectedItemInstance[0][1] == "Currency"):
+				itemVal = snapped((selectedItemInstance[1] * selectedItemInstance[0][2] * 0.01), 0.01)
+				ledger.money += itemVal
+				ledger.addEntry(itemVal, clock.theTime, selectedItemInstance[0][0], "Redeemed", coinIcon)
+				removeItem(selectedItemIndex)
+				itemDesc.itemSelected = false
+				itemSelected = false
+				refreshInventory()
+			elif (selectedItemInstance[0][1] == "Consumable"):
+				if !(selectedItemInstance[0][3] is String):
+					satiation = snapped((selectedItemInstance[1] * selectedItemInstance[0][3] * 0.01), 1)
+					if (vitals.satiation + satiation > 100):
+						vitals.satiation = 100
+					else:
+						vitals.satiation += satiation
+				if !(selectedItemInstance[0][4] is String):
+					hydration = snapped((selectedItemInstance[1] * selectedItemInstance[0][4] * 0.01), 1)
+					if (vitals.hydration + hydration > 100):
+						vitals.hydration = 100
+					else:
+						vitals.hydration += hydration
+				removeItem(selectedItemIndex)
+				itemDesc.itemSelected = false
+				itemSelected = false
+				refreshInventory()
+			elif (selectedItemInstance[0][1] == "Medication"):
+				health = snapped((selectedItemInstance[1] * selectedItemInstance[0][4] * 0.01), 1)
+				if (vitals.health + health > 100):
+					vitals.health = 100
+				else:
+					vitals.health += health
+				removeItem(selectedItemIndex)
+				itemDesc.itemSelected = false
+				itemSelected = false
+				refreshInventory() 
+
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	closeIcons()
@@ -189,8 +252,6 @@ func _on_digital_clock_open_time() -> void:
 @onready var headphonesIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/headphonesSmall.png")
 @onready var paperIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/paper.png")
 @onready var paperIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/paperSmall.png")
-@onready var clothesIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/clothes.png")
-@onready var clothesIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/clothesSmall.png")
 @onready var toiletPaperIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/toiletPaper.png")
 @onready var toiletPaperIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/toiletPaperSmall.png")
 @onready var ponderIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/ponder.png")
@@ -212,6 +273,18 @@ func _on_digital_clock_open_time() -> void:
 @onready var bondIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/bond.png")
 @onready var bondIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/bondSmall.png")
 
+@onready var shirtIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/shirt.png")
+@onready var shirtIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/shirtSmall.png")
+@onready var sunglassesIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/sunglasses.png")
+@onready var sunglassesIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/sunglassesSmall.png")
+@onready var hatIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/hat.png")
+@onready var hatIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/hatSmall.png")
+@onready var pantsIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/pants.png")
+@onready var pantsIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/pantsSmall.png")
+@onready var shortsIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/shorts.png")
+@onready var shortsIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/shortsSmall.png")
+@onready var hoodieIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/hoodie.png")
+@onready var hoodieIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/hoodieSmall.png")
 
 @onready var waterBottle = newItem("Water Bottle", "Consumable",
 	8,
@@ -225,7 +298,7 @@ func _on_digital_clock_open_time() -> void:
 	pencilInvIconSmall, pencilInvIcon)
 @onready var burger = newItem("Burger", "Consumable",
 	20,
-	20, 50,
+	25, "null",
 	"Too many calories - but simply too enticing... you must...",
 	hamburIconSmall, hamburIcon)
 @onready var appliance = newItem("Appliance", "Object",
@@ -288,11 +361,36 @@ func _on_digital_clock_open_time() -> void:
 	2, "null",
 	"It's just compressed plants, right?! Surely you can eat this!",
 	paperIconSmall, paperIcon)
-@onready var clothes = newItem("Clothes", "0bject",
-	70,
+@onready var hoodie = newItem("Hoodie", "Clothing",
+	40,
 	"null", "null",
 	"Warm... soft... or maybe you're just hypothermic...",
-	clothesIconSmall, clothesIcon)
+	hoodieIconSmall, hoodieIcon)
+@onready var shirt = newItem("Shirt", "Clothing",
+	50,
+	"null", "null",
+	"It's a plain t-shirt. A white void...",
+	shirtIconSmall, shirtIcon)
+@onready var pants = newItem("Pants", "Clothing",
+	50,
+	"null", "null",
+	"Neither thick enough nor thin enough. Uncomfortable.",
+	pantsIconSmall, pantsIcon)
+@onready var sunglasses = newItem("Sunglasses", "Clothing",
+	50,
+	"null", "null",
+	"The smog blocks the sun either way. Sunglasses are falling out of favour these days.",
+	sunglassesIconSmall, sunglassesIcon)
+@onready var hat = newItem("Hat", "Clothing",
+	30,
+	"null", "null",
+	"It's a hat... and I don't know what else to say here... if it's only this one that's 4th walling it's fine...",
+	hatIconSmall, hatIcon)
+@onready var shorts = newItem("Shorts", "Clothing",
+	40,
+	"null", "null",
+	"They seem kind of long for shorts?",
+	shortsIconSmall, shortsIcon)
 @onready var toiletPaper = newItem("Toilet Paper", "Object",
 	30,
 	2, "null",
@@ -345,4 +443,4 @@ func _on_digital_clock_open_time() -> void:
 	bondIconSmall, bondIcon)
 
 @onready var currentInv = [[waterBottle, 25], [waterBottle, 50], [waterBottle, 75], [pencil, 10],
-[burger, 25], [burger, 50], [appliance, 25]]
+[burger, 25], [burger, 50], [bond, 50]]
