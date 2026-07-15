@@ -1835,6 +1835,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("25_r5csn")
 
 [node name="strengthGame" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal" unique_id=1857939151]
+visible = false
 script = ExtResource("100_oj5gc")
 
 [node name="board" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/strengthGame" unique_id=400798618]
