@@ -110,9 +110,19 @@
 [ext_resource type="Texture2D" uid="uid://by70qy5k856t2" path="res://assets/Sprites/RockBottom/minigames/canvas.png" id="88_i7mkg"]
 [ext_resource type="Script" uid="uid://bkj7csqliqp7s" path="res://Scripts/RockBottom/drawing.gd" id="89_013yb"]
 [ext_resource type="Script" uid="uid://dixa3wcf2ag2w" path="res://Scripts/RockBottom/minigames/reference.gd" id="90_eb6av"]
+[ext_resource type="Script" uid="uid://da0c8hwp1tjs" path="res://Scripts/RockBottom/minigames/steal/steal_main.gd" id="91_1m3vn"]
+[ext_resource type="Script" uid="uid://dhpdxl7t3422c" path="res://Scripts/RockBottom/minigames/steal/stealth_option.gd" id="91_koopg"]
 [ext_resource type="StyleBox" uid="uid://ffru7d21j2sh" path="res://assets/defaultButton.tres" id="93_0mu2e"]
+[ext_resource type="Script" uid="uid://bhq7tnlk7heqd" path="res://Scripts/RockBottom/minigames/steal/strength_option.gd" id="93_qjqh3"]
+[ext_resource type="Script" uid="uid://dtysg8tsdrbwx" path="res://Scripts/RockBottom/minigames/steal/stealth_game.gd" id="94_v5jsb"]
 [ext_resource type="Script" uid="uid://dkklbad6thd6k" path="res://Scripts/RockBottom/take_button.gd" id="94_y6hgw"]
+[ext_resource type="Script" uid="uid://rq8u3tta7jj7" path="res://Scripts/RockBottom/minigames/steal/stealth_target.gd" id="95_r1qfd"]
+[ext_resource type="Texture2D" uid="uid://d2ojxuvkfvtiy" path="res://assets/Sprites/RockBottom/minigames/forStealthFill.png" id="96_oj5gc"]
 [ext_resource type="Script" uid="uid://djrfysfxot2yp" path="res://Scripts/RockBottom/terminal.gd" id="96_y6hgw"]
+[ext_resource type="Script" uid="uid://cs4uvmivhuu5v" path="res://Scripts/RockBottom/minigames/steal/stealth_animation.gd" id="97_f3pau"]
+[ext_resource type="Texture2D" uid="uid://66r0s4h2ab4p" path="res://assets/Sprites/RockBottom/minigames/wallet.png" id="98_fah1x"]
+[ext_resource type="Texture2D" uid="uid://21tqqtqyuukm" path="res://assets/Sprites/RockBottom/buttonIcons/skillTreeIcon.png" id="99_exlge"]
+[ext_resource type="Script" uid="uid://7crunth4q0lp" path="res://Scripts/RockBottom/minigames/steal/strength_game.gd" id="100_oj5gc"]
 [ext_resource type="Script" uid="uid://bm0swrp8b7v53" path="res://Scripts/RockBottom/vitals.gd" id="113_v5jsb"]
 [ext_resource type="Script" uid="uid://t1ittnl6l63o" path="res://Scripts/RockBottom/market.gd" id="114_ugxq0"]
 [ext_resource type="Script" uid="uid://bdaqeiwch0r0g" path="res://Scripts/RockBottom/product_list.gd" id="115_v60go"]
@@ -217,6 +227,12 @@ bg_color = Color(0.3254902, 1, 0.33333334, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sukrf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k80dl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yisrt"]
+size = Vector2(41, 36)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j27jt"]
+radius = 4.472136
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcog2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -437,10 +453,10 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="sellWind" type="Node2D" parent="CenterWindows" unique_id=1492757036]
-visible = false
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
+visible = false
 
 [node name="PeopleList" type="HBoxContainer" parent="CenterWindows/sellWind/PickTarget" unique_id=2057357323]
 offset_left = 325.0
@@ -523,6 +539,7 @@ script = ExtResource("22_2of7g")
 [node name="postApproach" type="Node2D" parent="CenterWindows/sellWind" unique_id=1469147129]
 
 [node name="Terminal" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1548338584]
+visible = false
 position = Vector2(512, 391)
 
 [node name="termText" type="Label" parent="CenterWindows/sellWind/postApproach/Terminal" unique_id=47641209]
@@ -1432,6 +1449,7 @@ script = ExtResource("69_bao8l")
 [node name="takePublic" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=58030356]
 
 [node name="Con" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=1544630324]
+visible = false
 script = ExtResource("72_m6h73")
 
 [node name="conTerminal" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con" unique_id=1514979266]
@@ -1688,6 +1706,166 @@ offset_right = -108.0
 offset_bottom = 30.0
 scale = Vector2(0.145, 0.5)
 script = ExtResource("81_mnkpu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Steal" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=1194338050]
+script = ExtResource("91_1m3vn")
+
+[node name="options" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal" unique_id=1231739802]
+visible = false
+
+[node name="stealthOption" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options" unique_id=1021594233]
+position = Vector2(394, 244)
+script = ExtResource("91_koopg")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" unique_id=225054068]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" unique_id=929537094]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Stealth"
+metadata/_edit_use_anchors_ = true
+
+[node name="strengthOption" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options" unique_id=794405891]
+position = Vector2(762, 240)
+script = ExtResource("93_qjqh3")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" unique_id=561710937]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" unique_id=658867627]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Strength"
+metadata/_edit_use_anchors_ = true
+
+[node name="stealthGame" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal" unique_id=876022194]
+visible = false
+script = ExtResource("94_v5jsb")
+
+[node name="backing" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=855389283]
+position = Vector2(576, 440)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="playerBar" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=1191445428]
+
+[node name="playerBarVisual" type="ColorRect" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/playerBar" unique_id=847532059]
+offset_left = 364.0
+offset_top = 440.0
+offset_right = 405.0
+offset_bottom = 476.0
+color = Color(0, 1, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="PBarea" type="Area2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/playerBar" unique_id=1316022255]
+position = Vector2(364, 440)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/playerBar/PBarea" unique_id=709677830]
+position = Vector2(20, 18)
+shape = SubResource("RectangleShape2D_yisrt")
+
+[node name="frame" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=1698967206]
+position = Vector2(576, 458)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("2_5xa78")
+
+[node name="target" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=555217125]
+position = Vector2(379, 457)
+script = ExtResource("95_r1qfd")
+
+[node name="targetSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/target" unique_id=1050933296]
+texture = ExtResource("25_r5csn")
+
+[node name="Area2D" type="Area2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/target" unique_id=1922622659]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/target/Area2D" unique_id=1811990266]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_j27jt")
+
+[node name="progressBar" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=1913512025]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/progressBar" unique_id=1226099138]
+offset_left = 432.00003
+offset_top = 394.00003
+offset_right = 528.0
+offset_bottom = 434.00003
+scale = Vector2(3, 3)
+step = 0.1
+value = 25.0
+texture_under = ExtResource("2_5xa78")
+texture_progress = ExtResource("96_oj5gc")
+metadata/_edit_use_anchors_ = true
+
+[node name="goofyAnimation" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=1585179375]
+position = Vector2(0, 45)
+script = ExtResource("97_f3pau")
+
+[node name="walletSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/goofyAnimation" unique_id=1885870694]
+z_index = 4
+position = Vector2(736, 211)
+scale = Vector2(8, 8)
+texture = ExtResource("98_fah1x")
+flip_h = true
+
+[node name="handcomposite" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/goofyAnimation" unique_id=1847990981]
+position = Vector2(150, 0)
+
+[node name="hand" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/goofyAnimation/handcomposite" unique_id=848251677]
+z_index = -6
+position = Vector2(410, 207)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("99_exlge")
+
+[node name="coin" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/goofyAnimation/handcomposite" unique_id=268516899]
+z_index = -6
+position = Vector2(454, 209)
+scale = Vector2(4, 4)
+texture = ExtResource("25_r5csn")
+
+[node name="strengthGame" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal" unique_id=1857939151]
+visible = false
+script = ExtResource("100_oj5gc")
+
+[node name="board" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/strengthGame" unique_id=400798618]
+position = Vector2(576, 380)
+scale = Vector2(8, 8)
+texture = ExtResource("72_6q42e")
+
+[node name="cloneZone" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/strengthGame" unique_id=1356671803]
+
+[node name="changingText" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/strengthGame" unique_id=1070972267]
+custom_minimum_size = Vector2(300, 24)
+custom_maximum_size = Vector2(300, 200)
+offset_left = 427.0
+offset_top = 227.0
+offset_right = 727.0
+offset_bottom = 251.0
+text = "TARGETS REMAINING: 15"
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Ledger" type="Node2D" parent="CenterWindows" unique_id=893953733]
@@ -1985,6 +2163,7 @@ clip_text = true
 
 [node name="terminal" type="Node2D" parent="CenterWindows" unique_id=191115621]
 visible = false
+position = Vector2(512, 399)
 position = Vector2(512, 391)
 script = ExtResource("96_y6hgw")
 
@@ -2309,6 +2488,18 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks" method="_on_interactable_pressed"]
+[connection signal="useStealth" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal" method="_on_stealth_option_use_stealth"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" method="_on_interactable_pressed"]
+[connection signal="useStrength" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal" method="_on_strength_option_use_strength"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" method="_on_interactable_pressed"]
+[connection signal="finished" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal" method="_on_stealth_game_finished"]
+[connection signal="area_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/target/Area2D" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/target/Area2D" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" method="_on_area_2d_area_exited"]
+[connection signal="allDone" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/strengthGame" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal" method="_on_strength_game_all_done"]
 [connection signal="mouse_entered" from="CenterWindows/scavenge/pickLootable/lootButton/interactable" to="CenterWindows/scavenge/pickLootable/lootButton" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/scavenge/pickLootable/lootButton/interactable" to="CenterWindows/scavenge/pickLootable/lootButton" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/scavenge/pickLootable/lootButton/interactable" to="CenterWindows/scavenge/pickLootable/lootButton" method="_on_interactable_pressed"]

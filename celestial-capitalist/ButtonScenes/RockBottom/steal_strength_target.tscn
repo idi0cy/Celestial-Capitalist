@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dty0kldaymkm2"]
+
+[ext_resource type="Script" uid="uid://cxrm3s3o54kvw" path="res://Scripts/RockBottom/minigames/steal/strength_target.gd" id="1_o6bqg"]
+[ext_resource type="Texture2D" uid="uid://vb740ovs4rf3" path="res://assets/Sprites/RockBottom/minigames/strengthStealGameTarget.png" id="2_k114a"]
+[ext_resource type="Texture2D" uid="uid://chj7d7nxfpgcs" path="res://assets/Sprites/RockBottom/minigames/targetSurrounding.png" id="3_1l1ko"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yf5fn"]
+radius = 25.019993
+
+[node name="stealStrengthTarget" type="Node2D" unique_id=410443865]
+z_index = 4
+position = Vector2(491, 273)
+script = ExtResource("1_o6bqg")
+
+[node name="countdown" type="Timer" parent="." unique_id=1535259645]
+
+[node name="theCircle" type="Sprite2D" parent="." unique_id=556846026]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_k114a")
+
+[node name="theRing" type="Sprite2D" parent="." unique_id=2045240853]
+modulate = Color(0, 0, 0, 0.39215687)
+z_index = 5
+scale = Vector2(2, 2)
+texture = ExtResource("3_1l1ko")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1645480829]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1158650417]
+shape = SubResource("CircleShape2D_yf5fn")
+
+[connection signal="timeout" from="countdown" to="." method="_on_countdown_timeout"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -45,6 +45,12 @@ extends Node2D
 @onready var conGame = get_node("postApproach/minigameWindows/Con")
 @onready var conRisk = get_node("postApproach/minigameWindows/Con/Severity")
 
+#minigame STEAL
+@onready var stealGame = get_node("postApproach/minigameWindows/Steal")
+@onready var stealOptions = get_node("postApproach/minigameWindows/Steal/options")
+@onready var stealStrength = get_node("postApproach/minigameWindows/Steal/strengthGame")
+@onready var stealStealth = get_node("postApproach/minigameWindows/Steal/stealthGame")
+
 #stands for 'person sprite'
 @onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
 @onready var personButtonScript = load("res://Scripts/RockBottom/stranger_button.gd")
@@ -244,6 +250,12 @@ func blankSlate():
 	conGame.hide()
 	conRisk.hide()
 	
+	#steal window
+	stealGame.hide()
+	stealOptions.hide()
+	stealStealth.hide()
+	stealStrength.hide()
+	
 	initiatingAction = false
 
 func identifyTarget(index, place, displayName):
@@ -343,6 +355,10 @@ func steal(target):
 		#print(target)
 		terminalText.targetText = "> System: Eyeing enemy pockets..."
 		terminalText.fillText()
+		await get_tree().create_timer(2).timeout
+		onStartBeg()
+		stealGame.initiate(target)
+		minigameWindows.show()
 
 func conTarget(target):
 	if initiatingAction == false:
