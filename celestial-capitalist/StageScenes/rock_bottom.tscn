@@ -43,7 +43,6 @@
 [ext_resource type="Script" uid="uid://bb0wmseld6y20" path="res://Scripts/RockBottom/actions/fake_injury.gd" id="28_18hvv"]
 [ext_resource type="PackedScene" uid="uid://dngg2yuhdno4i" path="res://ButtonScenes/button.tscn" id="29_koopg"]
 [ext_resource type="Script" uid="uid://chef3jgn53ya4" path="res://Scripts/RockBottom/actions/steal.gd" id="29_qs7pq"]
-[ext_resource type="Texture2D" uid="uid://21tqqtqyuukm" path="res://assets/Sprites/RockBottom/buttonIcons/skillTreeIcon.png" id="30_1m3vn"]
 [ext_resource type="Script" uid="uid://brfeppu43d5ll" path="res://Scripts/RockBottom/actions/con_action.gd" id="30_033t1"]
 [ext_resource type="Script" uid="uid://ern6euvtapxk" path="res://Scripts/RockBottom/actions/confirm_action.gd" id="31_18hvv"]
 [ext_resource type="Script" uid="uid://bic2idahcuw4a" path="res://Scripts/RockBottom/minigames/pick_to_sell.gd" id="32_qs7pq"]
@@ -443,7 +442,7 @@ clip_text = true
 
 [node name="button" parent="CenterWindows/inventoryWind/itemDesc" unique_id=1684606739 instance=ExtResource("29_koopg")]
 position = Vector2(576, 349)
-icon = ExtResource("30_1m3vn")
+icon = ExtResource("99_exlge")
 text = "Use Item"
 
 [node name="termBackground" type="Sprite2D" parent="CenterWindows/inventoryWind" unique_id=1838963976]
@@ -2163,7 +2162,6 @@ clip_text = true
 
 [node name="terminal" type="Node2D" parent="CenterWindows" unique_id=191115621]
 visible = false
-position = Vector2(512, 399)
 position = Vector2(512, 391)
 script = ExtResource("96_y6hgw")
 
@@ -2189,6 +2187,7 @@ visible = false
 script = ExtResource("113_v5jsb")
 
 [node name="market" type="Node2D" parent="CenterWindows" unique_id=1209370336]
+visible = false
 script = ExtResource("114_ugxq0")
 
 [node name="pickProduct" type="Node2D" parent="CenterWindows/market" unique_id=1584957141]
@@ -2323,6 +2322,8 @@ offset_bottom = 351.0
 text = "ownerName"
 label_settings = ExtResource("81_yt8l6")
 horizontal_alignment = 1
+
+[node name="Quota" type="Node2D" parent="CenterWindows" unique_id=510658322]
 
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
