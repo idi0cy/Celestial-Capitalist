@@ -37,7 +37,7 @@ func _process(_delta):
 	if firstTaskDone == false and cashReqProgress / 500.0 >= 1:
 		firstTaskDone = true
 		tasksDone += 1
-		$requirements/cashRequirement/inquire/outerSprite.texture = completeTexture
+		$requirements/cashRequirement/inquire/interactable.icon = completeTexture
 	if Input.is_action_just_pressed("r"):
 		ledger.addEntry(50, 0, "god", "Donated", completeTexture)
 
