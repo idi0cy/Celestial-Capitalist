@@ -6,6 +6,8 @@ extends Node2D
 @onready var grandProgBar = get_node("../../CelestialSegment/quotaBar")
 @onready var progressBarText = get_node("../../CelestialSegment/progressLabel")
 
+@onready var completeTexture = preload("res://assets/Sprites/RockBottom/quotaSprites/checkedCheckbox.png")
+
 @onready var allReqLabels = [cashReqLabel]
 @onready var currentlySelected = "cashReqLabel"
 
@@ -19,16 +21,25 @@ func _ready():
 
 func _process(_delta):
 	if visible == true:
-		cashReqLabel.text = "Make five hundred dollars (" + str(floor(100 * (cashReqProgress * 1.0 / 500))) + "%)"
+		if cashReqProgress / 500.0 * 100 < 100:
+			cashReqLabel.text = "Make five hundred dollars (" + str(floor(100 * (cashReqProgress * 1.0 / 500))) + "%)"
+		else:
+			cashReqLabel.text = "Make five hundred dollars (100%)"
 	if currentlySelected == "none":
 		grandProgBar.value = tasksDone / 1.0 * 100
 		progressBarText.text = str(tasksDone) + "/1 tasks completed"
 	elif currentlySelected == "cashReqLabel":
 		grandProgBar.value = cashReqProgress / 500.0 * 100
-		progressBarText.text = str(cashReqProgress) + "/500     (" + str(cashReqProgress / 500.0 * 100) + "%)"
+		if cashReqProgress / 500.0 * 100 < 100:
+			progressBarText.text = str(cashReqProgress) + "/500     (" + str(cashReqProgress / 500.0 * 100) + "%)"
+		else:
+			progressBarText.text = "500/500     (100%)"
 	if firstTaskDone == false and cashReqProgress / 500.0 >= 1:
 		firstTaskDone = true
 		tasksDone += 1
+		$requirements/cashRequirement/inquire/outerSprite.texture = completeTexture
+	if Input.is_action_just_pressed("r"):
+		ledger.addEntry(50, 0, "god", "Donated", completeTexture)
 
 func _on_quota_button_open_quota() -> void:
 	if visible == true:
