@@ -3,8 +3,10 @@ extends Node2D
 @onready var innerTransactionContainer = $transactionContainer/innerTransactionContainer
 @onready var balance = $sidebar/balance
 const entry_scene = preload("res://ButtonScenes/RockBottom/transaction_entry.tscn")
-var money = 10
+var money = 100
 var ledgerOpen = false
+
+signal progressTask(value)
 
 func _on_open_ledger() -> void:
 	openLedger()
@@ -26,6 +28,8 @@ func addEntry(amount, time, party, subject, texture):
 	var entry_instance = entry_scene.instantiate()
 	innerTransactionContainer.add_child(entry_instance)
 	entry_instance.writeTransaction(amount, time, party, subject, texture)
+	if amount > 0:
+		progressTask.emit(amount)
 
 #func _input(event):
 #	if event.is_action_pressed("debug"):

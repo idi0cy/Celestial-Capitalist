@@ -15,7 +15,7 @@ var windowExpanded = false
 
 func _ready():
 	pass
-	
+
 func _process(_delta):
 	if hovering == true:
 		placeHolder = outerSprite.scale.lerp(hoverScale, growSpeed)
@@ -71,7 +71,6 @@ func writeTransaction(amount, time, party, subject, texture):
 			soldbought.text = "Sold: " + subject
 	else:
 		soldbought.text = "Bought: " + subject
-		
 	if(amount > 0):
 		fromto.text = "From: " + party
 	else:
