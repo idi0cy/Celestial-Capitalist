@@ -1,4 +1,4 @@
-extends Node2D
+extends ItemHelper
 
 var scavengeOpen = false
 
@@ -362,17 +362,18 @@ func _on_timer_end_game() -> void:
 	reference.pixelCount = 0
 	reference.reset()
 	
-func takeLoot(item, listIndex, itemQ, itemName):
+func takeLoot(item, listIndex):
 	if ((listIndex <= lootBox.get_child_count() - 1)):
 		if (lootBox.get_child(listIndex) != null):
 			var obj = lootBox.get_child(listIndex)
-			var assembledItem = inventory.assembleItem(itemQ, item, itemName)
-			inventory.addItem(assembledItem)
+			inventory.addItem(item)
 			lootBox.remove_child(obj)
 			obj.queue_free()
 			if (lootBox.get_child_count() == 0):
 				reset()
 				scavengeOpen = false
+			takeButtonContainer.hide()
+			itemDesc.itemSelected = false
 
 func genLoot():
 	var currentLootable = allLootables[storedLootable]
@@ -434,74 +435,19 @@ func genLoot():
 			takeableLootButton.set_script(load("res://Scripts/RockBottom/takeableLootButton.gd"))
 			takeableLootButton.baseInfo = finalItem
 			takeableLootButton.index = generatedIndex
-			takeableLootButton.pressed.connect(identifyLoot.bind(finalItem, takeableLootButton, displayName, itemQual))
+			var assembledItem = assembleItem(itemQual, finalItem, displayName)
+			takeableLootButton.pressed.connect(generateInfo.bind(itemDesc, assembledItem, takeableLootButton))
 			
 			lootBox.add_child(takeableLootButton)
 			lootBox.get_child(takeableLootButton.get_index()).name = finalItem[0]
 			generatedIndex += 1
 
-func identifyLoot(item, selectedLoot, displayName, itemQual):
+func generateInfo(desc, item, selectedLoot := TextureButton.new()):
 	terminalText.hide()
-	
-	var assembledItem = inventory.assembleItem(itemQual, item, displayName)
-	
-	var itemVal = assembledItem[3]
-	var itemHydration = assembledItem[4]
-	var itemSatiation = assembledItem[5]
-	
-	flavourText.text = assembledItem[0][5]
-	itemIcon.texture = assembledItem[0][-1]
-	Item.text = assembledItem[2]
-	itemQuality.icon = inventory.getStars(itemQual)
-	itemQuality.text = str(itemQual) + "/100"
-	itemValue.text = str(itemVal)
-	hydrationDisplay.text = str(itemHydration)
-	satiationDisplay.text = str(itemSatiation)
-	
+	super.generateInfo(desc, item)
 	itemDesc.itemSelected = true
 	if takeButton.pressed.is_connected(takeLoot):
 		takeButton.pressed.disconnect(self.takeLoot)
 	if (selectedLoot.get_index() != null):
-		takeButton.pressed.connect(takeLoot.bind(item, selectedLoot.get_index(), itemQual, displayName))
+		takeButton.pressed.connect(takeLoot.bind(item, selectedLoot.get_index()))
 	takeButtonContainer.show()
-
-var prefixes = [
-	"Dastardly",
-	"Cowardly",
-	"Heretical",
-	"Demonic",
-	"Evil",
-	"Attractive",
-	"Beautiful",
-	"Clean",
-	"Fancy",
-	"Magnificent",
-	"Ambitious",
-	"Brave",
-	"Jolly",
-	"Silly",
-	"Zealous",
-	"Clumsy",
-	"Fierce",
-	"Mysterious",
-	"Spooky",
-	"Colossal",
-	"Intense",
-	"Puny",
-	"Acidic",
-	"Corny",
-	"Cheesy",
-	"Cruel",
-	"Despicable",
-	"Undying",
-	"Hilarious",
-	"Happy",
-	"Hungry",
-	"Livid",
-	"Outrageous",
-	"Tender",
-	"Wicked",
-	"Flying",
-	"Genocidal",
-	"Broke",
-	"Gleeful"]

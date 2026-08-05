@@ -1,12 +1,12 @@
-extends Node2D
+extends ItemHelper
 
 func refreshInventory():
 	itemDesc.itemSelected = false
 	itemSelected = false
 	selectedAssembledItem = []
 	count = 0
-	for child in InvGrid.get_children():
-		InvGrid.remove_child(child)
+	for child in invGrid.get_children():
+		invGrid.remove_child(child)
 		child.queue_free()
 	for obj in currentInv:
 		invItem = TextureButton.new()
@@ -16,13 +16,13 @@ func refreshInventory():
 		invItem.set_script(invItemScript)
 		invItem.assembledItem = obj
 		invItem.baseItem = obj[0]
-		invItem.pressed.connect(generateInfo.bind(count))
-		InvGrid.add_child(invItem)
+		invItem.pressed.connect(generateInfo.bind(itemDesc, invItem.assembledItem, count))
+		invGrid.add_child(invItem)
 		count += 1
 
 #region variables
 @onready var invItemScript = load("res://Scripts/RockBottom/InvItem.gd")
-@onready var InvGrid = get_node("scrollContainer/InvGrid")
+@onready var invGrid = get_node("scrollContainer/InvGrid")
 @onready var itemDesc = get_node("itemDesc")
 @onready var itemNameDisplay = get_node("itemDesc/Item")
 @onready var qualDisplay = get_node("itemDesc/infoBarOne/Quality")
@@ -36,12 +36,6 @@ func refreshInventory():
 @onready var vitals = get_node("../vitals")
 @onready var ledger = get_node("../Ledger")
 @onready var clock = get_node("../../digitalClock")
-
-const quality1 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality1.png")
-const quality2 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality2.png")
-const quality3 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality3.png")
-const quality4 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality4.png")
-const quality5 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality5.png")
 
 var count
 var count2
@@ -284,10 +278,10 @@ var selectedItemIndex
 	assembleItem(25, waterBottle), assembleItem(50, waterBottle), 
 	assembleItem(75, waterBottle), assembleItem(10, pencil),
 	assembleItem(25, burger), assembleItem(50, burger),
-	assembleItem(50, burger)
+	assembleItem(50, burger),
 ]
 
-#region item helper methods
+#region item creator methods
 
 #WARNING | A base item is the item's default instance. An assembled item is a modified base item.
 #Inventories accept assembled items, not base items.
@@ -305,32 +299,15 @@ var selectedItemIndex
 #index -2 will be the shrunken texture of the item
 
 func newItem(
-	itemName : String, itemType : String,
-	maxValue : int,
-	hydrationvalue, consumedvalue,
-	flavourtext : String,
-	smallTexture : Texture2D, texture : Texture2D):
-		var item = [itemName, itemType, maxValue, hydrationvalue, consumedvalue, flavourtext, smallTexture, texture]
-		allItems.append(item)
-		return item
-
-# Assembled Item Indexes:
-# 0 is the base item
-# 1 is the quality, which the last three are calculated from
-# 2 is the display name - generated, easter egg, etc.
-# 3 is the value
-# 4 is hydration
-# 5 is satiation
-
-func assembleItem(quality : int, baseItem : Array, displayName : String = baseItem[0]):
-	var itemVal = snapped((quality * baseItem[2] * 0.01), 0.01)
-	var hydration = 0
-	var satiation = 0
-	if baseItem[3] is int:
-		hydration = snapped((quality * baseItem[3] * 0.01), 1)
-	if baseItem[4] is int:
-		satiation = snapped((quality * baseItem[4] * 0.01), 1)
-	return [baseItem, quality, displayName, itemVal, hydration, satiation]
+		itemName : String, itemType : String,
+		maxValue : int,
+		hydrationvalue, consumedvalue,
+		flavourtext : String,
+		smallTexture : Texture2D, texture : Texture2D):
+	var item = [itemName, itemType, maxValue, hydrationvalue, consumedvalue,
+	flavourtext, smallTexture, texture]
+	allItems.append(item)
+	return item
 
 #adding items should always use this method - this can let us check for inventory fullness
 func addItem(assembledItem):
@@ -382,53 +359,19 @@ func _on_digital_clock_open_time() -> void:
 	hiding = true
 	
 func closeIcons():
-	for item in InvGrid.get_children():
-		InvGrid.remove_child(item)
+	for item in invGrid.get_children():
+		invGrid.remove_child(item)
 		item.queue_free()
 #endregion
 
 #region item details
-func generateInfo(index):
-	count2 = -1
-	var itemVal
-	var itemQual
-	var itemHydration
-	var itemSatiation
-	for item in InvGrid.get_children():
-		count2 += 1
-		if count2 == index:
-			
-			itemQual = item.assembledItem[1]
-			itemVal = item.assembledItem[3]
-			itemHydration = item.assembledItem[4]
-			itemSatiation = item.assembledItem[5]
-			
-			flavourText.text = item.assembledItem[0][5]
-			itemIcon.texture = item.assembledItem[0][-1]
-			itemNameDisplay.text = item.assembledItem[2]
-			qualDisplay.icon = getStars(itemQual)
-			qualDisplay.text = str(itemQual) + "/100"
-			valDisplay.text = str(itemVal)
-			hydrationDisplay.text = str(itemHydration)
-			satiationDisplay.text = str(itemSatiation)
-			
-			itemSelected = true
-			selectedItemIndex = index
-			selectedAssembledItem = item.assembledItem
-			itemDesc.itemSelected = true
-			itemDesc.selectedItem = item.assembledItem[0]
-
-func getStars(quality : int):
-	if (quality > 80):
-		return quality5
-	elif (quality > 60):
-		return quality4
-	elif (quality > 40):
-		return quality3
-	elif (quality > 20):
-		return quality2
-	else:
-		return quality1
+func generateInfo(desc, item, index := 0):
+	super.generateInfo(desc, item)
+	itemSelected = true
+	selectedItemIndex = index
+	selectedAssembledItem = item
+	itemDesc.itemSelected = true
+	itemDesc.selectedItem = item[0]
 
 func _on_use_item() -> void:
 	var itemVal
@@ -436,25 +379,26 @@ func _on_use_item() -> void:
 	var hydration
 	var health
 	if (selectedAssembledItem):
-		if (selectedAssembledItem != []):
-			if (selectedAssembledItem[0][1] == "Currency"):
+		if selectedAssembledItem != []:
+			if selectedAssembledItem[0][1] == "Currency":
 				itemVal = selectedAssembledItem[3]
 				ledger.money += itemVal
-				ledger.addEntry(itemVal, clock.theTime, selectedAssembledItem[0][0], "Redeemed", coinIcon)
+				ledger.addEntry(itemVal, clock.theTime, selectedAssembledItem[0][0],
+				"Redeemed", coinIcon)
 				removeItem(selectedItemIndex)
 				itemDesc.itemSelected = false
 				itemSelected = false
 				refreshInventory()
-			elif (selectedAssembledItem[0][1] == "Consumable"):
+			elif selectedAssembledItem[0][1] == "Consumable":
 				if !(selectedAssembledItem[0][3] is String):
 					satiation = selectedAssembledItem[5]
-					if (vitals.satiation + satiation > 100):
+					if vitals.satiation + satiation > 100:
 						vitals.satiation = 100
 					else:
 						vitals.satiation += satiation
 				if !(selectedAssembledItem[0][4] is String):
 					hydration = selectedAssembledItem[4]
-					if (vitals.hydration + hydration > 100):
+					if vitals.hydration + hydration > 100:
 						vitals.hydration = 100
 					else:
 						vitals.hydration += hydration
@@ -462,9 +406,9 @@ func _on_use_item() -> void:
 				itemDesc.itemSelected = false
 				itemSelected = false
 				refreshInventory()
-			elif (selectedAssembledItem[0][1] == "Medication"):
+			elif selectedAssembledItem[0][1] == "Medication":
 				health = snapped((selectedAssembledItem[1] * selectedAssembledItem[5] * 0.01), 1)
-				if (vitals.health + health > 100):
+				if vitals.health + health > 100:
 					vitals.health = 100
 				else:
 					vitals.health += health

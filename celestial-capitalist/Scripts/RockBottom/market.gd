@@ -1,4 +1,4 @@
-extends Node2D
+extends ItemHelper
 
 var marketOpen = false
 
@@ -218,33 +218,19 @@ func genProducts():
 		productButton.set_script(load("res://Scripts/RockBottom/productButton.gd"))
 		productButton.baseInfo = finalItem
 		productButton.index = generatedIndex
-		productButton.pressed.connect(identifyProduct.bind(finalItem, productButton, displayName, itemQual, finalItem[-1]))
+		var assembledItem = assembleItem(itemQual, finalItem, displayName)
+		productButton.pressed.connect(generateInfo.bind(itemDesc, assembledItem, productButton))
 		productList.add_child(productButton)
 		productList.get_child(generatedIndex).name = finalItem[0]
 		generatedIndex += 1
 
-func identifyProduct(item, selectedProduct, displayName, itemQual, itemTexture):
-	
-	var assembledItem = inventory.assembleItem(itemQual, item, displayName)
-	
-	var itemVal = assembledItem[3]
-	var itemHydration = assembledItem[4]
-	var itemSatiation = assembledItem[5]
-	
-	flavourText.text = item[5]
-	itemIcon.texture = item[-1]
-	itemName.text = assembledItem[2]
-	itemQuality.icon = inventory.getStars(itemQual)
-	itemQuality.text = str(itemQual) + "/100"
-	itemValue.text = str(itemVal)
-	hydrationDisplay.text = str(itemHydration)
-	satiationDisplay.text = str(itemSatiation)
-	
+func generateInfo(desc, item, selectedProduct := TextureButton.new()):
+	super.generateInfo(desc, item)
 	itemDesc.itemSelected = true
 	if buyButton.pressed.is_connected(buy):
 		buyButton.pressed.disconnect(self.buy)
 	if (selectedProduct.get_index() != null):
-		buyButton.pressed.connect(buy.bind(item, selectedProduct.get_index(), itemQual, displayName, itemVal, itemTexture))
+		buyButton.pressed.connect(buy.bind(item, selectedProduct.get_index()))
 	buyButtonContainer.show()
 
 func removeProduct(listIndex):
@@ -256,20 +242,22 @@ func removeProduct(listIndex):
 		count += 1
 
 
-func buy(item, listIndex, itemQual, itemDisplayName, itemTrueValue, itemTexture):
-	if itemTrueValue < ledger.money:
+func buy(item, listIndex):
+	if item[3] <= ledger.money:
 		$pickProduct/itemDesc.hide()
 		if ((listIndex <= productList.get_child_count() - 1)):
 			if (productList.get_child(listIndex) != null):
 				var obj = productList.get_child(listIndex)
-				var assembledItem = inventory.assembleItem(itemQual, item, itemDisplayName)
-				inventory.addItem(assembledItem)
-				ledger.money -= itemTrueValue
-				ledger.addEntry(-itemTrueValue, clock.theTime, currentStall[0], itemDisplayName, itemTexture)
+				inventory.addItem(item)
+				ledger.money -= item[3]
+				ledger.addEntry(-item[3], clock.theTime, currentStall[0], item[2], item[0][-1])
 				productList.remove_child(obj)
 				obj.queue_free()
 				if (productList.get_child_count() == 0):
 					marketOpen = false
+				itemDesc.itemSelected = false
+				buyButtonContainer.hide()
+				
 
 func onButton():
 	marketOpen = not marketOpen
@@ -314,47 +302,6 @@ func _on_scavenge_button_open_scav_wind() -> void:
 #func _on_loot_refresh_refresh(theValue: Variant) -> void:
 #	if theValue == 0.0:
 #		genStall()
-
-var prefixes = [
-	"Dastardly",
-	"Cowardly",
-	"Heretical",
-	"Demonic",
-	"Evil",
-	"Attractive",
-	"Beautiful",
-	"Clean",
-	"Fancy",
-	"Magnificent",
-	"Ambitious",
-	"Brave",
-	"Jolly",
-	"Silly",
-	"Zealous",
-	"Clumsy",
-	"Fierce",
-	"Mysterious",
-	"Spooky",
-	"Colossal",
-	"Intense",
-	"Puny",
-	"Acidic",
-	"Corny",
-	"Cheesy",
-	"Cruel",
-	"Despicable",
-	"Undying",
-	"Hilarious",
-	"Happy",
-	"Hungry",
-	"Livid",
-	"Outrageous",
-	"Tender",
-	"Wicked",
-	"Flying",
-	"Genocidal",
-	"Broke",
-	"Gleeful"]
 
 var suffixes = [
 	"Shop",

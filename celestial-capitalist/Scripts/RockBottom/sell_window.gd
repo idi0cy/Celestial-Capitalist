@@ -1,4 +1,4 @@
-extends Node2D
+extends DialogueLib
 
 #Options so far are as follows
 #Beg, Sales Pitch, Fake Injury, Steal, Con
@@ -12,7 +12,6 @@ extends Node2D
 @onready var directiveFirst = get_node("PickTarget/Directive")
 @onready var refreshExplanation = get_node("PickTarget/explanation")
 @onready var refreshTimer = get_node("PickTarget/strangerRefresh")
-@onready var dialogueLib = get_node("postApproach/minigameWindows")
 
 #post approach
 @onready var postApproach = get_node("postApproach")
@@ -277,9 +276,9 @@ func genName(inputSeed):
 	var generatedSeed = "".join(charList)
 	var generator = RandomNumberGenerator.new()
 	generator.seed = generatedSeed.hash()	
-	var firstName = generator.randi_range(0,len(dialogueLib.names)-1)
-	var surname = generator.randi_range(0,len(dialogueLib.names)-1)
-	return dialogueLib.names[firstName] + " " + dialogueLib.names[surname]
+	var firstName = generator.randi_range(0,len(names)-1)
+	var surname = generator.randi_range(0,len(names)-1)
+	return names[firstName] + " " + names[surname]
 
 func approachStranger(index, place):
 	confirmAction.personIndex = index

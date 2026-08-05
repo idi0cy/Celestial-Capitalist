@@ -55,7 +55,7 @@
 [ext_resource type="Script" uid="uid://c526rf1um5u44" path="res://Scripts/RockBottom/minigames/haggle_bar.gd" id="35_i6uy1"]
 [ext_resource type="StyleBox" uid="uid://80eclwvk5y5h" path="res://assets/defaultProgressBar.tres" id="35_mnkpu"]
 [ext_resource type="Script" uid="uid://b8m8hdrfm7w2a" path="res://Scripts/RockBottom/minigames/fearmonger.gd" id="36_bituw"]
-[ext_resource type="Script" uid="uid://dtih34gne5mbe" path="res://Scripts/RockBottom/dialogue_library.gd" id="38_62asa"]
+[ext_resource type="Script" uid="uid://dtih34gne5mbe" path="res://Scripts/RockBottom/dialogueLib.gd" id="38_62asa"]
 [ext_resource type="Script" uid="uid://ciglg4feghf3b" path="res://Scripts/RockBottom/minigames/recommend.gd" id="38_l2ux3"]
 [ext_resource type="Script" uid="uid://bdl26m8nm4j5m" path="res://Scripts/RockBottom/minigames/urgency.gd" id="39_7pdp4"]
 [ext_resource type="Script" uid="uid://c6sy7jg6d6jot" path="res://Scripts/RockBottom/minigames/promote.gd" id="40_107vu"]
@@ -389,6 +389,7 @@ script = ExtResource("17_107vu")
 [node name="CenterWindows" type="Node2D" parent="." unique_id=97508153]
 
 [node name="inventoryWind" type="Node2D" parent="CenterWindows" unique_id=718695114]
+visible = false
 script = ExtResource("16_lfg33")
 
 [node name="scrollContainer" type="ScrollContainer" parent="CenterWindows/inventoryWind" unique_id=666278843]
@@ -451,7 +452,7 @@ icon = ExtResource("24_m6h73")
 
 [node name="Hydration" type="Button" parent="CenterWindows/inventoryWind/itemDesc/infoBarOne" unique_id=801601764]
 layout_mode = 2
-tooltip_text = "Value"
+tooltip_text = "Hydration"
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
@@ -462,7 +463,7 @@ icon = ExtResource("26_woire")
 
 [node name="Satiation" type="Button" parent="CenterWindows/inventoryWind/itemDesc/infoBarOne" unique_id=1461599332]
 layout_mode = 2
-tooltip_text = "Value"
+tooltip_text = "Satiation"
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
@@ -894,7 +895,7 @@ icon = ExtResource("24_m6h73")
 
 [node name="Hydration" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc/infoBarOne" unique_id=141670654]
 layout_mode = 2
-tooltip_text = "Value"
+tooltip_text = "Hydration"
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
@@ -905,7 +906,7 @@ icon = ExtResource("26_woire")
 
 [node name="Satiation" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc/infoBarOne" unique_id=1645947126]
 layout_mode = 2
-tooltip_text = "Value"
+tooltip_text = "Satiation"
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
@@ -1182,7 +1183,6 @@ scale = Vector2(0.145, 0.5)
 script = ExtResource("46_6xhon")
 
 [node name="Beg" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=1389438078]
-visible = false
 script = ExtResource("54_ta34y")
 
 [node name="Progress" type="ProgressBar" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg" unique_id=378608658]
@@ -2215,7 +2215,7 @@ icon = ExtResource("24_m6h73")
 
 [node name="Hydration" type="Button" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc/infoBarOne" unique_id=1178456865]
 layout_mode = 2
-tooltip_text = "Value"
+tooltip_text = "Hydration"
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
@@ -2226,7 +2226,7 @@ icon = ExtResource("26_woire")
 
 [node name="Satiation" type="Button" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc/infoBarOne" unique_id=2012039428]
 layout_mode = 2
-tooltip_text = "Value"
+tooltip_text = "Satiation"
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
@@ -2340,7 +2340,7 @@ icon = ExtResource("24_m6h73")
 
 [node name="Hydration" type="Button" parent="CenterWindows/market/pickProduct/itemDesc/infoBarOne" unique_id=1092641639]
 layout_mode = 2
-tooltip_text = "Value"
+tooltip_text = "Hydration"
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
@@ -2351,7 +2351,7 @@ icon = ExtResource("26_woire")
 
 [node name="Satiation" type="Button" parent="CenterWindows/market/pickProduct/itemDesc/infoBarOne" unique_id=166025282]
 layout_mode = 2
-tooltip_text = "Value"
+tooltip_text = "Satiation"
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
@@ -2408,6 +2408,7 @@ horizontal_alignment = 1
 script = ExtResource("22_2of7g")
 
 [node name="termBackground" type="Sprite2D" parent="CenterWindows/market/pickProduct" unique_id=610626409]
+visible = false
 z_index = -1
 position = Vector2(576, 448)
 scale = Vector2(8, 8)

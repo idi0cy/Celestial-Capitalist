@@ -1,10 +1,10 @@
-extends Node2D
+extends ItemHelper
 
 #Item dependent variables list
 #Index zero is list, index 1 is quality, index 2 is ...
 
 @onready var invItemScript = load("res://Scripts/RockBottom/InvItem.gd")
-@onready var InvGrid = get_node("scrollContainer/InvGrid")
+@onready var invGrid = get_node("scrollContainer/InvGrid")
 @onready var itemDesc = get_node("itemDesc")
 @onready var flavourText = get_node("itemDesc/flavourText")
 @onready var itemIcon = get_node("itemDesc/itemIcon")
@@ -15,12 +15,6 @@ extends Node2D
 @onready var satiationDisplay = get_node("itemDesc/infoBarOne/Satiation")
 @onready var realInventory = get_node("../../../../inventoryWind")
 @onready var confirmButton = get_node("confirm")
-
-const quality1 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality1.png")
-const quality2 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality2.png")
-const quality3 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality3.png")
-const quality4 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality4.png")
-const quality5 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality5.png")
 
 var count
 var count2
@@ -50,55 +44,22 @@ func openPickToSell():
 		invItem.set_script(invItemScript)
 		invItem.assembledItem = obj
 		invItem.baseItem = obj[0]
-		invItem.pressed.connect(generateInfo.bind(count))
-		InvGrid.add_child(invItem)
+		invItem.pressed.connect(generateInfo.bind(itemDesc, invItem.assembledItem, count))
+		invGrid.add_child(invItem)
 		count += 1
 	
 	#if hiding == false:
 		#closeIcons()
 	hiding = false
 
-func generateInfo(index):
-	count2 = -1
-	var itemVal
-	var itemQual
-	var itemHydration
-	var itemSatiation
-	for item in InvGrid.get_children():
-		count2 += 1
-		if count2 == index:
-			itemQual = item.assembledItem[1]
-			itemVal = item.assembledItem[3]
-			itemHydration = item.assembledItem[4]
-			itemSatiation = item.assembledItem[5]
-			
-			flavourText.text = item.assembledItem[0][5]
-			itemIcon.texture = item.assembledItem[0][-1]
-			itemNameDisplay.text = item.assembledItem[2]
-			qualDisplay.icon = getStars(itemQual)
-			qualDisplay.text = str(itemQual) + "/100"
-			valDisplay.text = str(itemVal)
-			hydrationDisplay.text = str(itemHydration)
-			satiationDisplay.text = str(itemSatiation)
-			
-			itemDesc.itemSelected = true
-			confirmButton.selectedIndex = count2
-			confirmButton.selected = item
-			confirmButton.hiding = false
-
-func getStars(quality : int):
-	if (quality > 80):
-		return quality5
-	elif (quality > 60):
-		return quality4
-	elif (quality > 40):
-		return quality3
-	elif (quality > 20):
-		return quality2
-	else:
-		return quality1
+func generateInfo(desc, item, index := 0):
+	super.generateInfo(desc, item)
+	itemDesc.itemSelected = true
+	confirmButton.selectedIndex = index
+	confirmButton.selected = item
+	confirmButton.hiding = false
 
 func closeIcons():
-	for item in InvGrid.get_children():
-		InvGrid.remove_child(item)
+	for item in invGrid.get_children():
+		invGrid.remove_child(item)
 		item.queue_free()

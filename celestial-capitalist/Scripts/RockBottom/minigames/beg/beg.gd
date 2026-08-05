@@ -1,4 +1,4 @@
-extends Node2D
+extends DialogueLib
 
 @onready var progress = get_node("Progress")
 @onready var directive = get_node("Directive")
@@ -9,7 +9,6 @@ extends Node2D
 @onready var sellWindow = get_node("../../../../sellWind")
 @onready var ledger = get_node("../../../../Ledger")
 @onready var clock = get_node("../../../../../digitalClock")
-@onready var dialogueLib = get_node("../../minigameWindows")
 @onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
 
 @onready var texture = load("res://assets/Sprites/RockBottom/inventoryIcons/hamburgInvIcon.png")
@@ -45,13 +44,13 @@ func modifyProgress(type):
 		if tries > 0:
 			if type == "logos":
 				begProgress += (2.0/logosCount) * (sellWindow.allStrangers[targetStranger][4] + 0.5) * baseVal
-				terminalText.targetText = "> You: " + dialogueLib.logosLines.pick_random()
+				terminalText.targetText = "> You: " + logosLines.pick_random()
 			elif type == "pathos":
 				begProgress += (2.0/pathosCount) * (sellWindow.allStrangers[targetStranger][3] + 0.5) * baseVal
-				terminalText.targetText = "> You: " + dialogueLib.pathosLines.pick_random()
+				terminalText.targetText = "> You: " + pathosLines.pick_random()
 			elif type == "ethos":
 				begProgress += (2.0/ethosCount) + (sellWindow.allStrangers[targetStranger][2] + 0.5) * baseVal
-				terminalText.targetText = "> You: " + dialogueLib.ethosLines.pick_random()
+				terminalText.targetText = "> You: " + ethosLines.pick_random()
 			else:
 				terminalText.targetText = "> System: No dialogue choice selected. Please choose one."
 			tries -= 1
@@ -68,19 +67,19 @@ func wrapItUp():
 		if (regex.search(generatedName)):
 			generatedName = generatedName.left(-1)
 		if begProgress < 25:
-			if (dialogueLib.getEasterEggLine(generatedName) == "false"):
-				terminalText.targetText = "> " + generatedName + ": " + dialogueLib.rejectLines.pick_random()
+			if (getEasterEggLine(generatedName) == "false"):
+				terminalText.targetText = "> " + generatedName + ": " + rejectLines.pick_random()
 			else:
-				terminalText.targetText = "> " + generatedName + ": " + dialogueLib.getEasterEggLine(generatedName)
+				terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
 			sellWindow.removeStranger(sellWindow.curSelPlace)
 		else:
 			var donationIcon = preload("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 			begVal = 1 * ((begProgress * 0.01) + 0.25) * (sellWindow.allStrangers[targetStranger][1] + 0.5)
 			begVal = (floor((begVal * 100))) / 100.0
-			if (dialogueLib.getEasterEggLine(generatedName) == "false"):
-				terminalText.targetText = "> " + generatedName + ": " + dialogueLib.acceptLines.pick_random()
+			if (getEasterEggLine(generatedName) == "false"):
+				terminalText.targetText = "> " + generatedName + ": " + acceptLines.pick_random()
 			else:
-				terminalText.targetText = "> " + generatedName + ": " + dialogueLib.getEasterEggLine(generatedName)
+				terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
 			terminalText.targetText += "\n> System: Received $" + str(begVal)
 			ledger.money += begVal
 			ledger.addEntry(begVal, clock.theTime, sellWindow.allStrangers[targetStranger][0], "Donated", donationIcon)

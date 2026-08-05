@@ -1,4 +1,8 @@
+class_name DialogueLib
 extends Node2D
+## A library containing dialogue and other text related functions.
+##
+## Contains specialized dialogue arrays for each situation and a large repository of sur and first names for random name generation. Also an easter egg checker for special names.
 
 var generatedName : String
 
