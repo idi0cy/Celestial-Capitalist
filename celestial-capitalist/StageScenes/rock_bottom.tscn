@@ -38,7 +38,9 @@
 [ext_resource type="Texture2D" uid="uid://dxylp3s4soqvu" path="res://assets/Sprites/RockBottom/inventoryIcons/valueIcon.png" id="25_r5csn"]
 [ext_resource type="LabelSettings" uid="uid://7c2o7y03811e" path="res://assets/defaultText.tres" id="26_dls5t"]
 [ext_resource type="Texture2D" uid="uid://b3yy8uixw8vvf" path="res://assets/Sprites/RockBottom/inventoryIcons/inventoryBreaker.png" id="26_r5csn"]
+[ext_resource type="Texture2D" uid="uid://cvifk1as7yeh2" path="res://assets/Sprites/RockBottom/inventoryIcons/hydrationIcon.png" id="26_woire"]
 [ext_resource type="Script" uid="uid://bspc8qf77tcj0" path="res://Scripts/RockBottom/actions/beg.gd" id="27_6xp14"]
+[ext_resource type="Texture2D" uid="uid://cw0j6jp5eguov" path="res://assets/Sprites/RockBottom/inventoryIcons/satiationIcon.png" id="27_gv1jg"]
 [ext_resource type="LabelSettings" uid="uid://bq8y73c2234yr" path="res://assets/defaultText12.tres" id="27_l771o"]
 [ext_resource type="Script" uid="uid://bb0wmseld6y20" path="res://Scripts/RockBottom/actions/fake_injury.gd" id="28_18hvv"]
 [ext_resource type="PackedScene" uid="uid://dngg2yuhdno4i" path="res://ButtonScenes/button.tscn" id="29_koopg"]
@@ -387,7 +389,6 @@ script = ExtResource("17_107vu")
 [node name="CenterWindows" type="Node2D" parent="." unique_id=97508153]
 
 [node name="inventoryWind" type="Node2D" parent="CenterWindows" unique_id=718695114]
-visible = false
 script = ExtResource("16_lfg33")
 
 [node name="scrollContainer" type="ScrollContainer" parent="CenterWindows/inventoryWind" unique_id=666278843]
@@ -447,6 +448,28 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_i7mkg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_eb6av")
 text = "0.0"
 icon = ExtResource("24_m6h73")
+
+[node name="Hydration" type="Button" parent="CenterWindows/inventoryWind/itemDesc/infoBarOne" unique_id=801601764]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("26_woire")
+
+[node name="Satiation" type="Button" parent="CenterWindows/inventoryWind/itemDesc/infoBarOne" unique_id=1461599332]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("27_gv1jg")
 
 [node name="inventoryBreaker" type="Sprite2D" parent="CenterWindows/inventoryWind/itemDesc" unique_id=55325704]
 position = Vector2(572, 452)
@@ -868,6 +891,28 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_i7mkg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_eb6av")
 text = "0.0"
 icon = ExtResource("24_m6h73")
+
+[node name="Hydration" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc/infoBarOne" unique_id=141670654]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("26_woire")
+
+[node name="Satiation" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc/infoBarOne" unique_id=1645947126]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("27_gv1jg")
 
 [node name="inventoryBreaker" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc" unique_id=1972329290]
 position = Vector2(572, 452)
@@ -2168,6 +2213,28 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_eb6av")
 text = "0.0"
 icon = ExtResource("24_m6h73")
 
+[node name="Hydration" type="Button" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc/infoBarOne" unique_id=1178456865]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("26_woire")
+
+[node name="Satiation" type="Button" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc/infoBarOne" unique_id=2012039428]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("27_gv1jg")
+
 [node name="inventoryBreaker" type="Sprite2D" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc" unique_id=2111278069]
 position = Vector2(572, 452)
 scale = Vector2(8, 8)
@@ -2270,6 +2337,28 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_i7mkg")
 theme_override_styles/hover = SubResource("StyleBoxFlat_eb6av")
 text = "0.0"
 icon = ExtResource("24_m6h73")
+
+[node name="Hydration" type="Button" parent="CenterWindows/market/pickProduct/itemDesc/infoBarOne" unique_id=1092641639]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("26_woire")
+
+[node name="Satiation" type="Button" parent="CenterWindows/market/pickProduct/itemDesc/infoBarOne" unique_id=166025282]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("27_gv1jg")
 
 [node name="inventoryBreaker" type="Sprite2D" parent="CenterWindows/market/pickProduct/itemDesc" unique_id=1599206314]
 position = Vector2(572, 452)
