@@ -31,6 +31,8 @@ var scavengeOpen = false
 @onready var infoBarOne = get_node("lootResult/lootTurnout/itemDesc/infoBarOne")
 @onready var itemQuality = get_node("lootResult/lootTurnout/itemDesc/infoBarOne/Quality")
 @onready var itemValue = get_node("lootResult/lootTurnout/itemDesc/infoBarOne/Value")
+@onready var hydrationDisplay = get_node("lootResult/lootTurnout/itemDesc/infoBarOne/Hydration")
+@onready var satiationDisplay = get_node("lootResult/lootTurnout/itemDesc/infoBarOne/Satiation")
 @onready var flavourText = get_node("lootResult/lootTurnout/itemDesc/flavourText")
 
 
@@ -364,7 +366,8 @@ func takeLoot(item, listIndex, itemQ, itemName):
 	if ((listIndex <= lootBox.get_child_count() - 1)):
 		if (lootBox.get_child(listIndex) != null):
 			var obj = lootBox.get_child(listIndex)
-			inventory.addItem(item, itemQ, itemName)
+			var assembledItem = inventory.assembleItem(itemQ, item, itemName)
+			inventory.addItem(assembledItem)
 			lootBox.remove_child(obj)
 			obj.queue_free()
 			if (lootBox.get_child_count() == 0):
@@ -423,7 +426,6 @@ func genLoot():
 			# no negative qualities
 			if (itemQual <= 0):
 				itemQual = 1
-			var itemVal = finalItem[2]
 			var displayName = prefixes.pick_random() + " " + finalItem[0]
 			
 			var takeableLootButton = TextureButton.new()
@@ -432,20 +434,30 @@ func genLoot():
 			takeableLootButton.set_script(load("res://Scripts/RockBottom/takeableLootButton.gd"))
 			takeableLootButton.baseInfo = finalItem
 			takeableLootButton.index = generatedIndex
-			takeableLootButton.pressed.connect(identifyLoot.bind(finalItem, takeableLootButton, displayName, itemQual, itemVal))
+			takeableLootButton.pressed.connect(identifyLoot.bind(finalItem, takeableLootButton, displayName, itemQual))
 			
 			lootBox.add_child(takeableLootButton)
 			lootBox.get_child(takeableLootButton.get_index()).name = finalItem[0]
 			generatedIndex += 1
 
-func identifyLoot(item, selectedLoot, displayName, itemQual, itemVal):
+func identifyLoot(item, selectedLoot, displayName, itemQual):
 	terminalText.hide()
-	flavourText.text = item[5]
-	itemIcon.texture = item[-1]
-	Item.text = displayName
+	
+	var assembledItem = inventory.assembleItem(itemQual, item, displayName)
+	
+	var itemVal = assembledItem[3]
+	var itemHydration = assembledItem[4]
+	var itemSatiation = assembledItem[5]
+	
+	flavourText.text = assembledItem[0][5]
+	itemIcon.texture = assembledItem[0][-1]
+	Item.text = assembledItem[2]
 	itemQuality.icon = inventory.getStars(itemQual)
 	itemQuality.text = str(itemQual) + "/100"
-	itemValue.text = str(snapped(itemQual * itemVal * 0.01, 0.01))
+	itemValue.text = str(itemVal)
+	hydrationDisplay.text = str(itemHydration)
+	satiationDisplay.text = str(itemSatiation)
+	
 	itemDesc.itemSelected = true
 	if takeButton.pressed.is_connected(takeLoot):
 		takeButton.pressed.disconnect(self.takeLoot)

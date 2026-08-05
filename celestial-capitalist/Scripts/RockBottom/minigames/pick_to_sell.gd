@@ -11,15 +11,10 @@ extends Node2D
 @onready var itemNameDisplay = get_node("itemDesc/Item")
 @onready var qualDisplay = get_node("itemDesc/infoBarOne/Quality")
 @onready var valDisplay = get_node("itemDesc/infoBarOne/Value")
+@onready var hydrationDisplay = get_node("itemDesc/infoBarOne/Hydration")
+@onready var satiationDisplay = get_node("itemDesc/infoBarOne/Satiation")
 @onready var realInventory = get_node("../../../../inventoryWind")
 @onready var confirmButton = get_node("confirm")
-
-@onready var waterBottleInvIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/waterInventoryItem.png")
-@onready var waterBottleInvIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/waterInvIconSmall.png")
-@onready var pencilInvIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/pencilInvSprite.png")
-@onready var pencilInvIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/pencilInvIconSmall.png")
-@onready var hamburIcon = load("res://assets/Sprites/RockBottom/inventoryIcons/hamburgInvIcon.png")
-@onready var hamburIconSmall = load("res://assets/Sprites/RockBottom/inventoryIcons/Kaydengamesmallhamburger.png")
 
 const quality1 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality1.png")
 const quality2 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality2.png")
@@ -31,15 +26,6 @@ var count
 var count2
 var invItem
 var hiding = true
-
-#Index 0 is item name, 1 is type, 2 is value, 3 is hydration value, 4 is food value for eating
-#interpret values with "null" in them as not having that property/value attached to the item
-@onready var waterBottle = ["Water Bottle", "Consumable", 2, 50, waterBottleInvIconSmall,
-	waterBottleInvIcon]
-@onready var pencil = ["Pencil", "Garbage", 1, "null", "null", pencilInvIconSmall, pencilInvIcon]
-@onready var burger = ["Burger", "Consumable", 10, 10, 50, hamburIconSmall, hamburIcon]
-
-@onready var allItems = [waterBottle, pencil, burger]
 
 #replace when implimenting save game function (WHYYYYY DO I HAVE TO FIGURE THAT OUT?????)
 var currentInv
@@ -62,7 +48,7 @@ func openPickToSell():
 		invItem.texture_normal = obj[0][-1]
 		invItem.texture_pressed = obj[0][-2]
 		invItem.set_script(invItemScript)
-		invItem.myItem = obj
+		invItem.assembledItem = obj
 		invItem.baseItem = obj[0]
 		invItem.pressed.connect(generateInfo.bind(count))
 		InvGrid.add_child(invItem)
@@ -74,29 +60,31 @@ func openPickToSell():
 
 func generateInfo(index):
 	count2 = -1
-	var itemName
 	var itemVal
 	var itemQual
-	var selectedItem
+	var itemHydration
+	var itemSatiation
 	for item in InvGrid.get_children():
 		count2 += 1
 		if count2 == index:
-			selectedItem = item
-			#print(selectedItem)
-			itemName = item.myItem[0][0]
-			itemQual = item.myItem[1]
-			itemVal = snapped((item.myItem[1] * item.baseItem[2] * 0.01), 0.01)
-			flavourText.text = item.myItem[0][5]
-			itemIcon.texture = item.myItem[0][-1]
-			itemNameDisplay.text = str(itemName)
+			itemQual = item.assembledItem[1]
+			itemVal = item.assembledItem[3]
+			itemHydration = item.assembledItem[4]
+			itemSatiation = item.assembledItem[5]
+			
+			flavourText.text = item.assembledItem[0][5]
+			itemIcon.texture = item.assembledItem[0][-1]
+			itemNameDisplay.text = item.assembledItem[2]
 			qualDisplay.icon = getStars(itemQual)
-			qualDisplay.text = str(itemQual)
+			qualDisplay.text = str(itemQual) + "/100"
 			valDisplay.text = str(itemVal)
+			hydrationDisplay.text = str(itemHydration)
+			satiationDisplay.text = str(itemSatiation)
+			
 			itemDesc.itemSelected = true
 			confirmButton.selectedIndex = count2
 			confirmButton.selected = item
 			confirmButton.hiding = false
-			
 
 func getStars(quality : int):
 	if (quality > 80):

@@ -20,6 +20,8 @@ var marketOpen = false
 @onready var infoBarOne = get_node("pickProduct/itemDesc/infoBarOne")
 @onready var itemQuality = get_node("pickProduct/itemDesc/infoBarOne/Quality")
 @onready var itemValue = get_node("pickProduct/itemDesc/infoBarOne/Value")
+@onready var hydrationDisplay = get_node("pickProduct/itemDesc/infoBarOne/Hydration")
+@onready var satiationDisplay = get_node("pickProduct/itemDesc/infoBarOne/Satiation")
 @onready var flavourText = get_node("pickProduct/itemDesc/flavourText")
 
 
@@ -208,7 +210,6 @@ func genProducts():
 		# no negative qualities
 		if (itemQual <= 0):
 			itemQual = 1
-		var itemVal = finalItem[2]
 		var displayName = prefixes.pick_random() + " " + finalItem[0]
 		
 		productButton = TextureButton.new()
@@ -217,24 +218,33 @@ func genProducts():
 		productButton.set_script(load("res://Scripts/RockBottom/productButton.gd"))
 		productButton.baseInfo = finalItem
 		productButton.index = generatedIndex
-		productButton.pressed.connect(identifyProduct.bind(finalItem, productButton, displayName, itemQual, itemVal, finalItem[-1]))
+		productButton.pressed.connect(identifyProduct.bind(finalItem, productButton, displayName, itemQual, finalItem[-1]))
 		productList.add_child(productButton)
 		productList.get_child(generatedIndex).name = finalItem[0]
 		generatedIndex += 1
 
-func identifyProduct(item, selectedProduct, displayName, itemQual, itemVal, itemTexture):
+func identifyProduct(item, selectedProduct, displayName, itemQual, itemTexture):
+	
+	var assembledItem = inventory.assembleItem(itemQual, item, displayName)
+	
+	var itemVal = assembledItem[3]
+	var itemHydration = assembledItem[4]
+	var itemSatiation = assembledItem[5]
+	
 	flavourText.text = item[5]
 	itemIcon.texture = item[-1]
-	itemName.text = displayName
+	itemName.text = assembledItem[2]
 	itemQuality.icon = inventory.getStars(itemQual)
 	itemQuality.text = str(itemQual) + "/100"
-	var itemTrueValue = snapped(itemQual * itemVal * 0.01, 0.01)
-	itemValue.text = str(itemTrueValue)
+	itemValue.text = str(itemVal)
+	hydrationDisplay.text = str(itemHydration)
+	satiationDisplay.text = str(itemSatiation)
+	
 	itemDesc.itemSelected = true
 	if buyButton.pressed.is_connected(buy):
 		buyButton.pressed.disconnect(self.buy)
 	if (selectedProduct.get_index() != null):
-		buyButton.pressed.connect(buy.bind(item, selectedProduct.get_index(), itemQual, displayName, itemTrueValue, itemTexture))
+		buyButton.pressed.connect(buy.bind(item, selectedProduct.get_index(), itemQual, displayName, itemVal, itemTexture))
 	buyButtonContainer.show()
 
 func removeProduct(listIndex):
@@ -252,7 +262,8 @@ func buy(item, listIndex, itemQual, itemDisplayName, itemTrueValue, itemTexture)
 		if ((listIndex <= productList.get_child_count() - 1)):
 			if (productList.get_child(listIndex) != null):
 				var obj = productList.get_child(listIndex)
-				inventory.addItem(item, itemQual, itemDisplayName)
+				var assembledItem = inventory.assembleItem(itemQual, item, itemDisplayName)
+				inventory.addItem(assembledItem)
 				ledger.money -= itemTrueValue
 				ledger.addEntry(-itemTrueValue, clock.theTime, currentStall[0], itemDisplayName, itemTexture)
 				productList.remove_child(obj)
