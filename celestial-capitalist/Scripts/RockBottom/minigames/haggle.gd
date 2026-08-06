@@ -1,4 +1,5 @@
-extends Node2D
+class_name Haggle
+extends Resources
 
 @onready var clock  = get_node("../../../../../digitalClock")
 @onready var haggleBar = get_node("haggleBar")
@@ -12,7 +13,6 @@ extends Node2D
 @onready var ledger = get_node("../../../../Ledger")
 @onready var pickToSell = get_node("../pickToSell")
 @onready var absInventory = get_node("../../../../inventoryWind")
-@onready var dialogueLib = get_node("../../minigameWindows")
 @onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
 
 
@@ -55,22 +55,22 @@ func _process(_delta):
 
 
 func _on_promote_promote() -> void:
-	terminalText.targetText = "> You: " + dialogueLib.promoteLines.pick_random() + "\n"
+	terminalText.targetText = "> You: " + promoteLines.pick_random() + "\n"
 	terminalText.fillText()
 	universalMinigame(1.5)
 
 func _on_urgency_urgency() -> void:
-	terminalText.targetText = "> You: " + dialogueLib.urgencyLines.pick_random() + "\n"
+	terminalText.targetText = "> You: " + urgencyLines.pick_random() + "\n"
 	terminalText.fillText()
 	universalMinigame(1.25)
 
 func _on_recommend_recommend() -> void:
-	terminalText.targetText = "> You: " + dialogueLib.recommendLines.pick_random() + "\n"
+	terminalText.targetText = "> You: " + recommendLines.pick_random() + "\n"
 	terminalText.fillText()
 	universalMinigame(1.0)
 
 func _on_fearmonger_fear_monger() -> void:
-	terminalText.targetText = "> You: " + dialogueLib.fearmongerLines.pick_random() + "\n"
+	terminalText.targetText = "> You: " + fearmongerLines.pick_random() + "\n"
 	terminalText.fillText()
 	universalMinigame(2.0)
 
@@ -125,27 +125,27 @@ func _on_goldilocks_ball() -> void:
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
 	random2 = randf()
-	arguedValue = confirmItem.selected.assembledItem[1] * (confirmItem.selected.baseItem[2] * 0.01) * ((ballSpectrum * 0.01) + 0.5)
-	normalValue = confirmItem.selected.assembledItem[1] * (confirmItem.selected.baseItem[2] * 0.01)
+	arguedValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01) * ((ballSpectrum * 0.01) + 0.5)
+	normalValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01)
 	#print((random2 * 100) *(arguedValue / normalValue))
 	if (random2 * 100) * (arguedValue / normalValue) < progress:
 		ledger.money += arguedValue
-		ledger.addEntry(arguedValue, clock.theTime, sellWindow.allStrangers[target][0], confirmItem.selected.assembledItem[0][0], confirmItem.selected.assembledItem[0][-1])
-		if (dialogueLib.getEasterEggLine(generatedName) == "false"):
-			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.acceptLines.pick_random()
+		ledger.addEntry(arguedValue, clock.theTime, sellWindow.allStrangers[target][0], confirmItem.selected[0][0], confirmItem.selected[0][-1])
+		if (getEasterEggLine(generatedName) == "false"):
+			terminalText.targetText = "> " + generatedName + ": " + acceptLines.pick_random()
 		else:
-			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.getEasterEggLine(generatedName)
+			terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
 		terminalText.targetText += "\n> System: Received $" + str(arguedValue)
 		absInventory.removeItem(confirmItem.selectedIndex)
 	else:
-		if (dialogueLib.getEasterEggLine(generatedName) == "false"):
-			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.rejectLines.pick_random()
+		if (getEasterEggLine(generatedName) == "false"):
+			terminalText.targetText = "> " + generatedName + ": " + rejectLines.pick_random()
 		else:
-			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.getEasterEggLine(generatedName)
-		sellWindow.removeStranger(sellWindow.curSelPlace)
+			terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
+		sellWindow.removeStranger(sellWindow.currentStrangerIndex)
 	terminalText.fillText()
 	await get_tree().create_timer(4).timeout
 	progress = 0
 	pickToSell.closeIcons()
-	sellWindow.blankSlate()
+	sellWindow.reset()
 	sellWindow.onButton()

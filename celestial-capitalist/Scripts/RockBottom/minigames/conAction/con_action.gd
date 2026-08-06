@@ -160,7 +160,7 @@ func _on_goldilocks_settle_risk() -> void:
 		genericTerminalText.targetText += "\n> System: Received $" + str(stakes)
 	else:
 		genericTerminalText.targetText = "> " + sellWind.allStrangers[targetIndex][0] + ": " + dialogue.conFailsDialogue.pick_random()
-	sellWind.removeStranger(sellWind.curSelPlace)
+	sellWind.removeStranger(sellWind.currentStrangerIndex)
 	
 	conGuy.hide()
 	genericTerminal.show()
@@ -168,5 +168,5 @@ func _on_goldilocks_settle_risk() -> void:
 	genericTerminalText.fillText()
 	await get_tree().create_timer(5).timeout
 	
-	sellWind.blankSlate()
+	sellWind.reset()
 	sellWind.onButton()

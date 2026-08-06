@@ -1,4 +1,5 @@
-extends Node2D
+class_name FakeInjury
+extends Resources
 
 @onready var severitySelection = get_node("severityPick")
 @onready var FIbox = get_node("FIbox")
@@ -8,7 +9,6 @@ extends Node2D
 @onready var ledger = get_node("../../../../Ledger")
 @onready var minigame = get_node("minigamePart")
 @onready var clock = get_node("../../../../../digitalClock")
-@onready var dialogueLib = get_node("../../minigameWindows")
 @onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
 
 @onready var blackmailIcon = load("res://assets/Sprites/RockBottom/ledgerWindow/blackmail.png")
@@ -66,22 +66,22 @@ func arbitration(points):
 	if random * sellWind.allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2)> (severity/100.0):
 		ledger.money += arguedVal
 		ledger.addEntry(arguedVal, clock.theTime, sellWind.allStrangers[targetIndex][0], "Blackmail", blackmailIcon)
-		if (dialogueLib.getEasterEggLine(generatedName) == "false"):
-			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.acceptLines.pick_random()
+		if (getEasterEggLine(generatedName) == "false"):
+			terminalText.targetText = "> " + generatedName + ": " + acceptLines.pick_random()
 		else:
-			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.getEasterEggLine(generatedName)
+			terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
 		terminalText.targetText += "\n> System: Received $" + str(arguedVal)
 	else:
-		if (dialogueLib.getEasterEggLine(generatedName) == "false"):
-			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.rejectLines.pick_random()
+		if (getEasterEggLine(generatedName) == "false"):
+			terminalText.targetText = "> " + generatedName + ": " + rejectLines.pick_random()
 		else:
-			terminalText.targetText = "> " + generatedName + ": " + dialogueLib.getEasterEggLine(generatedName)
+			terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
 	terminalText.fillText()
 	await get_tree().create_timer(1.5).timeout
 	wrapItUp()
 
 func wrapItUp():
-	sellWind.removeStranger(sellWind.curSelPlace)
+	sellWind.removeStranger(sellWind.currentStrangerIndex)
 	sellWind.onButton()
 
 func _on_lower_lower_severity() -> void:

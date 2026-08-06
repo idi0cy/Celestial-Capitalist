@@ -1,8 +1,6 @@
+class_name LootableButton
 extends TextureButton
+## Stores data in the a lootable [TextureButton]. Handled by parent [Scavenge].
 
-var baseInfo = []
+## Index of button inside grid.
 var index
-
-
-func _on_pressed() -> void:
-	pass # Replace with function body.

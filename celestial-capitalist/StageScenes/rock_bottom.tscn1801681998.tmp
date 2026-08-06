@@ -55,6 +55,7 @@
 [ext_resource type="Script" uid="uid://c526rf1um5u44" path="res://Scripts/RockBottom/minigames/haggle_bar.gd" id="35_i6uy1"]
 [ext_resource type="StyleBox" uid="uid://80eclwvk5y5h" path="res://assets/defaultProgressBar.tres" id="35_mnkpu"]
 [ext_resource type="Script" uid="uid://b8m8hdrfm7w2a" path="res://Scripts/RockBottom/minigames/fearmonger.gd" id="36_bituw"]
+[ext_resource type="Script" uid="uid://dtih34gne5mbe" path="res://Scripts/RockBottom/dialogueLib.gd" id="38_62asa"]
 [ext_resource type="Script" uid="uid://ciglg4feghf3b" path="res://Scripts/RockBottom/minigames/recommend.gd" id="38_l2ux3"]
 [ext_resource type="Script" uid="uid://bdl26m8nm4j5m" path="res://Scripts/RockBottom/minigames/urgency.gd" id="39_7pdp4"]
 [ext_resource type="Script" uid="uid://c6sy7jg6d6jot" path="res://Scripts/RockBottom/minigames/promote.gd" id="40_107vu"]
@@ -612,6 +613,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("21_0m4ur")
 
 [node name="Actions" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1846174536]
+visible = false
 
 [node name="Sales Pitch" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=872168034]
 position = Vector2(393, 170)
@@ -812,8 +814,10 @@ texture = ExtResource("22_tdnta")
 script = ExtResource("25_leuqs")
 
 [node name="minigameWindows" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=611419590]
+script = ExtResource("38_62asa")
 
 [node name="pickToSell" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=371395790]
+visible = false
 z_index = 5
 script = ExtResource("32_qs7pq")
 
@@ -2404,6 +2408,7 @@ horizontal_alignment = 1
 script = ExtResource("22_2of7g")
 
 [node name="termBackground" type="Sprite2D" parent="CenterWindows/market/pickProduct" unique_id=610626409]
+visible = false
 z_index = -1
 position = Vector2(576, 448)
 scale = Vector2(8, 8)
@@ -2558,7 +2563,7 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/sellWind/PickTarget/approachButton/interactable" to="CenterWindows/sellWind/PickTarget/approachButton" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/PickTarget/approachButton/interactable" to="CenterWindows/sellWind/PickTarget/approachButton" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/PickTarget/approachButton/interactable" to="CenterWindows/sellWind/PickTarget/approachButton" method="_on_interactable_pressed"]
-[connection signal="whyDoINeedThis" from="CenterWindows/sellWind/PickTarget/strangerRefresh" to="CenterWindows/sellWind" method="_on_stranger_refresh"]
+[connection signal="whyDoINeedThis" from="CenterWindows/sellWind/PickTarget/strangerRefresh" to="CenterWindows/sellWind" method="_on_stranger_refresh_why_do_i_need_this"]
 [connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_pressed"]
