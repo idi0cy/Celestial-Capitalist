@@ -388,7 +388,6 @@ script = ExtResource("17_107vu")
 [node name="CenterWindows" type="Node2D" parent="." unique_id=97508153]
 
 [node name="inventoryWind" type="Node2D" parent="CenterWindows" unique_id=718695114]
-visible = false
 script = ExtResource("16_lfg33")
 
 [node name="scrollContainer" type="ScrollContainer" parent="CenterWindows/inventoryWind" unique_id=666278843]
@@ -498,6 +497,7 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="sellWind" type="Node2D" parent="CenterWindows" unique_id=1492757036]
+visible = false
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
