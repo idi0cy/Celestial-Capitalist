@@ -72,7 +72,7 @@ func wrapItUp():
 				terminalText.targetText = "> " + generatedName + ": " + rejectLines.pick_random()
 			else:
 				terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
-			sellWindow.removeStranger(sellWindow.curSelPlace)
+			sellWindow.removeStranger(sellWindow.currentStrangerIndex)
 		else:
 			var donationIcon = preload("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 			begVal = 1 * ((begProgress * 0.01) + 0.25) * (sellWindow.allStrangers[targetStranger][1] + 0.5)
@@ -89,7 +89,7 @@ func wrapItUp():
 		initiatingDone = true
 		await get_tree().create_timer(4).timeout
 		
-		sellWindow.blankSlate()
+		sellWindow.reset()
 		sellWindow.onButton()
 
 func _on_logos_logos() -> void:

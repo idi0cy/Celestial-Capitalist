@@ -81,7 +81,7 @@ func arbitration(points):
 	wrapItUp()
 
 func wrapItUp():
-	sellWind.removeStranger(sellWind.curSelPlace)
+	sellWind.removeStranger(sellWind.currentStrangerIndex)
 	sellWind.onButton()
 
 func _on_lower_lower_severity() -> void:

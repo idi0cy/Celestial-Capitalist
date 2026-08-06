@@ -57,23 +57,46 @@ extends Resources
 #region variables
 ## Controls whether the window is open or closed.
 var sellWindowOpen = false
-var needToFind
-var strangerButton
+## Prevents player from exiting the window when true. Should be true when playing a minigame
 var initiatingAction = false
-var targetIndex
-var curSelPlace
+## Sent to action windows so they can remove the current stranger from the list if the player fails the game.
+var currentStrangerIndex
 
-#okay well this is going to be an absolute horror.
+## List of all strangers registered using [method SellWindow.newStranger]. Used to get data of a stranger at runtime. Access a stranger using its name as key.
+@onready var allStrangers : Dictionary = {}
+#endregion
 
-#try to have more success rate the higher the values are for uniformity
-#index 0 is name of person, index 1 is wealth, index 2 is approachability
-#3 empathy (beg effectiveness), 4 persuadable (sales), 5 guillable (fake injury)
-#6 unassuming (steal stealth), 7 weakness (steal strength)
-#8 risk taking (con) 0.4
-#9 texture
+#region stranger creation
+## Method for creating new strangers. Used instead of just assigning an array to operate on each stranger on ready. 
+## Appends items to [member allStrangers] using their name as [code]key:stranger[/code]. [br]
+## [br]
+## [b]Stranger Indexes:[/b] [br]
+## Most personality values allow for higher success rate the higher they are. idi0cy needs to clarify this. [br]
+## [br]
+## 0 name/id, [br]
+## 1 is wealth, [br]
+## 2 is approachability, [br]
+## 3 empathy (beg), [br]
+## 4 persuadability (sales), [br]
+## 5 guillibility (fake injury), [br]
+## 6 unassumingness (steal stealth), [br]
+## 7 weakness (steal strength), [br]
+## 8 riskReceptiveness (con), [br]
+## 9 texture.
+func newStranger (
+	strangerName:String,
+	wealth:float, approachability:float, empathy:float, persuadability:float,
+	guillibility:float, unassumingness:float, weakness:float, riskReceptiveness:float,
+	texture:Texture2D):
+		var stranger = [strangerName,
+		wealth, approachability, empathy, persuadability,
+		guillibility, unassumingness, weakness, riskReceptiveness,
+		texture]
+		allStrangers[strangerName] = stranger
+		return stranger
+#endregion
 
-@onready var allStrangers = []
-
+#region strangers
 @onready var richAndOld = newStranger(
 	"Rich Old Person",
 	0.9, 0.4, 0.5, 0.5,
@@ -105,21 +128,10 @@ var curSelPlace
 	0.5, 1, 0.9, 0.5,
 	0.4, 0.3, 0.4, 0.2,
 	charityWorkerIcon)
-
-func newStranger (
-	strangerName:String,
-	wealth:float, approachability:float, empathy:float, persuadability:float,
-	guilliblity:float, cluelessness:float, weakness:float, riskreceptibility:float,
-	texture:Texture2D):
-		var stranger = [strangerName,
-		wealth, approachability, empathy, persuadability,
-		guilliblity, cluelessness, weakness, riskreceptibility,
-		texture]
-		allStrangers.append(stranger)
-		return stranger
+#endregion
 
 func _ready():
-	blankSlate()
+	reset()
 	for item in PeopleList.get_children():
 		PeopleList.remove_child(item)
 		item.queue_free()
@@ -131,64 +143,50 @@ func _process(_delta):
 	else:
 		self.show()
 
-func _on_sell_button_open_sell_wind() -> void:
-	onButton()
-
-func onButton():
-	initiatingAction = false
-	haggleDialogue.hide()
-	postApproach.hide()
-	terminalText.targetText = ""
-	terminalText.fillText()
-	blankSlate()
-	sellWindowOpen = not sellWindowOpen
-	if sellWindowOpen == true:
-		PeopleList.peopleListHidden = false
-		personNameLabel.text = ""
-		personNameLabel.show()
-		directiveFirst.targetText = "Pedestrians Identified"
-		directiveFirst.fillText()
-		refreshExplanation.targetText = "Until new strangers"
-		refreshExplanation.fillText()
-		directiveFirst.show()
-		#genStrangers()
-
+#region stranger logic
+## Generates strangers. [br]
+## 0. Reset strangers, [br]
+## 1. Generate random amount of strangers based on time, [br]
+## 2. Assembles stranger [TextureButton]s. [br]
 func genStrangers():
+	# 0.
 	for item in PeopleList.get_children():
 		PeopleList.remove_child(item)
 		item.queue_free()
-	
 	if approachButton.pressed.is_connected(approachStranger):
 		approachButton.pressed.disconnect(self.approachStranger)
 	approachButtonGeneral.hide()
 	personNameLabel.targetText = ""
 	personNameLabel.fillText()
-	
-	var random : int
-	if clock.theTime >= 1320 or clock.theTime <= 300:
-		random = randi_range(0,1)
-	elif clock.theTime > 300 and clock.theTime <= 420:
-		random = randi_range(1,2)
-	elif clock.theTime > 420 and clock.theTime <= 510:
-		random = randi_range(2,3)
-	elif clock.theTime > 510 and clock.theTime <= 600:
-		random = 4
-	elif clock.theTime > 600 and clock.theTime <= 960:
-		random = randi_range(2,3)
-	elif clock.theTime > 960 and clock.theTime <=1080:
-		random = 4
-	else:
-		random = randi_range(3,4)
 
-	var temporaryList = []
-	for item in allStrangers:
-		temporaryList.append(item)
+	# 1.
+	## Amount of strangers.
+	var strangerCount : int
+	if clock.theTime >= 1320 or clock.theTime <= 300:
+		strangerCount = randi_range(0,1)
+	elif clock.theTime > 300 and clock.theTime <= 420:
+		strangerCount = randi_range(1,2)
+	elif clock.theTime > 420 and clock.theTime <= 510:
+		strangerCount = randi_range(2,3)
+	elif clock.theTime > 510 and clock.theTime <= 600:
+		strangerCount = 4
+	elif clock.theTime > 600 and clock.theTime <= 960:
+		strangerCount = randi_range(2,3)
+	elif clock.theTime > 960 and clock.theTime <=1080:
+		strangerCount = 4
+	else:
+		strangerCount = randi_range(3,4)
 	
+	## Keeps track of how many strangers have been generated and is also used to assign stranger [TextureButton]s an index.
 	var index = 0
-	for i in random:
-		var randomStranger = randi_range(0, (len(temporaryList) - 1))
-		strangerButton = TextureButton.new()
+	# 2.
+	for i in strangerCount:
+		## Randomly chosen stranger id.
+		var randomStranger = allStrangers.keys().pick_random()
+		## Used to construct the stranger [TextureButton].
+		var strangerButton = TextureButton.new()
 		strangerButton.texture_normal = allStrangers[randomStranger][9]
+		## Randomly generated name using [method Resources.genName].
 		var generatedName = genName(allStrangers[randomStranger][0])
 		strangerButton.name = generatedName
 		strangerButton.set_script(personButtonScript)
@@ -199,7 +197,9 @@ func genStrangers():
 		PeopleList.get_child(index).name = generatedName
 		index += 1
 
+## Removes a stranger at an index.
 func removeStranger(index):
+	## Used in checking which stranger to remove.
 	var count = 0
 	for obj in PeopleList.get_children():
 		if count == index:
@@ -207,13 +207,15 @@ func removeStranger(index):
 			obj.queue_free()
 		count += 1
 
-func blankSlate():
-	#normal sell window
-	curSelPlace = "None"
-	refreshExplanation.targetText = ""
-	refreshExplanation.fillText()
+## Reset the sell window and its derivatives.
+func reset():
+	#sell window
+	currentStrangerIndex = "None"
 	if approachButton.pressed.is_connected(approachStranger):
 		approachButton.pressed.disconnect(self.approachStranger)
+		
+	refreshExplanation.targetText = ""
+	refreshExplanation.fillText()
 	directiveFirst.show()
 	personNameLabel.show()
 	personNameLabel.text = ""
@@ -221,6 +223,7 @@ func blankSlate():
 	terminalText.fillText()
 	terminal.hide()
 	approachButtonGeneral.hide()
+	
 	postApproach.hide()
 	$PickTarget.show()
 	
@@ -254,31 +257,44 @@ func blankSlate():
 	
 	initiatingAction = false
 
-func identifyTarget(index, place, displayName):
+## Displays the name of the currently selected stranger and connects the approach button to its id and index in the list.
+func identifyTarget(id, index, displayName):
 	personNameLabel.targetText = displayName
 	personNameLabel.fillText()
-	haggle.storedStrangerIndex = place
-	fakeInjury.storedStrangerIndex = place
-	begWindow.storedStrangerIndex = place
+	
+	haggle.storedStrangerIndex = index
+	fakeInjury.storedStrangerIndex = index
+	begWindow.storedStrangerIndex = index
+	
 	if approachButton.pressed.is_connected(approachStranger):
 		approachButton.pressed.disconnect(self.approachStranger)
-	approachButton.pressed.connect(approachStranger.bind(index, place))
+	approachButton.pressed.connect(approachStranger.bind(id, index))
 	approachButtonGeneral.show()
 
-func approachStranger(index, place):
-	confirmAction.personIndex = index
-	curSelPlace = place
+## Executed on pressing the approach button. Shows the actions menu.
+func approachStranger(id, place):
+	confirmAction.personIndex = id
+	currentStrangerIndex = place
+	
 	directiveFirst.hide()
 	$PickTarget/personName.hide()
 	approachButtonGeneral.hide()
 	postApproach.show()
 	$postApproach/Actions.show()
-	strangerSprite.texture = allStrangers[index][9]
+	strangerSprite.texture = allStrangers[id][9]
 	$postApproach/theGuy.show()
 	$postApproach/Terminal.show()
 	$postApproach/minigameWindows.hide()
 	PeopleList.peopleListHidden = true
-	
+
+## Refreshes strangers when timer is up.
+func _on_stranger_refresh(theValue: Variant) -> void:
+	if theValue == 0:
+		genStrangers()
+#endregion
+
+#region action logic
+## Receives the action taken and offloads the execution to other methods.
 func _on_take_action_confirm_action(theAction, target) -> void:
 	if theAction == "No Action":
 		noAction(target)
@@ -295,12 +311,14 @@ func _on_take_action_confirm_action(theAction, target) -> void:
 	else:
 		noAction(target)
 
-func noAction(target):
+## Tells the player to pick an action before pressing the button.
+func noAction(_target):
 	if initiatingAction == false:
 		#print(target)
 		terminalText.targetText = "> System: No action taken. Please select an action before taking it."
 		terminalText.fillText()
 
+## Initiates the pick to sell window and haggle minigame.
 func salesPitch(target):
 	if initiatingAction == false:
 		initiatingAction = true
@@ -312,16 +330,18 @@ func salesPitch(target):
 		pickToSell.openPickToSell()
 		haggle.target = target
 
+## Initiates the beg minigame.
 func begAction(target):
 	if initiatingAction == false:
 		initiatingAction = true
 		terminalText.targetText = "> System: Preparing to cry..."
 		terminalText.fillText()
 		await get_tree().create_timer(2).timeout
-		onStartBeg()
+		onStartMinigame()
 		begWindow.initiate(target)
 		minigameWindows.show()
 
+## Initiates the fake injury minigame.
 func fakeInjuryAction(target):
 	if initiatingAction == false:
 		initiatingAction = true
@@ -329,10 +349,11 @@ func fakeInjuryAction(target):
 		terminalText.fillText()
 		await get_tree().create_timer(2).timeout
 		#This better work as a substitute
-		onStartBeg()
+		onStartMinigame()
 		fakeInjury.initiate(target)
 		minigameWindows.show()
 
+## Initiates the steal minigame.
 func steal(target):
 	if initiatingAction == false:
 		initiatingAction = true
@@ -340,10 +361,11 @@ func steal(target):
 		terminalText.targetText = "> System: Eyeing enemy pockets..."
 		terminalText.fillText()
 		await get_tree().create_timer(2).timeout
-		onStartBeg()
+		onStartMinigame()
 		stealGame.initiate(target)
 		minigameWindows.show()
 
+## Initiates the con minigame.
 func conTarget(target):
 	if initiatingAction == false:
 		initiatingAction = true
@@ -351,10 +373,11 @@ func conTarget(target):
 		terminalText.targetText = "> System: Ideating new scams..."
 		terminalText.fillText()
 		await get_tree().create_timer(2).timeout
-		onStartBeg() #use this function as a substitute cuz it also works
+		onStartMinigame()
 		conGame.initiate(target)
 		minigameWindows.show()
 
+## Initiates the haggle minigame.
 func _on_confirm_confirm_selection() -> void:
 	actions.hide()
 	strangerSprite.hide()
@@ -365,48 +388,70 @@ func _on_confirm_confirm_selection() -> void:
 	haggleBar.show()
 	haggleDirective.show()
 
-func onStartBeg():
+## Hides actions and the stranger icon.
+func onStartMinigame():
 	actions.hide()
 	strangerSprite.hide()
+#endregion
+	
+#region screen
+func _on_sell_button_open_sell_wind() -> void:
+	onButton()
 
-func _on_stranger_refresh_why_do_i_need_this(theValue: Variant) -> void:
-	pass # Replace with function body.
-	if theValue == 0:
-		genStrangers()
-
+## Shows the window.
+func onButton():
+	initiatingAction = false
+	haggleDialogue.hide()
+	postApproach.hide()
+	terminalText.targetText = ""
+	terminalText.fillText()
+	reset()
+	sellWindowOpen = not sellWindowOpen
+	if sellWindowOpen == true:
+		PeopleList.peopleListHidden = false
+		personNameLabel.text = ""
+		personNameLabel.show()
+		directiveFirst.targetText = "Pedestrians Identified"
+		directiveFirst.fillText()
+		refreshExplanation.targetText = "Until new strangers"
+		refreshExplanation.fillText()
+		directiveFirst.show()
+		#genStrangers()
+		
 func _on_scavenge_button_open_scav_wind() -> void:
 	sellWindowOpen = false
 	PeopleList.peopleListHidden = true
-	blankSlate()
+	reset()
 func _on_event_log_open_log() -> void:
 	sellWindowOpen = false
 	PeopleList.peopleListHidden = true
-	blankSlate()
+	reset()
 func _on_ledger_button_open_ledger() -> void:
 	sellWindowOpen = false
 	PeopleList.peopleListHidden = true
-	blankSlate()
+	reset()
 func _on_quota_button_open_quota() -> void:
 	sellWindowOpen = false
 	PeopleList.peopleListHidden = true
-	blankSlate()
+	reset()
 func _on_inventory_button_open_inventory() -> void:
 	sellWindowOpen = false
 	PeopleList.peopleListHidden = true
-	blankSlate()
+	reset()
 func _on_buy_button_open_shop() -> void:
 	sellWindowOpen = false
 	PeopleList.peopleListHidden = true
-	blankSlate()
+	reset()
 func _on_vitals_button_open_vitals() -> void:
 	sellWindowOpen = false
 	PeopleList.peopleListHidden = true
-	blankSlate()
+	reset()
 func _on_skills_button_open_skill_tree() -> void:
 	sellWindowOpen = false
 	PeopleList.peopleListHidden = true
-	blankSlate()
+	reset()
 func _on_digital_clock_open_time() -> void:
 	sellWindowOpen = false
 	PeopleList.peopleListHidden = true
-	blankSlate()
+	reset()
+#endregion

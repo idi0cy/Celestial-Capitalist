@@ -142,10 +142,10 @@ func _on_goldilocks_ball() -> void:
 			terminalText.targetText = "> " + generatedName + ": " + rejectLines.pick_random()
 		else:
 			terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
-		sellWindow.removeStranger(sellWindow.curSelPlace)
+		sellWindow.removeStranger(sellWindow.currentStrangerIndex)
 	terminalText.fillText()
 	await get_tree().create_timer(4).timeout
 	progress = 0
 	pickToSell.closeIcons()
-	sellWindow.blankSlate()
+	sellWindow.reset()
 	sellWindow.onButton()

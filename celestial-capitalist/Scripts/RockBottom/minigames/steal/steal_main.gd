@@ -54,7 +54,7 @@ func _on_stealth_game_finished(goodOrBad: Variant) -> void:
 				ledger.money += 10 * sellWind.allStrangers[target][1]
 				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, sellWind.allStrangers[target][0], "Stolen", texture)
 				terminalText.targetText = "> System: Successfully stole $" + str(10 * sellWind.allStrangers[target][1]) + ". The police have been called on you."
-				sellWind.removeStranger(sellWind.curSelPlace)
+				sellWind.removeStranger(sellWind.currentStrangerIndex)
 			else:
 				ledger.money += 10 * sellWind.allStrangers[target][1]
 				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, sellWind.allStrangers[target][0], "Stolen", texture)
@@ -64,7 +64,7 @@ func _on_stealth_game_finished(goodOrBad: Variant) -> void:
 		if consequenceCheck < 25:
 			terminalText.targetText = "> System: You failed to steal from " + str(sellWind.allStrangers[target][0]) + ". The police have been called."
 			# Please remember to have actual consequences for bottom
-			sellWind.removeStranger(sellWind.curSelPlace)
+			sellWind.removeStranger(sellWind.currentStrangerIndex)
 		else:
 			terminalText.targetText = "> System: You failed to steal from " + str(sellWind.allStrangers[target][0]) + "."
 	stealthGame.hide()
@@ -73,7 +73,7 @@ func _on_stealth_game_finished(goodOrBad: Variant) -> void:
 	terminalText.fillText()
 	await get_tree().create_timer(4).timeout
 	
-	sellWind.blankSlate()
+	sellWind.reset()
 	sellWind.onButton()
 
 func _on_strength_game_all_done(result: Variant) -> void:
@@ -86,11 +86,11 @@ func _on_strength_game_all_done(result: Variant) -> void:
 	
 	terminalText.targetText += " The police have been called on you."
 	terminalText.fillText()
-	sellWind.removeStranger(sellWind.curSelPlace)
+	sellWind.removeStranger(sellWind.currentStrangerIndex)
 	strengthGame.hide()
 	terminal.show()
 	theGuy.show()
 	await get_tree().create_timer(4).timeout
 	
-	sellWind.blankSlate()
+	sellWind.reset()
 	sellWind.onButton()
