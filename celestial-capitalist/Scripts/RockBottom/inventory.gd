@@ -9,10 +9,10 @@ extends InventoryHelper
 func refreshInventory():
 	## Increments per every [TextureButton] in [member currentInv] during an inventory refresh. [br]
 	## [br]
-	## If stored externally during the loop, can be used as the index of a [TextureButton] in the [member invGrid]. [br]
+	## If stored externally during the loop, can be used as the index of a [TextureButton] in the [InvGrid]. [br]
 	## [br]
 	## For every [TextureButton] in inventory, is used to connect it's [signal Button.pressed] to [method Inventory.generateInfo]
-	## with the current count. This makes it so that if the [TextureButton] is pressed, it generates the [member itemDesc] info and
+	## with the current count. This makes it so that if the [TextureButton] is pressed, it generates the [InvItemDesc] info and
 	## allows [method generateInfo] to accurately store the currently selected [TextureButton].
 	var count: int
 	itemDesc.itemSelected = false
@@ -35,7 +35,7 @@ func refreshInventory():
 		invGrid.add_child(invItem)
 		count += 1
 
-#region variables
+#region nodes
 @onready var invGrid : Node = get_node("scrollContainer/InvGrid")
 
 @onready var itemDesc : Node = get_node("itemDesc")
@@ -53,7 +53,9 @@ func refreshInventory():
 @onready var vitals : Node = get_node("../vitals")
 @onready var ledger : Node = get_node("../Ledger")
 @onready var clock : Node = get_node("../../digitalClock")
+#endregion
 
+#region variables
 ## Determines whether the inventory is shown or hidden. Pressing inventory button inverts this value.
 var hiding : bool = true
 ## Determines whether a [TextureButton] is currently selected. Currently unused in favour of [member Inventory.selectedAssembledItem]. 
@@ -62,7 +64,7 @@ var itemSelected : bool = false
 ## Stores the currently selected [TextureButton]'s assembled item. Can be used to check if item is selected and operate using that item's properties. 
 ## Cannot be used to change the selected item.
 var selectedAssembledItem:Array
-## Stores the index of the currently selected [TextureButton] in the [member Inventory.invGrid]. [br]
+## Stores the index of the currently selected [TextureButton] in the [InvGrid]. [br]
 ## [br]
 ## Can be used to get and set the current assembled item, using [code]invGrid.get_child(selectedItemIndex).assembledItem[/code]. [br] 
 ## [br]
@@ -83,13 +85,13 @@ var selectedItemIndex : int
 ## Call to add an item to the inventory. Accepts assembled items only. Always use this method so we can know when it happens.
 func addItem(assembledItem): currentInv.append(assembledItem)
 
-## Call to remove an item from the inventory. Accepts a [TextureButton] index in the [member invGrid].
+## Call to remove an item from the inventory. Accepts a [TextureButton] index in the [InvGrid].
 ## Always use this method so we can know when it happens and refresh as needed.
 func removeItem(index):
 	currentInv.remove_at(index)
 	refreshInventory()
 	
-## Overrides [method InventoryHelper.generateInfo]. Updates the [ItemDesc] to
+## Overrides [method InventoryHelper.generateInfo]. Updates the [InvItemDesc] to
 ## show and updates [member selectedItemIndex] and [member selectedAssembledItem].
 func generateInfo(desc, item, index := 0):
 	super.generateInfo(desc, item)

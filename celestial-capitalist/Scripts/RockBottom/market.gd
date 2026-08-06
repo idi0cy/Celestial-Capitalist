@@ -4,7 +4,7 @@ extends InventoryHelper
 ##
 ## Handles stall and product generation and sends monetary data to [Ledger].
 
-#region variables
+#region nodes
 @onready var productList = get_node("pickProduct/productList")
 @onready var buyButton = get_node("pickProduct/buyButton/interactable")
 @onready var buyButtonContainer = get_node("pickProduct/buyButton")
@@ -25,7 +25,9 @@ extends InventoryHelper
 @onready var hydrationDisplay = get_node("pickProduct/itemDesc/infoBarOne/Hydration")
 @onready var satiationDisplay = get_node("pickProduct/itemDesc/infoBarOne/Satiation")
 @onready var flavourText = get_node("pickProduct/itemDesc/flavourText")
+#endregion
 
+#region variables
 ##Controls whether the market screen is open.
 var marketOpen : bool = false
 ## List of all stall types registered using [method Market.newStall]. Currently unused, but can be used to iterate over all stall types in future 
@@ -78,7 +80,7 @@ func newStall(
 
 #region stalls
 @onready var broadStreetClinic = newStall("Broad Street Clinic", "Jory Tillman",
-	load("res://assets/Sprites/RockBottom/lootSprites/trashCan.png"),
+	trashCanIcon,
 	{
 		[
 			"Crystal Wash", "Consumable", 60,
@@ -185,6 +187,7 @@ func genStall():
 ## Generates 4 products from the current stall. [br]
 ## [br]
 ## [b]Process: [/b] [br]
+## 0. Reset the [LootBox] [br]
 ## 1. Generate roll based on a bell curve from 0 to largest weight value in loot table, with standard deviation (largest weight / 1.25).
 ## I was too lazy to make a curve resource myself so I just cannibalized and butchered a bell curve in half. [br]
 ## 2. Set any generated roll above max weight to max weight - prevents out of bounds index errors. 
@@ -196,10 +199,10 @@ func genStall():
 ## 6. Generate a name. [br]
 ## 7. Generate a [TextureButton] for each product.
 func genProducts():
+	#0.
 	for item in productList.get_children():
 		productList.remove_child(item)
 		item.queue_free()
-	
 	if buyButton.pressed.is_connected(buy):
 		buyButton.pressed.disconnect(self.buy)
 	buyButtonContainer.hide()
@@ -208,7 +211,8 @@ func genProducts():
 	var tempLootTable = currentStall[3].duplicate_deep()
 	## Keeps track of how many products have been generated and is also used to assign product [TextureButton]s an index.
 	var generatedIndex = 0
-	## 1. A roll based on a bell curve from 0 to largest weight value in loot table, with standard deviation (largest weight / 1.25).
+	# 1.
+	## A roll based on a bell curve from 0 to largest weight value in loot table, with standard deviation (largest weight / 1.25).
 	var roll = randfn(tempLootTable.values().max(), tempLootTable.values().max()/1.25)
 	# 2.
 	if (roll > tempLootTable.values().max()):
@@ -238,9 +242,9 @@ func genProducts():
 		## Used in construction of [TextureButton]s for each product.
 		var productButton = TextureButton.new()
 		productButton.texture_normal = finalItem[-1]
+		productButton.texture_pressed = finalItem[-2]
 		productButton.name = finalItem[0]
-		productButton.set_script(load("res://Scripts/RockBottom/productButton.gd"))
-		productButton.baseInfo = finalItem
+		productButton.set_script(productButtonScript)
 		productButton.index = generatedIndex
 		productButton.pressed.connect(generateInfo.bind(itemDesc, assembleItem(itemQual, finalItem, displayName), productButton))
 		productList.add_child(productButton)

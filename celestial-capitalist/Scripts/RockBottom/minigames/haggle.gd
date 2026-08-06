@@ -125,12 +125,12 @@ func _on_goldilocks_ball() -> void:
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
 	random2 = randf()
-	arguedValue = confirmItem.selected.assembledItem[1] * (confirmItem.selected.baseItem[2] * 0.01) * ((ballSpectrum * 0.01) + 0.5)
-	normalValue = confirmItem.selected.assembledItem[1] * (confirmItem.selected.baseItem[2] * 0.01)
+	arguedValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01) * ((ballSpectrum * 0.01) + 0.5)
+	normalValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01)
 	#print((random2 * 100) *(arguedValue / normalValue))
 	if (random2 * 100) * (arguedValue / normalValue) < progress:
 		ledger.money += arguedValue
-		ledger.addEntry(arguedValue, clock.theTime, sellWindow.allStrangers[target][0], confirmItem.selected.assembledItem[0][0], confirmItem.selected.assembledItem[0][-1])
+		ledger.addEntry(arguedValue, clock.theTime, sellWindow.allStrangers[target][0], confirmItem.selected[0][0], confirmItem.selected[0][-1])
 		if (getEasterEggLine(generatedName) == "false"):
 			terminalText.targetText = "> " + generatedName + ": " + acceptLines.pick_random()
 		else:

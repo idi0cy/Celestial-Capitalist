@@ -1,9 +1,10 @@
 class_name SellWindow
 extends Resources
+## Controls the window that opens after clicking the 'Get Money' button.
+##
+## Handles stranger generation and options to get money from them.
 
-#Options so far are as follows
-#Beg, Sales Pitch, Fake Injury, Steal, Con
-
+#region nodes
 #general
 @onready var clock = get_node("../../digitalClock")
 @onready var personNameLabel = get_node("PickTarget/personName")
@@ -51,17 +52,11 @@ extends Resources
 @onready var stealStrength = get_node("postApproach/minigameWindows/Steal/strengthGame")
 @onready var stealStealth = get_node("postApproach/minigameWindows/Steal/stealthGame")
 
-#stands for 'person sprite'
-@onready var psPlaceholder = load("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
-@onready var personButtonScript = load("res://Scripts/RockBottom/stranger_button.gd")
+#endregion
 
+#region variables
+## Controls whether the window is open or closed.
 var sellWindowOpen = false
-var count
-var count2
-var random
-var random2
-var temporaryList = []
-var placeHolder
 var needToFind
 var strangerButton
 var initiatingAction = false
@@ -169,6 +164,7 @@ func genStrangers():
 	personNameLabel.targetText = ""
 	personNameLabel.fillText()
 	
+	var random : int
 	if clock.theTime >= 1320 or clock.theTime <= 300:
 		random = randi_range(0,1)
 	elif clock.theTime > 300 and clock.theTime <= 420:
@@ -184,27 +180,27 @@ func genStrangers():
 	else:
 		random = randi_range(3,4)
 
-	temporaryList = []
+	var temporaryList = []
 	for item in allStrangers:
 		temporaryList.append(item)
 	
-	count2 = 0
+	var index = 0
 	for i in random:
-		random2 = randi_range(0, (len(temporaryList) - 1))
+		var randomStranger = randi_range(0, (len(temporaryList) - 1))
 		strangerButton = TextureButton.new()
-		strangerButton.texture_normal = allStrangers[random2][9]
-		var generatedName = genName(allStrangers[random2][0])
+		strangerButton.texture_normal = allStrangers[randomStranger][9]
+		var generatedName = genName(allStrangers[randomStranger][0])
 		strangerButton.name = generatedName
 		strangerButton.set_script(personButtonScript)
-		strangerButton.baseInfo = allStrangers[random2]
-		strangerButton.index = count2
-		strangerButton.pressed.connect(identifyTarget.bind(random2, count2, generatedName))
+		strangerButton.baseInfo = allStrangers[randomStranger]
+		strangerButton.index = index
+		strangerButton.pressed.connect(identifyTarget.bind(randomStranger, index, generatedName))
 		PeopleList.add_child(strangerButton)
-		PeopleList.get_child(count2).name = generatedName
-		count2 += 1
+		PeopleList.get_child(index).name = generatedName
+		index += 1
 
 func removeStranger(index):
-	count = 0
+	var count = 0
 	for obj in PeopleList.get_children():
 		if count == index:
 			PeopleList.remove_child(obj)

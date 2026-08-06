@@ -1,0 +1,2709 @@
+[gd_scene format=3 uid="uid://cbhf4smoiyhw6"]
+
+[ext_resource type="Texture2D" uid="uid://20fi5jm87hbv" path="res://assets/Sprites/RockBottom/quotaBackgroundRockBottom.png" id="1_5xa78"]
+[ext_resource type="Texture2D" uid="uid://dn4ude6bpmn1j" path="res://assets/Sprites/RockBottom/quotaBorderRB.png" id="2_5xa78"]
+[ext_resource type="Texture2D" uid="uid://nw7xmbeqtfjo" path="res://assets/Sprites/RockBottom/quotaProgressRB.png" id="3_32v4e"]
+[ext_resource type="PackedScene" uid="uid://me6dpqlc2kap" path="res://ButtonScenes/RockBottom/scavenge_button.tscn" id="4_w43jm"]
+[ext_resource type="PackedScene" uid="uid://cexo5p5cylqbs" path="res://ButtonScenes/RockBottom/sell_button.tscn" id="5_1bthl"]
+[ext_resource type="PackedScene" uid="uid://d2e5kd40yy1wi" path="res://ButtonScenes/RockBottom/event_log.tscn" id="6_vc60y"]
+[ext_resource type="PackedScene" uid="uid://dsff4ik6t3wem" path="res://ButtonScenes/RockBottom/ledger_button.tscn" id="7_js5gw"]
+[ext_resource type="PackedScene" uid="uid://byo2ya3kbbunn" path="res://ButtonScenes/RockBottom/quota_button.tscn" id="8_6ui7u"]
+[ext_resource type="PackedScene" uid="uid://cpnuniqlelilx" path="res://ButtonScenes/RockBottom/inventory_button.tscn" id="9_fivl0"]
+[ext_resource type="Texture2D" uid="uid://bi63gw14ucljt" path="res://assets/Sprites/RockBottom/sidewalkBackground.png" id="10_2evtq"]
+[ext_resource type="Texture2D" uid="uid://dofqnqf3kg1gi" path="res://assets/Sprites/RockBottom/bottomBackground.png" id="11_qt56r"]
+[ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="12_knhbb"]
+[ext_resource type="PackedScene" uid="uid://38prov7apsjs" path="res://ButtonScenes/RockBottom/skills_button.tscn" id="13_a71iy"]
+[ext_resource type="PackedScene" uid="uid://dka81hse17tx8" path="res://ButtonScenes/RockBottom/buy_button.tscn" id="13_iu7b3"]
+[ext_resource type="PackedScene" uid="uid://drhv43e6bxsud" path="res://ButtonScenes/RockBottom/vitals_button.tscn" id="14_5xa78"]
+[ext_resource type="Texture2D" uid="uid://dvdhvyej05u7" path="res://assets/Sprites/RockBottom/RBCentreDay.png" id="16_f1xoi"]
+[ext_resource type="Script" uid="uid://cvlc7n8ubrne" path="res://Scripts/RockBottom/inventory.gd" id="16_lfg33"]
+[ext_resource type="Shader" uid="uid://lcam0ndnm6qi" path="res://Scripts/RockBottom/util/maskDynamicBG.gdshader" id="16_rhay2"]
+[ext_resource type="Script" uid="uid://daddnfwqw3hx6" path="res://Scripts/RockBottom/dynamicBGDay.gd" id="17_107vu"]
+[ext_resource type="Script" uid="uid://csa1yedfaimrv" path="res://Scripts/RockBottom/dynamicBGNight.gd" id="18_vl0u8"]
+[ext_resource type="Script" uid="uid://tlmh7w1b0d8t" path="res://Scripts/RockBottom/sell_window.gd" id="19_kqawt"]
+[ext_resource type="Texture2D" uid="uid://bgfq4ps0t7whn" path="res://assets/Sprites/RockBottom/RBCenterNight.png" id="19_rhay2"]
+[ext_resource type="PackedScene" uid="uid://cgtikku8eqwdt" path="res://ButtonScenes/RockBottom/timeCounter.tscn" id="19_tsiob"]
+[ext_resource type="Script" uid="uid://cci7hvxg1bco" path="res://Scripts/RockBottom/people_icon_list.gd" id="20_fkxer"]
+[ext_resource type="Texture2D" uid="uid://gep8dwo88u7w" path="res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png" id="21_0m4ur"]
+[ext_resource type="Script" uid="uid://277f1o8ppiay" path="res://Scripts/RockBottom/text_spawn_label.gd" id="22_2of7g"]
+[ext_resource type="Script" uid="uid://bynnyas48ihh5" path="res://StageScenes/item_desc.gd" id="22_pr0nw"]
+[ext_resource type="Script" uid="uid://dxq4uto7riqih" path="res://Scripts/RockBottom/inv_item_desc.gd" id="22_qjqh3"]
+[ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="22_tdnta"]
+[ext_resource type="Texture2D" uid="uid://chvl5amt7cywu" path="res://assets/Sprites/RockBottom/inventoryIcons/hamburgInvIcon.png" id="23_6q42e"]
+[ext_resource type="Texture2D" uid="uid://cskmc21byixa2" path="res://assets/Sprites/RockBottom/terminalRB.png" id="24_bgfic"]
+[ext_resource type="Texture2D" uid="uid://4uoni3snjdvx" path="res://assets/Sprites/RockBottom/inventoryIcons/quality5.png" id="24_m6h73"]
+[ext_resource type="Script" uid="uid://bedf55ioah07x" path="res://Scripts/RockBottom/until_new_strangers.gd" id="24_xwnj6"]
+[ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="25_leuqs"]
+[ext_resource type="Script" uid="uid://b4ceulnew7o8x" path="res://Scripts/RockBottom/actions/sales_pitch.gd" id="25_phiw1"]
+[ext_resource type="Texture2D" uid="uid://dxylp3s4soqvu" path="res://assets/Sprites/RockBottom/inventoryIcons/valueIcon.png" id="25_r5csn"]
+[ext_resource type="LabelSettings" uid="uid://7c2o7y03811e" path="res://assets/defaultText.tres" id="26_dls5t"]
+[ext_resource type="Texture2D" uid="uid://b3yy8uixw8vvf" path="res://assets/Sprites/RockBottom/inventoryIcons/inventoryBreaker.png" id="26_r5csn"]
+[ext_resource type="Texture2D" uid="uid://cvifk1as7yeh2" path="res://assets/Sprites/RockBottom/inventoryIcons/hydrationIcon.png" id="26_woire"]
+[ext_resource type="Script" uid="uid://bspc8qf77tcj0" path="res://Scripts/RockBottom/actions/beg.gd" id="27_6xp14"]
+[ext_resource type="Texture2D" uid="uid://cw0j6jp5eguov" path="res://assets/Sprites/RockBottom/inventoryIcons/satiationIcon.png" id="27_gv1jg"]
+[ext_resource type="LabelSettings" uid="uid://bq8y73c2234yr" path="res://assets/defaultText12.tres" id="27_l771o"]
+[ext_resource type="Script" uid="uid://bb0wmseld6y20" path="res://Scripts/RockBottom/actions/fake_injury.gd" id="28_18hvv"]
+[ext_resource type="PackedScene" uid="uid://dngg2yuhdno4i" path="res://ButtonScenes/button.tscn" id="29_koopg"]
+[ext_resource type="Script" uid="uid://chef3jgn53ya4" path="res://Scripts/RockBottom/actions/steal.gd" id="29_qs7pq"]
+[ext_resource type="Script" uid="uid://brfeppu43d5ll" path="res://Scripts/RockBottom/actions/con_action.gd" id="30_033t1"]
+[ext_resource type="Script" uid="uid://ern6euvtapxk" path="res://Scripts/RockBottom/actions/confirm_action.gd" id="31_18hvv"]
+[ext_resource type="Script" uid="uid://bic2idahcuw4a" path="res://Scripts/RockBottom/minigames/pick_to_sell.gd" id="32_qs7pq"]
+[ext_resource type="Script" uid="uid://dot5q14stmjoh" path="res://Scripts/RockBottom/minigames/confirm_selection.gd" id="33_033t1"]
+[ext_resource type="Texture2D" uid="uid://bsdxnepn4mb73" path="res://assets/Sprites/RockBottom/RBblankBackground.png" id="33_op3i2"]
+[ext_resource type="Script" uid="uid://c17ic64r1ge7f" path="res://Scripts/RockBottom/minigames/haggle.gd" id="34_op3i2"]
+[ext_resource type="Script" uid="uid://gd8qvgjmijht" path="res://Scripts/RockBottom/approach_button.gd" id="34_xdr8f"]
+[ext_resource type="Script" uid="uid://c526rf1um5u44" path="res://Scripts/RockBottom/minigames/haggle_bar.gd" id="35_i6uy1"]
+[ext_resource type="StyleBox" uid="uid://80eclwvk5y5h" path="res://assets/defaultProgressBar.tres" id="35_mnkpu"]
+[ext_resource type="Script" uid="uid://b8m8hdrfm7w2a" path="res://Scripts/RockBottom/minigames/fearmonger.gd" id="36_bituw"]
+[ext_resource type="Script" uid="uid://ciglg4feghf3b" path="res://Scripts/RockBottom/minigames/recommend.gd" id="38_l2ux3"]
+[ext_resource type="Script" uid="uid://bdl26m8nm4j5m" path="res://Scripts/RockBottom/minigames/urgency.gd" id="39_7pdp4"]
+[ext_resource type="Script" uid="uid://c6sy7jg6d6jot" path="res://Scripts/RockBottom/minigames/promote.gd" id="40_107vu"]
+[ext_resource type="Script" uid="uid://dpqbgkio045lx" path="res://Scripts/RockBottom/minigames/haggle_target.gd" id="41_7pdp4"]
+[ext_resource type="Script" uid="uid://cn6bbpxhxsu0y" path="res://Scripts/RockBottom/minigames/lowball.gd" id="42_f1xoi"]
+[ext_resource type="Script" uid="uid://df8wwu8lfasdn" path="res://Scripts/RockBottom/minigames/highball.gd" id="43_rhay2"]
+[ext_resource type="Script" uid="uid://sui84r707mwc" path="res://Scripts/RockBottom/minigames/ball.gd" id="44_rhay2"]
+[ext_resource type="Texture2D" uid="uid://322ur6jb8nsa" path="res://assets/Sprites/RockBottom/spectrumOfBall.png" id="45_vl0u8"]
+[ext_resource type="Script" uid="uid://chlqvccm1symp" path="res://Scripts/RockBottom/minigames/haggle_marker.gd" id="46_6xhon"]
+[ext_resource type="Script" uid="uid://c4rm5jon1insh" path="res://Scripts/RockBottom/ledger.gd" id="47_dstdv"]
+[ext_resource type="Script" uid="uid://em057tfyifyv" path="res://Scripts/RockBottom/minigames/beg/beg.gd" id="54_ta34y"]
+[ext_resource type="Script" uid="uid://yotu2hpvjmv2" path="res://Scripts/RockBottom/minigames/beg/logos.gd" id="55_5sglw"]
+[ext_resource type="Texture2D" uid="uid://bwoj1v2iqk8w3" path="res://assets/Sprites/RockBottom/ledgerWindow/balanceBG.png" id="55_6kuie"]
+[ext_resource type="Script" uid="uid://bartb47nud7yx" path="res://Scripts/RockBottom/minigames/beg/beg_progress.gd" id="55_fawhf"]
+[ext_resource type="PackedScene" uid="uid://cat2m625ivp1q" path="res://ButtonScenes/RockBottom/account.tscn" id="56_6kuie"]
+[ext_resource type="Script" uid="uid://gcktkb8ai22r" path="res://Scripts/RockBottom/minigames/beg/pathos.gd" id="56_kol8n"]
+[ext_resource type="Script" uid="uid://cp7hmaxipw18p" path="res://Scripts/RockBottom/minigames/beg/ethos.gd" id="57_r1x1d"]
+[ext_resource type="PackedScene" uid="uid://dihqg6xpa46ng" path="res://ButtonScenes/RockBottom/dailyCosts.tscn" id="57_r7ujp"]
+[ext_resource type="Script" uid="uid://c7yigllmgxl4u" path="res://Scripts/RockBottom/minigames/beg/beg_confirm.gd" id="58_kol8n"]
+[ext_resource type="PackedScene" uid="uid://cw35novf3su5u" path="res://ButtonScenes/RockBottom/dailyProfits.tscn" id="58_ta34y"]
+[ext_resource type="Script" uid="uid://b3b0gcbfnktlo" path="res://Scripts/RockBottom/minigames/beg/done.gd" id="59_r1x1d"]
+[ext_resource type="Script" uid="uid://7ongknv645n1" path="res://Scripts/RockBottom/minigames/fakeInjury/fake_injury.gd" id="61_62asa"]
+[ext_resource type="Script" uid="uid://dlvjs28qaxhdg" path="res://Scripts/RockBottom/minigames/fakeInjury/raise_severity.gd" id="62_sukrf"]
+[ext_resource type="Script" uid="uid://ceuoobhtlrnfu" path="res://Scripts/RockBottom/minigames/fakeInjury/lower_severity.gd" id="63_k80dl"]
+[ext_resource type="Script" uid="uid://bf8i2xklorm6e" path="res://Scripts/RockBottom/minigames/fakeInjury/severity_marker.gd" id="64_rgwub"]
+[ext_resource type="Script" uid="uid://degkooxp0v53m" path="res://Scripts/RockBottom/minigames/fakeInjury/settle_severity.gd" id="64_voxua"]
+[ext_resource type="Texture2D" uid="uid://c0y12hft0cm1l" path="res://assets/Sprites/RockBottom/RGcolumn.png" id="66_b4tmt"]
+[ext_resource type="Script" uid="uid://lup2ffr673yi" path="res://Scripts/RockBottom/minigames/fakeInjury/fake_injury_funkin.gd" id="66_ljcqc"]
+[ext_resource type="Texture2D" uid="uid://bph4wlbx6yr4x" path="res://assets/Sprites/RockBottom/minigames/upArrowBox.png" id="67_dh0ol"]
+[ext_resource type="Script" uid="uid://b4yaspksfgp" path="res://Scripts/RockBottom/minigames/fakeInjury/four_buttons.gd" id="68_fyvno"]
+[ext_resource type="Script" uid="uid://r6btpk761d2i" path="res://Scripts/RockBottom/minigames/fakeInjury/point_counter.gd" id="69_bao8l"]
+[ext_resource type="Texture2D" uid="uid://be4rvkge6ii37" path="res://assets/Sprites/tooltipBG.png" id="72_6q42e"]
+[ext_resource type="Script" uid="uid://cqn4nxbqeg4m4" path="res://Scripts/RockBottom/minigames/conAction/con_action.gd" id="72_m6h73"]
+[ext_resource type="Script" uid="uid://bla8dt38tohkl" path="res://Scripts/RockBottom/minigames/conAction/theOptions/con_label_backing.gd" id="74_bk7c7"]
+[ext_resource type="Script" uid="uid://coe4f0bkwaka4" path="res://Scripts/RockBottom/minigames/conAction/con_label.gd" id="74_r5csn"]
+[ext_resource type="Script" uid="uid://bvlrhvl44lccw" path="res://Scripts/RockBottom/minigames/conAction/theOptions/build_trust.gd" id="75_wj63k"]
+[ext_resource type="Script" uid="uid://bc37hkwar7uoo" path="res://Scripts/RockBottom/minigames/conAction/type_timer.gd" id="76_8gpbd"]
+[ext_resource type="Script" uid="uid://cxtjpf5byn6x" path="res://Scripts/RockBottom/minigames/conAction/theOptions/vulnerability.gd" id="76_bk7c7"]
+[ext_resource type="Script" uid="uid://utreovsfttpd" path="res://Scripts/RockBottom/minigames/conAction/theOptions/find_flaw.gd" id="77_8gpbd"]
+[ext_resource type="Script" uid="uid://5lm0pvla5p01" path="res://Scripts/RockBottom/minigames/conAction/theOptions/fearmonger.gd" id="78_mnkpu"]
+[ext_resource type="Script" uid="uid://bcyvlv3dpb6u7" path="res://Scripts/RockBottom/scavenge.gd" id="81_f2vcc"]
+[ext_resource type="Script" uid="uid://caiy5wvd05cpr" path="res://Scripts/RockBottom/minigames/conAction/pickRisk/risk_marker.gd" id="81_mnkpu"]
+[ext_resource type="Script" uid="uid://bptcg805biioy" path="res://Scripts/RockBottom/minigames/conAction/pickRisk/less_risk.gd" id="81_y4ohr"]
+[ext_resource type="LabelSettings" uid="uid://dr4h1i2bok7vu" path="res://assets/defaultText16.tres" id="81_yt8l6"]
+[ext_resource type="Script" uid="uid://b1kblai4523r1" path="res://Scripts/RockBottom/minigames/conAction/pickRisk/more_risk.gd" id="82_eiodv"]
+[ext_resource type="Script" uid="uid://dvujptrnc80ds" path="res://Scripts/RockBottom/lootableList.gd" id="82_wj63k"]
+[ext_resource type="Script" uid="uid://c5b788e4txwyw" path="res://Scripts/RockBottom/loot_button.gd" id="83_8gpbd"]
+[ext_resource type="Script" uid="uid://cbv8iwy0aydmx" path="res://Scripts/RockBottom/minigames/conAction/pickRisk/settle_risk.gd" id="83_eiodv"]
+[ext_resource type="Script" uid="uid://dkipexbsw255u" path="res://Scripts/RockBottom/until_new_lootables.gd" id="84_mnkpu"]
+[ext_resource type="Script" uid="uid://bv711hnc8m3s0" path="res://Scripts/RockBottom/minigames/scavengeTimer.gd" id="87_013yb"]
+[ext_resource type="Texture2D" uid="uid://bnldlgeenhk6m" path="res://assets/Sprites/RockBottom/minigames/circle.png" id="87_eiodv"]
+[ext_resource type="Texture2D" uid="uid://clopp251fqsfr" path="res://assets/Sprites/RockBottom/ledgerWindow/transactionEntry.png" id="87_ihj1y"]
+[ext_resource type="Texture2D" uid="uid://by70qy5k856t2" path="res://assets/Sprites/RockBottom/minigames/canvas.png" id="88_i7mkg"]
+[ext_resource type="Script" uid="uid://bkj7csqliqp7s" path="res://Scripts/RockBottom/drawing.gd" id="89_013yb"]
+[ext_resource type="Script" uid="uid://dixa3wcf2ag2w" path="res://Scripts/RockBottom/minigames/reference.gd" id="90_eb6av"]
+[ext_resource type="Script" uid="uid://da0c8hwp1tjs" path="res://Scripts/RockBottom/minigames/steal/steal_main.gd" id="91_1m3vn"]
+[ext_resource type="Script" uid="uid://dhpdxl7t3422c" path="res://Scripts/RockBottom/minigames/steal/stealth_option.gd" id="91_koopg"]
+[ext_resource type="StyleBox" uid="uid://ffru7d21j2sh" path="res://assets/defaultButton.tres" id="93_0mu2e"]
+[ext_resource type="Script" uid="uid://bhq7tnlk7heqd" path="res://Scripts/RockBottom/minigames/steal/strength_option.gd" id="93_qjqh3"]
+[ext_resource type="Script" uid="uid://dtysg8tsdrbwx" path="res://Scripts/RockBottom/minigames/steal/stealth_game.gd" id="94_v5jsb"]
+[ext_resource type="Script" uid="uid://dkklbad6thd6k" path="res://Scripts/RockBottom/take_button.gd" id="94_y6hgw"]
+[ext_resource type="Script" uid="uid://rq8u3tta7jj7" path="res://Scripts/RockBottom/minigames/steal/stealth_target.gd" id="95_r1qfd"]
+[ext_resource type="Texture2D" uid="uid://d2ojxuvkfvtiy" path="res://assets/Sprites/RockBottom/minigames/forStealthFill.png" id="96_oj5gc"]
+[ext_resource type="Script" uid="uid://djrfysfxot2yp" path="res://Scripts/RockBottom/terminal.gd" id="96_y6hgw"]
+[ext_resource type="Script" uid="uid://cs4uvmivhuu5v" path="res://Scripts/RockBottom/minigames/steal/stealth_animation.gd" id="97_f3pau"]
+[ext_resource type="Texture2D" uid="uid://66r0s4h2ab4p" path="res://assets/Sprites/RockBottom/minigames/wallet.png" id="98_fah1x"]
+[ext_resource type="Texture2D" uid="uid://21tqqtqyuukm" path="res://assets/Sprites/RockBottom/buttonIcons/skillTreeIcon.png" id="99_exlge"]
+[ext_resource type="Script" uid="uid://7crunth4q0lp" path="res://Scripts/RockBottom/minigames/steal/strength_game.gd" id="100_oj5gc"]
+[ext_resource type="Script" uid="uid://bm0swrp8b7v53" path="res://Scripts/RockBottom/vitals.gd" id="113_v5jsb"]
+[ext_resource type="Script" uid="uid://t1ittnl6l63o" path="res://Scripts/RockBottom/market.gd" id="114_ugxq0"]
+[ext_resource type="Script" uid="uid://bdaqeiwch0r0g" path="res://Scripts/RockBottom/product_list.gd" id="115_v60go"]
+[ext_resource type="Script" uid="uid://cc81cqwjjktd5" path="res://Scripts/RockBottom/quota/cash_inquire.gd" id="125_6kioq"]
+[ext_resource type="Texture2D" uid="uid://hrdxc263wxww" path="res://assets/Sprites/RockBottom/quotaSprites/quotaOuterSprite.png" id="125_mngd5"]
+[ext_resource type="Script" uid="uid://ce2vr2q6p2rj3" path="res://Scripts/RockBottom/quota/quota.gd" id="125_va43e"]
+[ext_resource type="Texture2D" uid="uid://bsjasr0jwopk5" path="res://assets/Sprites/RockBottom/quotaSprites/emptyChecklist.png" id="126_6kioq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
+bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6xhon"]
+resource_local_to_scene = true
+shader = ExtResource("16_rhay2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vl0u8"]
+resource_local_to_scene = true
+shader = ExtResource("16_rhay2")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_013yb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mu2e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2epk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eiodv"]
+bg_color = Color(0.6625909, 0.6625909, 0.6625909, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7mkg"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6av"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2of7g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bgfic"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_leuqs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phiw1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5fyum"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r7ujp"]
+font = ExtResource("12_knhbb")
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ta34y"]
+font = ExtResource("12_knhbb")
+font_size = 15
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phiw1"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fyum"]
+bg_color = Color(0, 0, 0, 0)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gccyc"]
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qs7pq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_033t1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_op3i2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6uy1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bituw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_033t1"]
+bg_color = Color(1, 0.39215687, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w6tiq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_511oo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l2ux3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_546nq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fawhf"]
+bg_color = Color(0.3254902, 1, 0.33333334, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_62asa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sukrf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k80dl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yisrt"]
+size = Vector2(41, 36)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j27jt"]
+radius = 4.472136
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcog2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3w6n"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0eeoo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcog2"]
+size = Vector2(480, 232)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j27jt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mbjlw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mngd5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6kioq"]
+
+[node name="RockBottom" type="Node2D" unique_id=1024261337]
+
+[node name="CelestialSegment" type="Node2D" parent="." unique_id=1451961114]
+
+[node name="Sprite2D" type="Sprite2D" parent="CelestialSegment" unique_id=1196262753]
+position = Vector2(576, 60)
+scale = Vector2(6, 6)
+texture = ExtResource("1_5xa78")
+
+[node name="quotaBar" type="TextureProgressBar" parent="CelestialSegment" unique_id=1760451467]
+offset_left = 27.0
+offset_top = 23.0
+offset_right = 219.0
+offset_bottom = 43.0
+scale = Vector2(7, 7)
+value = 50.0
+texture_under = ExtResource("2_5xa78")
+texture_progress = ExtResource("3_32v4e")
+metadata/_edit_use_anchors_ = true
+
+[node name="progressLabel" type="Label" parent="CelestialSegment" unique_id=1198095127]
+offset_left = 165.0
+offset_top = 43.0
+offset_right = 565.0
+offset_bottom = 73.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+text = "0/1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="eventBar" type="Node2D" parent="." unique_id=2089661544]
+position = Vector2(538, 596)
+
+[node name="ProgressBar" type="ProgressBar" parent="eventBar" unique_id=1190351937]
+offset_left = -215.0
+offset_right = 291.0
+offset_bottom = 27.0
+theme_override_constants/outline_size = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_iu7b3")
+value = 75.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="eventBar" unique_id=2092248988]
+offset_left = -96.0
+offset_top = 2.0
+offset_right = 159.0
+offset_bottom = 26.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 18
+text = "Until Next Random Event"
+metadata/_edit_use_anchors_ = true
+
+[node name="InitButtons" type="Node2D" parent="." unique_id=235710331]
+
+[node name="scavengeButton" parent="InitButtons" unique_id=620947473 instance=ExtResource("4_w43jm")]
+position = Vector2(149, 167)
+
+[node name="sellButton" parent="InitButtons" unique_id=495763558 instance=ExtResource("5_1bthl")]
+position = Vector2(1005, 168)
+
+[node name="EventLog" parent="InitButtons" unique_id=1112858218 instance=ExtResource("6_vc60y")]
+position = Vector2(1004, 606)
+
+[node name="LedgerButton" parent="InitButtons" unique_id=190051087 instance=ExtResource("7_js5gw")]
+position = Vector2(1004, 548)
+
+[node name="QuotaButton" parent="InitButtons" unique_id=72723482 instance=ExtResource("8_6ui7u")]
+position = Vector2(1004, 62)
+
+[node name="InventoryButton" parent="InitButtons" unique_id=1083763648 instance=ExtResource("9_fivl0")]
+position = Vector2(149, 240)
+
+[node name="BuyButton" parent="InitButtons" unique_id=1848460173 instance=ExtResource("13_iu7b3")]
+position = Vector2(149, 313)
+
+[node name="VitalsButton" parent="InitButtons" unique_id=725722638 instance=ExtResource("14_5xa78")]
+position = Vector2(148, 596)
+
+[node name="skillsButton" parent="InitButtons" unique_id=1879609605 instance=ExtResource("13_a71iy")]
+position = Vector2(1005, 240)
+
+[node name="Backgrounds" type="Node2D" parent="." unique_id=865378262]
+
+[node name="backGround1" type="Sprite2D" parent="Backgrounds" unique_id=1217940793]
+z_index = -5
+position = Vector2(148, 384)
+rotation = 1.5707964
+scale = Vector2(8, 8)
+texture = ExtResource("10_2evtq")
+
+[node name="backGround2" type="Sprite2D" parent="Backgrounds" unique_id=712188722]
+z_index = -5
+position = Vector2(1004, 384)
+rotation = 1.5707964
+scale = Vector2(8, 8)
+texture = ExtResource("10_2evtq")
+
+[node name="bottomBackground" type="Sprite2D" parent="Backgrounds" unique_id=594824330]
+z_index = -5
+position = Vector2(576, 584)
+scale = Vector2(8, 8)
+texture = ExtResource("11_qt56r")
+
+[node name="centerBackgroundNight" type="Sprite2D" parent="Backgrounds" unique_id=1782579843]
+z_index = -6
+texture_filter = 1
+material = SubResource("ShaderMaterial_6xhon")
+position = Vector2(576, 320)
+rotation = 1.5707964
+scale = Vector2(8, 8)
+texture = ExtResource("19_rhay2")
+script = ExtResource("18_vl0u8")
+
+[node name="centerBackgroundDay" type="Sprite2D" parent="Backgrounds" unique_id=1775767700]
+z_index = -6
+texture_filter = 1
+material = SubResource("ShaderMaterial_vl0u8")
+position = Vector2(576, 320)
+rotation = 1.5707964
+scale = Vector2(8, 8)
+texture = ExtResource("16_f1xoi")
+script = ExtResource("17_107vu")
+
+[node name="CenterWindows" type="Node2D" parent="." unique_id=97508153]
+
+[node name="inventoryWind" type="Node2D" parent="CenterWindows" unique_id=718695114]
+visible = false
+script = ExtResource("16_lfg33")
+
+[node name="scrollContainer" type="ScrollContainer" parent="CenterWindows/inventoryWind" unique_id=666278843]
+offset_left = 360.0
+offset_top = 145.0
+offset_right = 800.0
+offset_bottom = 376.0
+
+[node name="InvGrid" type="GridContainer" parent="CenterWindows/inventoryWind/scrollContainer" unique_id=339440393]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 5
+
+[node name="itemDesc" type="Node2D" parent="CenterWindows/inventoryWind" unique_id=1774760650]
+script = ExtResource("22_qjqh3")
+
+[node name="itemIcon" type="Sprite2D" parent="CenterWindows/inventoryWind/itemDesc" unique_id=1125223612]
+position = Vector2(372, 423)
+scale = Vector2(0.5134483, 0.5134483)
+texture = ExtResource("23_6q42e")
+
+[node name="Item" type="Label" parent="CenterWindows/inventoryWind/itemDesc" unique_id=965370563]
+offset_left = 399.0
+offset_top = 398.0
+offset_right = 789.0
+offset_bottom = 418.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Item: \"\""
+
+[node name="infoBarOne" type="HBoxContainer" parent="CenterWindows/inventoryWind/itemDesc" unique_id=895234513]
+offset_left = 399.0
+offset_top = 415.0
+offset_right = 792.0
+offset_bottom = 447.0
+
+[node name="Value" type="Button" parent="CenterWindows/inventoryWind/itemDesc/infoBarOne" unique_id=1648110626]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("25_r5csn")
+
+[node name="Quality" type="Button" parent="CenterWindows/inventoryWind/itemDesc/infoBarOne" unique_id=1983376155]
+layout_mode = 2
+tooltip_text = "Quality"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eiodv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i7mkg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eb6av")
+text = "0.0"
+icon = ExtResource("24_m6h73")
+
+[node name="Hydration" type="Button" parent="CenterWindows/inventoryWind/itemDesc/infoBarOne" unique_id=801601764]
+layout_mode = 2
+tooltip_text = "Hydration"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("26_woire")
+
+[node name="Satiation" type="Button" parent="CenterWindows/inventoryWind/itemDesc/infoBarOne" unique_id=1461599332]
+layout_mode = 2
+tooltip_text = "Satiation"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("27_gv1jg")
+
+[node name="inventoryBreaker" type="Sprite2D" parent="CenterWindows/inventoryWind/itemDesc" unique_id=55325704]
+position = Vector2(572, 452)
+scale = Vector2(8, 8)
+texture = ExtResource("26_r5csn")
+
+[node name="flavourText" type="Label" parent="CenterWindows/inventoryWind/itemDesc" unique_id=1759477577]
+offset_left = 352.0
+offset_top = 458.0
+offset_right = 792.0
+offset_bottom = 503.0
+text = "this is where flavour text would go"
+label_settings = ExtResource("27_l771o")
+autowrap_mode = 3
+clip_text = true
+
+[node name="button" parent="CenterWindows/inventoryWind/itemDesc" unique_id=1684606739 instance=ExtResource("29_koopg")]
+position = Vector2(576, 349)
+icon = ExtResource("99_exlge")
+text = "Use Item"
+
+[node name="termBackground" type="Sprite2D" parent="CenterWindows/inventoryWind" unique_id=1838963976]
+z_index = -1
+position = Vector2(576, 448)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="sellWind" type="Node2D" parent="CenterWindows" unique_id=1492757036]
+visible = false
+script = ExtResource("19_kqawt")
+
+[node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
+visible = false
+
+[node name="PeopleList" type="HBoxContainer" parent="CenterWindows/sellWind/PickTarget" unique_id=2057357323]
+offset_left = 325.0
+offset_top = 200.0
+offset_right = 825.0
+offset_bottom = 240.0
+theme_override_constants/separation = 10
+script = ExtResource("20_fkxer")
+
+[node name="TextureButton" type="TextureButton" parent="CenterWindows/sellWind/PickTarget/PeopleList" unique_id=1232153329]
+layout_mode = 2
+texture_normal = ExtResource("21_0m4ur")
+
+[node name="personName" type="Label" parent="CenterWindows/sellWind/PickTarget" unique_id=1692787639]
+offset_left = 376.0
+offset_top = 316.0
+offset_right = 776.0
+offset_bottom = 366.0
+text = "Person \"Name\""
+label_settings = ExtResource("26_dls5t")
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+
+[node name="approachButton" type="Node2D" parent="CenterWindows/sellWind/PickTarget" unique_id=1926417860]
+position = Vector2(576, 400)
+script = ExtResource("34_xdr8f")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/PickTarget/approachButton" unique_id=125082814]
+z_index = 2
+offset_left = -90.0
+offset_top = -27.0
+offset_right = 90.0
+offset_bottom = 14.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2of7g")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bgfic")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_leuqs")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_phiw1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5fyum")
+text = "Approach"
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/PickTarget/approachButton" unique_id=1480844556]
+scale = Vector2(4, 4)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="Directive" type="Label" parent="CenterWindows/sellWind/PickTarget" unique_id=1692433799]
+offset_left = 376.0
+offset_top = 135.0
+offset_right = 776.0
+offset_bottom = 185.0
+text = "Pedestrians Identified"
+label_settings = ExtResource("26_dls5t")
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+
+[node name="strangerRefresh" type="ProgressBar" parent="CenterWindows/sellWind/PickTarget" unique_id=567960496]
+offset_left = 383.0
+offset_top = 482.0
+offset_right = 783.0
+offset_bottom = 505.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/fill = ExtResource("35_mnkpu")
+max_value = 30.0
+script = ExtResource("24_xwnj6")
+
+[node name="explanation" type="Label" parent="CenterWindows/sellWind/PickTarget" unique_id=1367941442]
+offset_left = 483.0
+offset_top = 455.0
+offset_right = 673.0
+offset_bottom = 478.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "until new strangers"
+label_settings = SubResource("LabelSettings_r7ujp")
+script = ExtResource("22_2of7g")
+
+[node name="postApproach" type="Node2D" parent="CenterWindows/sellWind" unique_id=1469147129]
+
+[node name="Terminal" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1548338584]
+visible = false
+position = Vector2(512, 391)
+
+[node name="termText" type="Label" parent="CenterWindows/sellWind/postApproach/Terminal" unique_id=47641209]
+z_index = 3
+custom_maximum_size = Vector2(464, 85)
+offset_left = -168.0
+offset_top = 4.0
+offset_right = 296.0
+offset_bottom = 89.0
+text = "> System: Placeholder"
+label_settings = SubResource("LabelSettings_ta34y")
+autowrap_mode = 2
+script = ExtResource("22_2of7g")
+metadata/_edit_use_anchors_ = true
+
+[node name="termBackground" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Terminal" unique_id=88375434]
+position = Vector2(64, 49)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="theGuy" type="Sprite2D" parent="CenterWindows/sellWind/postApproach" unique_id=872769702]
+visible = false
+position = Vector2(576, 228)
+scale = Vector2(3, 3)
+texture = ExtResource("21_0m4ur")
+
+[node name="Actions" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1846174536]
+visible = false
+
+[node name="Sales Pitch" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=872168034]
+position = Vector2(393, 170)
+script = ExtResource("25_phiw1")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" unique_id=5823537]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Sales Pitch"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" unique_id=1631136714]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="Beg" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=1373708636]
+position = Vector2(393, 220)
+script = ExtResource("27_6xp14")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/Beg" unique_id=815617344]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Beg"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/Beg" unique_id=1049977813]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="Fake Injury" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=41384712]
+position = Vector2(759, 170)
+script = ExtResource("28_18hvv")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/Fake Injury" unique_id=1512911175]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Fake Injury"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/Fake Injury" unique_id=268340808]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="Steal" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=962512209]
+position = Vector2(759, 220)
+script = ExtResource("29_qs7pq")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/Steal" unique_id=1728315950]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Steal"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/Steal" unique_id=178528958]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="Con" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=155143526]
+position = Vector2(759, 270)
+script = ExtResource("30_033t1")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/Con" unique_id=1961101140]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Con"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/Con" unique_id=2084000827]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="takeAction" type="Node2D" parent="CenterWindows/sellWind/postApproach/Actions" unique_id=1511560941]
+position = Vector2(577, 350)
+script = ExtResource("31_18hvv")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/Actions/takeAction" unique_id=884800544]
+z_index = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -18.0
+offset_right = 68.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_phiw1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fyum")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gccyc")
+text = "Take Action"
+metadata/_edit_use_anchors_ = true
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/Actions/takeAction" unique_id=1986578377]
+z_index = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="minigameWindows" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=611419590]
+
+[node name="pickToSell" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=371395790]
+z_index = 5
+script = ExtResource("32_qs7pq")
+
+[node name="popupBg" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=54092830]
+position = Vector2(576, 320)
+rotation = 1.5707964
+scale = Vector2(9, 9)
+texture = ExtResource("33_op3i2")
+
+[node name="scrollContainer" type="ScrollContainer" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=177717668]
+offset_left = 352.0
+offset_top = 155.0
+offset_right = 795.0
+offset_bottom = 393.0
+
+[node name="InvGrid" type="GridContainer" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/scrollContainer" unique_id=1749365955]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 5
+
+[node name="Directive" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=1354870666]
+offset_left = 442.0
+offset_top = 109.0
+offset_right = 715.0
+offset_bottom = 142.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 25
+text = "Pick an Item to Sell"
+
+[node name="itemDesc" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=1196255287]
+script = ExtResource("22_pr0nw")
+
+[node name="itemIcon" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc" unique_id=413187672]
+position = Vector2(372, 423)
+scale = Vector2(0.5134483, 0.5134483)
+texture = ExtResource("23_6q42e")
+
+[node name="Item" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc" unique_id=1121950376]
+offset_left = 399.0
+offset_top = 398.0
+offset_right = 789.0
+offset_bottom = 418.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Item: \"\""
+
+[node name="infoBarOne" type="HBoxContainer" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc" unique_id=44670172]
+offset_left = 399.0
+offset_top = 415.0
+offset_right = 792.0
+offset_bottom = 447.0
+
+[node name="Value" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc/infoBarOne" unique_id=1048534977]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("25_r5csn")
+
+[node name="Quality" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc/infoBarOne" unique_id=534784719]
+layout_mode = 2
+tooltip_text = "Quality"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eiodv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i7mkg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eb6av")
+text = "0.0"
+icon = ExtResource("24_m6h73")
+
+[node name="Hydration" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc/infoBarOne" unique_id=141670654]
+layout_mode = 2
+tooltip_text = "Hydration"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("26_woire")
+
+[node name="Satiation" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc/infoBarOne" unique_id=1645947126]
+layout_mode = 2
+tooltip_text = "Satiation"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("27_gv1jg")
+
+[node name="inventoryBreaker" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc" unique_id=1972329290]
+position = Vector2(572, 452)
+scale = Vector2(8, 8)
+texture = ExtResource("26_r5csn")
+
+[node name="flavourText" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/itemDesc" unique_id=1260515333]
+offset_left = 352.0
+offset_top = 458.0
+offset_right = 792.0
+offset_bottom = 503.0
+text = "this is where flavour text would go"
+label_settings = ExtResource("27_l771o")
+autowrap_mode = 3
+clip_text = true
+
+[node name="confirm" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell" unique_id=1130010631]
+position = Vector2(570, 511)
+script = ExtResource("33_033t1")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" unique_id=1537377677]
+position = Vector2(7, -5)
+scale = Vector2(3, 3)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" unique_id=1355126608]
+offset_left = -51.0
+offset_top = -25.0
+offset_right = 65.0
+offset_bottom = 8.0
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qs7pq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_033t1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_op3i2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_i6uy1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bituw")
+text = "Confirm"
+
+[node name="Haggle" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=686576947]
+visible = false
+script = ExtResource("34_op3i2")
+
+[node name="haggleBox" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=174875371]
+position = Vector2(576, 293)
+scale = Vector2(8, 9.75)
+texture = ExtResource("24_bgfic")
+
+[node name="Directive" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=1529393965]
+offset_left = 495.0
+offset_top = 132.0
+offset_right = 668.0
+offset_bottom = 170.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 30
+text = "PROGRESS"
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+
+[node name="haggleBar" type="ProgressBar" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=1679955001]
+offset_left = 374.0
+offset_top = 174.0
+offset_right = 774.0
+offset_bottom = 201.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_033t1")
+script = ExtResource("35_i6uy1")
+
+[node name="dialogue" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=336107357]
+visible = false
+
+[node name="fearmonger" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue" unique_id=1385566250]
+position = Vector2(428, 249)
+script = ExtResource("36_bituw")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/fearmonger" unique_id=2004178133]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/fearmonger" unique_id=77828735]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "FOMO"
+
+[node name="Recommend" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue" unique_id=1770934708]
+position = Vector2(576, 249)
+script = ExtResource("38_l2ux3")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/Recommend" unique_id=1172046540]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/Recommend" unique_id=1360813630]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Recommend"
+
+[node name="urgency" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue" unique_id=1795632478]
+position = Vector2(723, 249)
+script = ExtResource("39_7pdp4")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/urgency" unique_id=649081967]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/urgency" unique_id=1151758211]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Urgency"
+
+[node name="promote" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue" unique_id=2105810334]
+position = Vector2(428, 290)
+script = ExtResource("40_107vu")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote" unique_id=1749717836]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote" unique_id=180820530]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Promote"
+
+[node name="aimTrainZone" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=1038025737]
+
+[node name="dummy" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/aimTrainZone" unique_id=2106900740]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("41_7pdp4")
+
+[node name="pricing" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=479323230]
+
+[node name="lowball" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing" unique_id=1782483640]
+position = Vector2(430, 249)
+script = ExtResource("42_f1xoi")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" unique_id=505359049]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" unique_id=1746876569]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Lower"
+
+[node name="highball" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing" unique_id=795596011]
+position = Vector2(723, 249)
+script = ExtResource("43_rhay2")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" unique_id=1718686327]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" unique_id=97004360]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Raise"
+
+[node name="Goldilocks" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing" unique_id=1442818377]
+position = Vector2(576, 249)
+script = ExtResource("44_rhay2")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" unique_id=1513157766]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" unique_id=1864887799]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Settle"
+
+[node name="spectrumOfBall" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing" unique_id=45208805]
+position = Vector2(576, 286)
+texture = ExtResource("45_vl0u8")
+
+[node name="lowball" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/spectrumOfBall" unique_id=1936462858]
+offset_left = -230.0
+offset_top = -11.0
+offset_right = -154.0
+offset_bottom = 12.0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Lowball"
+
+[node name="highball" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/spectrumOfBall" unique_id=955880997]
+offset_left = 156.0
+offset_top = -11.0
+offset_right = 232.0
+offset_bottom = 12.0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Highball"
+
+[node name="marker" type="ColorRect" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/spectrumOfBall" unique_id=1591843477]
+offset_left = 142.0
+offset_top = -10.0
+offset_right = 182.0
+offset_bottom = 30.0
+scale = Vector2(0.145, 0.5)
+script = ExtResource("46_6xhon")
+
+[node name="Beg" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=1389438078]
+script = ExtResource("54_ta34y")
+
+[node name="Progress" type="ProgressBar" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg" unique_id=378608658]
+offset_left = 377.0
+offset_top = 181.0
+offset_right = 777.0
+offset_bottom = 206.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_fawhf")
+script = ExtResource("55_fawhf")
+metadata/_edit_use_anchors_ = true
+
+[node name="Directive" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg" unique_id=978461654]
+offset_left = 482.0
+offset_top = 137.0
+offset_right = 662.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 30
+text = "PROGRESS"
+metadata/_edit_use_anchors_ = true
+
+[node name="begBox" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg" unique_id=2033369081]
+position = Vector2(576, 295)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="Dialogue" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg" unique_id=112485640]
+
+[node name="Logos" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue" unique_id=389819142]
+position = Vector2(420, 262)
+script = ExtResource("55_5sglw")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" unique_id=2072180074]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" unique_id=1736819550]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Logos"
+metadata/_edit_use_anchors_ = true
+
+[node name="Pathos" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue" unique_id=83971021]
+position = Vector2(576, 262)
+script = ExtResource("56_kol8n")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" unique_id=2049789925]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" unique_id=1461827232]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Pathos"
+metadata/_edit_use_anchors_ = true
+
+[node name="Ethos" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue" unique_id=77595044]
+position = Vector2(730, 261)
+script = ExtResource("57_r1x1d")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" unique_id=1543373792]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" unique_id=1192327880]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Ethos"
+metadata/_edit_use_anchors_ = true
+
+[node name="Confirm" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue" unique_id=128938334]
+position = Vector2(494, 328)
+script = ExtResource("58_kol8n")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm" unique_id=164372448]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm" unique_id=457141358]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Confirm"
+metadata/_edit_use_anchors_ = true
+
+[node name="Done" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue" unique_id=854696243]
+position = Vector2(659, 328)
+script = ExtResource("59_r1x1d")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" unique_id=1980470319]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" unique_id=218619754]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Done"
+metadata/_edit_use_anchors_ = true
+
+[node name="FakeInjury" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=482562965]
+visible = false
+script = ExtResource("61_62asa")
+
+[node name="FIbox" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=1025160326]
+position = Vector2(576, 304)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="severityPick" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=569409684]
+visible = false
+
+[node name="raise" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=2125256835]
+position = Vector2(714, 272)
+script = ExtResource("62_sukrf")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" unique_id=129770989]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" unique_id=907458601]
+offset_left = -48.0
+offset_top = -27.0
+offset_right = 58.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_62asa")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sukrf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k80dl")
+text = "Raise"
+
+[node name="lower" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=1830026727]
+position = Vector2(438, 272)
+script = ExtResource("63_k80dl")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" unique_id=2045241308]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" unique_id=1748256085]
+offset_left = -48.0
+offset_top = -27.0
+offset_right = 58.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_62asa")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sukrf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k80dl")
+text = "Lower"
+
+[node name="settle" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=1749936996]
+position = Vector2(576, 272)
+script = ExtResource("64_voxua")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" unique_id=1400981236]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" unique_id=656099050]
+offset_left = -48.0
+offset_top = -27.0
+offset_right = 58.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_62asa")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sukrf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_k80dl")
+text = "Settle"
+
+[node name="severityBar" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=936698528]
+position = Vector2(576, 308)
+texture = ExtResource("45_vl0u8")
+
+[node name="marker" type="ColorRect" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=1345885706]
+offset_left = 428.0
+offset_top = 298.0
+offset_right = 468.0
+offset_bottom = 338.0
+scale = Vector2(0.145, 0.5)
+script = ExtResource("64_rgwub")
+
+[node name="labels" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick" unique_id=1414203571]
+
+[node name="Mild" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/labels" unique_id=859767203]
+offset_left = 392.0
+offset_top = 297.0
+offset_right = 432.0
+offset_bottom = 317.0
+text = "Mild"
+
+[node name="barDescription" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/labels" unique_id=567328202]
+offset_left = 498.0
+offset_top = 328.0
+offset_right = 654.0
+offset_bottom = 348.0
+text = "Injury Severity"
+
+[node name="Extreme" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/labels" unique_id=1331903720]
+offset_left = 728.0
+offset_top = 297.0
+offset_right = 808.0
+offset_bottom = 317.0
+text = "Extreme"
+
+[node name="minigamePart" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=72861098]
+script = ExtResource("66_ljcqc")
+
+[node name="column1" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=2039916517]
+position = Vector2(568, 262)
+texture = ExtResource("66_b4tmt")
+
+[node name="column2" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1151597690]
+position = Vector2(568, 290)
+texture = ExtResource("66_b4tmt")
+
+[node name="column3" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1341818366]
+position = Vector2(568, 318)
+texture = ExtResource("66_b4tmt")
+
+[node name="column4" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1759541684]
+position = Vector2(568, 346)
+texture = ExtResource("66_b4tmt")
+
+[node name="buttons" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1127936378]
+script = ExtResource("68_fyvno")
+
+[node name="upButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=1040097883]
+z_index = 5
+offset_left = 368.0
+offset_top = 250.0
+offset_right = 392.0
+offset_bottom = 274.0
+pivot_offset = Vector2(12, 12)
+texture_normal = ExtResource("67_dh0ol")
+
+[node name="downButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=86675647]
+z_index = 5
+offset_left = 368.0
+offset_top = 278.0
+offset_right = 392.0
+offset_bottom = 302.0
+rotation = 3.1415927
+pivot_offset = Vector2(12, 12)
+texture_normal = ExtResource("67_dh0ol")
+
+[node name="leftButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=713911049]
+z_index = 5
+offset_left = 368.0
+offset_top = 306.0
+offset_right = 392.0
+offset_bottom = 330.0
+rotation = 4.712389
+pivot_offset = Vector2(12, 12)
+texture_normal = ExtResource("67_dh0ol")
+
+[node name="rightButton" type="TextureButton" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/buttons" unique_id=766912709]
+z_index = 5
+offset_left = 368.0
+offset_top = 334.0
+offset_right = 392.0
+offset_bottom = 358.0
+rotation = 1.5707964
+pivot_offset = Vector2(12, 12)
+texture_normal = ExtResource("67_dh0ol")
+
+[node name="targetDomain" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=1554134541]
+
+[node name="pointCounter" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart" unique_id=616349410]
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/pointCounter" unique_id=1301620602]
+position = Vector2(577, 185)
+scale = Vector2(4, 4)
+texture = ExtResource("22_tdnta")
+
+[node name="pointLabel" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/minigamePart/pointCounter" unique_id=1428612339]
+offset_left = 461.0
+offset_top = 161.0
+offset_right = 693.0
+offset_bottom = 205.0
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("69_bao8l")
+
+[node name="takePublic" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=58030356]
+
+[node name="Con" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=1544630324]
+visible = false
+script = ExtResource("72_m6h73")
+
+[node name="conTerminal" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con" unique_id=1514979266]
+
+[node name="termSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/conTerminal" unique_id=1357251438]
+position = Vector2(576, 380)
+scale = Vector2(8, 8)
+texture = ExtResource("72_6q42e")
+
+[node name="typeGame" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/conTerminal" unique_id=1161267424]
+visible = false
+
+[node name="terminalTypeBacking" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/conTerminal/typeGame" unique_id=131777049]
+custom_maximum_size = Vector2(464, 182)
+offset_left = 344.0
+offset_top = 280.0
+offset_right = 554.0
+offset_bottom = 300.0
+theme_override_colors/font_color = Color(0.49747366, 0.49747366, 0.49747366, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "> System: Placeholder"
+autowrap_mode = 3
+script = ExtResource("74_bk7c7")
+
+[node name="terminalType" type="RichTextLabel" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/conTerminal/typeGame" unique_id=527089508]
+custom_minimum_size = Vector2(465, 181)
+custom_maximum_size = Vector2(464, 181)
+offset_left = 344.0
+offset_top = 280.0
+offset_right = 808.0
+offset_bottom = 461.0
+theme_override_constants/line_separation = 3
+bbcode_enabled = true
+text = "> System:"
+scroll_active = false
+text_direction = 1
+script = ExtResource("74_r5csn")
+
+[node name="ghostWriter" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/conTerminal/typeGame" unique_id=2146308631]
+custom_maximum_size = Vector2(464, 182)
+offset_left = -1006.0
+offset_top = -806.0
+offset_right = -958.0
+offset_bottom = -717.0
+text = "SFD
+DFDS
+
+"
+autowrap_mode = 3
+
+[node name="typeTimer" type="Timer" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/conTerminal/typeGame" unique_id=230785447]
+script = ExtResource("76_8gpbd")
+
+[node name="connedGuy" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con" unique_id=1119247932]
+position = Vector2(756, 192)
+scale = Vector2(2, 2)
+texture = ExtResource("21_0m4ur")
+
+[node name="options" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con" unique_id=1514574767]
+visible = false
+
+[node name="shadyGame" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options" unique_id=1792091345]
+position = Vector2(432, 296)
+script = ExtResource("75_wj63k")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame" unique_id=1505301208]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame" unique_id=1702278198]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Shady Game"
+metadata/_edit_use_anchors_ = true
+
+[node name="opportunity" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options" unique_id=229965476]
+position = Vector2(576, 296)
+script = ExtResource("76_bk7c7")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity" unique_id=922148354]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity" unique_id=1809617399]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Oppurtunity"
+metadata/_edit_use_anchors_ = true
+
+[node name="fakeValue" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options" unique_id=1844896374]
+position = Vector2(720, 296)
+script = ExtResource("77_8gpbd")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue" unique_id=388735163]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue" unique_id=352963054]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Fake Value"
+metadata/_edit_use_anchors_ = true
+
+[node name="magic" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options" unique_id=1592851321]
+position = Vector2(432, 336)
+script = ExtResource("78_mnkpu")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/magic" unique_id=884173850]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/magic" unique_id=652822734]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Magic"
+metadata/_edit_use_anchors_ = true
+
+[node name="Severity" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con" unique_id=1068361283]
+
+[node name="lessRisk" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity" unique_id=1277365321]
+position = Vector2(429, 304)
+script = ExtResource("81_y4ohr")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/lessRisk" unique_id=340662414]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/lessRisk" unique_id=101018321]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Lower"
+metadata/_edit_use_anchors_ = true
+
+[node name="moreRisk" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity" unique_id=718241855]
+position = Vector2(722, 304)
+script = ExtResource("82_eiodv")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/moreRisk" unique_id=1994262527]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/moreRisk" unique_id=595385250]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Raise"
+metadata/_edit_use_anchors_ = true
+
+[node name="Goldilocks" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity" unique_id=150477593]
+position = Vector2(575, 304)
+script = ExtResource("83_eiodv")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks" unique_id=1129663000]
+scale = Vector2(2, 2)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks" unique_id=806244459]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Settle"
+metadata/_edit_use_anchors_ = true
+
+[node name="spectrumOfBall" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity" unique_id=300384345]
+position = Vector2(575, 341)
+texture = ExtResource("45_vl0u8")
+
+[node name="lowball" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/spectrumOfBall" unique_id=612247760]
+offset_left = -230.0
+offset_top = -11.0
+offset_right = -154.0
+offset_bottom = 12.0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Low risk"
+metadata/_edit_use_anchors_ = true
+
+[node name="highball" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/spectrumOfBall" unique_id=469744551]
+offset_left = 156.0
+offset_top = -11.0
+offset_right = 232.0
+offset_bottom = 12.0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "High risk"
+metadata/_edit_use_anchors_ = true
+
+[node name="marker" type="ColorRect" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/spectrumOfBall" unique_id=848449786]
+offset_left = -148.0
+offset_top = -10.0
+offset_right = -108.0
+offset_bottom = 30.0
+scale = Vector2(0.145, 0.5)
+script = ExtResource("81_mnkpu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Steal" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=1194338050]
+script = ExtResource("91_1m3vn")
+
+[node name="options" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal" unique_id=1231739802]
+visible = false
+
+[node name="stealthOption" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options" unique_id=1021594233]
+position = Vector2(394, 244)
+script = ExtResource("91_koopg")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" unique_id=225054068]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" unique_id=929537094]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Stealth"
+metadata/_edit_use_anchors_ = true
+
+[node name="strengthOption" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options" unique_id=794405891]
+position = Vector2(762, 240)
+script = ExtResource("93_qjqh3")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" unique_id=561710937]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" unique_id=658867627]
+offset_left = -59.0
+offset_top = -18.0
+offset_right = 61.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w6tiq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_511oo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l2ux3")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_546nq")
+text = "Strength"
+metadata/_edit_use_anchors_ = true
+
+[node name="stealthGame" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal" unique_id=876022194]
+visible = false
+script = ExtResource("94_v5jsb")
+
+[node name="backing" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=855389283]
+position = Vector2(576, 440)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="playerBar" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=1191445428]
+
+[node name="playerBarVisual" type="ColorRect" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/playerBar" unique_id=847532059]
+offset_left = 364.0
+offset_top = 440.0
+offset_right = 405.0
+offset_bottom = 476.0
+color = Color(0, 1, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="PBarea" type="Area2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/playerBar" unique_id=1316022255]
+position = Vector2(364, 440)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/playerBar/PBarea" unique_id=709677830]
+position = Vector2(20, 18)
+shape = SubResource("RectangleShape2D_yisrt")
+
+[node name="frame" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=1698967206]
+position = Vector2(576, 458)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("2_5xa78")
+
+[node name="target" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=555217125]
+position = Vector2(379, 457)
+script = ExtResource("95_r1qfd")
+
+[node name="targetSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/target" unique_id=1050933296]
+texture = ExtResource("25_r5csn")
+
+[node name="Area2D" type="Area2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/target" unique_id=1922622659]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/target/Area2D" unique_id=1811990266]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_j27jt")
+
+[node name="progressBar" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=1913512025]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/progressBar" unique_id=1226099138]
+offset_left = 432.00003
+offset_top = 394.00003
+offset_right = 528.0
+offset_bottom = 434.00003
+scale = Vector2(3, 3)
+step = 0.1
+value = 25.0
+texture_under = ExtResource("2_5xa78")
+texture_progress = ExtResource("96_oj5gc")
+metadata/_edit_use_anchors_ = true
+
+[node name="goofyAnimation" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=1585179375]
+position = Vector2(0, 45)
+script = ExtResource("97_f3pau")
+
+[node name="walletSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/goofyAnimation" unique_id=1885870694]
+z_index = 4
+position = Vector2(736, 211)
+scale = Vector2(8, 8)
+texture = ExtResource("98_fah1x")
+flip_h = true
+
+[node name="handcomposite" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/goofyAnimation" unique_id=1847990981]
+position = Vector2(150, 0)
+
+[node name="hand" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/goofyAnimation/handcomposite" unique_id=848251677]
+z_index = -6
+position = Vector2(410, 207)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("99_exlge")
+
+[node name="coin" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/goofyAnimation/handcomposite" unique_id=268516899]
+z_index = -6
+position = Vector2(454, 209)
+scale = Vector2(4, 4)
+texture = ExtResource("25_r5csn")
+
+[node name="strengthGame" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal" unique_id=1857939151]
+visible = false
+script = ExtResource("100_oj5gc")
+
+[node name="board" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/strengthGame" unique_id=400798618]
+position = Vector2(576, 380)
+scale = Vector2(8, 8)
+texture = ExtResource("72_6q42e")
+
+[node name="cloneZone" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/strengthGame" unique_id=1356671803]
+
+[node name="changingText" type="Label" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/strengthGame" unique_id=1070972267]
+custom_minimum_size = Vector2(300, 24)
+custom_maximum_size = Vector2(300, 200)
+offset_left = 427.0
+offset_top = 227.0
+offset_right = 727.0
+offset_bottom = 251.0
+text = "TARGETS REMAINING: 15"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Ledger" type="Node2D" parent="CenterWindows" unique_id=893953733]
+visible = false
+script = ExtResource("47_dstdv")
+
+[node name="sidebar" type="Node2D" parent="CenterWindows/Ledger" unique_id=1895109815]
+
+[node name="balanceBG" type="Sprite2D" parent="CenterWindows/Ledger/sidebar" unique_id=617956844]
+position = Vector2(755.99994, 265)
+scale = Vector2(6.320001, 6.320001)
+texture = ExtResource("55_6kuie")
+
+[node name="balance" type="Label" parent="CenterWindows/Ledger/sidebar" unique_id=257651775]
+offset_left = 711.0
+offset_top = 246.0
+offset_right = 786.0
+offset_bottom = 279.0
+text = "+$10"
+label_settings = ExtResource("26_dls5t")
+horizontal_alignment = 1
+
+[node name="account" parent="CenterWindows/Ledger/sidebar" unique_id=495495416 instance=ExtResource("56_6kuie")]
+position = Vector2(760, 370.00003)
+scale = Vector2(0.6, 0.6)
+
+[node name="dailyCosts" parent="CenterWindows/Ledger/sidebar" unique_id=139047216 instance=ExtResource("57_r7ujp")]
+position = Vector2(760, 410.00003)
+scale = Vector2(0.6, 0.6)
+
+[node name="dailyProfits" parent="CenterWindows/Ledger/sidebar" unique_id=144393318 instance=ExtResource("58_ta34y")]
+position = Vector2(760, 450.00003)
+scale = Vector2(0.6, 0.6)
+
+[node name="transactionContainer" type="ScrollContainer" parent="CenterWindows/Ledger" unique_id=17181476]
+offset_left = 341.0
+offset_top = 139.0
+offset_right = 625.0
+offset_bottom = 502.0
+
+[node name="innerTransactionContainer" type="VBoxContainer" parent="CenterWindows/Ledger/transactionContainer" unique_id=253266392]
+layout_mode = 2
+
+[node name="scavenge" type="Node2D" parent="CenterWindows" unique_id=1291356382]
+visible = false
+script = ExtResource("81_f2vcc")
+
+[node name="pickLootable" type="Node2D" parent="CenterWindows/scavenge" unique_id=799710811]
+visible = false
+
+[node name="lootableList" type="HBoxContainer" parent="CenterWindows/scavenge/pickLootable" unique_id=935785581]
+offset_left = 325.0
+offset_top = 200.0
+offset_right = 825.0
+offset_bottom = 265.0
+theme_override_constants/separation = 10
+script = ExtResource("82_wj63k")
+
+[node name="lootable" type="TextureButton" parent="CenterWindows/scavenge/pickLootable/lootableList" unique_id=1549559478]
+layout_mode = 2
+
+[node name="lootableDesc" type="Label" parent="CenterWindows/scavenge/pickLootable" unique_id=1607501404]
+offset_left = 376.0
+offset_top = 316.0
+offset_right = 776.0
+offset_bottom = 366.0
+text = "lootableDesc"
+label_settings = ExtResource("26_dls5t")
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+
+[node name="lootButton" type="Node2D" parent="CenterWindows/scavenge/pickLootable" unique_id=576452698]
+position = Vector2(576, 400)
+script = ExtResource("83_8gpbd")
+
+[node name="interactable" type="Button" parent="CenterWindows/scavenge/pickLootable/lootButton" unique_id=1383438440]
+offset_left = -90.0
+offset_top = -27.0
+offset_right = 90.0
+offset_bottom = 14.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vcog2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s3w6n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0eeoo")
+text = "Loot"
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/scavenge/pickLootable/lootButton" unique_id=672665162]
+z_index = -1
+scale = Vector2(4, 4)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="directive" type="Label" parent="CenterWindows/scavenge/pickLootable" unique_id=1671163369]
+offset_left = 376.0
+offset_top = 135.0
+offset_right = 776.0
+offset_bottom = 185.0
+text = "Lootables Identified"
+label_settings = ExtResource("26_dls5t")
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+
+[node name="lootRefresh" type="ProgressBar" parent="CenterWindows/scavenge/pickLootable" unique_id=1634287035]
+offset_left = 383.0
+offset_top = 482.0
+offset_right = 783.0
+offset_bottom = 505.0
+scale = Vector2(1.000793, 0.97112685)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/fill = ExtResource("35_mnkpu")
+script = ExtResource("84_mnkpu")
+
+[node name="explanation" type="Label" parent="CenterWindows/scavenge/pickLootable" unique_id=550372179]
+offset_left = 483.0
+offset_top = 455.0
+offset_right = 673.0
+offset_bottom = 478.0
+text = "until new lootables"
+label_settings = ExtResource("81_yt8l6")
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+
+[node name="lootResult" type="Node2D" parent="CenterWindows/scavenge" unique_id=585207552]
+
+[node name="Terminal" type="Node2D" parent="CenterWindows/scavenge/lootResult" unique_id=782184732]
+position = Vector2(512, 391)
+
+[node name="termText" type="Label" parent="CenterWindows/scavenge/lootResult/Terminal" unique_id=1334088395]
+z_index = 3
+offset_left = -163.0
+offset_top = 6.0
+offset_right = 291.0
+offset_bottom = 91.0
+text = "> System: Placeholder"
+label_settings = SubResource("LabelSettings_ta34y")
+autowrap_mode = 2
+script = ExtResource("22_2of7g")
+metadata/_edit_use_anchors_ = true
+
+[node name="termBackground" type="Sprite2D" parent="CenterWindows/scavenge/lootResult/Terminal" unique_id=1677190599]
+position = Vector2(64, 49)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="minigameWindow" type="Node2D" parent="CenterWindows/scavenge/lootResult" unique_id=839797698]
+
+[node name="Area2D" type="Area2D" parent="CenterWindows/scavenge/lootResult/minigameWindow" unique_id=187321679]
+z_index = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterWindows/scavenge/lootResult/minigameWindow/Area2D" unique_id=1798915190]
+z_index = 3
+position = Vector2(576, 244)
+shape = SubResource("RectangleShape2D_vcog2")
+
+[node name="timer" type="ProgressBar" parent="CenterWindows/scavenge/lootResult/minigameWindow" unique_id=2050693545]
+z_index = 1
+offset_left = 376.0
+offset_top = 468.0
+offset_right = 776.0
+offset_bottom = 495.0
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/fill = ExtResource("35_mnkpu")
+show_percentage = false
+script = ExtResource("87_013yb")
+
+[node name="indicator" type="Label" parent="CenterWindows/scavenge/lootResult/minigameWindow/timer" unique_id=1419598577]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 5.0
+offset_right = 240.0
+offset_bottom = 25.0
+text = "0 secs left"
+label_settings = ExtResource("27_l771o")
+
+[node name="drawn" type="Sprite2D" parent="CenterWindows/scavenge/lootResult/minigameWindow" unique_id=1942961946]
+z_index = 2
+position = Vector2(576, 244)
+scale = Vector2(8, 8)
+texture = ExtResource("88_i7mkg")
+script = ExtResource("89_013yb")
+
+[node name="reference" type="Sprite2D" parent="CenterWindows/scavenge/lootResult/minigameWindow" unique_id=664404390]
+z_index = 1
+position = Vector2(576, 244)
+scale = Vector2(8, 8)
+texture = ExtResource("87_eiodv")
+script = ExtResource("90_eb6av")
+
+[node name="background" type="Sprite2D" parent="CenterWindows/scavenge/lootResult/minigameWindow" unique_id=2039373212]
+position = Vector2(576, 252)
+scale = Vector2(8, 8)
+texture = ExtResource("87_ihj1y")
+
+[node name="lootTurnout" type="Node2D" parent="CenterWindows/scavenge/lootResult" unique_id=965659395]
+
+[node name="directive" type="Label" parent="CenterWindows/scavenge/lootResult/lootTurnout" unique_id=1498160250]
+offset_right = 40.0
+offset_bottom = 20.0
+
+[node name="lootBox" type="HBoxContainer" parent="CenterWindows/scavenge/lootResult/lootTurnout" unique_id=1004789531]
+offset_left = 325.0
+offset_top = 200.0
+offset_right = 825.0
+offset_bottom = 265.0
+theme_override_constants/separation = 10
+
+[node name="lootable" type="TextureButton" parent="CenterWindows/scavenge/lootResult/lootTurnout/lootBox" unique_id=1576648099]
+layout_mode = 2
+texture_normal = ExtResource("23_6q42e")
+
+[node name="takeButton" type="Node2D" parent="CenterWindows/scavenge/lootResult/lootTurnout" unique_id=2030741572]
+position = Vector2(576, 335)
+script = ExtResource("94_y6hgw")
+
+[node name="interactable" type="Button" parent="CenterWindows/scavenge/lootResult/lootTurnout/takeButton" unique_id=1345442220]
+z_index = 1
+offset_left = -110.0
+offset_top = -27.0
+offset_right = 102.0
+offset_bottom = 19.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("93_0mu2e")
+theme_override_styles/pressed = ExtResource("93_0mu2e")
+theme_override_styles/hover = ExtResource("93_0mu2e")
+text = "Take Loot"
+icon = ExtResource("25_r5csn")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/scavenge/lootResult/lootTurnout/takeButton" unique_id=275703809]
+scale = Vector2(4, 4)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="itemDesc" type="Node2D" parent="CenterWindows/scavenge/lootResult/lootTurnout" unique_id=735156416]
+script = ExtResource("22_pr0nw")
+
+[node name="itemIcon" type="Sprite2D" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc" unique_id=1487065245]
+position = Vector2(372, 423)
+scale = Vector2(0.5134483, 0.5134483)
+texture = ExtResource("23_6q42e")
+
+[node name="Item" type="Label" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc" unique_id=407659388]
+offset_left = 399.0
+offset_top = 398.0
+offset_right = 789.0
+offset_bottom = 418.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Item: \"\""
+
+[node name="infoBarOne" type="HBoxContainer" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc" unique_id=1199211305]
+offset_left = 399.0
+offset_top = 415.0
+offset_right = 792.0
+offset_bottom = 447.0
+
+[node name="Value" type="Button" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc/infoBarOne" unique_id=1959530481]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("25_r5csn")
+
+[node name="Quality" type="Button" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc/infoBarOne" unique_id=1741867888]
+layout_mode = 2
+tooltip_text = "Quality"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eiodv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i7mkg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eb6av")
+text = "0.0"
+icon = ExtResource("24_m6h73")
+
+[node name="Hydration" type="Button" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc/infoBarOne" unique_id=1178456865]
+layout_mode = 2
+tooltip_text = "Hydration"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("26_woire")
+
+[node name="Satiation" type="Button" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc/infoBarOne" unique_id=2012039428]
+layout_mode = 2
+tooltip_text = "Satiation"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("27_gv1jg")
+
+[node name="inventoryBreaker" type="Sprite2D" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc" unique_id=2111278069]
+position = Vector2(572, 452)
+scale = Vector2(8, 8)
+texture = ExtResource("26_r5csn")
+
+[node name="flavourText" type="Label" parent="CenterWindows/scavenge/lootResult/lootTurnout/itemDesc" unique_id=1878894869]
+offset_left = 352.0
+offset_top = 458.0
+offset_right = 792.0
+offset_bottom = 503.0
+text = "this is where flavour text would go"
+label_settings = ExtResource("27_l771o")
+autowrap_mode = 3
+clip_text = true
+
+[node name="terminal" type="Node2D" parent="CenterWindows" unique_id=191115621]
+visible = false
+position = Vector2(512, 391)
+script = ExtResource("96_y6hgw")
+
+[node name="termText" type="Label" parent="CenterWindows/terminal" unique_id=71639279]
+z_index = 3
+offset_left = -163.0
+offset_top = 6.0
+offset_right = 291.0
+offset_bottom = 91.0
+text = "> System: Placeholder"
+label_settings = SubResource("LabelSettings_ta34y")
+autowrap_mode = 2
+script = ExtResource("22_2of7g")
+metadata/_edit_use_anchors_ = true
+
+[node name="termBackground" type="Sprite2D" parent="CenterWindows/terminal" unique_id=272452881]
+position = Vector2(64, 49)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="vitals" type="Node2D" parent="CenterWindows" unique_id=953947443]
+visible = false
+script = ExtResource("113_v5jsb")
+
+[node name="market" type="Node2D" parent="CenterWindows" unique_id=1209370336]
+script = ExtResource("114_ugxq0")
+
+[node name="pickProduct" type="Node2D" parent="CenterWindows/market" unique_id=1584957141]
+
+[node name="productList" type="HBoxContainer" parent="CenterWindows/market/pickProduct" unique_id=1606768443]
+offset_left = 488.0
+offset_top = 200.0
+offset_right = 825.0
+offset_bottom = 265.0
+theme_override_constants/separation = 10
+script = ExtResource("115_v60go")
+
+[node name="product" type="TextureButton" parent="CenterWindows/market/pickProduct/productList" unique_id=2059650964]
+layout_mode = 2
+
+[node name="itemDesc" type="Node2D" parent="CenterWindows/market/pickProduct" unique_id=4666398]
+script = ExtResource("22_pr0nw")
+
+[node name="itemIcon" type="Sprite2D" parent="CenterWindows/market/pickProduct/itemDesc" unique_id=1444959831]
+position = Vector2(372, 423)
+scale = Vector2(0.5134483, 0.5134483)
+texture = ExtResource("23_6q42e")
+
+[node name="Item" type="Label" parent="CenterWindows/market/pickProduct/itemDesc" unique_id=1218447850]
+offset_left = 399.0
+offset_top = 398.0
+offset_right = 789.0
+offset_bottom = 418.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_knhbb")
+text = "Item: \"\""
+
+[node name="infoBarOne" type="HBoxContainer" parent="CenterWindows/market/pickProduct/itemDesc" unique_id=1892788132]
+offset_left = 399.0
+offset_top = 415.0
+offset_right = 792.0
+offset_bottom = 447.0
+
+[node name="Value" type="Button" parent="CenterWindows/market/pickProduct/itemDesc/infoBarOne" unique_id=1051077322]
+layout_mode = 2
+tooltip_text = "Value"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("25_r5csn")
+
+[node name="Quality" type="Button" parent="CenterWindows/market/pickProduct/itemDesc/infoBarOne" unique_id=1956361338]
+layout_mode = 2
+tooltip_text = "Quality"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eiodv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i7mkg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eb6av")
+text = "0.0"
+icon = ExtResource("24_m6h73")
+
+[node name="Hydration" type="Button" parent="CenterWindows/market/pickProduct/itemDesc/infoBarOne" unique_id=1092641639]
+layout_mode = 2
+tooltip_text = "Hydration"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("26_woire")
+
+[node name="Satiation" type="Button" parent="CenterWindows/market/pickProduct/itemDesc/infoBarOne" unique_id=166025282]
+layout_mode = 2
+tooltip_text = "Satiation"
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_013yb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0mu2e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i2epk")
+text = "0.0"
+icon = ExtResource("27_gv1jg")
+
+[node name="inventoryBreaker" type="Sprite2D" parent="CenterWindows/market/pickProduct/itemDesc" unique_id=1599206314]
+position = Vector2(572, 452)
+scale = Vector2(8, 8)
+texture = ExtResource("26_r5csn")
+
+[node name="flavourText" type="Label" parent="CenterWindows/market/pickProduct/itemDesc" unique_id=1762766217]
+offset_left = 352.0
+offset_top = 458.0
+offset_right = 792.0
+offset_bottom = 503.0
+text = "this is where flavour text would go"
+label_settings = ExtResource("27_l771o")
+autowrap_mode = 3
+clip_text = true
+
+[node name="buyButton" type="Node2D" parent="CenterWindows/market/pickProduct" unique_id=1040636274]
+position = Vector2(640, 349)
+script = ExtResource("83_8gpbd")
+
+[node name="interactable" type="Button" parent="CenterWindows/market/pickProduct/buyButton" unique_id=1045370183]
+offset_left = -90.0
+offset_top = -27.0
+offset_right = 90.0
+offset_bottom = 14.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vcog2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_s3w6n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0eeoo")
+text = "Buy"
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/market/pickProduct/buyButton" unique_id=342494564]
+z_index = -1
+scale = Vector2(4, 4)
+texture = ExtResource("22_tdnta")
+script = ExtResource("25_leuqs")
+
+[node name="directive" type="Label" parent="CenterWindows/market/pickProduct" unique_id=1095906769]
+offset_left = 376.0
+offset_top = 135.0
+offset_right = 776.0
+offset_bottom = 185.0
+text = "Lootables Identified"
+label_settings = ExtResource("26_dls5t")
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+
+[node name="termBackground" type="Sprite2D" parent="CenterWindows/market/pickProduct" unique_id=610626409]
+z_index = -1
+position = Vector2(576, 448)
+scale = Vector2(8, 8)
+texture = ExtResource("24_bgfic")
+
+[node name="owned" type="Label" parent="CenterWindows/market/pickProduct" unique_id=1540450020]
+offset_left = 375.0
+offset_top = 169.0
+offset_right = 441.0
+offset_bottom = 189.0
+text = "owned by"
+label_settings = ExtResource("27_l771o")
+
+[node name="ownerPortrait" type="Sprite2D" parent="CenterWindows/market/pickProduct" unique_id=1316825490]
+position = Vector2(408, 254)
+scale = Vector2(2, 2)
+texture = ExtResource("21_0m4ur")
+
+[node name="ownerName" type="Label" parent="CenterWindows/market/pickProduct" unique_id=1531367203]
+offset_left = 329.0
+offset_top = 317.0
+offset_right = 489.0
+offset_bottom = 351.0
+text = "ownerName"
+label_settings = ExtResource("81_yt8l6")
+horizontal_alignment = 1
+
+[node name="Quota" type="Node2D" parent="CenterWindows" unique_id=510658322]
+visible = false
+script = ExtResource("125_va43e")
+
+[node name="popupBg" type="Sprite2D" parent="CenterWindows/Quota" unique_id=1647547799]
+position = Vector2(576, 320)
+rotation = 1.5707964
+scale = Vector2(8, 8)
+texture = ExtResource("33_op3i2")
+
+[node name="label1" type="Label" parent="CenterWindows/Quota" unique_id=190008423]
+offset_left = 387.0
+offset_top = 144.0
+offset_right = 925.0
+offset_bottom = 164.0
+theme_override_font_sizes/font_size = 12
+text = "In order to move to the next level, you must fill the quota"
+
+[node name="label2" type="Label" parent="CenterWindows/Quota" unique_id=623936036]
+offset_left = 430.0
+offset_top = 163.0
+offset_right = 731.0
+offset_bottom = 196.0
+theme_override_font_sizes/font_size = 25
+text = "Quota Requirements"
+
+[node name="label3" type="Label" parent="CenterWindows/Quota" unique_id=674529935]
+offset_left = 345.0
+offset_top = 198.0
+offset_right = 810.0
+offset_bottom = 218.0
+theme_override_font_sizes/font_size = 12
+text = "*Click on an empty checkbox to focus the quota bar on that task*"
+
+[node name="requirements" type="Node2D" parent="CenterWindows/Quota" unique_id=1296541562]
+
+[node name="cashRequirement" type="Node2D" parent="CenterWindows/Quota/requirements" unique_id=2114853969]
+position = Vector2(0, -30)
+
+[node name="inquire" type="Node2D" parent="CenterWindows/Quota/requirements/cashRequirement" unique_id=595477691]
+position = Vector2(345, 265)
+script = ExtResource("125_6kioq")
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/Quota/requirements/cashRequirement/inquire" unique_id=148665084]
+position = Vector2(16, 16)
+texture = ExtResource("125_mngd5")
+script = ExtResource("25_leuqs")
+
+[node name="interactable" type="Button" parent="CenterWindows/Quota/requirements/cashRequirement/inquire" unique_id=283214416]
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j27jt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mbjlw")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mngd5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6kioq")
+icon = ExtResource("126_6kioq")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="CenterWindows/Quota/requirements/cashRequirement" unique_id=1078477669]
+offset_left = 386.0
+offset_top = 270.0
+offset_right = 482.0
+offset_bottom = 290.0
+text = "Make five hundred dollars"
+metadata/_edit_use_anchors_ = true
+
+[node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
+position = Vector2(402, 554)
+
+[connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/inventoryWind" method="_on_scavenge_button_open_scav_wind"]
+[connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/sellWind" method="_on_scavenge_button_open_scav_wind"]
+[connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/Ledger" method="_on_scavenge_button_open_scav_wind"]
+[connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/scavenge" method="_on_scavenge_button_open_scav_wind"]
+[connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/market" method="_on_scavenge_button_open_scav_wind"]
+[connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/Quota" method="_on_scavenge_button_open_scav_wind"]
+[connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/inventoryWind" method="_on_sell_button_open_sell_wind"]
+[connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/sellWind" method="_on_sell_button_open_sell_wind"]
+[connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/Ledger" method="_on_sell_button_open_sell_wind"]
+[connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/scavenge" method="_on_sell_button_open_sell_wind"]
+[connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/market" method="_on_sell_button_open_sell_wind"]
+[connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/Quota" method="_on_sell_button_open_sell_wind"]
+[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/inventoryWind" method="_on_event_log_open_log"]
+[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/sellWind" method="_on_event_log_open_log"]
+[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/Ledger" method="_on_event_log_open_log"]
+[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/scavenge" method="_on_event_log_open_log"]
+[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/market" method="_on_event_log_open_log"]
+[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/Quota" method="_on_event_log_open_log"]
+[connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/inventoryWind" method="_on_ledger_button_open_ledger"]
+[connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/sellWind" method="_on_ledger_button_open_ledger"]
+[connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/Ledger" method="_on_open_ledger"]
+[connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/scavenge" method="_on_ledger_button_open_ledger"]
+[connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/market" method="_on_ledger_button_open_ledger"]
+[connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/Quota" method="_on_ledger_button_open_ledger"]
+[connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/inventoryWind" method="_on_quota_button_open_quota"]
+[connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/sellWind" method="_on_quota_button_open_quota"]
+[connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/Ledger" method="_on_quota_button_open_quota"]
+[connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/scavenge" method="_on_quota_button_open_quota"]
+[connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/market" method="_on_quota_button_open_quota"]
+[connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/Quota" method="_on_quota_button_open_quota"]
+[connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/inventoryWind" method="_on_inventory_button_open_inventory"]
+[connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/sellWind" method="_on_inventory_button_open_inventory"]
+[connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/Ledger" method="_on_inventory_button_open_inventory"]
+[connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/scavenge" method="_on_inventory_button_open_inventory"]
+[connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/market" method="_on_inventory_button_open_inventory"]
+[connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/Quota" method="_on_inventory_button_open_inventory"]
+[connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/inventoryWind" method="_on_buy_button_open_shop"]
+[connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/sellWind" method="_on_buy_button_open_shop"]
+[connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/Ledger" method="_on_buy_button_open_shop"]
+[connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/scavenge" method="_on_buy_button_open_shop"]
+[connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/market" method="_on_buy_button_open_shop"]
+[connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/Quota" method="_on_buy_button_open_shop"]
+[connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/inventoryWind" method="_on_vitals_button_open_vitals"]
+[connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/sellWind" method="_on_vitals_button_open_vitals"]
+[connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/Ledger" method="_on_vitals_button_open_vitals"]
+[connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/scavenge" method="_on_vitals_button_open_vitals"]
+[connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/market" method="_on_vitals_button_open_vitals"]
+[connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/Quota" method="_on_vitals_button_open_vitals"]
+[connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/inventoryWind" method="_on_skills_button_open_skill_tree"]
+[connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/sellWind" method="_on_skills_button_open_skill_tree"]
+[connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/Ledger" method="_on_skills_button_open_skill_tree"]
+[connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/scavenge" method="_on_skills_button_open_skill_tree"]
+[connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/market" method="_on_skills_button_open_skill_tree"]
+[connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/Quota" method="_on_skills_button_open_skill_tree"]
+[connection signal="buttonPressed" from="CenterWindows/inventoryWind/itemDesc/button" to="CenterWindows/inventoryWind" method="_on_use_item"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/PickTarget/approachButton/interactable" to="CenterWindows/sellWind/PickTarget/approachButton" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/PickTarget/approachButton/interactable" to="CenterWindows/sellWind/PickTarget/approachButton" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/PickTarget/approachButton/interactable" to="CenterWindows/sellWind/PickTarget/approachButton" method="_on_interactable_pressed"]
+[connection signal="whyDoINeedThis" from="CenterWindows/sellWind/PickTarget/strangerRefresh" to="CenterWindows/sellWind" method="_on_stranger_refresh_why_do_i_need_this"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Sales Pitch/interactable" to="CenterWindows/sellWind/postApproach/Actions/Sales Pitch" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Beg/interactable" to="CenterWindows/sellWind/postApproach/Actions/Beg" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Beg/interactable" to="CenterWindows/sellWind/postApproach/Actions/Beg" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Beg/interactable" to="CenterWindows/sellWind/postApproach/Actions/Beg" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Fake Injury/interactable" to="CenterWindows/sellWind/postApproach/Actions/Fake Injury" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Fake Injury/interactable" to="CenterWindows/sellWind/postApproach/Actions/Fake Injury" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Fake Injury/interactable" to="CenterWindows/sellWind/postApproach/Actions/Fake Injury" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Steal/interactable" to="CenterWindows/sellWind/postApproach/Actions/Steal" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Steal/interactable" to="CenterWindows/sellWind/postApproach/Actions/Steal" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Steal/interactable" to="CenterWindows/sellWind/postApproach/Actions/Steal" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/Con/interactable" to="CenterWindows/sellWind/postApproach/Actions/Con" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/Con/interactable" to="CenterWindows/sellWind/postApproach/Actions/Con" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/Con/interactable" to="CenterWindows/sellWind/postApproach/Actions/Con" method="_on_interactable_pressed"]
+[connection signal="confirmAction" from="CenterWindows/sellWind/postApproach/Actions/takeAction" to="CenterWindows/sellWind" method="_on_take_action_confirm_action"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/Actions/takeAction/interactable" to="CenterWindows/sellWind/postApproach/Actions/takeAction" method="_on_interactable_pressed"]
+[connection signal="confirmSelection" from="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" to="CenterWindows/sellWind" method="_on_confirm_confirm_selection"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/pickToSell/confirm" method="_on_interactable_pressed"]
+[connection signal="fearMonger" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/fearmonger" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" method="_on_fearmonger_fear_monger"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/fearmonger/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/fearmonger" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/fearmonger/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/fearmonger" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/fearmonger/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/fearmonger" method="_on_interactable_pressed"]
+[connection signal="recommend" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/Recommend" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" method="_on_recommend_recommend"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/Recommend/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/Recommend" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/Recommend/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/Recommend" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/Recommend/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/Recommend" method="_on_interactable_pressed"]
+[connection signal="urgency" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/urgency" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" method="_on_urgency_urgency"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/urgency/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/urgency" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/urgency/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/urgency" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/urgency/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/urgency" method="_on_interactable_pressed"]
+[connection signal="promote" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" method="_on_promote_promote"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/dialogue/promote" method="_on_interactable_pressed"]
+[connection signal="lowball" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" method="_on_lowball_lowball"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/lowball" method="_on_interactable_pressed"]
+[connection signal="highball" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" method="_on_highball_highball"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/highball" method="_on_interactable_pressed"]
+[connection signal="ball" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" method="_on_goldilocks_ball"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/Goldilocks" method="_on_interactable_pressed"]
+[connection signal="logos" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg" method="_on_logos_logos"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Logos" method="_on_interactable_pressed"]
+[connection signal="pathos" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg" method="_on_pathos_pathos"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Pathos" method="_on_interactable_pressed"]
+[connection signal="ethos" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg" method="_on_ethos_ethos"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Ethos" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Confirm" method="_on_interactable_pressed"]
+[connection signal="stopBegging" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg" method="_on_done_stop_begging"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Beg/Dialogue/Done" method="_on_interactable_pressed"]
+[connection signal="raiseSeverity" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" method="_on_raise_raise_severity"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/raise" method="_on_interactable_pressed"]
+[connection signal="lowerSeverity" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" method="_on_lower_lower_severity"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/lower" method="_on_interactable_pressed"]
+[connection signal="settleSeverity" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" method="_on_settle_settle_severity"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury/severityPick/settle" method="_on_interactable_pressed"]
+[connection signal="allDone" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/conTerminal/typeGame/terminalType" to="CenterWindows/sellWind/postApproach/minigameWindows/Con" method="_on_terminal_type_all_done"]
+[connection signal="timeout" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/conTerminal/typeGame/typeTimer" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/conTerminal/typeGame/typeTimer" method="_on_timeout"]
+[connection signal="shadyGame" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame" to="CenterWindows/sellWind/postApproach/minigameWindows/Con" method="_on_shady_game_shady_game"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/shadyGame" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/opportunity" method="_on_interactable_pressed"]
+[connection signal="fakeValue" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue" to="CenterWindows/sellWind/postApproach/minigameWindows/Con" method="_on_fake_value_fake_value"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/fakeValue" method="_on_interactable_pressed"]
+[connection signal="magic" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/magic" to="CenterWindows/sellWind/postApproach/minigameWindows/Con" method="_on_magic_magic"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/magic/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/magic" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/magic/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/magic" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/magic/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/options/magic" method="_on_interactable_pressed"]
+[connection signal="lowerRisk" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/lessRisk" to="CenterWindows/sellWind/postApproach/minigameWindows/Con" method="_on_less_risk_lower_risk"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/lessRisk/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/lessRisk" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/lessRisk/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/lessRisk" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/lessRisk/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/lessRisk" method="_on_interactable_pressed"]
+[connection signal="moreRisk" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/moreRisk" to="CenterWindows/sellWind/postApproach/minigameWindows/Con" method="_on_more_risk_more_risk"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/moreRisk/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/moreRisk" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/moreRisk/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/moreRisk" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/moreRisk/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/moreRisk" method="_on_interactable_pressed"]
+[connection signal="settleRisk" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks" to="CenterWindows/sellWind/postApproach/minigameWindows/Con" method="_on_goldilocks_settle_risk"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Con/Severity/Goldilocks" method="_on_interactable_pressed"]
+[connection signal="useStealth" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal" method="_on_stealth_option_use_stealth"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/stealthOption" method="_on_interactable_pressed"]
+[connection signal="useStrength" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal" method="_on_strength_option_use_strength"]
+[connection signal="mouse_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption/interactable" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/options/strengthOption" method="_on_interactable_pressed"]
+[connection signal="finished" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal" method="_on_stealth_game_finished"]
+[connection signal="area_entered" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/target/Area2D" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame/target/Area2D" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" method="_on_area_2d_area_exited"]
+[connection signal="allDone" from="CenterWindows/sellWind/postApproach/minigameWindows/Steal/strengthGame" to="CenterWindows/sellWind/postApproach/minigameWindows/Steal" method="_on_strength_game_all_done"]
+[connection signal="progressTask" from="CenterWindows/Ledger" to="CenterWindows/Quota" method="_on_ledger_progress_task"]
+[connection signal="mouse_entered" from="CenterWindows/scavenge/pickLootable/lootButton/interactable" to="CenterWindows/scavenge/pickLootable/lootButton" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/scavenge/pickLootable/lootButton/interactable" to="CenterWindows/scavenge/pickLootable/lootButton" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/scavenge/pickLootable/lootButton/interactable" to="CenterWindows/scavenge/pickLootable/lootButton" method="_on_interactable_pressed"]
+[connection signal="refresh" from="CenterWindows/scavenge/pickLootable/lootRefresh" to="CenterWindows/scavenge" method="_on_loot_refresh_refresh"]
+[connection signal="mouse_entered" from="CenterWindows/scavenge/lootResult/minigameWindow/Area2D" to="CenterWindows/scavenge/lootResult/minigameWindow/drawn" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/scavenge/lootResult/minigameWindow/Area2D" to="CenterWindows/scavenge/lootResult/minigameWindow/drawn" method="_on_area_2d_mouse_exited"]
+[connection signal="endGame" from="CenterWindows/scavenge/lootResult/minigameWindow/timer" to="CenterWindows/scavenge" method="_on_timer_end_game"]
+[connection signal="mouse_entered" from="CenterWindows/scavenge/lootResult/lootTurnout/takeButton/interactable" to="CenterWindows/scavenge/lootResult/lootTurnout/takeButton" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/scavenge/lootResult/lootTurnout/takeButton/interactable" to="CenterWindows/scavenge/lootResult/lootTurnout/takeButton" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/scavenge/lootResult/lootTurnout/takeButton/interactable" to="CenterWindows/scavenge/lootResult/lootTurnout/takeButton" method="_on_interactable_pressed"]
+[connection signal="mouse_entered" from="CenterWindows/market/pickProduct/buyButton/interactable" to="CenterWindows/market/pickProduct/buyButton" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/market/pickProduct/buyButton/interactable" to="CenterWindows/market/pickProduct/buyButton" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/market/pickProduct/buyButton/interactable" to="CenterWindows/market/pickProduct/buyButton" method="_on_interactable_pressed"]
+[connection signal="openCashInquiry" from="CenterWindows/Quota/requirements/cashRequirement/inquire" to="CenterWindows/Quota" method="_on_inquire_open_cash_inquiry"]
+[connection signal="mouse_entered" from="CenterWindows/Quota/requirements/cashRequirement/inquire/interactable" to="CenterWindows/Quota/requirements/cashRequirement/inquire" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="CenterWindows/Quota/requirements/cashRequirement/inquire/interactable" to="CenterWindows/Quota/requirements/cashRequirement/inquire" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="CenterWindows/Quota/requirements/cashRequirement/inquire/interactable" to="CenterWindows/Quota/requirements/cashRequirement/inquire" method="_on_interactable_pressed"]
+[connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/sellWind/PickTarget/strangerRefresh" method="_on_digital_clock_on_time_changed"]
+[connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/scavenge/pickLootable/lootRefresh" method="_on_digital_clock_on_time_changed"]
+[connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/scavenge/lootResult/minigameWindow/timer" method="_on_digital_clock_on_time_changed"]
+[connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
+[connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]
+[connection signal="openTime" from="digitalClock" to="CenterWindows/Ledger" method="_on_digital_clock_open_time"]

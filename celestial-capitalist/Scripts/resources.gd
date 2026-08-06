@@ -1,6 +1,6 @@
 class_name Resources
 extends Node2D
-## A master library containin globally used assetsZ.
+## A master library containing globally used assets.
 
 #region item textures
 const waterBottleInvIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/waterInventoryItem.png")
@@ -265,6 +265,8 @@ const homelessIcon = preload("res://assets/Sprites/RockBottom/streetRoamers/home
 const averageMiddleAgedIcon = preload("res://assets/Sprites/RockBottom/streetRoamers/averageMiddleAged.png")
 const childIcon = preload("res://assets/Sprites/RockBottom/streetRoamers/child.png")
 const charityWorkerIcon = preload("res://assets/Sprites/RockBottom/streetRoamers/charityWorker.png")
+const psPlaceholder = preload("res://assets/Sprites/RockBottom/streetRoamers/personPlaceholder.png")
+
 #endregion
 
 #region ui textures
@@ -273,16 +275,32 @@ const quality2 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality
 const quality3 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality3.png")
 const quality4 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality4.png")
 const quality5 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality5.png")
+
+const circle = preload("res://assets/Sprites/RockBottom/minigames/circle.png")
+const triangle = preload("res://assets/Sprites/RockBottom/minigames/triangle.png")
+const star = preload("res://assets/Sprites/RockBottom/minigames/star.png")
+const umbrella = preload("res://assets/Sprites/RockBottom/minigames/umbrella.png")
+#endregion
+
+#region lootable textures
+const trashCanIcon = preload("res://assets/Sprites/RockBottom/lootSprites/trashCan.png")
+const bagLootableIcon = preload("res://assets/Sprites/RockBottom/lootSprites/bag.png")
+const packageIcon = preload("res://assets/Sprites/RockBottom/lootSprites/package.png")
+const briefcaseLootableIcon = preload("res://assets/Sprites/RockBottom/lootSprites/briefcase.png")
 #endregion
 
 #region scripts
 ## Script used for [TextureButton]s in the inventory.
-@onready var invItemScript : Script = load("res://Scripts/RockBottom/InvItem.gd")
+const invItemScript : Script = preload("res://Scripts/RockBottom/inv_item.gd")
+const productButtonScript : Script = preload("res://Scripts/RockBottom/productButton.gd")
+const lootableButtonScript : Script = preload("res://Scripts/RockBottom/lootableButton.gd")
+const takeableLootButtonScript : Script = preload("res://Scripts/RockBottom/takeableLootButton.gd")
+
+const personButtonScript = preload("res://Scripts/RockBottom/stranger_button.gd")
 #endregion
 
 #region dialogue functions
-var generated : String
-
+## Checks a [String] name against [member easterEggNames]. If it matches, return a randomly selected corresponding line. If it doesn't, return "false".
 func getEasterEggLine(inputName):
 	if (checkStringForArrayValue(inputName, easterEggNames) == true):
 		if ("Krath Isarlith" in inputName):
@@ -292,7 +310,8 @@ func getEasterEggLine(inputName):
 	else:
 		return "false"
 
-## Generates a name for a person. Takes the stall's base name, shuffles it, hashes it, and uses it as a seed. 
+## Generates a name for a person. Takes a [String] seed (recommend the default name of the object), shuffles it, hashes it, and uses it as a seed. 
+## Returns both names from [member names].
 func genName(inputSeed):
 	
 	var charList = []
@@ -307,7 +326,10 @@ func genName(inputSeed):
 	var firstName = generator.randi_range(0,len(names)-1)
 	var surname = generator.randi_range(0,len(names)-1)
 	return names[firstName] + " " + names[surname]
+#endregion
 
+#region dialogue
+## Names that trigger easter egg lines.
 var easterEggNames = [
 	"Krath Isarlith",
 	"Perit Ackermann"
@@ -362,7 +384,7 @@ var acceptLines = [
 var logosLines = [
 	"If you donate to me, you'll be helping me become a functioning member of society AND you won't have to pay taxes.",
 	"Logically, you should donate to the homeless.",
-	"If you don't give me money I will kill you",
+	"If you don't give me money I will kill you.",
 	"Don't worry, I won't enslave all of humanity and turn Earth into a corporatocracy with this money.",
 	"I'll pay you back - one day.",
 	"You should give your money to me - I'll keep it safe!",
@@ -514,7 +536,7 @@ var shadyGameScammedLines = [
 	"Wait a minute... I'm losing money!",
 	"Well played homeless person, well played...",
 	"You'd better sleep with one eye open.",
-	"I'm never playing a game every again if this is what it gets me.",
+	"I'm never playing a game ever again if this is what it gets me.",
 	"Oh, you think you're SO good don't you? Looking real smug? I would wipe that smirk off your face if I had more money to bet.",
 	"Damn it. I'm assuming you don't accept Arby's gift cards as payment? Yeah, didn't think so.",
 	"Woooooow. Maybe wealth inequality wasn't that bad of an idea after all.",
@@ -576,6 +598,8 @@ var fakeValueScammedLines = [
 	"Must the devs really be forced to write 15 lines of dialogue for each success in this game? That's just cruel.",
 	"I will be so cool after buying this."
 ]
+
+## Far too many names, based off various media and Orteil's RandomGen
 @onready var names = ["Alex","Oliver","Lily","Amanda","Murray","Albert","Porter","Fred",
 	"Mitchell","Vasquez","Richard","Hall","Steven","Torres","Randy","Gonzalez","Bailey",
 	"Earl","Martinez","Sean","Ruiz","Sharon","Moore","Terry","Evans","Shawn","Edward",
@@ -651,6 +675,7 @@ var fakeValueScammedLines = [
 #endregion
 
 #region util
+## Takes a [String] and an [Array] and checks if the String contains any of the [Array]'s values in it.
 func checkStringForArrayValue(string:String, stringList:Array):
 	for eachString in stringList:
 		if eachString in string:
