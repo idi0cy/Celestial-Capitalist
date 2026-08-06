@@ -1,4 +1,5 @@
-extends DialogueLib
+class_name FakeInjury
+extends Resources
 
 @onready var severitySelection = get_node("severityPick")
 @onready var FIbox = get_node("FIbox")

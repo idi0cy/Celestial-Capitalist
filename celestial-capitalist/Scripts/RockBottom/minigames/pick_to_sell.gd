@@ -1,9 +1,8 @@
-extends ItemHelper
+extends InventoryHelper
 
 #Item dependent variables list
 #Index zero is list, index 1 is quality, index 2 is ...
 
-@onready var invItemScript = load("res://Scripts/RockBottom/InvItem.gd")
 @onready var invGrid = get_node("scrollContainer/InvGrid")
 @onready var itemDesc = get_node("itemDesc")
 @onready var flavourText = get_node("itemDesc/flavourText")
@@ -21,7 +20,7 @@ var count2
 var invItem
 var hiding = true
 
-#replace when implimenting save game function (WHYYYYY DO I HAVE TO FIGURE THAT OUT?????)
+#TODO replace when implimenting save game function (WHYYYYY DO I HAVE TO FIGURE THAT OUT?????)
 var currentInv
 
 func _process(_delta):
@@ -31,7 +30,7 @@ func _process(_delta):
 	else:
 		self.show()
 
-#CHANGE THIS THINGY TO BE NOT THE INV BUTTON
+#TODO CHANGE THIS THINGY TO BE NOT THE INV BUTTON
 func openPickToSell():
 	itemDesc.itemSelected = false
 	

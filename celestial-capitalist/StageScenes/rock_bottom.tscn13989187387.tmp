@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbhf4smoiyhw6"]
 
 [ext_resource type="Texture2D" uid="uid://20fi5jm87hbv" path="res://assets/Sprites/RockBottom/quotaBackgroundRockBottom.png" id="1_5xa78"]
+[ext_resource type="Script" uid="uid://dhak5c4vu4cra" path="res://Scripts/resources.gd" id="1_gv1jg"]
 [ext_resource type="Texture2D" uid="uid://dn4ude6bpmn1j" path="res://assets/Sprites/RockBottom/quotaBorderRB.png" id="2_5xa78"]
 [ext_resource type="Texture2D" uid="uid://nw7xmbeqtfjo" path="res://assets/Sprites/RockBottom/quotaProgressRB.png" id="3_32v4e"]
 [ext_resource type="PackedScene" uid="uid://me6dpqlc2kap" path="res://ButtonScenes/RockBottom/scavenge_button.tscn" id="4_w43jm"]
@@ -55,6 +56,7 @@
 [ext_resource type="Script" uid="uid://c526rf1um5u44" path="res://Scripts/RockBottom/minigames/haggle_bar.gd" id="35_i6uy1"]
 [ext_resource type="StyleBox" uid="uid://80eclwvk5y5h" path="res://assets/defaultProgressBar.tres" id="35_mnkpu"]
 [ext_resource type="Script" uid="uid://b8m8hdrfm7w2a" path="res://Scripts/RockBottom/minigames/fearmonger.gd" id="36_bituw"]
+[ext_resource type="Script" uid="uid://dtih34gne5mbe" path="res://Scripts/RockBottom/dialogueLib.gd" id="38_62asa"]
 [ext_resource type="Script" uid="uid://ciglg4feghf3b" path="res://Scripts/RockBottom/minigames/recommend.gd" id="38_l2ux3"]
 [ext_resource type="Script" uid="uid://bdl26m8nm4j5m" path="res://Scripts/RockBottom/minigames/urgency.gd" id="39_7pdp4"]
 [ext_resource type="Script" uid="uid://c6sy7jg6d6jot" path="res://Scripts/RockBottom/minigames/promote.gd" id="40_107vu"]
@@ -259,6 +261,7 @@ size = Vector2(480, 232)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6kioq"]
 
 [node name="RockBottom" type="Node2D" unique_id=1024261337]
+script = ExtResource("1_gv1jg")
 
 [node name="CelestialSegment" type="Node2D" parent="." unique_id=1451961114]
 
@@ -498,7 +501,6 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="sellWind" type="Node2D" parent="CenterWindows" unique_id=1492757036]
-visible = false
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
@@ -814,8 +816,10 @@ texture = ExtResource("22_tdnta")
 script = ExtResource("25_leuqs")
 
 [node name="minigameWindows" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=611419590]
+script = ExtResource("38_62asa")
 
 [node name="pickToSell" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=371395790]
+visible = false
 z_index = 5
 script = ExtResource("32_qs7pq")
 
@@ -2275,6 +2279,7 @@ visible = false
 script = ExtResource("113_v5jsb")
 
 [node name="market" type="Node2D" parent="CenterWindows" unique_id=1209370336]
+visible = false
 script = ExtResource("114_ugxq0")
 
 [node name="pickProduct" type="Node2D" parent="CenterWindows/market" unique_id=1584957141]
@@ -2405,6 +2410,7 @@ horizontal_alignment = 1
 script = ExtResource("22_2of7g")
 
 [node name="termBackground" type="Sprite2D" parent="CenterWindows/market/pickProduct" unique_id=610626409]
+visible = false
 z_index = -1
 position = Vector2(576, 448)
 scale = Vector2(8, 8)

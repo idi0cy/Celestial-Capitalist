@@ -1,4 +1,5 @@
-extends DialogueLib
+class_name Haggle
+extends Resources
 
 @onready var clock  = get_node("../../../../../digitalClock")
 @onready var haggleBar = get_node("haggleBar")

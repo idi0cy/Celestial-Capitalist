@@ -1,10 +1,287 @@
-class_name DialogueLib
+class_name Resources
 extends Node2D
-## A library containing dialogue and other text related functions.
-##
-## Contains specialized dialogue arrays for each situation and a large repository of sur and first names for random name generation. Also an easter egg checker for special names.
+## A master library containin globally used assetsZ.
 
-var generatedName : String
+#region item textures
+const waterBottleInvIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/waterInventoryItem.png")
+const waterBottleInvIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/waterInvIconSmall.png")
+const pencilInvIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/pencilInvSprite.png")
+const pencilInvIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/pencilInvIconSmall.png")
+const hamburIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/hamburgInvIcon.png")
+const hamburIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/Kaydengamesmallhamburger.png")
+const applianceIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/appliance.png")
+const applianceIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/applianceSmall.png")
+const penIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/pen.png")
+const penIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/penSmall.png")
+const sodaCanIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/sodaCan.png")
+const sodaCanIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/sodaCanSmall.png")
+const vegetablesIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/vegetables.png")
+const vegetablesIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/vegetablesSmall.png")
+const meatsIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/meats.png")
+const meatsIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/meatsSmall.png")
+const cheeseIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/cheese.png")
+const cheeseIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/cheeseSmall.png")
+const phoneIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/phone.png")
+const phoneIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/phoneSmall.png")
+const cardboardIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/cardboard.png")
+const cardboardIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/cardboardSmall.png")
+const soySauceIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/soySauce.png")
+const soySauceIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/soySauceSmall.png")
+const bagIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/bag.png")
+const bagIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/bagSmall.png")
+const headphonesIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/headphones.png")
+const headphonesIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/headphonesSmall.png")
+const paperIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/paper.png")
+const paperIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/paperSmall.png")
+const toiletPaperIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/toiletPaper.png")
+const toiletPaperIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/toiletPaperSmall.png")
+const ponderIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/ponder.png")
+const ponderIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/ponderSmall.png")
+const skincareIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/skincare.png")
+const skincareIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/skincareSmall.png")
+const computerIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/computer.png")
+const computerIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/computerSmall.png")
+const catIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/cat.png")
+const catIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/catSmall.png")
+const briefcaseIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/briefcase.png")
+const briefcaseIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/briefcaseSmall.png")
+const coinIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/coin.png")
+const coinIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/coinSmall.png")
+const billIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/bill.png")
+const billIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/billSmall.png")
+const chequeIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/cheque.png")
+const chequeIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/chequeSmall.png")
+const bondIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/bond.png")
+const bondIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/bondSmall.png")
+const shirtIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/shirt.png")
+const shirtIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/shirtSmall.png")
+const sunglassesIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/sunglasses.png")
+const sunglassesIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/sunglassesSmall.png")
+const hatIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/hat.png")
+const hatIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/hatSmall.png")
+const pantsIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/pants.png")
+const pantsIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/pantsSmall.png")
+const shortsIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/shorts.png")
+const shortsIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/shortsSmall.png")
+const hoodieIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/hoodie.png")
+const hoodieIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/hoodieSmall.png")
+#endregion
+
+#region item methods
+
+## List of all base items registered using [method Inventory.newItem]. Currently unused, but can be used to iterate over all items in future 
+## or get an item via an index.
+@onready var allItems = {}
+
+## Method for creating new items. Used instead of just assigning an array to operate on each item on ready. 
+## Appends items to [member allItems] using their name as [code]key:base item[/code]. [br]
+## [br]
+## [b]Base Item Indexes:[/b] [br]
+## 0 is item name, [br]
+## 1 is type, [br]
+## 2 is max value, [br]
+## 3 is hydration value, [br]
+## 4 is satiation value, [br]
+## 5 is flavour text [br]
+## 6 (Prefer -2) is the shrunken texture [br]
+## 7 (Prefer -1) is the normal texture [br]
+## [br]
+## Values with "null" or 0 do not have that property/value attached to the item. [br]
+func newItem(
+		itemName : String, itemType : String,
+		maxValue : int,
+		hydrationvalue, consumedvalue,
+		flavourtext : String,
+		smallTexture : Texture2D, texture : Texture2D):
+	var item = [itemName, itemType, maxValue, hydrationvalue, consumedvalue,
+	flavourtext, smallTexture, texture]
+	allItems[itemName] = item
+	return item
+#endregion
+
+#region item default data
+#CRITICAL ITEM PROPERTIES STORED HERE SHOULD NEVER BE CHANGED
+#They aren't consts because those can't be @onreadied
+@onready var waterBottle = newItem("Water Bottle", "Consumable",
+	8,
+	50, "null",
+	"A bottle of dihydrogen monoxide - very acidic and toxic. Handle with care.",
+	waterBottleInvIconSmall, waterBottleInvIcon)
+@onready var pencil = newItem("Pencil", "Object",
+	5,
+	"null", "null",
+	"You're very hungry and feel like taking a bite. The smell leads you on.",
+	pencilInvIconSmall, pencilInvIcon)
+@onready var burger = newItem("Burger", "Consumable",
+	20,
+	5, 25,
+	"Too many calories - but simply too enticing... you must...",
+	hamburIconSmall, hamburIcon)
+@onready var appliance = newItem("Appliance", "Object",
+	125,
+	"null", "null",
+	"A machine of sorts. You haven't been in a kitchen for a while - you don't even recognize it...",
+	applianceIconSmall, applianceIcon)
+@onready var pen = newItem("Pen", "Object",
+	20,
+	"null", "null",
+	"It's almost out of ink. Tragic!",
+	penIconSmall, penIcon)
+@onready var sodaCan = newItem("Soda Can", "Consumable",
+	15,
+	"null", 50,
+	"Poke or Cepsi?",
+	sodaCanIconSmall, sodaCanIcon)
+@onready var vegetables = newItem("Assorted Vegetables", "Consumable",
+	60,
+	30, 30,
+	"Store bought. You wrinkle your nose in hypocritical disgust.",
+	vegetablesIconSmall, vegetablesIcon)
+@onready var meats = newItem("Assorted Meats", "Consumable",
+	80,
+	"null", 50,
+	"Grass fed beef!",
+	meatsIconSmall, meatsIcon)
+@onready var cheese = newItem("Cheese", "Consumable",
+	40,
+	"null", 10,
+	"I could put a cheesy joke here, but I'm feeling discheesed today.",
+	cheeseIconSmall, cheeseIcon)
+@onready var phone = newItem("Phone", "Object",
+	300,
+	"null", "null",
+	"You try to open it. Face ID stares blankly.",
+	phoneIconSmall, phoneIcon)
+@onready var cardboard = newItem("Cardboard", "Consumable",
+	10,
+	"null", 5,
+	"You're cardly hungry. You're not hungry. You're not. Don't eat it.",
+	cardboardIconSmall, cardboardIcon)
+@onready var soySauce = newItem("Soy Sauce", "Consumable",
+	45,
+	30, "null",
+	"The lifeblood of the universe!",
+	soySauceIconSmall, soySauceIcon)
+@onready var bag = newItem("Bag", "Object",
+	50,
+	"null", "null",
+	"You don't know enough about bags to decide whether this is a fancy one.",
+	bagIconSmall, bagIcon)
+@onready var headphones = newItem("Headphones", "OBject",
+	100,
+	"null", "null",
+	"You put them on and hear a strange rumbling from your abdomen. They work!",
+	headphonesIconSmall, headphonesIcon)
+@onready var paper = newItem("Paper", "Consumable",
+	20,
+	"null", 2,
+	"It's just compressed plants, right?! Surely you can eat this!",
+	paperIconSmall, paperIcon)
+@onready var hoodie = newItem("Hoodie", "Clothing",
+	40,
+	"null", "null",
+	"Warm... soft... or maybe you're just hypothermic...",
+	hoodieIconSmall, hoodieIcon)
+@onready var shirt = newItem("Shirt", "Clothing",
+	50,
+	"null", "null",
+	"It's a plain t-shirt. A white void...",
+	shirtIconSmall, shirtIcon)
+@onready var pants = newItem("Pants", "Clothing",
+	50,
+	"null", "null",
+	"Neither thick enough nor thin enough. Uncomfortable.",
+	pantsIconSmall, pantsIcon)
+@onready var sunglasses = newItem("Sunglasses", "Clothing",
+	50,
+	"null", "null",
+	"The smog blocks the sun either way. Sunglasses are falling out of favour these days.",
+	sunglassesIconSmall, sunglassesIcon)
+@onready var hat = newItem("Hat", "Clothing",
+	30,
+	"null", "null",
+	"It's a hat... and I don't know what else to say here... if it's only this one that's 4th walling it's fine...",
+	hatIconSmall, hatIcon)
+@onready var shorts = newItem("Shorts", "Clothing",
+	40,
+	"null", "null",
+	"They seem kind of long for shorts?",
+	shortsIconSmall, shortsIcon)
+@onready var toiletPaper = newItem("Toilet Paper", "Object",
+	30,
+	"null", 2,
+	"The fortune this would have gone for a few years ago... but that's over now.",
+	toiletPaperIconSmall, toiletPaperIcon)
+@onready var ponder = newItem("Suspiciously Sharp Rabbit Puppet", "Object",
+	700,
+	"null", "null",
+	"You ponder it's presence here. It's teeth are very sharp...",
+	ponderIconSmall, ponderIcon)
+@onready var skincare = newItem("Skincare Product", "Consumable",
+	60,
+	2, "null",
+	"You really shouldn't eat it. But, colourful = tasty, right?!",
+	skincareIconSmall, skincareIcon)
+@onready var computer = newItem("PC", "Object",
+	400,
+	"null", "null",
+	"What a find! You quietly pluck the ram sticks out of it. The buyers won't notice.",
+	computerIconSmall, computerIcon)
+@onready var cat = newItem("Cat", "Consumable",
+	300,
+	"null", 50,
+	"It meows at you. You resist the urge to begin chowing down.",
+	catIconSmall, catIcon)
+@onready var briefcase = newItem("Briefcase", "Object",
+	50,
+	"null", "null",
+	"You briefly glance at it, then move on to more interesting things.",
+	briefcaseIconSmall, briefcaseIcon)
+@onready var coin = newItem("Coin", "Currency",
+	2,
+	"null", "null",
+	"Redeems up to 2 dollars.",
+	coinIconSmall, coinIcon)
+@onready var bill = newItem("Bill", "Currency",
+	20,
+	"null", "null",
+	"Redeems up to 20 dollars.",
+	billIconSmall, billIcon)
+@onready var cheque = newItem("Cheque", "Currency",
+	100,
+	"null", "null",
+	"Redeems up to 100 dollars.",
+	chequeIconSmall, chequeIcon)
+@onready var bond = newItem("Bond", "Currency",
+	400,
+	"null", "null",
+	"Redeems up too 100-400 dollars.",
+	bondIconSmall, bondIcon)
+#endregion
+
+#region stranger portraits
+const richOldIcon = preload("res://assets/Sprites/RockBottom/streetRoamers/richOld.png")
+const homelessIcon = preload("res://assets/Sprites/RockBottom/streetRoamers/homeless.png")
+const averageMiddleAgedIcon = preload("res://assets/Sprites/RockBottom/streetRoamers/averageMiddleAged.png")
+const childIcon = preload("res://assets/Sprites/RockBottom/streetRoamers/child.png")
+const charityWorkerIcon = preload("res://assets/Sprites/RockBottom/streetRoamers/charityWorker.png")
+#endregion
+
+#region ui textures
+const quality1 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality1.png")
+const quality2 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality2.png")
+const quality3 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality3.png")
+const quality4 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality4.png")
+const quality5 = preload("res://assets/Sprites/RockBottom/inventoryIcons/quality5.png")
+#endregion
+
+#region scripts
+## Script used for [TextureButton]s in the inventory.
+@onready var invItemScript : Script = load("res://Scripts/RockBottom/InvItem.gd")
+#endregion
+
+#region dialogue functions
+var generated : String
 
 func getEasterEggLine(inputName):
 	if (checkStringForArrayValue(inputName, easterEggNames) == true):
@@ -15,11 +292,21 @@ func getEasterEggLine(inputName):
 	else:
 		return "false"
 
-func checkStringForArrayValue(string:String, stringList:Array):
-	for eachString in stringList:
-		if eachString in string:
-			return true
-	return false
+## Generates a name for a person. Takes the stall's base name, shuffles it, hashes it, and uses it as a seed. 
+func genName(inputSeed):
+	
+	var charList = []
+	for character in inputSeed:
+		charList.append(character)
+	charList.shuffle()
+	
+	var generatedSeed = "".join(charList)
+	var generator = RandomNumberGenerator.new()
+	generator.seed = generatedSeed.hash()
+	
+	var firstName = generator.randi_range(0,len(names)-1)
+	var surname = generator.randi_range(0,len(names)-1)
+	return names[firstName] + " " + names[surname]
 
 var easterEggNames = [
 	"Krath Isarlith",
@@ -361,6 +648,12 @@ var fakeValueScammedLines = [
 	"Drahbes","Faehrcyle","Yav","Casai","Lorahn","Kahl","Zithis","Carrow","Vayel","Drabyel","Dusps","Mohta","Okeke",
 	"Elvett","Marahza","Schlonko","Tahva"
 	]
+#endregion
 
-func _ready() -> void:
-	pass
+#region util
+func checkStringForArrayValue(string:String, stringList:Array):
+	for eachString in stringList:
+		if eachString in string:
+			return true
+	return false
+#endregion

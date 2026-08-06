@@ -1,4 +1,5 @@
-extends DialogueLib
+class_name Beg
+extends Resources
 
 @onready var progress = get_node("Progress")
 @onready var directive = get_node("Directive")

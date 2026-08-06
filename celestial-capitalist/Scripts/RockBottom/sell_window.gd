@@ -1,4 +1,5 @@
-extends DialogueLib
+class_name SellWindow
+extends Resources
 
 #Options so far are as follows
 #Beg, Sales Pitch, Fake Injury, Steal, Con
@@ -82,33 +83,33 @@ var curSelPlace
 	"Rich Old Person",
 	0.9, 0.4, 0.5, 0.5,
 	0.6, 0.5, 0.8, 0.2,
-	load("res://assets/Sprites/RockBottom/streetRoamers/richOld.png"))
+	richOldIcon)
 @onready var anotherHomeless = newStranger(
 	"Homeless",
 	0.1, 0.8, 0.2, 0.1,
 	0.1, 0.7, 0.5, 0.7,
-	load("res://assets/Sprites/RockBottom/streetRoamers/homeless.png"))
+	homelessIcon)
 @onready var middleAgedAverage = newStranger(
 	"Average Middle Aged",
 	0.6, 0.7, 0.7, 0.6,
 	0.5, 0.3, 0.2, 0.5,
-	load("res://assets/Sprites/RockBottom/streetRoamers/averageMiddleAged.png"))
+	averageMiddleAgedIcon)
 #For the kid, only display "kid", and have them be harder to predict
 @onready var niceKid = newStranger(
 	"Child",
 	0.2, 0.6, 0.9, 0.8,
 	0.9, 0.5, 1, 0.8,
-	load("res://assets/Sprites/RockBottom/streetRoamers/child.png"))
+	childIcon)
 @onready var skepticKid = newStranger(
 	"Child",
 	0.3, 0.4, 0.2, 0.2,
 	0.0, 0.7, 1, 0.2,
-	load("res://assets/Sprites/RockBottom/streetRoamers/child.png"))
+	childIcon)
 @onready var charityWorker = newStranger(
 	"Charity Worker",
 	0.5, 1, 0.9, 0.5,
 	0.4, 0.3, 0.4, 0.2,
-	load("res://assets/Sprites/RockBottom/streetRoamers/charityWorker.png"))
+	charityWorkerIcon)
 
 func newStranger (
 	strangerName:String,
@@ -267,18 +268,6 @@ func identifyTarget(index, place, displayName):
 		approachButton.pressed.disconnect(self.approachStranger)
 	approachButton.pressed.connect(approachStranger.bind(index, place))
 	approachButtonGeneral.show()
-
-func genName(inputSeed):
-	var charList = []
-	for character in inputSeed:
-		charList.append(character)
-	charList.shuffle()
-	var generatedSeed = "".join(charList)
-	var generator = RandomNumberGenerator.new()
-	generator.seed = generatedSeed.hash()	
-	var firstName = generator.randi_range(0,len(names)-1)
-	var surname = generator.randi_range(0,len(names)-1)
-	return names[firstName] + " " + names[surname]
 
 func approachStranger(index, place):
 	confirmAction.personIndex = index
