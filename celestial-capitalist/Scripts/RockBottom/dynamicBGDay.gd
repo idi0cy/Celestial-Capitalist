@@ -1,4 +1,9 @@
+class_name DynamicBGDay
 extends Sprite2D
+## Controls the Day background.
+##
+## Masks the image with a shader or lowers its z-index.
+
 var _image : Image
 var _texture : ImageTexture
 
@@ -31,6 +36,7 @@ func _process(_delta):
 				mat.set_shader_parameter("mask_texture", _texture)
 		if (time > 1140 || time < 420):
 			self.z_index = -7
+
 #func _input(event):
 #	if event.is_action_pressed("debug"):
 #		var time = clock.theTime

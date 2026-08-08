@@ -1,4 +1,9 @@
+class_name DynamicBGNight
 extends Sprite2D
+## Controls the Night background.
+##
+## Masks the image with a shader or lowers its z-index.
+
 var _image : Image
 var _texture : ImageTexture
 

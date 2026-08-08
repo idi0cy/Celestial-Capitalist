@@ -22,9 +22,9 @@ extends Resources
 @onready var confirmAction = get_node("postApproach/Actions/takeAction")
 @onready var terminal = get_node("postApproach/Terminal")
 @onready var terminalText = get_node("postApproach/Terminal/termText")
+@onready var minigameWindows = get_node("postApproach/minigameWindows")
 
 #minigame HAGGLE
-@onready var minigameWindows = get_node("postApproach/minigameWindows")
 @onready var pickToSell = get_node("postApproach/minigameWindows/pickToSell")
 @onready var haggle = get_node("postApproach/minigameWindows/Haggle")
 @onready var haggleDialogue = get_node("postApproach/minigameWindows/Haggle/dialogue")
@@ -32,7 +32,7 @@ extends Resources
 @onready var haggleBar = get_node("postApproach/minigameWindows/Haggle/haggleBar")
 @onready var haggleDirective = get_node("postApproach/minigameWindows/Haggle/Directive")
 @onready var aimTrainZone = get_node("postApproach/minigameWindows/Haggle/aimTrainZone")
-@onready var spectrumOfBall = get_node("postApproach/minigameWindows/Haggle/pricing/spectrumOfBall")
+@onready var priceSpectrum = get_node("postApproach/minigameWindows/Haggle/pricing/priceSpectrum")
 
 #minigame BEG
 @onready var begWindow = get_node("postApproach/minigameWindows/Beg")
@@ -232,7 +232,7 @@ func reset():
 	haggleDialogue.hide()
 	hagglePricing.hide()
 	aimTrainZone.hide()
-	spectrumOfBall.hide()
+	priceSpectrum.hide()
 	pickToSell.closeIcons()
 	haggleBar.hide()
 	haggleDirective.hide()
@@ -273,7 +273,7 @@ func identifyTarget(id, index, displayName):
 
 ## Executed on pressing the approach button. Shows the actions menu.
 func approachStranger(id, place):
-	confirmAction.personIndex = id
+	confirmAction.personID = id
 	currentStrangerIndex = place
 	
 	directiveFirst.hide()
@@ -295,31 +295,30 @@ func _on_stranger_refresh(theValue: Variant) -> void:
 
 #region action logic
 ## Receives the action taken and offloads the execution to other methods.
-func _on_take_action_confirm_action(theAction, target) -> void:
+func _on_take_action_confirm_action(theAction, targetID) -> void:
 	if theAction == "No Action":
-		noAction(target)
+		noAction(targetID)
 	elif theAction == "Sales Pitch":
-		salesPitch(target)
+		salesPitch(targetID)
 	elif theAction == "Beg":
-		begAction(target)
+		begAction(targetID)
 	elif theAction == "Fake Injury":
-		fakeInjuryAction(target)
+		fakeInjuryAction(targetID)
 	elif theAction == "Steal":
-		steal(target)
+		steal(targetID)
 	elif theAction == "Con":
-		conTarget(target)
+		conTarget(targetID)
 	else:
-		noAction(target)
+		noAction(targetID)
 
 ## Tells the player to pick an action before pressing the button.
 func noAction(_target):
 	if initiatingAction == false:
-		#print(target)
 		terminalText.targetText = "> System: No action taken. Please select an action before taking it."
 		terminalText.fillText()
 
 ## Initiates the pick to sell window and haggle minigame.
-func salesPitch(target):
+func salesPitch(targetID):
 	if initiatingAction == false:
 		initiatingAction = true
 		terminalText.targetText = "> System: Trying to impress customers..."
@@ -328,21 +327,21 @@ func salesPitch(target):
 		await get_tree().create_timer(2).timeout
 		minigameWindows.show()
 		pickToSell.openPickToSell()
-		haggle.target = target
+		haggle.targetID = targetID
 
 ## Initiates the beg minigame.
-func begAction(target):
+func begAction(targetID):
 	if initiatingAction == false:
 		initiatingAction = true
 		terminalText.targetText = "> System: Preparing to cry..."
 		terminalText.fillText()
 		await get_tree().create_timer(2).timeout
 		onStartMinigame()
-		begWindow.initiate(target)
+		begWindow.initiate(targetID)
 		minigameWindows.show()
 
 ## Initiates the fake injury minigame.
-func fakeInjuryAction(target):
+func fakeInjuryAction(targetID):
 	if initiatingAction == false:
 		initiatingAction = true
 		terminalText.targetText = "> System: Weakening ankles..."
@@ -350,31 +349,31 @@ func fakeInjuryAction(target):
 		await get_tree().create_timer(2).timeout
 		#This better work as a substitute
 		onStartMinigame()
-		fakeInjury.initiate(target)
+		fakeInjury.initiate(targetID)
 		minigameWindows.show()
 
 ## Initiates the steal minigame.
-func steal(target):
+func steal(targetID):
 	if initiatingAction == false:
 		initiatingAction = true
-		#print(target)
+		#print(targetID)
 		terminalText.targetText = "> System: Eyeing enemy pockets..."
 		terminalText.fillText()
 		await get_tree().create_timer(2).timeout
 		onStartMinigame()
-		stealGame.initiate(target)
+		stealGame.initiate(targetID)
 		minigameWindows.show()
 
 ## Initiates the con minigame.
-func conTarget(target):
+func conTarget(targetID):
 	if initiatingAction == false:
 		initiatingAction = true
-		#print(target)
+		#print(targetID)
 		terminalText.targetText = "> System: Ideating new scams..."
 		terminalText.fillText()
 		await get_tree().create_timer(2).timeout
 		onStartMinigame()
-		conGame.initiate(target)
+		conGame.initiate(targetID)
 		minigameWindows.show()
 
 ## Initiates the haggle minigame.

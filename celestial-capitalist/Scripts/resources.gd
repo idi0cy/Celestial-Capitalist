@@ -280,6 +280,9 @@ const circle = preload("res://assets/Sprites/RockBottom/minigames/circle.png")
 const triangle = preload("res://assets/Sprites/RockBottom/minigames/triangle.png")
 const star = preload("res://assets/Sprites/RockBottom/minigames/star.png")
 const umbrella = preload("res://assets/Sprites/RockBottom/minigames/umbrella.png")
+
+const goodTarget = preload("res://assets/Sprites/RockBottom/buttonIcons/goodTarget.png")
+const badTarget = preload("res://assets/Sprites/RockBottom/buttonIcons/badTarget.png")
 #endregion
 
 #region lootable textures
@@ -297,6 +300,8 @@ const lootableButtonScript : Script = preload("res://Scripts/RockBottom/lootable
 const takeableLootButtonScript : Script = preload("res://Scripts/RockBottom/takeableLootButton.gd")
 
 const personButtonScript = preload("res://Scripts/RockBottom/stranger_button.gd")
+
+const targetScript = preload("res://Scripts/RockBottom/minigames/haggle_target.gd")
 #endregion
 
 #region dialogue functions
