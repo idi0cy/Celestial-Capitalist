@@ -1,17 +1,16 @@
+class_name UntilNewStrangers
 extends ProgressBar
+## Counts and displays time until next stranger refresh.
 
 @onready var clock = get_node("../../../../digitalClock")
 
-var placeholder = 0
-signal whyDoINeedThis(theValue)
+signal refresh(theValue)
 
 func _ready():
+	value = 0
 	pass
-	#placeholder = clock.theTime % 30
-	#value = placeholder
-	#whyDoINeedThis.emit(value)
 
+## Update the progress bar and send updates to [SellWindow]
 func _on_digital_clock_on_time_changed() -> void:
-	placeholder = clock.theTime % 30
-	value = placeholder
-	whyDoINeedThis.emit(value)
+	value = clock.theTime % 30
+	refresh.emit(value)
