@@ -76,6 +76,7 @@
 [ext_resource type="PackedScene" uid="uid://cw35novf3su5u" path="res://ButtonScenes/RockBottom/dailyProfits.tscn" id="58_ta34y"]
 [ext_resource type="Script" uid="uid://b3b0gcbfnktlo" path="res://Scripts/RockBottom/minigames/beg/done.gd" id="59_r1x1d"]
 [ext_resource type="Script" uid="uid://7ongknv645n1" path="res://Scripts/RockBottom/minigames/fakeInjury/fake_injury.gd" id="61_62asa"]
+[ext_resource type="Script" uid="uid://sui84r707mwc" path="res://Scripts/RockBottom/minigames/settle_button.gd" id="62_cnv4e"]
 [ext_resource type="Script" uid="uid://dlvjs28qaxhdg" path="res://Scripts/RockBottom/minigames/fakeInjury/raise_severity.gd" id="62_sukrf"]
 [ext_resource type="Script" uid="uid://ceuoobhtlrnfu" path="res://Scripts/RockBottom/minigames/fakeInjury/lower_severity.gd" id="63_k80dl"]
 [ext_resource type="Script" uid="uid://bf8i2xklorm6e" path="res://Scripts/RockBottom/minigames/fakeInjury/severity_marker.gd" id="64_rgwub"]
@@ -1125,6 +1126,7 @@ text = "Raise"
 
 [node name="settleButton" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing" unique_id=1442818377]
 position = Vector2(576, 249)
+script = ExtResource("62_cnv4e")
 
 [node name="outerSprite" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle/pricing/settleButton" unique_id=1513157766]
 scale = Vector2(2, 2)
@@ -1175,6 +1177,7 @@ scale = Vector2(0.145, 0.5)
 script = ExtResource("46_6xhon")
 
 [node name="Beg" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=1389438078]
+visible = false
 script = ExtResource("54_ta34y")
 
 [node name="Progress" type="ProgressBar" parent="CenterWindows/sellWind/postApproach/minigameWindows/Beg" unique_id=378608658]
@@ -1318,6 +1321,7 @@ text = "Done"
 metadata/_edit_use_anchors_ = true
 
 [node name="FakeInjury" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=482562965]
+visible = false
 script = ExtResource("61_62asa")
 
 [node name="FIbox" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=1025160326]
@@ -1507,6 +1511,7 @@ script = ExtResource("69_bao8l")
 [node name="takePublic" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/FakeInjury" unique_id=58030356]
 
 [node name="Con" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=1544630324]
+visible = false
 script = ExtResource("72_m6h73")
 
 [node name="conTerminal" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Con" unique_id=1514979266]
@@ -1766,6 +1771,7 @@ script = ExtResource("81_mnkpu")
 metadata/_edit_use_anchors_ = true
 
 [node name="Steal" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=1194338050]
+visible = false
 script = ExtResource("91_1m3vn")
 
 [node name="options" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal" unique_id=1231739802]

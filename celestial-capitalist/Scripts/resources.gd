@@ -283,6 +283,8 @@ const umbrella = preload("res://assets/Sprites/RockBottom/minigames/umbrella.png
 
 const goodTarget = preload("res://assets/Sprites/RockBottom/buttonIcons/goodTarget.png")
 const badTarget = preload("res://assets/Sprites/RockBottom/buttonIcons/badTarget.png")
+
+const donationIcon = preload("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 #endregion
 
 #region lootable textures
