@@ -1,3 +1,4 @@
+class_name Vitals
 extends Node2D
 
 var health:int = 100

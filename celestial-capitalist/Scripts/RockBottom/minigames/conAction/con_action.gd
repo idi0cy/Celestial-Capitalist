@@ -1,6 +1,5 @@
-extends Node2D
+extends Resources
 
-@onready var dialogue = get_node("../../minigameWindows")
 @onready var sellWind = get_node("../../../../sellWind")
 @onready var clock = get_node("../../../../../digitalClock")
 @onready var ledger = get_node("../../../../Ledger")
@@ -115,19 +114,19 @@ func startTyping(type):
 
 func _on_magic_magic() -> void:
 	startTyping("magic")
-	strangerResponse = dialogue.magicScammedLines.pick_random()
+	strangerResponse = magicScammedLines.pick_random()
 
 func _on_fake_value_fake_value() -> void:
 	startTyping("fake value")
-	strangerResponse = dialogue.fakeValueScammedLines.pick_random()
+	strangerResponse = fakeValueScammedLines.pick_random()
 
 func _on_opportunity_opportunity() -> void:
 	startTyping("opportunity")
-	strangerResponse = dialogue.opportunityScammedLines.pick_random()
+	strangerResponse = opportunityScammedLines.pick_random()
 
 func _on_shady_game_shady_game() -> void:
 	startTyping("shady game")
-	strangerResponse = dialogue.shadyGameScammedLines.pick_random()
+	strangerResponse = shadyGameScammedLines.pick_random()
 
 func _on_terminal_type_all_done(score: Variant) -> void:
 	playerScore = score
@@ -161,7 +160,7 @@ func _on_goldilocks_settle_risk() -> void:
 		genericTerminalText.targetText = "> " + sellWind.allStrangers[targetIndex][0] + ": " + strangerResponse
 		genericTerminalText.targetText += "\n> System: Received $" + str(stakes)
 	else:
-		genericTerminalText.targetText = "> " + sellWind.allStrangers[targetIndex][0] + ": " + dialogue.conFailsDialogue.pick_random()
+		genericTerminalText.targetText = "> " + sellWind.allStrangers[targetIndex][0] + ": " + conFailsDialogue.pick_random()
 	sellWind.removeStranger(sellWind.currentStrangerIndex)
 	
 	#determine if new skill point
