@@ -5,6 +5,7 @@ extends Node2D
 @onready var playerArea = get_node("playerBar/PBarea")
 @onready var theTarget = get_node("target")
 @onready var animation = get_node("goofyAnimation")
+@onready var skill = get_node("../../../../../Skills")
 
 var target
 var active = false
@@ -63,7 +64,6 @@ func _process(_delta):
 			barXaxis = 0
 		playerBar.position.x = barXaxis
 		if succeeding == true:
-			pass
 			$progressBar/TextureProgressBar.value += 0.2 * modifier
 		else:
 			$progressBar/TextureProgressBar.value -= 0.15 / modifier
@@ -75,8 +75,8 @@ func initiate(targetIndex, difficulty): #difficulty is the normal modifier type 
 	succeeding = true
 	$progressBar/TextureProgressBar.value = 25/difficulty
 	theTarget.initiate(difficulty)
-	modifier = difficulty
-	scaleOfBar = 3 * difficulty
+	modifier = difficulty * skill.dextMod
+	scaleOfBar = 3 * difficulty * skill.dextMod
 	if scaleOfBar < 1:
 		playerBarVisual.scale.x = 1
 		playerArea.scale.x = 1

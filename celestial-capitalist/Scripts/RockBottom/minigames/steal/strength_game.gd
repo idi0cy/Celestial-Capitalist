@@ -4,6 +4,7 @@ extends Node2D
 @onready var target = load("res://ButtonScenes/RockBottom/steal_strength_target.tscn")
 @onready var targetScript = load("res://Scripts/RockBottom/minigames/steal/strength_target.gd")
 @onready var changingText = get_node("changingText")
+@onready var skill = get_node("../../../../../Skills")
 
 var difficulty
 var iterations = 0
@@ -51,7 +52,7 @@ func finished():
 	random2 = randf()
 	print(random * (score * 1.0 / ((totalIterations * 0.5) + 0.5)))
 	print(random2)
-	if random * (score * 1.0 / (totalIterations * 0.5)) * (difficulty) > random2:
+	if random * (score * 1.0 / (totalIterations * 0.5)) * (difficulty) * skill.strengthMod> random2:
 		allDone.emit("success")
 	else:
 		allDone.emit("fail")

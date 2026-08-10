@@ -39,7 +39,7 @@ func _process(_delta):
 		tasksDone += 1
 		$requirements/cashRequirement/inquire/interactable.icon = completeTexture
 	#if Input.is_action_just_pressed("r"):
-	#	ledger.addEntry(50, 0, "god", "Donated", completeTexture)
+		#ledger.addEntry(50, 0, "God", "Donated", completeTexture)
 
 func _on_quota_button_open_quota() -> void:
 	if visible == true:

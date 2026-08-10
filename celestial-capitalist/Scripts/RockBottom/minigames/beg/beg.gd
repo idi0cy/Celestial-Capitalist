@@ -13,6 +13,7 @@ extends Resources
 @onready var ledger = get_node("../../../../Ledger")
 @onready var clock = get_node("../../../../../digitalClock")
 @onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
+@onready var skill = get_node("../../../../Skills")
 #endregion
 
 #region variables
@@ -29,7 +30,8 @@ var tries = 8
 var targetStranger
 ## Checks whether a game is in progress
 var initiatingDone = false
-
+var finishing = false
+var random #skill point determiner
 var logosCount = 0
 var pathosCount = 0
 var ethosCount = 0
@@ -38,6 +40,7 @@ var ethosCount = 0
 #region game
 ## Start the game with [member targetStranger].
 func initiate(targetID):
+  finishing = false
 	targetStranger = targetID
 	initiatingDone = false
 	if confirmButton.pressed.is_connected(modifyProgress):
@@ -79,6 +82,8 @@ func modifyProgress(type):
 ## 3. Waits and closes window.
 func _on_done_stop_begging() -> void:
 	if initiatingDone == false:
+		finishing = true
+		begProgress = begProgress * skill.charismaMod
 		#1.
 		## The regex engine.
 		var regex = RegEx.new()
@@ -105,6 +110,12 @@ func _on_done_stop_begging() -> void:
 			terminalText.targetText += "\n> System: Received $" + str(begVal)
 			ledger.money += begVal
 			ledger.addEntry(begVal, clock.theTime, sellWindow.allStrangers[targetStranger][0], "Donated", donationIcon)
+		
+		#determine if skill point is gained
+		random = randf()
+		if random >= 0.91:
+			skill.points += 1
+		
 		terminalText.fillText()
 		initiatingDone = true
 		

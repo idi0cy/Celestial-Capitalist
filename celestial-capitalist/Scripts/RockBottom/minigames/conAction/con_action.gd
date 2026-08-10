@@ -18,6 +18,7 @@ extends Resources
 @onready var typeTimer = get_node("conTerminal/typeGame/typeTimer")
 @onready var riskMarker = get_node("Severity/spectrumOfBall/marker")
 @onready var theRiskStuff = get_node("Severity")
+@onready var skill = get_node("../../../../Skills")
 
 @onready var texture = load("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 
@@ -58,6 +59,7 @@ var stakes = 0.0
 var random2
 var baseStakes
 var successModifier
+var random3 #determines skill point gain
 
 func initiate(target):
 	risk = 50
@@ -152,7 +154,7 @@ func _on_goldilocks_settle_risk() -> void:
 	random2 = randf()
 	stakes = ((risk * 0.01) + 0.5) * baseStakes
 	
-	if (random2 * 100) * playerScore * successModifier > stakes * 12:
+	if (random2 * 100) * playerScore * successModifier * skill.charismaMod > stakes * 12:
 		ledger.money += stakes
 		ledger.addEntry(stakes, clock.theTime, sellWind.allStrangers[targetIndex][0], "Scammed", texture)
 		genericTerminalText.targetText = "> " + sellWind.allStrangers[targetIndex][0] + ": " + strangerResponse
@@ -160,6 +162,11 @@ func _on_goldilocks_settle_risk() -> void:
 	else:
 		genericTerminalText.targetText = "> " + sellWind.allStrangers[targetIndex][0] + ": " + conFailsDialogue.pick_random()
 	sellWind.removeStranger(sellWind.currentStrangerIndex)
+	
+	#determine if new skill point
+	random3 = randf()
+	if random3 >= 0.8:
+		skill.points += 1
 	
 	conGuy.hide()
 	genericTerminal.show()
