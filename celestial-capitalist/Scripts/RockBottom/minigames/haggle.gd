@@ -36,7 +36,6 @@ var random
 var random2
 var random3 #this is for determining if you gain a skill point
 var target
-var iterations = 15
 var arguedValue
 var normalValue
 var ballSpectrum = 50
@@ -147,6 +146,7 @@ func _on_highball_highball() -> void:
 ## game succeeds. The [Terminal] reports the amount received, sends it to the [Ledger], and outputs dialogue. If else, dialogue reports a fail. [br]
 ## 4. Wait for a bit for the player to read it. Exit the screen.
 func _on_settle() -> void:
+	print("something")
 	#1.
 	## The regex engine.
 	var regex = RegEx.new()
@@ -155,11 +155,9 @@ func _on_settle() -> void:
 	var generatedName = peopleList.get_child(storedStrangerIndex).name
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
-	arguedValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01) * ((ballSpectrum * 0.01) + 0.5)
-	normalValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01)
+	#arguedValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01) * ((ballSpectrum * 0.01) + 0.5)
+	#normalValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01)
 	#print((random2 * 100) *(arguedValue / normalValue))
-	
-
 	#2.
 	## The value the item is being sold for after being modified by the [member selectedPrice].
 	var arguedValue = confirmItem.selected[3] * ((selectedPrice * 0.01) + 0.5)

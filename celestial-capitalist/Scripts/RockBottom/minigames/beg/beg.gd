@@ -40,7 +40,7 @@ var ethosCount = 0
 #region game
 ## Start the game with [member targetStranger].
 func initiate(targetID):
-  finishing = false
+	finishing = false
 	targetStranger = targetID
 	initiatingDone = false
 	if confirmButton.pressed.is_connected(modifyProgress):
