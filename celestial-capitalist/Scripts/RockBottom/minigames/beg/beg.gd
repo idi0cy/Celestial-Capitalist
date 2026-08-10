@@ -11,6 +11,7 @@ extends Resources
 @onready var ledger = get_node("../../../../Ledger")
 @onready var clock = get_node("../../../../../digitalClock")
 @onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
+@onready var skill = get_node("../../../../Skills")
 
 @onready var texture = load("res://assets/Sprites/RockBottom/inventoryIcons/hamburgInvIcon.png")
 
@@ -24,8 +25,11 @@ var tries = 7
 var targetStranger
 var begVal = 0
 var initiatingDone = false
+var finishing = false
+var random #skill point determiner
 
 func initiate(target):
+	finishing = false
 	targetStranger = target
 	initiatingDone = false
 	begProgress = 1
@@ -62,6 +66,8 @@ func modifyProgress(type):
 
 func wrapItUp():
 	if initiatingDone == false:
+		finishing = true
+		begProgress = begProgress * skill.charismaMod
 		var regex = RegEx.new()
 		regex.compile("\\d")
 		var generatedName = peopleList.get_child(storedStrangerIndex).name
@@ -84,7 +90,12 @@ func wrapItUp():
 			terminalText.targetText += "\n> System: Received $" + str(begVal)
 			ledger.money += begVal
 			ledger.addEntry(begVal, clock.theTime, sellWindow.allStrangers[targetStranger][0], "Donated", donationIcon)
-		#print(begVal)
+		
+		#determine if skill point is gained
+		random = randf()
+		if random >= 0.91:
+			skill.points += 1
+		
 		terminalText.fillText()
 		initiatingDone = true
 		await get_tree().create_timer(4).timeout

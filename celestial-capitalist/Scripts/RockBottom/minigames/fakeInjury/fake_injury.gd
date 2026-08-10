@@ -10,6 +10,7 @@ extends Resources
 @onready var minigame = get_node("minigamePart")
 @onready var clock = get_node("../../../../../digitalClock")
 @onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
+@onready var skill = get_node("../../../../Skills")
 
 @onready var blackmailIcon = load("res://assets/Sprites/RockBottom/ledgerWindow/blackmail.png")
 
@@ -18,6 +19,7 @@ var targetIndex
 var random
 var arguedVal = 0
 var storedStrangerIndex : int
+var random2 #skill point determining variable
 
 func initiate(target):
 	targetIndex = target
@@ -63,7 +65,7 @@ func arbitration(points):
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
 	random = randf()
-	if random * sellWind.allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2)> (severity/100.0):
+	if random * sellWind.allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod> (severity/100.0):
 		ledger.money += arguedVal
 		ledger.addEntry(arguedVal, clock.theTime, sellWind.allStrangers[targetIndex][0], "Blackmail", blackmailIcon)
 		if (getEasterEggLine(generatedName) == "false"):
@@ -76,6 +78,12 @@ func arbitration(points):
 			terminalText.targetText = "> " + generatedName + ": " + rejectLines.pick_random()
 		else:
 			terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
+	
+	#determine if get skill point
+	random2 = randf()
+	if random2 >= 0.9:
+		skill.points += 1
+	
 	terminalText.fillText()
 	await get_tree().create_timer(1.5).timeout
 	wrapItUp()

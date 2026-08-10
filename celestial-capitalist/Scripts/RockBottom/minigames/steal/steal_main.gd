@@ -10,11 +10,13 @@ extends Node2D
 @onready var strengthGame = get_node("strengthGame")
 @onready var terminalText = get_node("../../Terminal/termText")
 @onready var terminal = get_node("../../Terminal")
+@onready var skill = get_node("../../../../Skills")
 
 @onready var texture = load("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 
 var target
 var consequenceCheck
+var random #determines skill point gainage
 
 func initiate(targetIndex):
 	target = targetIndex
@@ -42,7 +44,6 @@ func _on_stealth_option_use_stealth() -> void:
 	stealthGame.initiate(target, sellWind.allStrangers[target][6] + 0.5)
 
 func _on_stealth_game_finished(goodOrBad: Variant) -> void:
-	pass # Replace with function body.
 	if goodOrBad == "success":
 		if stealthGame.perfection == true:
 			ledger.money += 10 * sellWind.allStrangers[target][1]
@@ -67,6 +68,12 @@ func _on_stealth_game_finished(goodOrBad: Variant) -> void:
 			sellWind.removeStranger(sellWind.currentStrangerIndex)
 		else:
 			terminalText.targetText = "> System: You failed to steal from " + str(sellWind.allStrangers[target][0]) + "."
+	
+	#the skill point part
+	random = randf()
+	if random >= 0.9:
+		skill.points += 1
+	
 	stealthGame.hide()
 	terminal.show()
 	theGuy.show()
@@ -83,6 +90,11 @@ func _on_strength_game_all_done(result: Variant) -> void:
 		terminalText.targetText = "> System: Successfully stole $" + str(10 * sellWind.allStrangers[target][1]) + "."
 	else:
 		terminalText.targetText = "> System: You lost the fight."
+	
+	#the skill point part
+	random = randf()
+	if random >= 0.9:
+		skill.points += 1
 	
 	terminalText.targetText += " The police have been called on you."
 	terminalText.fillText()

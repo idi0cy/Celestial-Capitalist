@@ -14,6 +14,7 @@ extends Resources
 @onready var pickToSell = get_node("../pickToSell")
 @onready var absInventory = get_node("../../../../inventoryWind")
 @onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
+@onready var skill = get_node("../../../../Skills")
 
 
 @onready var goodTarget = load("res://assets/Sprites/RockBottom/buttonIcons/goodTarget.png")
@@ -28,6 +29,7 @@ var redBar = StyleBoxFlat.new()
 var greenBar = StyleBoxFlat.new()
 var random
 var random2
+var random3 #this is for determining if you gain a skill point
 var target
 var iterations = 15
 var arguedValue
@@ -128,7 +130,7 @@ func _on_goldilocks_ball() -> void:
 	arguedValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01) * ((ballSpectrum * 0.01) + 0.5)
 	normalValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01)
 	#print((random2 * 100) *(arguedValue / normalValue))
-	if (random2 * 100) * (arguedValue / normalValue) < progress:
+	if (random2 * 100) * (arguedValue / normalValue) < progress * skill.charismaMod:
 		ledger.money += arguedValue
 		ledger.addEntry(arguedValue, clock.theTime, sellWindow.allStrangers[target][0], confirmItem.selected[0][0], confirmItem.selected[0][-1])
 		if (getEasterEggLine(generatedName) == "false"):
@@ -143,6 +145,12 @@ func _on_goldilocks_ball() -> void:
 		else:
 			terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
 		sellWindow.removeStranger(sellWindow.currentStrangerIndex)
+	
+	#determine if skill point is gained
+	random3 = randf()
+	if random3 >= 0.85:
+		skill.points += 1
+	
 	terminalText.fillText()
 	await get_tree().create_timer(4).timeout
 	progress = 0
