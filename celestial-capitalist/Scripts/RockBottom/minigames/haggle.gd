@@ -36,8 +36,6 @@ var random
 var random2
 var random3 #this is for determining if you gain a skill point
 var target
-var arguedValue
-var normalValue
 var ballSpectrum = 50
 ## The id of the stranger for use in the [member SellWindow.allStrangers] list. Not the index in the [StrangerList].
 var targetID
