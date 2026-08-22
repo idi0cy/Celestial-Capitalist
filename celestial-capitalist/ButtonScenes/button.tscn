@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="2_ptki0"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="3_ptki0"]
 [ext_resource type="Texture2D" uid="uid://c66n0lk6h0usx" path="res://assets/Sprites/quotaIcon.png" id="3_t3hdk"]
+[ext_resource type="Script" uid="uid://bnjgjbckghquh" path="res://Scripts/interactable.gd" id="4_t3hdk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7p2s"]
 bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
@@ -54,6 +55,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_j5vnf")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1a7d8")
 text = "text"
 icon = ExtResource("3_t3hdk")
+script = ExtResource("4_t3hdk")
 metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="." unique_id=198252796]

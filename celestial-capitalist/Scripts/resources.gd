@@ -285,6 +285,7 @@ const goodTarget = preload("res://assets/Sprites/RockBottom/buttonIcons/goodTarg
 const badTarget = preload("res://assets/Sprites/RockBottom/buttonIcons/badTarget.png")
 
 const donationIcon = preload("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
+const refreshIcon = preload("res://assets/Sprites/RockBottom/buttonIcons/refreshIcon.png")
 #endregion
 
 #region lootable textures

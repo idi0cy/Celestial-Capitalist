@@ -130,6 +130,8 @@
 [ext_resource type="Texture2D" uid="uid://hrdxc263wxww" path="res://assets/Sprites/RockBottom/quotaSprites/quotaOuterSprite.png" id="125_mngd5"]
 [ext_resource type="Script" uid="uid://ce2vr2q6p2rj3" path="res://Scripts/RockBottom/quota/quota.gd" id="125_va43e"]
 [ext_resource type="Texture2D" uid="uid://bsjasr0jwopk5" path="res://assets/Sprites/RockBottom/quotaSprites/emptyChecklist.png" id="126_6kioq"]
+[ext_resource type="Script" uid="uid://b4ja8cyvgfild" path="res://Scripts/RockBottom/reroll_button.gd" id="126_otnt1"]
+[ext_resource type="Texture2D" uid="uid://btv4wuksj7t0d" path="res://assets/Sprites/RockBottom/buttonIcons/refreshIcon.png" id="127_f6br3"]
 [ext_resource type="Script" uid="uid://cnwr0k21le4ep" path="res://Scripts/RockBottom/skills/skills_main.gd" id="130_8m7ut"]
 [ext_resource type="Texture2D" uid="uid://cb2bvoot3s2mw" path="res://assets/Sprites/RockBottom/skillsSprites/centerForCounter.png" id="130_71gsy"]
 [ext_resource type="Texture2D" uid="uid://dxcfb0rtatwtn" path="res://assets/Sprites/RockBottom/skillsSprites/positiveSideVibrant.png" id="131_8m7ut"]
@@ -517,6 +519,7 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="sellWind" type="Node2D" parent="CenterWindows" unique_id=1492757036]
+visible = false
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
@@ -2293,16 +2296,15 @@ visible = false
 script = ExtResource("113_v5jsb")
 
 [node name="market" type="Node2D" parent="CenterWindows" unique_id=1209370336]
-visible = false
 script = ExtResource("114_ugxq0")
 
 [node name="pickProduct" type="Node2D" parent="CenterWindows/market" unique_id=1584957141]
 
 [node name="productList" type="HBoxContainer" parent="CenterWindows/market/pickProduct" unique_id=1606768443]
 offset_left = 488.0
-offset_top = 200.0
+offset_top = 234.0
 offset_right = 825.0
-offset_bottom = 265.0
+offset_bottom = 299.0
 theme_override_constants/separation = 10
 script = ExtResource("115_v60go")
 
@@ -2391,8 +2393,16 @@ label_settings = ExtResource("27_l771o")
 autowrap_mode = 3
 clip_text = true
 
+[node name="rerollButton" parent="CenterWindows/market/pickProduct" unique_id=1885825147 instance=ExtResource("29_koopg")]
+position = Vector2(721, 347)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("126_otnt1")
+icon = ExtResource("127_f6br3")
+text = "Reroll"
+
 [node name="buyButton" type="Node2D" parent="CenterWindows/market/pickProduct" unique_id=1040636274]
-position = Vector2(640, 349)
+position = Vector2(562, 347)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("83_8gpbd")
 
 [node name="interactable" type="Button" parent="CenterWindows/market/pickProduct/buyButton" unique_id=1045370183]
@@ -2406,6 +2416,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vcog2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_s3w6n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0eeoo")
 text = "Buy"
+metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="CenterWindows/market/pickProduct/buyButton" unique_id=342494564]
 z_index = -1
@@ -2431,22 +2442,22 @@ texture = ExtResource("24_bgfic")
 
 [node name="owned" type="Label" parent="CenterWindows/market/pickProduct" unique_id=1540450020]
 offset_left = 375.0
-offset_top = 169.0
+offset_top = 187.0
 offset_right = 441.0
-offset_bottom = 189.0
+offset_bottom = 207.0
 text = "owned by"
 label_settings = ExtResource("27_l771o")
 
 [node name="ownerPortrait" type="Sprite2D" parent="CenterWindows/market/pickProduct" unique_id=1316825490]
-position = Vector2(408, 254)
+position = Vector2(408, 272)
 scale = Vector2(2, 2)
 texture = ExtResource("21_0m4ur")
 
 [node name="ownerName" type="Label" parent="CenterWindows/market/pickProduct" unique_id=1531367203]
 offset_left = 329.0
-offset_top = 317.0
+offset_top = 321.0
 offset_right = 489.0
-offset_bottom = 351.0
+offset_bottom = 375.0
 text = "ownerName"
 label_settings = ExtResource("81_yt8l6")
 horizontal_alignment = 1
@@ -3001,6 +3012,7 @@ position = Vector2(402, 554)
 [connection signal="mouse_entered" from="CenterWindows/scavenge/lootResult/lootTurnout/takeButton/interactable" to="CenterWindows/scavenge/lootResult/lootTurnout/takeButton" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/scavenge/lootResult/lootTurnout/takeButton/interactable" to="CenterWindows/scavenge/lootResult/lootTurnout/takeButton" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/scavenge/lootResult/lootTurnout/takeButton/interactable" to="CenterWindows/scavenge/lootResult/lootTurnout/takeButton" method="_on_interactable_pressed"]
+[connection signal="buttonPressed" from="CenterWindows/market/pickProduct/rerollButton" to="CenterWindows/market" method="_on_reroll_button_pressed"]
 [connection signal="mouse_entered" from="CenterWindows/market/pickProduct/buyButton/interactable" to="CenterWindows/market/pickProduct/buyButton" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/market/pickProduct/buyButton/interactable" to="CenterWindows/market/pickProduct/buyButton" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/market/pickProduct/buyButton/interactable" to="CenterWindows/market/pickProduct/buyButton" method="_on_interactable_pressed"]

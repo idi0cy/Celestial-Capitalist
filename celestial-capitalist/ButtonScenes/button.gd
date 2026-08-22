@@ -6,6 +6,8 @@ extends Resources
 ## method and replace the contents with [code]pass[/code]. Otherwise, the button will be blank as the template scene is not used and can't set the icon or text.
 ## Special buttons should be used if you want special behaviour beyond lerping and sending the signal. [br]
 ## [br]
+## Tooltips can be added by overriding ready and calling tooltip methods on [member interactable]. See [class Interactable] for details. [br]
+## [br]
 ## Buttons that do use the template scene only need to instance the scene and set the icon and texture in the inspector, then connect the signal.
 
 ## References the background texture of the button.
