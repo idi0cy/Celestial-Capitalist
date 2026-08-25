@@ -164,9 +164,10 @@ func _ready():
 
 #region generation
 func _on_reroll_button_pressed() -> void:
-	genStall()
-	ledger.money -= 50
-	ledger.addEntry(-50, clock.theTime, "Market", "Rerolled", refreshIcon)
+	if ledger.money >= 50:
+		genStall()
+		ledger.money -= 50
+		ledger.addEntry(-50, clock.theTime, "Market", "Reroll", refreshIcon)
 
 ## Generates the day's stall and sets the screen to represent it.
 func genStall():
