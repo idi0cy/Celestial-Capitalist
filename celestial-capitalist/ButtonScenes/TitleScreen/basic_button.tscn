@@ -12,6 +12,9 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhgbh"]
+bg_color = Color(0.09019608, 0.09019608, 0.09019608, 0.7294118)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bnjb"]
 bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0.49019608)
 corner_detail = 1
@@ -41,6 +44,7 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_nw27a")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_v4i60")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rhgbh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6bnjb")
 text = "Start Game"
 metadata/_edit_use_anchors_ = true
