@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://qx5el6ayusn4"]
 
+[ext_resource type="Script" uid="uid://c11noiegmjqw5" path="res://Scripts/TitleScreen/switch_scene.gd" id="1_n1yhu"]
 [ext_resource type="Texture2D" uid="uid://31p7ceegtlwx" path="res://assets/Sprites/TitleScreen/titleScreenBackground.png" id="1_v6p8y"]
 [ext_resource type="PackedScene" uid="uid://bnjamtaxxttyi" path="res://ButtonScenes/TitleScreen/basic_button.tscn" id="2_ak2if"]
 [ext_resource type="Script" uid="uid://dnlvkudr02nmb" path="res://Scripts/TitleScreen/TitleButtonScripts/start_game_button.gd" id="3_ig5kc"]
@@ -9,8 +10,13 @@
 [ext_resource type="Script" uid="uid://mc21ag5yr8f8" path="res://Scripts/TitleScreen/celestial_title.gd" id="7_8vmu4"]
 [ext_resource type="Texture2D" uid="uid://dg0mu8ugee6vr" path="res://assets/Sprites/TitleScreen/titleCardP2.png" id="7_013yr"]
 [ext_resource type="Script" uid="uid://dip2gm821vj3s" path="res://Scripts/TitleScreen/capitalist_title.gd" id="9_xfn3p"]
+[ext_resource type="Script" uid="uid://du864sjfhw5dh" path="res://Scripts/TitleScreen/credits_popup.gd" id="10_rhgbh"]
+[ext_resource type="Texture2D" uid="uid://bv82ui6ee8y1j" path="res://assets/Sprites/TitleScreen/ccreditsBackG.png" id="10_xfn3p"]
+[ext_resource type="Texture2D" uid="uid://dehm0i00djgew" path="res://assets/Sprites/TitleScreen/exitButton.png" id="12_skmiq"]
+[ext_resource type="Script" uid="uid://dply3s1qftl1o" path="res://Scripts/TitleScreen/settings_popup.gd" id="13_lf08s"]
 
 [node name="TitleScreen" type="Node2D" unique_id=926425417]
+script = ExtResource("1_n1yhu")
 metadata/_edit_horizontal_guides_ = [-1.0]
 
 [node name="background" type="Sprite2D" parent="." unique_id=193297278]
@@ -59,8 +65,92 @@ scale = Vector2(10, 10)
 texture = ExtResource("7_013yr")
 script = ExtResource("9_xfn3p")
 
+[node name="creditsPopUp" type="Node2D" parent="." unique_id=1984987867]
+visible = false
+script = ExtResource("10_rhgbh")
+
+[node name="popupBackground" type="Sprite2D" parent="creditsPopUp" unique_id=2087709270]
+position = Vector2(578, 330)
+scale = Vector2(4, 4)
+texture = ExtResource("10_xfn3p")
+
+[node name="buttonToExit" type="Node2D" parent="creditsPopUp" unique_id=635682182]
+
+[node name="exitButton" type="Button" parent="creditsPopUp/buttonToExit" unique_id=318424617]
+offset_left = 778.0
+offset_top = 230.0
+offset_right = 806.0
+offset_bottom = 258.0
+
+[node name="outerSprite" type="Sprite2D" parent="creditsPopUp/buttonToExit" unique_id=678035012]
+position = Vector2(578, 330)
+scale = Vector2(4, 4)
+texture = ExtResource("12_skmiq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="creditsPopUp" unique_id=1169864353]
+offset_left = 346.0
+offset_top = 226.0
+offset_right = 776.0
+offset_bottom = 426.0
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "Celestial Capitalist is a game unfortunately developed by idi0cy and Ratseer"
+
+[node name="settingsPopup" type="Node2D" parent="." unique_id=1691375184]
+visible = false
+script = ExtResource("13_lf08s")
+
+[node name="popupBackground" type="Sprite2D" parent="settingsPopup" unique_id=810797009]
+position = Vector2(578, 330)
+scale = Vector2(4, 4)
+texture = ExtResource("10_xfn3p")
+
+[node name="buttonToExit" type="Node2D" parent="settingsPopup" unique_id=2056660850]
+
+[node name="Button" type="Button" parent="settingsPopup/buttonToExit" unique_id=1015301162]
+offset_left = 778.0
+offset_top = 230.0
+offset_right = 806.0
+offset_bottom = 258.0
+
+[node name="outerSprite" type="Sprite2D" parent="settingsPopup/buttonToExit" unique_id=72821515]
+position = Vector2(578, 330)
+scale = Vector2(4, 4)
+texture = ExtResource("12_skmiq")
+
+[node name="label" type="Label" parent="settingsPopup" unique_id=1059612424]
+offset_left = 350.0
+offset_top = 230.0
+offset_right = 800.0
+offset_bottom = 335.0
+theme_override_font_sizes/font_size = 25
+text = "I lied.
+
+There are no settings yet."
+
+[node name="loadingPopup" type="Node2D" parent="." unique_id=245911985]
+visible = false
+
+[node name="popupBackground" type="Sprite2D" parent="loadingPopup" unique_id=639965763]
+position = Vector2(578, 330)
+scale = Vector2(4, 4)
+texture = ExtResource("10_xfn3p")
+
+[node name="label" type="Label" parent="loadingPopup" unique_id=392511532]
+offset_left = 350.0
+offset_top = 230.0
+offset_right = 800.0
+offset_bottom = 335.0
+theme_override_font_sizes/font_size = 25
+text = "Loading the first stage..."
+
+[connection signal="switchScene" from="startButton" to="." method="_on_start_button_switch_scene"]
+[connection signal="creditsPressed" from="creditsButton" to="creditsPopUp" method="_on_credits_button_credits_pressed"]
+[connection signal="openSettings" from="settingsButton" to="settingsPopup" method="_on_settings_button_open_settings"]
 [connection signal="timeout" from="Timers/creditsDelay" to="creditsButton" method="_on_credits_delay_timeout"]
 [connection signal="timeout" from="Timers/menuDelay1" to="startButton" method="_on_menu_delay_1_timeout"]
 [connection signal="timeout" from="Timers/settingsDelay" to="settingsButton" method="_on_settings_delay_timeout"]
 [connection signal="timeout" from="Timers/celestialTimer" to="CelestialTitle" method="_on_celestial_timer_timeout"]
 [connection signal="timeout" from="Timers/capitalistTimer" to="CapitalistTitle" method="_on_capitalist_timer_timeout"]
+[connection signal="pressed" from="creditsPopUp/buttonToExit/exitButton" to="creditsPopUp" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="settingsPopup/buttonToExit/Button" to="settingsPopup" method="_on_button_pressed"]
