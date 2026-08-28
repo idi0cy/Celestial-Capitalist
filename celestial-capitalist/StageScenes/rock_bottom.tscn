@@ -126,8 +126,11 @@
 [ext_resource type="Script" uid="uid://bm0swrp8b7v53" path="res://Scripts/RockBottom/vitals.gd" id="113_v5jsb"]
 [ext_resource type="Script" uid="uid://t1ittnl6l63o" path="res://Scripts/RockBottom/market.gd" id="114_ugxq0"]
 [ext_resource type="Script" uid="uid://bdaqeiwch0r0g" path="res://Scripts/RockBottom/product_list.gd" id="115_v60go"]
+[ext_resource type="Texture2D" uid="uid://7466fprtl0ul" path="res://assets/Sprites/gameOver.png" id="123_gputj"]
+[ext_resource type="Theme" uid="uid://c674uk0ijr3m2" path="res://assets/theme.tres" id="124_cq3w5"]
 [ext_resource type="Script" uid="uid://cc81cqwjjktd5" path="res://Scripts/RockBottom/quota/cash_inquire.gd" id="125_6kioq"]
 [ext_resource type="Texture2D" uid="uid://hrdxc263wxww" path="res://assets/Sprites/RockBottom/quotaSprites/quotaOuterSprite.png" id="125_mngd5"]
+[ext_resource type="Texture2D" uid="uid://dv15n7tnb7726" path="res://assets/Sprites/RockBottom/vitalsBar.png" id="125_qoy16"]
 [ext_resource type="Script" uid="uid://ce2vr2q6p2rj3" path="res://Scripts/RockBottom/quota/quota.gd" id="125_va43e"]
 [ext_resource type="Texture2D" uid="uid://bsjasr0jwopk5" path="res://assets/Sprites/RockBottom/quotaSprites/emptyChecklist.png" id="126_6kioq"]
 [ext_resource type="Script" uid="uid://b4ja8cyvgfild" path="res://Scripts/RockBottom/reroll_button.gd" id="126_otnt1"]
@@ -141,6 +144,8 @@
 [ext_resource type="Script" uid="uid://bx0bd4ibx07xt" path="res://Scripts/RockBottom/skills/more_perception.gd" id="136_b1rtc"]
 [ext_resource type="Script" uid="uid://dh4ojdti803sg" path="res://Scripts/RockBottom/skills/more_luck.gd" id="137_qqkov"]
 [ext_resource type="Script" uid="uid://cqvjtao82dser" path="res://Scripts/RockBottom/skills/skill_point_timer.gd" id="138_w563r"]
+[ext_resource type="Texture2D" uid="uid://ct28wc4tsudpj" path="res://assets/Sprites/damageOverlay.png" id="144_vh5mt"]
+[ext_resource type="Script" uid="uid://cmwwky0qpdf51" path="res://Scripts/damage_overlay.gd" id="145_iysnt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
 bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
@@ -260,6 +265,10 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcog2"]
 size = Vector2(480, 232)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vcog2"]
+font_size = 50
+font_color = Color(0.90449065, 0, 0.22070336, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j27jt"]
 
@@ -1995,6 +2004,13 @@ offset_bottom = 502.0
 [node name="innerTransactionContainer" type="VBoxContainer" parent="CenterWindows/Ledger/transactionContainer" unique_id=253266392]
 layout_mode = 2
 
+[node name="popupBg" type="Sprite2D" parent="CenterWindows/Ledger" unique_id=212772222]
+z_index = -1
+position = Vector2(576, 320)
+rotation = 1.5707964
+scale = Vector2(8, 8)
+texture = ExtResource("33_op3i2")
+
 [node name="scavenge" type="Node2D" parent="CenterWindows" unique_id=1291356382]
 visible = false
 script = ExtResource("81_f2vcc")
@@ -2270,7 +2286,6 @@ autowrap_mode = 3
 clip_text = true
 
 [node name="terminal" type="Node2D" parent="CenterWindows" unique_id=191115621]
-visible = false
 position = Vector2(512, 391)
 script = ExtResource("96_y6hgw")
 
@@ -2291,11 +2306,126 @@ position = Vector2(64, 49)
 scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
-[node name="vitals" type="Node2D" parent="CenterWindows" unique_id=953947443]
+[node name="deathScreen" type="Node2D" parent="CenterWindows" unique_id=1569234725]
 visible = false
+z_index = 5
+
+[node name="gameOver" type="Label" parent="CenterWindows/deathScreen" unique_id=1958602762]
+z_index = 5
+offset_top = 353.0
+offset_right = 1152.0
+offset_bottom = 417.0
+size_flags_horizontal = 4
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_vcog2")
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+metadata/_custom_type_script = "uid://277f1o8ppiay"
+
+[node name="overlay" type="Sprite2D" parent="CenterWindows/deathScreen" unique_id=1535478551]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+texture = ExtResource("123_gputj")
+
+[node name="message" type="Label" parent="CenterWindows/deathScreen" unique_id=749122121]
+offset_top = 412.0
+offset_right = 1152.0
+offset_bottom = 445.0
+size_flags_horizontal = 4
+text = "you died"
+label_settings = ExtResource("26_dls5t")
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+metadata/_custom_type_script = "uid://277f1o8ppiay"
+
+[node name="stage" type="Label" parent="CenterWindows/deathScreen" unique_id=1096707595]
+offset_top = 459.0
+offset_right = 1152.0
+offset_bottom = 492.0
+size_flags_horizontal = 4
+text = "you died"
+label_settings = ExtResource("81_yt8l6")
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+metadata/_custom_type_script = "uid://277f1o8ppiay"
+
+[node name="balance" type="Label" parent="CenterWindows/deathScreen" unique_id=1543486721]
+offset_top = 493.0
+offset_right = 1152.0
+offset_bottom = 526.0
+size_flags_horizontal = 4
+text = "you died"
+label_settings = ExtResource("81_yt8l6")
+horizontal_alignment = 1
+script = ExtResource("22_2of7g")
+metadata/_custom_type_script = "uid://277f1o8ppiay"
+
+[node name="vitals" type="Node2D" parent="CenterWindows" unique_id=953947443]
 script = ExtResource("113_v5jsb")
 
+[node name="health" type="Label" parent="CenterWindows/vitals" unique_id=694183424]
+offset_left = 384.0
+offset_top = 133.0
+offset_right = 497.0
+offset_bottom = 166.0
+text = "Health"
+label_settings = ExtResource("26_dls5t")
+
+[node name="healthBar" type="TextureProgressBar" parent="CenterWindows/vitals" unique_id=388211641]
+offset_left = 384.0
+offset_top = 164.0
+offset_right = 480.0
+offset_bottom = 174.0
+scale = Vector2(4, 4)
+theme = ExtResource("124_cq3w5")
+texture_under = ExtResource("2_5xa78")
+texture_progress = ExtResource("125_qoy16")
+
+[node name="satiation" type="Label" parent="CenterWindows/vitals" unique_id=1091118906]
+offset_left = 384.0
+offset_top = 204.0
+offset_right = 515.0
+offset_bottom = 237.0
+text = "Satiation"
+label_settings = ExtResource("26_dls5t")
+
+[node name="satiationBar" type="TextureProgressBar" parent="CenterWindows/vitals" unique_id=611933811]
+offset_left = 384.0
+offset_top = 235.0
+offset_right = 480.0
+offset_bottom = 245.0
+scale = Vector2(4, 4)
+theme = ExtResource("124_cq3w5")
+texture_under = ExtResource("2_5xa78")
+texture_progress = ExtResource("125_qoy16")
+
+[node name="hydration" type="Label" parent="CenterWindows/vitals" unique_id=1240802365]
+offset_left = 384.0
+offset_top = 275.0
+offset_right = 534.0
+offset_bottom = 308.0
+text = "Hydration"
+label_settings = ExtResource("26_dls5t")
+
+[node name="hydrationBar" type="TextureProgressBar" parent="CenterWindows/vitals" unique_id=175479918]
+offset_left = 384.0
+offset_top = 309.0
+offset_right = 480.0
+offset_bottom = 319.0
+scale = Vector2(4, 4)
+theme = ExtResource("124_cq3w5")
+texture_under = ExtResource("2_5xa78")
+texture_progress = ExtResource("125_qoy16")
+
+[node name="popupBg" type="Sprite2D" parent="CenterWindows/vitals" unique_id=878438356]
+z_index = -1
+position = Vector2(576, 320)
+rotation = 1.5707964
+scale = Vector2(8, 8)
+texture = ExtResource("33_op3i2")
+
 [node name="market" type="Node2D" parent="CenterWindows" unique_id=1209370336]
+visible = false
 script = ExtResource("114_ugxq0")
 
 [node name="pickProduct" type="Node2D" parent="CenterWindows/market" unique_id=1584957141]
@@ -2807,6 +2937,13 @@ offset_bottom = 471.0
 text = "(XX:XX) Until New Skill Point"
 horizontal_alignment = 1
 
+[node name="damageOverlay" type="Sprite2D" parent="CenterWindows" unique_id=2062084718]
+z_index = 5
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+texture = ExtResource("144_vh5mt")
+script = ExtResource("145_iysnt")
+
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
 
@@ -2814,6 +2951,8 @@ position = Vector2(402, 554)
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/sellWind" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/Ledger" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/scavenge" method="_on_scavenge_button_open_scav_wind"]
+[connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/terminal" method="_on_scavenge_button_open_scav_wind"]
+[connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/vitals" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/market" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/Quota" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/Skills" method="_on_scavenge_button_open_scav_wind"]
@@ -2821,6 +2960,8 @@ position = Vector2(402, 554)
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/sellWind" method="_on_sell_button_open_sell_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/Ledger" method="_on_sell_button_open_sell_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/scavenge" method="_on_sell_button_open_sell_wind"]
+[connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/terminal" method="_on_sell_button_open_sell_wind"]
+[connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/vitals" method="_on_sell_button_open_sell_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/market" method="_on_sell_button_open_sell_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/Quota" method="_on_sell_button_open_sell_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/Skills" method="_on_sell_button_open_sell_wind"]
@@ -2828,6 +2969,8 @@ position = Vector2(402, 554)
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/sellWind" method="_on_event_log_open_log"]
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/Ledger" method="_on_event_log_open_log"]
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/scavenge" method="_on_event_log_open_log"]
+[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/terminal" method="_on_event_log_open_log"]
+[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/vitals" method="_on_event_log_open_log"]
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/market" method="_on_event_log_open_log"]
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/Quota" method="_on_event_log_open_log"]
 [connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/Skills" method="_on_event_log_open_log"]
@@ -2835,6 +2978,8 @@ position = Vector2(402, 554)
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/sellWind" method="_on_ledger_button_open_ledger"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/Ledger" method="_on_open_ledger"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/scavenge" method="_on_ledger_button_open_ledger"]
+[connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/terminal" method="_on_ledger_button_open_ledger"]
+[connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/vitals" method="_on_ledger_button_open_ledger"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/market" method="_on_ledger_button_open_ledger"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/Quota" method="_on_ledger_button_open_ledger"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/Skills" method="_on_ledger_button_open_ledger"]
@@ -2842,6 +2987,8 @@ position = Vector2(402, 554)
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/sellWind" method="_on_quota_button_open_quota"]
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/Ledger" method="_on_quota_button_open_quota"]
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/scavenge" method="_on_quota_button_open_quota"]
+[connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/terminal" method="_on_quota_button_open_quota"]
+[connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/vitals" method="_on_quota_button_open_quota"]
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/market" method="_on_quota_button_open_quota"]
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/Quota" method="_on_quota_button_open_quota"]
 [connection signal="openQuota" from="InitButtons/QuotaButton" to="CenterWindows/Skills" method="_on_quota_button_open_quota"]
@@ -2849,6 +2996,8 @@ position = Vector2(402, 554)
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/sellWind" method="_on_inventory_button_open_inventory"]
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/Ledger" method="_on_inventory_button_open_inventory"]
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/scavenge" method="_on_inventory_button_open_inventory"]
+[connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/terminal" method="_on_inventory_button_open_inventory"]
+[connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/vitals" method="_on_inventory_button_open_inventory"]
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/market" method="_on_inventory_button_open_inventory"]
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/Quota" method="_on_inventory_button_open_inventory"]
 [connection signal="openInventory" from="InitButtons/InventoryButton" to="CenterWindows/Skills" method="_on_inventory_button_open_inventory"]
@@ -2856,6 +3005,8 @@ position = Vector2(402, 554)
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/sellWind" method="_on_buy_button_open_shop"]
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/Ledger" method="_on_buy_button_open_shop"]
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/scavenge" method="_on_buy_button_open_shop"]
+[connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/terminal" method="_on_buy_button_open_shop"]
+[connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/vitals" method="_on_buy_button_open_shop"]
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/market" method="_on_buy_button_open_shop"]
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/Quota" method="_on_buy_button_open_shop"]
 [connection signal="openShop" from="InitButtons/BuyButton" to="CenterWindows/Skills" method="_on_buy_button_open_shop"]
@@ -2863,6 +3014,8 @@ position = Vector2(402, 554)
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/sellWind" method="_on_vitals_button_open_vitals"]
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/Ledger" method="_on_vitals_button_open_vitals"]
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/scavenge" method="_on_vitals_button_open_vitals"]
+[connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/terminal" method="_on_vitals_button_open_vitals"]
+[connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/vitals" method="_open_vitals"]
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/market" method="_on_vitals_button_open_vitals"]
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/Quota" method="_on_vitals_button_open_vitals"]
 [connection signal="openVitals" from="InitButtons/VitalsButton" to="CenterWindows/Skills" method="_on_vitals_button_open_vitals"]
@@ -2870,6 +3023,8 @@ position = Vector2(402, 554)
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/sellWind" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/Ledger" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/scavenge" method="_on_skills_button_open_skill_tree"]
+[connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/terminal" method="_on_skills_button_open_skill_tree"]
+[connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/vitals" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/market" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/Quota" method="_on_skills_button_open_skill_tree"]
 [connection signal="openSkillTree" from="InitButtons/skillsButton" to="CenterWindows/Skills" method="_on_skills_button_open_skill_tree"]
@@ -3032,3 +3187,4 @@ position = Vector2(402, 554)
 [connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/Ledger" method="_on_digital_clock_open_time"]
+[connection signal="openTime" from="digitalClock" to="CenterWindows/vitals" method="_on_digital_clock_open_time"]
