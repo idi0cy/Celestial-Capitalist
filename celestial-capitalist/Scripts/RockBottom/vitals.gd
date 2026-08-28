@@ -166,12 +166,13 @@ func _input(event):
 		print(health)
 		print(hydration)
 		print(satiation)
-	if event.is_action_pressed("q"):
-		changeHealth(-10)
-	if event.is_action_pressed("w"):
-		changeHydration(-10)
-	if event.is_action_pressed("e"):
-		changeSatiation(-10)
+	
+	#if event.is_action_pressed("q"):
+	#	changeHealth(-10)
+	#if event.is_action_pressed("w"):
+	#	changeHydration(-10)
+	#if event.is_action_pressed("e"):
+	#	changeSatiation(-10)
 #endregion
 
 #region opening/closing

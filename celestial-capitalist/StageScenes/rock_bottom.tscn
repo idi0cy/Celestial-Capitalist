@@ -143,7 +143,6 @@
 [ext_resource type="Script" uid="uid://bjt7kv055euxx" path="res://Scripts/RockBottom/skills/more_charisma.gd" id="135_b0yxv"]
 [ext_resource type="Script" uid="uid://bx0bd4ibx07xt" path="res://Scripts/RockBottom/skills/more_perception.gd" id="136_b1rtc"]
 [ext_resource type="Script" uid="uid://dh4ojdti803sg" path="res://Scripts/RockBottom/skills/more_luck.gd" id="137_qqkov"]
-[ext_resource type="Script" uid="uid://cqvjtao82dser" path="res://Scripts/RockBottom/skills/skill_point_timer.gd" id="138_w563r"]
 [ext_resource type="Texture2D" uid="uid://ct28wc4tsudpj" path="res://assets/Sprites/damageOverlay.png" id="144_vh5mt"]
 [ext_resource type="Script" uid="uid://cmwwky0qpdf51" path="res://Scripts/damage_overlay.gd" id="145_iysnt"]
 
