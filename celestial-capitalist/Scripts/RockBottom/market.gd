@@ -83,14 +83,14 @@ func newStall(
 	trashCanIcon,
 	{
 		[
-			"Crystal Wash", "Consumable", 60,
-			2, 70,
+			"Crystal Wash", "Medication", 0,
+			30, 70,
 			"A magical cleaning remedy that you totally shouldn't drink.",
 			skincareIconSmall, skincareIcon
 		]: 10,
 		[
-			"Healing Ointment", "Medication", 8,
-			30, "null",
+			"Healing Ointment", "Medication", 0,
+			80, "null",
 			"Cheap, effective health recovery. Tastes like congealed magic, though.",
 			waterBottleInvIconSmall, waterBottleInvIcon
 		]: 10
@@ -166,7 +166,6 @@ func _ready():
 func _on_reroll_button_pressed() -> void:
 	if ledger.money >= 50:
 		genStall()
-		ledger.money -= 50
 		ledger.addEntry(-50, clock.theTime, "Market", "Reroll", refreshIcon)
 
 ## Generates the day's stall and sets the screen to represent it.
@@ -291,7 +290,6 @@ func buy(item, listIndex):
 				## The [TextureButton] associated with the selected product.
 				var obj = productList.get_child(listIndex)
 				inventory.addItem(item)
-				ledger.money -= item[3]
 				ledger.addEntry(-item[3], clock.theTime, currentStall[0], item[2], item[0][-1])
 				productList.remove_child(obj)
 				obj.queue_free()

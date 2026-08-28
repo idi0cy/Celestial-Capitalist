@@ -296,6 +296,7 @@ func _on_stranger_refresh(theValue: Variant) -> void:
 #region action logic
 ## Receives the action taken and offloads the execution to other methods.
 func _on_take_action_confirm_action(theAction, targetID) -> void:
+	
 	if theAction == "No Action":
 		noAction(targetID)
 	elif theAction == "Sales Pitch":

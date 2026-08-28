@@ -217,9 +217,9 @@ func newItem(
 	"null", "null",
 	"You ponder it's presence here. It's teeth are very sharp...",
 	ponderIconSmall, ponderIcon)
-@onready var skincare = newItem("Skincare Product", "Consumable",
-	60,
-	2, "null",
+@onready var skincare = newItem("Skincare Product", "Medication",
+	0,
+	30, "null",
 	"You really shouldn't eat it. But, colourful = tasty, right?!",
 	skincareIconSmall, skincareIcon)
 @onready var computer = newItem("PC", "Object",
@@ -680,6 +680,25 @@ var fakeValueScammedLines = [
 	"Drahbes","Faehrcyle","Yav","Casai","Lorahn","Kahl","Zithis","Carrow","Vayel","Drabyel","Dusps","Mohta","Okeke",
 	"Elvett","Marahza","Schlonko","Tahva"
 	]
+
+## Death messages.
+var deathMessages = [
+	"Ouch, imagine that medical bill.",
+	"Look at this loser!",
+	"'lol', said the strangers. 'lmao'",
+	"You're dead, idiot.",
+	"Your free trial of life has ended. You do not have enough funds to renew.",
+	"I hope this makes you mad!",
+	"It's so hastover.",
+	"Suffering builds character!",
+	"The viewers are not invested in your arc.",
+	"Game genre: 'Comedy'",
+	"I hope that heaven has a pay and display.",
+	"Don't worry, you didn't make a difference.",
+	"You're going to a purely metaphysical space in which heat does not exist.",
+	"You're among the stars now. A true celestial capitalist.",
+	"Hope your money was in your ender chest."
+]
 #endregion
 
 #region util

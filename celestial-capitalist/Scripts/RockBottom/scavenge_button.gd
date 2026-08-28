@@ -11,3 +11,7 @@ func _on_interactable_pressed() -> void:
 	if sellWindow.initiatingAction == false:
 		openScavWind.emit()
 		outerSprite.scale = paddingSize
+
+
+func _open_vitals() -> void:
+	pass # Replace with function body.

@@ -108,8 +108,7 @@ func _on_done_stop_begging() -> void:
 			else:
 				terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
 			terminalText.targetText += "\n> System: Received $" + str(begVal)
-			ledger.money += begVal
-			ledger.addEntry(begVal, clock.theTime, sellWindow.allStrangers[targetStranger][0], "Donated", donationIcon)
+			ledger.addEntry(begVal, clock.theTime, generatedName, "Donated", donationIcon)
 		
 		#determine if skill point is gained
 		random = randf()

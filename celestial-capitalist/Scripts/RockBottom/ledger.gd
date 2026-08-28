@@ -4,6 +4,7 @@ extends Node2D
 @onready var balance = $sidebar/balance
 const entry_scene = preload("res://ButtonScenes/RockBottom/transaction_entry.tscn")
 var money = 100
+var highest = money
 var ledgerOpen = false
 
 signal progressTask(value)
@@ -28,8 +29,14 @@ func addEntry(amount, time, party, subject, texture):
 	var entry_instance = entry_scene.instantiate()
 	innerTransactionContainer.add_child(entry_instance)
 	entry_instance.writeTransaction(amount, time, party, subject, texture)
-	if amount > 0:
-		progressTask.emit(amount)
+	changeBalance(amount)
+
+func changeBalance(value):
+	money += value
+	if money > highest:
+		highest = money
+	if value > 0:
+		progressTask.emit(value)
 
 #func _input(event):
 #	if event.is_action_pressed("debug"):

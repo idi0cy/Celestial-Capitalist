@@ -144,7 +144,6 @@ func _on_highball_highball() -> void:
 ## game succeeds. The [Terminal] reports the amount received, sends it to the [Ledger], and outputs dialogue. If else, dialogue reports a fail. [br]
 ## 4. Wait for a bit for the player to read it. Exit the screen.
 func _on_settle() -> void:
-	print("something")
 	#1.
 	## The regex engine.
 	var regex = RegEx.new()
@@ -164,8 +163,7 @@ func _on_settle() -> void:
 	
 	#3.
 	if (randf() * 100) * (arguedValue / normalValue) < progress * skill.charismaMod:
-		ledger.money += arguedValue
-		ledger.addEntry(arguedValue, clock.theTime, sellWindow.allStrangers[targetID][0], confirmItem.selected[0][0], confirmItem.selected[0][-1])
+		ledger.addEntry(arguedValue, clock.theTime, generatedName, confirmItem.selected[0][0], confirmItem.selected[0][-1])
 		if (getEasterEggLine(generatedName) == "false"):
 			terminalText.targetText = "> " + generatedName + ": " + acceptLines.pick_random()
 		else:
