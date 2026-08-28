@@ -285,9 +285,6 @@ bg_color = Color(0, 0, 0, 0.39215687)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71gsy"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
-bg_color = Color(0, 0.69803923, 0.827451, 0.7882353)
-
 [node name="RockBottom" type="Node2D" unique_id=1024261337]
 
 [node name="CelestialSegment" type="Node2D" parent="." unique_id=1451961114]
@@ -2915,28 +2912,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_g4v7s")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8m7ut")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_71gsy")
 
-[node name="timer" type="Node2D" parent="CenterWindows/Skills" unique_id=655926162]
-script = ExtResource("138_w563r")
-
-[node name="tillNextPoint" type="Timer" parent="CenterWindows/Skills/timer" unique_id=2077892067]
-autostart = true
-
-[node name="progressDisplay" type="ProgressBar" parent="CenterWindows/Skills/timer" unique_id=756279379]
-offset_left = 384.0
-offset_top = 477.0
-offset_right = 784.0
-offset_bottom = 501.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_g4v7s")
-value = 50.0
-
-[node name="Label" type="Label" parent="CenterWindows/Skills/timer" unique_id=1774259017]
-offset_left = 384.0
-offset_top = 451.0
-offset_right = 784.0
-offset_bottom = 471.0
-text = "(XX:XX) Until New Skill Point"
-horizontal_alignment = 1
-
 [node name="damageOverlay" type="Sprite2D" parent="CenterWindows" unique_id=2062084718]
 z_index = 5
 position = Vector2(576, 324)
@@ -3180,7 +3155,6 @@ position = Vector2(402, 554)
 [connection signal="pressed" from="CenterWindows/Skills/charismaSkill/moreButton/Button" to="CenterWindows/Skills/charismaSkill/moreButton" method="_on_button_pressed"]
 [connection signal="pressed" from="CenterWindows/Skills/percSkill/moreButton/Button" to="CenterWindows/Skills/percSkill/moreButton" method="_on_button_pressed"]
 [connection signal="pressed" from="CenterWindows/Skills/luckSkill/moreButton/Button" to="CenterWindows/Skills/luckSkill/moreButton" method="_on_button_pressed"]
-[connection signal="timeout" from="CenterWindows/Skills/timer/tillNextPoint" to="CenterWindows/Skills/timer" method="_on_till_next_point_timeout"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/sellWind/PickTarget/strangerRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/scavenge/pickLootable/lootRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/scavenge/lootResult/minigameWindow/timer" method="_on_digital_clock_on_time_changed"]

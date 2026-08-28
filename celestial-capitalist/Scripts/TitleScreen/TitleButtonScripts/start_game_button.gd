@@ -11,6 +11,8 @@ var growSpeed = 0.1
 var moveSpeed = 2.0
 var movement = false
 
+signal switchScene
+
 func _ready():
 	interactable.text = "Start Game"
 	enterDelay.start()
@@ -33,6 +35,7 @@ func _on_interactable_mouse_exited() -> void:
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
 	#print(self)
+	switchScene.emit()
 	pass
 
 func _on_menu_delay_1_timeout() -> void:
