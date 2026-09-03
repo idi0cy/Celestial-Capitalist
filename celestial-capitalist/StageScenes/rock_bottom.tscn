@@ -330,6 +330,7 @@ position = Vector2(149, 167)
 position = Vector2(1005, 168)
 
 [node name="EventLog" parent="InitButtons" unique_id=1112858218 instance=ExtResource("6_vc60y")]
+visible = false
 position = Vector2(1004, 606)
 
 [node name="LedgerButton" parent="InitButtons" unique_id=190051087 instance=ExtResource("7_js5gw")]
