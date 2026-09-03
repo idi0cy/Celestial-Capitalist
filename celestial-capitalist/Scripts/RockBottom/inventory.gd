@@ -3,7 +3,6 @@ extends InventoryHelper
 ## Central player inventory.
 ##
 ## Controls the player's inventory. Items can only be used from this inventory.
-
 ## Call to refresh the inventory and update it based on the [member currentInv] array.
 ## If an item is modified in the [member currentInv] array, call this after to sync it.
 func refreshInventory():

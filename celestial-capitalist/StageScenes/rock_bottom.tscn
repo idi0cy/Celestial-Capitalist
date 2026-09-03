@@ -143,6 +143,7 @@
 [ext_resource type="Script" uid="uid://bjt7kv055euxx" path="res://Scripts/RockBottom/skills/more_charisma.gd" id="135_b0yxv"]
 [ext_resource type="Script" uid="uid://bx0bd4ibx07xt" path="res://Scripts/RockBottom/skills/more_perception.gd" id="136_b1rtc"]
 [ext_resource type="Script" uid="uid://dh4ojdti803sg" path="res://Scripts/RockBottom/skills/more_luck.gd" id="137_qqkov"]
+[ext_resource type="Script" uid="uid://bdr0s4yfsqfwh" path="res://Scripts/RockBottom/random_events.gd" id="141_f6br3"]
 [ext_resource type="Texture2D" uid="uid://ct28wc4tsudpj" path="res://assets/Sprites/damageOverlay.png" id="144_vh5mt"]
 [ext_resource type="Script" uid="uid://cmwwky0qpdf51" path="res://Scripts/damage_overlay.gd" id="145_iysnt"]
 
@@ -284,6 +285,14 @@ bg_color = Color(0, 0, 0, 0.39215687)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71gsy"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.77254903, 0.34509805, 1)
+corner_detail = 6
+
 [node name="RockBottom" type="Node2D" unique_id=1024261337]
 
 [node name="CelestialSegment" type="Node2D" parent="." unique_id=1451961114]
@@ -314,31 +323,6 @@ theme_override_font_sizes/font_size = 22
 text = "0/1"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="eventBar" type="Node2D" parent="." unique_id=2089661544]
-position = Vector2(538, 596)
-
-[node name="ProgressBar" type="ProgressBar" parent="eventBar" unique_id=1190351937]
-offset_left = -215.0
-offset_right = 291.0
-offset_bottom = 27.0
-theme_override_constants/outline_size = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_iu7b3")
-value = 75.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="eventBar" unique_id=2092248988]
-offset_left = -96.0
-offset_top = 2.0
-offset_right = 159.0
-offset_bottom = 26.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("12_knhbb")
-theme_override_font_sizes/font_size = 18
-text = "Until Next Random Event"
-metadata/_edit_use_anchors_ = true
 
 [node name="InitButtons" type="Node2D" parent="." unique_id=235710331]
 
@@ -2921,6 +2905,43 @@ script = ExtResource("145_iysnt")
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)
 
+[node name="randomEvents" type="Node2D" parent="." unique_id=1416266234]
+script = ExtResource("141_f6br3")
+
+[node name="eventBar" type="Node2D" parent="randomEvents" unique_id=2089661544]
+position = Vector2(538, 596)
+
+[node name="ProgressBar" type="ProgressBar" parent="randomEvents/eventBar" unique_id=1190351937]
+offset_left = -215.0
+offset_right = 291.0
+offset_bottom = 27.0
+theme_override_constants/outline_size = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_iu7b3")
+value = 75.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="randomEvents/eventBar" unique_id=2092248988]
+custom_minimum_size = Vector2(400, 0)
+custom_maximum_size = Vector2(400, 30)
+offset_left = -162.0
+offset_top = 2.0
+offset_right = 238.0
+offset_bottom = 26.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("12_knhbb")
+theme_override_font_sizes/font_size = 18
+text = "Until Next Random Event (0): "
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="eventTimer" type="Timer" parent="randomEvents" unique_id=1410259700]
+wait_time = 30.0
+
+[node name="eventZone" type="Node2D" parent="randomEvents" unique_id=1822283314]
+
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/inventoryWind" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/sellWind" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/Ledger" method="_on_scavenge_button_open_scav_wind"]
@@ -3160,4 +3181,5 @@ position = Vector2(402, 554)
 [connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/Ledger" method="_on_digital_clock_open_time"]
+[connection signal="timeout" from="randomEvents/eventTimer" to="randomEvents" method="_on_event_timer_timeout"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/vitals" method="_on_digital_clock_open_time"]

@@ -35,6 +35,8 @@ extends InventoryHelper
 @onready var hydrationDisplay = get_node("lootResult/lootTurnout/itemDesc/infoBarOne/Hydration")
 @onready var satiationDisplay = get_node("lootResult/lootTurnout/itemDesc/infoBarOne/Satiation")
 @onready var flavourText = get_node("lootResult/lootTurnout/itemDesc/flavourText")
+
+@onready var randomEvent = get_node("../../randomEvents")
 #endregion
 
 #region variables
@@ -327,7 +329,7 @@ func loot(lootableID, listIndex):
 	
 	storedLootable = lootableID
 	removeLootable(listIndex)
-	
+	randomEvent.active = false
 
 ## Resets the game and loot results.
 func reset():
@@ -355,6 +357,8 @@ func reset():
 	drawn.drawingOn = true
 	
 	$pickLootable.show()
+	
+	randomEvent.active = true
 
 ## Ends the minigame
 func _on_timer_end_game() -> void:
@@ -380,6 +384,7 @@ func _on_timer_end_game() -> void:
 	reference.pixelCount = 0
 	reference.reset()
 	
+	randomEvent.active = true
 	scavengeActive = false
 #endregion
 	

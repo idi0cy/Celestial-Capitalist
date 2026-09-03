@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://45kojrvoeoxy"]
+
+[ext_resource type="Texture2D" uid="uid://bsdxnepn4mb73" path="res://assets/Sprites/RockBottom/RBblankBackground.png" id="1_h41yt"]
+[ext_resource type="Script" uid="uid://buujpdex5epwy" path="res://Scripts/RockBottom/event_popup.gd" id="1_xtgu0"]
+[ext_resource type="Texture2D" uid="uid://c7xvykyqdug1n" path="res://assets/Sprites/RockBottom/buttonIcons/exitPopup.png" id="2_7c570"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtgu0"]
+bg_color = Color(0, 0, 0, 0.29411766)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdt4i"]
+bg_color = Color(0, 0, 0, 0.29411766)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7c570"]
+bg_color = Color(0, 0, 0, 0.29411766)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7c570"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xtgu0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdt4i"]
+
+[node name="eventPopup" type="Node2D" unique_id=288355973]
+script = ExtResource("1_xtgu0")
+
+[node name="backButton" type="Button" parent="." unique_id=976514227]
+z_index = 19
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_xtgu0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mdt4i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7c570")
+
+[node name="window" type="Sprite2D" parent="." unique_id=766341183]
+z_index = 20
+position = Vector2(582, 314.00003)
+rotation = 1.5707964
+scale = Vector2(3, 3)
+texture = ExtResource("1_h41yt")
+
+[node name="exitButton" type="Node2D" parent="." unique_id=641403576]
+z_index = 21
+
+[node name="interactable" type="Button" parent="exitButton" unique_id=575999537]
+offset_left = 661.0
+offset_top = 251.0
+offset_right = 675.0
+offset_bottom = 265.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7c570")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_xtgu0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mdt4i")
+
+[node name="outerSprite" type="Sprite2D" parent="exitButton" unique_id=1070693205]
+position = Vector2(668, 258)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_7c570")
+
+[node name="eventDescription" type="RichTextLabel" parent="." unique_id=1502977068]
+z_index = 21
+custom_maximum_size = Vector2(168, 125)
+offset_left = 492.0
+offset_top = 254.0
+offset_right = 660.0
+offset_bottom = 379.0
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
+text = "This is the description for the event"
+
+[connection signal="pressed" from="backButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="exitButton/interactable" to="." method="_on_interactable_pressed"]
