@@ -62,7 +62,7 @@ var initiatingAction = false
 ## Sent to action windows so they can remove the current stranger from the list if the player fails the game.
 var currentStrangerIndex
 
-## List of all strangers registered using [method SellWindow.newStranger]. Used to get data of a stranger at runtime. Access a stranger using its name as key.
+## List of all strangers registered using [method SellWindow.newStranger]. Used to get data of a default stranger at runtime. Access a stranger using its name as key.
 @onready var allStrangers : Dictionary = {}
 #endregion
 

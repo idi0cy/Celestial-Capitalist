@@ -40,6 +40,8 @@ extends InventoryHelper
 #region variables
 ## Controls whether the window is open or not.
 var scavengeOpen = false
+## Updated to show whether a scavenge game is currently happening to block other things.
+var scavengeActive = false
 ## List of all lootables registered using [method Scavenge.newLootable]. Used to get data of a lootable at runtime. Access a lootable using its name as key.
 var allLootables : Dictionary = {}
 ## The current lootable's name, stored when in a looting game.
@@ -192,6 +194,10 @@ func _ready():
 		item.queue_free()
 	genLootables()
 
+func _input(event):
+	if event.is_action_pressed("debug"):
+		print("scavengeActive: " + str(scavengeActive))
+
 #region generate lootables
 ## Generates lootables. [br]
 ## 1. Reset lootables. [br]
@@ -215,7 +221,7 @@ func genLootables():
 	lootableDesc.targetText = ""
 	lootableDesc.fillText()
 	
-	#3
+	#2.
 	## How many lootables will be generated
 	var lootableCount : int
 	if ledger.money >= 0 and ledger.money <= 10:
@@ -231,7 +237,7 @@ func genLootables():
 
 	## Keeps track of how many lootables have been generated and is also used to assign lootable [TextureButton]s an index.
 	var generatedIndex = 0
-	#4.
+	#3.
 	for i in lootableCount:
 		## The randomly generated lootable id.
 		var randomLootable : String
@@ -251,7 +257,7 @@ func genLootables():
 			lootableCount = 1
 			randomLootable = allLootables.keys().pick_random()
 
-		#5.
+		#4.
 		## Used in construction of [TextureButton]s for each lootable.
 		var lootableButton = TextureButton.new()
 		lootableButton.texture_normal = allLootables[randomLootable][4]
@@ -293,6 +299,8 @@ func removeLootable(listIndex):
 ## Hides unnecessary aspects of the screen and shows minigame parts. 
 ## Resets the minigame and updates terminal text.
 func loot(lootableID, listIndex):
+	scavengeActive = true
+	
 	directive.hide()
 	$pickLootable/lootableDesc.hide()
 	lootButtonContainer.hide()
@@ -371,6 +379,8 @@ func _on_timer_end_game() -> void:
 	drawn.drawnPixels = []
 	reference.pixelCount = 0
 	reference.reset()
+	
+	scavengeActive = false
 #endregion
 	
 #region loot
