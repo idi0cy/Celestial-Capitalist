@@ -1,6 +1,7 @@
 extends Resources
 
 @onready var sellWind = get_node("../../../../sellWind")
+@onready var strangerList = get_node("../../../../sellWind/PickTarget/PeopleList")
 @onready var clock = get_node("../../../../../digitalClock")
 @onready var ledger = get_node("../../../../Ledger")
 @onready var theGuy = get_node("../../theGuy")
@@ -155,12 +156,11 @@ func _on_goldilocks_settle_risk() -> void:
 	stakes = ((risk * 0.01) + 0.5) * baseStakes
 	
 	if (random2 * 100) * playerScore * successModifier * skill.charismaMod > stakes * 12:
-		ledger.money += stakes
-		ledger.addEntry(stakes, clock.theTime, sellWind.allStrangers[targetIndex][0], "Scammed", texture)
-		genericTerminalText.targetText = "> " + sellWind.allStrangers[targetIndex][0] + ": " + strangerResponse
+		ledger.addEntry(stakes, clock.theTime, strangerList.get_child(sellWind.currentStrangerIndex).name, "Scammed", texture)
+		genericTerminalText.targetText = "> " + strangerList.get_child(sellWind.currentStrangerIndex).name + ": " + strangerResponse
 		genericTerminalText.targetText += "\n> System: Received $" + str(stakes)
 	else:
-		genericTerminalText.targetText = "> " + sellWind.allStrangers[targetIndex][0] + ": " + conFailsDialogue.pick_random()
+		genericTerminalText.targetText = "> " + strangerList.get_child(sellWind.currentStrangerIndex).name + ": " + conFailsDialogue.pick_random()
 	sellWind.removeStranger(sellWind.currentStrangerIndex)
 	
 	#determine if new skill point

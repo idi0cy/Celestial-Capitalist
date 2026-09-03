@@ -64,7 +64,7 @@ var initiatingAction = false
 ## Sent to action windows so they can remove the current stranger from the list if the player fails the game.
 var currentStrangerIndex
 
-## List of all strangers registered using [method SellWindow.newStranger]. Used to get data of a stranger at runtime. Access a stranger using its name as key.
+## List of all strangers registered using [method SellWindow.newStranger]. Used to get data of a default stranger at runtime. Access a stranger using its name as key.
 @onready var allStrangers : Dictionary = {}
 #endregion
 
@@ -299,6 +299,7 @@ func _on_stranger_refresh(theValue: Variant) -> void:
 #region action logic
 ## Receives the action taken and offloads the execution to other methods.
 func _on_take_action_confirm_action(theAction, targetID) -> void:
+	
 	if theAction == "No Action":
 		noAction(targetID)
 	elif theAction == "Sales Pitch":

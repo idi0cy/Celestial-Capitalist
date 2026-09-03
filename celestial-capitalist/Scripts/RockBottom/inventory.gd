@@ -113,34 +113,26 @@ func _on_use_item() -> void:
 				
 				## Final value retrieved from assembled item
 				var itemVal = selectedAssembledItem[3]
-				ledger.money += itemVal
 				ledger.addEntry(itemVal, clock.theTime, selectedAssembledItem[0][0],
 				"Redeemed", coinIcon)
 				removeItem(selectedItemIndex)
 				
 			elif selectedAssembledItem[0][1] == "Consumable":
-				
 				if !(selectedAssembledItem[0][3] is String) || !(selectedAssembledItem[0][3] == 0):
-					
-					## Final satiation retrieved from assembled item
-					var satiation = selectedAssembledItem[5]
-					if vitals.satiation + satiation > 100:
-						vitals.satiation = 100
-					else:
-						vitals.satiation += satiation
+					if !(selectedAssembledItem[0][3] == 0):
+						## Final hydration retrieved from assembled item
+						var hydration = selectedAssembledItem[4]
+						vitals.changeHydration(hydration)
 						
-				if !(selectedAssembledItem[0][4] is String) || !(selectedAssembledItem[0][4] == 0):
-					
-					## Final hydration retrieved from assembled item
-					var hydration = selectedAssembledItem[4]
-					if vitals.hydration + hydration > 100:
-						vitals.hydration = 100
-					else:
-						vitals.hydration += hydration
+				if !(selectedAssembledItem[0][4] is String):
+					if !(selectedAssembledItem[0][4] == 0):
+						## Final satiation retrieved from assembled item
+						var satiation = selectedAssembledItem[5]
+						vitals.changeSatiation(satiation)
 				removeItem(selectedItemIndex)
 				
 			elif selectedAssembledItem[0][1] == "Medication":
-				
+				print("1")
 				## Final health bonus calculated from assembled item quality and satiation
 				var health = snapped((selectedAssembledItem[1] * selectedAssembledItem[5] * 0.01), 1)
 				if vitals.health + health > 100:

@@ -11,6 +11,7 @@ extends Node2D
 @onready var terminalText = get_node("../../Terminal/termText")
 @onready var terminal = get_node("../../Terminal")
 @onready var skill = get_node("../../../../Skills")
+@onready var strangerList = get_node("../../../../sellWind/PickTarget/PeopleList")
 
 @onready var texture = load("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 
@@ -46,28 +47,25 @@ func _on_stealth_option_use_stealth() -> void:
 func _on_stealth_game_finished(goodOrBad: Variant) -> void:
 	if goodOrBad == "success":
 		if stealthGame.perfection == true:
-			ledger.money += 10 * sellWind.allStrangers[target][1]
-			ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, sellWind.allStrangers[target][0], "Stolen", texture)
+			ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, strangerList.get_child(sellWind.currentStrangerIndex).name, "Stolen", texture)
 			terminalText.targetText = "> System: Successfully stole $" + str(10 * sellWind.allStrangers[target][1]) + " without being detected."
 		else:
 			consequenceCheck = randf()
 			if consequenceCheck < 15:
-				ledger.money += 10 * sellWind.allStrangers[target][1]
-				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, sellWind.allStrangers[target][0], "Stolen", texture)
+				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, strangerList.get_child(sellWind.currentStrangerIndex).name, "Stolen", texture)
 				terminalText.targetText = "> System: Successfully stole $" + str(10 * sellWind.allStrangers[target][1]) + ". The police have been called on you."
 				sellWind.removeStranger(sellWind.currentStrangerIndex)
 			else:
-				ledger.money += 10 * sellWind.allStrangers[target][1]
-				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, sellWind.allStrangers[target][0], "Stolen", texture)
+				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, strangerList.get_child(sellWind.currentStrangerIndex).name, "Stolen", texture)
 				terminalText.targetText = "> System: Successfully stole $" + str(10 * sellWind.allStrangers[target][1]) + " without being detected."
 	elif goodOrBad == "fail":
 		consequenceCheck = randf()
 		if consequenceCheck < 25:
-			terminalText.targetText = "> System: You failed to steal from " + str(sellWind.allStrangers[target][0]) + ". The police have been called."
-			# Please remember to have actual consequences for bottom
+			terminalText.targetText = "> System: You failed to steal from " + str(strangerList.get_child(sellWind.currentStrangerIndex).name) + ". The police have been called."
+			#TODO Please remember to have actual consequences for bottom
 			sellWind.removeStranger(sellWind.currentStrangerIndex)
 		else:
-			terminalText.targetText = "> System: You failed to steal from " + str(sellWind.allStrangers[target][0]) + "."
+			terminalText.targetText = "> System: You failed to steal from " + str(strangerList.get_child(sellWind.currentStrangerIndex).name) + "."
 	
 	#the skill point part
 	random = randf()
@@ -85,7 +83,6 @@ func _on_stealth_game_finished(goodOrBad: Variant) -> void:
 
 func _on_strength_game_all_done(result: Variant) -> void:
 	if result == "success":
-		ledger.money += 10 * sellWind.allStrangers[target][1]
 		ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, sellWind.allStrangers[target][0], "Stolen", texture)
 		terminalText.targetText = "> System: Successfully stole $" + str(10 * sellWind.allStrangers[target][1]) + "."
 	else:
