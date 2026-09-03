@@ -23,7 +23,6 @@ bg_color = Color(0, 0, 0, 0.29411766)
 script = ExtResource("1_xtgu0")
 
 [node name="backButton" type="Button" parent="." unique_id=976514227]
-z_index = 19
 offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_xtgu0")
@@ -31,14 +30,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_mdt4i")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7c570")
 
 [node name="window" type="Sprite2D" parent="." unique_id=766341183]
-z_index = 20
 position = Vector2(582, 314.00003)
 rotation = 1.5707964
 scale = Vector2(3, 3)
 texture = ExtResource("1_h41yt")
 
 [node name="exitButton" type="Node2D" parent="." unique_id=641403576]
-z_index = 21
 
 [node name="interactable" type="Button" parent="exitButton" unique_id=575999537]
 offset_left = 661.0
@@ -55,7 +52,6 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_7c570")
 
 [node name="eventDescription" type="RichTextLabel" parent="." unique_id=1502977068]
-z_index = 21
 custom_maximum_size = Vector2(168, 125)
 offset_left = 492.0
 offset_top = 254.0

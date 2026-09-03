@@ -196,9 +196,9 @@ func _ready():
 		item.queue_free()
 	genLootables()
 
-func _input(event):
-	if event.is_action_pressed("debug"):
-		print("scavengeActive: " + str(scavengeActive))
+#func _input(event):
+#	if event.is_action_pressed("debug"):
+#		print("scavengeActive: " + str(scavengeActive))
 
 #region generate lootables
 ## Generates lootables. [br]
@@ -357,8 +357,6 @@ func reset():
 	drawn.drawingOn = true
 	
 	$pickLootable.show()
-	
-	randomEvent.active = true
 
 ## Ends the minigame
 func _on_timer_end_game() -> void:

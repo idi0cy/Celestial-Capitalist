@@ -334,7 +334,8 @@ visible = false
 position = Vector2(1004, 606)
 
 [node name="LedgerButton" parent="InitButtons" unique_id=190051087 instance=ExtResource("7_js5gw")]
-position = Vector2(1004, 548)
+position = Vector2(1004, 596)
+scale = Vector2(1.33, 1.33)
 
 [node name="QuotaButton" parent="InitButtons" unique_id=72723482 instance=ExtResource("8_6ui7u")]
 position = Vector2(1004, 62)
@@ -2287,7 +2288,7 @@ texture = ExtResource("24_bgfic")
 
 [node name="deathScreen" type="Node2D" parent="CenterWindows" unique_id=1569234725]
 visible = false
-z_index = 5
+z_index = 1000
 
 [node name="gameOver" type="Label" parent="CenterWindows/deathScreen" unique_id=1958602762]
 z_index = 5
