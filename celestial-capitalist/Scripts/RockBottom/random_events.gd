@@ -39,6 +39,8 @@ getFined_eventChance, scammer_eventChance, charitableGuy_eventChance, giftedBurg
 giftedWater_eventChance, robbedItem_eventChance]
 
 var event_queue = []
+var eventActive = false
+var currentZIndex:int = 100
 #endregion
 
 func refreshLuckValues(): #ensures probabilities of good and bad events are affected by luck skill
@@ -70,13 +72,25 @@ func _ready():
 func Round(number):
 	return (floor(number * 100)) / 100.0
 
+func closePopup():
+	eventActive = false
+	currentZIndex -= 2
+	
+func _input(event):
+	if event.is_action_pressed("debug"):
+		print("eventZ: " + str(currentZIndex))
+
 func _process(_delta):
 	eventProg.value = (180 - floor(eventTimer.time_left)) / 180.0 * 100
 	eventProgLabel.text = "Until Next Random Event: " + str(floor(eventTimer.time_left)) + " | (" + str(len(event_queue)) + ")"
-	if active == true:
+	if active == true: 
 		if len(event_queue) > 0:
 			newPopup = popupScene.instantiate()
+			newPopup.z_index = currentZIndex
+			newPopup.closed.connect(closePopup.bind())
 			eventZone.add_child(newPopup)
+			eventActive = true
+			currentZIndex += 2
 			if event_queue[0][3] == 1:
 				ledger.addEntry(Round(-(ledger.money * 0.15)), clock.theTime, "Unknown", "Robbed", moneyIcon)
 				newPopup.initiate("You've been robbed. You lost $" + str(Round(ledger.money * 0.15)))
@@ -134,7 +148,7 @@ func _on_event_timer_timeout() -> void:
 	refreshLuckValues()
 	var theEvent = pickEvent()
 	event_queue.append(allEvents[theEvent[3] - 1])
-	## THE BELOW CODE WAS SO STUPID
+	# THE BELOW CODE WAS SO STUPID
 	
 	#if theEvent[3] == 1:
 		#event_queue.append(robbed_eventChance)
