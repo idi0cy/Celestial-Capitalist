@@ -52,6 +52,8 @@ extends Resources
 @onready var stealStrength = get_node("postApproach/minigameWindows/Steal/strengthGame")
 @onready var stealStealth = get_node("postApproach/minigameWindows/Steal/stealthGame")
 
+#random events
+@onready var randomEvent = get_node("../../randomEvents")
 #endregion
 
 #region variables
@@ -256,6 +258,7 @@ func reset():
 	stealStrength.hide()
 	
 	initiatingAction = false
+	randomEvent.active = true
 
 ## Displays the name of the currently selected stranger and connects the approach button to its id and index in the list.
 func identifyTarget(id, index, displayName):
@@ -321,6 +324,7 @@ func noAction(_target):
 func salesPitch(targetID):
 	if initiatingAction == false:
 		initiatingAction = true
+		randomEvent.active = false
 		terminalText.targetText = "> System: Trying to impress customers..."
 		terminalText.fillText()
 		#maybe play cool sound effect while waiting
@@ -333,6 +337,7 @@ func salesPitch(targetID):
 func begAction(targetID):
 	if initiatingAction == false:
 		initiatingAction = true
+		randomEvent.active = false
 		terminalText.targetText = "> System: Preparing to cry..."
 		terminalText.fillText()
 		await get_tree().create_timer(2).timeout
@@ -344,6 +349,7 @@ func begAction(targetID):
 func fakeInjuryAction(targetID):
 	if initiatingAction == false:
 		initiatingAction = true
+		randomEvent.active = false
 		terminalText.targetText = "> System: Weakening ankles..."
 		terminalText.fillText()
 		await get_tree().create_timer(2).timeout
@@ -356,6 +362,7 @@ func fakeInjuryAction(targetID):
 func steal(targetID):
 	if initiatingAction == false:
 		initiatingAction = true
+		randomEvent.active = false
 		#print(targetID)
 		terminalText.targetText = "> System: Eyeing enemy pockets..."
 		terminalText.fillText()
@@ -368,6 +375,7 @@ func steal(targetID):
 func conTarget(targetID):
 	if initiatingAction == false:
 		initiatingAction = true
+		randomEvent.active = false
 		#print(targetID)
 		terminalText.targetText = "> System: Ideating new scams..."
 		terminalText.fillText()
@@ -400,6 +408,7 @@ func _on_sell_button_open_sell_wind() -> void:
 ## Shows the window.
 func onButton():
 	initiatingAction = false
+	randomEvent.active = true
 	haggleDialogue.hide()
 	postApproach.hide()
 	terminalText.targetText = ""
