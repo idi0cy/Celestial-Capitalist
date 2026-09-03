@@ -32,7 +32,7 @@ var scammer_eventChance = [10, true, "bad", 5]
 var charitableGuy_eventChance = [8, true, "good", 6]
 var giftedBurger_eventChance = [13, true, "good", 7]
 var giftedWater_eventChance = [11, true, "good", 8]
-var robbedItem_eventChance = [2000, true, "bad", 9]
+var robbedItem_eventChance = [20, true, "bad", 9]
 
 var allEvents = [robbed_eventChance, gifted_eventChance, policeArrest_eventChance,
 getFined_eventChance, scammer_eventChance, charitableGuy_eventChance, giftedBurger_eventChance,

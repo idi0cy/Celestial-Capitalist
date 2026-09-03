@@ -147,9 +147,6 @@
 [ext_resource type="Texture2D" uid="uid://ct28wc4tsudpj" path="res://assets/Sprites/damageOverlay.png" id="144_vh5mt"]
 [ext_resource type="Script" uid="uid://cmwwky0qpdf51" path="res://Scripts/damage_overlay.gd" id="145_iysnt"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iu7b3"]
-bg_color = Color(0.55485344, 0.74629766, 0.46120143, 1)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6xhon"]
 resource_local_to_scene = true
 shader = ExtResource("16_rhay2")
@@ -2266,6 +2263,7 @@ autowrap_mode = 3
 clip_text = true
 
 [node name="terminal" type="Node2D" parent="CenterWindows" unique_id=191115621]
+visible = false
 position = Vector2(512, 391)
 script = ExtResource("96_y6hgw")
 
@@ -2341,6 +2339,7 @@ script = ExtResource("22_2of7g")
 metadata/_custom_type_script = "uid://277f1o8ppiay"
 
 [node name="vitals" type="Node2D" parent="CenterWindows" unique_id=953947443]
+visible = false
 script = ExtResource("113_v5jsb")
 
 [node name="health" type="Label" parent="CenterWindows/vitals" unique_id=694183424]
@@ -2896,6 +2895,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_8m7ut")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_71gsy")
 
 [node name="damageOverlay" type="Sprite2D" parent="CenterWindows" unique_id=2062084718]
+visible = false
 z_index = 5
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
@@ -2938,7 +2938,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="eventTimer" type="Timer" parent="randomEvents" unique_id=1410259700]
-wait_time = 30.0
+wait_time = 180.0
 
 [node name="eventZone" type="Node2D" parent="randomEvents" unique_id=1822283314]
 
@@ -3181,5 +3181,5 @@ wait_time = 30.0
 [connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/Ledger" method="_on_digital_clock_open_time"]
-[connection signal="timeout" from="randomEvents/eventTimer" to="randomEvents" method="_on_event_timer_timeout"]
 [connection signal="openTime" from="digitalClock" to="CenterWindows/vitals" method="_on_digital_clock_open_time"]
+[connection signal="timeout" from="randomEvents/eventTimer" to="randomEvents" method="_on_event_timer_timeout"]
