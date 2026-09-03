@@ -163,9 +163,9 @@ func _input(event):
 	if event.is_action_pressed("click") && health == 0:
 		get_tree().quit()
 	if event.is_action_pressed("debug"):
-		print(health)
-		print(hydration)
-		print(satiation)
+		print("health: " + str(health))
+		print("hydration: " + str(hydration))
+		print("satiation: " + str(satiation))
 	
 	#if event.is_action_pressed("q"):
 	#	changeHealth(-10)

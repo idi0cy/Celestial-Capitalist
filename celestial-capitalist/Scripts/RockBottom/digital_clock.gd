@@ -12,6 +12,9 @@ signal openTime
 ## Called when the time changes, every 2 seconds.
 signal onTimeChanged
 
+@onready var sellWindow = get_node("../CenterWindows/sellWind")
+@onready var scavenge = get_node("../CenterWindows/scavenge")
+
 ## Called every 2 seconds. Updates [member theTime] and the clock button's text.
 func _on_timer_timeout() -> void:
 	theTime += 1
@@ -47,9 +50,10 @@ func _ready():
 	pass
 
 func _on_interactable_pressed() -> void:
-	#insert the function of this placeholder button here
-	openTime.emit()
-	outerSprite.scale = paddingSize
+	if sellWindow.initiatingAction == false && scavenge.scavengeActive == false:
+		#insert the function of this placeholder button here
+		openTime.emit()
+		outerSprite.scale = paddingSize
 	
 #func _input(event):
 #	if event.is_action_pressed("debug"):
