@@ -12,6 +12,7 @@ extends Node2D
 @onready var terminal = get_node("../../Terminal")
 @onready var skill = get_node("../../../../Skills")
 @onready var strangerList = get_node("../../../../sellWind/PickTarget/PeopleList")
+@onready var quota = get_node("../../../../Quota")
 
 @onready var texture = load("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 
@@ -71,6 +72,7 @@ func _on_stealth_game_finished(goodOrBad: Variant) -> void:
 	random = randf()
 	if random >= 0.9:
 		skill.points += 1
+		quota.skillReqProgress += 1
 	
 	stealthGame.hide()
 	terminal.show()
@@ -92,6 +94,7 @@ func _on_strength_game_all_done(result: Variant) -> void:
 	random = randf()
 	if random >= 0.9:
 		skill.points += 1
+		quota.skillReqProgress += 1
 	
 	terminalText.targetText += " The police have been called on you."
 	terminalText.fillText()

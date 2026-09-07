@@ -20,6 +20,7 @@ extends Resources
 @onready var riskMarker = get_node("Severity/spectrumOfBall/marker")
 @onready var theRiskStuff = get_node("Severity")
 @onready var skill = get_node("../../../../Skills")
+@onready var quota = get_node("../../../../Quota")
 
 @onready var texture = load("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 
@@ -167,6 +168,7 @@ func _on_goldilocks_settle_risk() -> void:
 	random3 = randf()
 	if random3 >= 0.8:
 		skill.points += 1
+		quota.skillReqProgress += 1
 	
 	conGuy.hide()
 	genericTerminal.show()

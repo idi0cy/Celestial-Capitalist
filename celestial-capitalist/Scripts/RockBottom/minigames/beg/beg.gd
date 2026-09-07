@@ -14,6 +14,7 @@ extends Resources
 @onready var clock = get_node("../../../../../digitalClock")
 @onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
 @onready var skill = get_node("../../../../Skills")
+@onready var quota = get_node("../../../../Quota")
 #endregion
 
 #region variables
@@ -114,6 +115,7 @@ func _on_done_stop_begging() -> void:
 		random = randf()
 		if random >= 0.91:
 			skill.points += 1
+			quota.skillReqProgress += 1
 		
 		terminalText.fillText()
 		initiatingDone = true

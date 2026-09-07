@@ -17,6 +17,7 @@ extends Resources
 @onready var absInventory = get_node("../../../../inventoryWind")
 @onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
 @onready var skill = get_node("../../../../Skills")
+@onready var quota = get_node("../../../../Quota")
 #endregion
 
 #region variables
@@ -170,6 +171,7 @@ func _on_settle() -> void:
 			terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
 		terminalText.targetText += "\n> System: Received $" + str(arguedValue)
 		absInventory.removeItem(confirmItem.selectedIndex)
+		quota.sellReqProgress += 1
 	else:
 		if (getEasterEggLine(generatedName) == "false"):
 			terminalText.targetText = "> " + generatedName + ": " + rejectLines.pick_random()
@@ -179,8 +181,9 @@ func _on_settle() -> void:
 	
 	#determine if skill point is gained
 	random3 = randf()
-	if random3 >= 0.85:
+	if random3 >= 0.8:
 		skill.points += 1
+		quota.skillReqProgress += 1
 	
 	terminalText.fillText()
 	

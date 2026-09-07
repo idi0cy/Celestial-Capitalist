@@ -37,9 +37,13 @@ extends InventoryHelper
 @onready var flavourText = get_node("lootResult/lootTurnout/itemDesc/flavourText")
 
 @onready var randomEvent = get_node("../../randomEvents")
+@onready var quota = get_node("../scavenge")
+@onready var skills = get_node("../Skills")
 #endregion
 
 #region variables
+## Used to randomly decide if skill point is gained from this minigame
+var random
 ## Controls whether the window is open or not.
 var scavengeOpen = false
 ## Updated to show whether a scavenge game is currently happening to block other things.
@@ -338,7 +342,6 @@ func reset():
 	
 	if lootButton.pressed.is_connected(loot):
 		lootButton.pressed.disconnect(self.loot)
-		
 	directive.show()
 	lootableDesc.show()
 	lootableDesc.text = ""
@@ -384,6 +387,10 @@ func _on_timer_end_game() -> void:
 	
 	randomEvent.active = true
 	scavengeActive = false
+	random = randf()
+	if random > 0.82:
+		skills.points += 1
+		quota.skillReqProgress += 1
 #endregion
 	
 #region loot
