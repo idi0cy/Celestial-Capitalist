@@ -11,6 +11,7 @@ extends Resources
 @onready var clock = get_node("../../../../../digitalClock")
 @onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
 @onready var skill = get_node("../../../../Skills")
+@onready var quota = get_node("../../../../Quota")
 
 @onready var blackmailIcon = load("res://assets/Sprites/RockBottom/ledgerWindow/blackmail.png")
 
@@ -82,6 +83,7 @@ func arbitration(points):
 	random2 = randf()
 	if random2 >= 0.9:
 		skill.points += 1
+		quota.skillReqProgress += 1
 	
 	terminalText.fillText()
 	await get_tree().create_timer(1.5).timeout
