@@ -3,7 +3,7 @@ extends Node2D
 @onready var pointCount = get_node("pointCount")
 
 #region | Skill point divestment clarifications
-var points = 21 #Should start at zero, this is a temporary change for debug purposes
+var points = 3 #Should start at zero, this is a temporary change for debug purposes
 var dextPoints = 0
 var dextMod = 0.9
 var strengthPoints = 0

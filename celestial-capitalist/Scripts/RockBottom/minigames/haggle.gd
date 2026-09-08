@@ -150,7 +150,7 @@ func _on_settle() -> void:
 	var regex = RegEx.new()
 	regex.compile("\\d")
 	## The unique name of the current stranger.
-	var generatedName = peopleList.get_child(storedStrangerIndex).name
+	var generatedName = peopleList.get_child(storedStrangerIndex).name #something is going on here
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
 	#arguedValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01) * ((ballSpectrum * 0.01) + 0.5)
