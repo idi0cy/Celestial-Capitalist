@@ -37,7 +37,7 @@ extends InventoryHelper
 @onready var flavourText = get_node("lootResult/lootTurnout/itemDesc/flavourText")
 
 @onready var randomEvent = get_node("../../randomEvents")
-@onready var quota = get_node("../scavenge")
+@onready var quota = get_node("../Quota")
 @onready var skills = get_node("../Skills")
 #endregion
 
