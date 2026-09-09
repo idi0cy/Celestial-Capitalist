@@ -10,10 +10,9 @@ var targetScale = Vector2(1, 1)
 var stopIt = false
 var stopIt2 = false
 var activateColour
+var alreadyReported = false
 signal signalDead
 signal imPressed(dist)
-
-#MANY ISSUES STARTING WITH SCALE
 
 func _process(_delta):
 	if dead == 0:
@@ -35,9 +34,12 @@ func _process(_delta):
 		#get_parent().remove_child(self)
 		queue_free()
 	elif modulate.a <= 0.0 and dead == 2:
-		imPressed.emit(abs(perfectX - position.x))
+		#imPressed.emit(abs(perfectX - position.x))
 		#get_parent().remove_child(self)
 		queue_free()
+	if dead == 2 and alreadyReported == false:
+		imPressed.emit(abs(perfectX - position.x))
+		alreadyReported = true
 	
 	if Input.is_action_just_pressed(myDirection):
 		if position.x < 400:
