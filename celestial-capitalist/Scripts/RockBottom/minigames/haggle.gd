@@ -108,7 +108,13 @@ func universalMinigame(risk):
 		
 		## Used to construct the red target every iteration.
 		var redTarget = TextureButton.new()
+		var overlapping = true
 		redTarget.global_position = Vector2(randi_range(360,752), randi_range(240,305))
+		while overlapping == true:
+			if abs(redTarget.global_position.x - greenTarget.global_position.x) < 32 and abs(redTarget.global_position.y - greenTarget.global_position.y) < 32:
+				redTarget.global_position = Vector2(randi_range(360,752), randi_range(240,305))
+			else:
+				overlapping = false
 		redTarget.texture_normal = badTarget
 		redTarget.texture_pressed = badTarget
 		redTarget.set_script(targetScript)
