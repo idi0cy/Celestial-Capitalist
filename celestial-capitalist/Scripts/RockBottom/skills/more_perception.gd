@@ -12,7 +12,7 @@ func _ready():
 	amountLabel.text = str(skillsMain.percPoints)
 	interactable.writeTooltipTitle("Perception")
 	interactable.writeTooltipContent(
-		"Increases performance in...")
+		"Increases loot quality in scavenge.")
 
 func _on_button_pressed() -> void:
 	if skillsMain.points > 0 and skillsMain.percPoints < 10:

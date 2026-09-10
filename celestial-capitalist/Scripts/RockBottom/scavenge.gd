@@ -419,7 +419,7 @@ func takeLoot(item, listIndex):
 ## Negative roll values are fine - this just means all items in the pool are possible and they should be as rare as necessary. [br]
 ## 3. If weight of item is higher than roll, add to an array. [br]
 ## 4. Pick random item with even chances from said array, add to loot results. [br]
-## 5. Generate quality per each item - percentage scored * random lootable tier, rounded to the nearest whole.
+## 5. Generate quality per each item - percentage scored * random lootable tier, rounded to the nearest whole. This is then multiplied by perception points/100.
 ## Deviate [member qualityPreDeviation] - larger deviation range to lower qualities. Set zero or negative qualities to one. [br]
 ## 6. Generate a name. [br]
 ## 7. Generate a [TextureButton] for each loot item.
@@ -459,7 +459,7 @@ func genLoot():
 		## Percentage scored * random lootable tier, rounded to the nearest whole.
 		var qualityPreDeviation = snapped((allLootables[storedLootable][1] * scorePercentage), 1)
 		## Final item quality.
-		var itemQual = randi_range(qualityPreDeviation - 15, qualityPreDeviation + 5)
+		var itemQual = randi_range(qualityPreDeviation - 10, qualityPreDeviation + 5) * skills.percMod/100
 		if (itemQual <= 0):
 			itemQual = 1
 		# 6.
