@@ -42,6 +42,8 @@ var ballSpectrum = 50
 var targetID
 ## The price selected to sell the item for, as a percentage, e.g. default 50 is the middle/normal price.
 var selectedPrice = 50
+
+var generatedName
 #endregion
 
 #region game
@@ -51,6 +53,10 @@ func _ready():
 	aimTrainZone.hide()
 	pricingPlans.hide()
 	priceSpectrum.hide()
+
+func generateName():
+	## The unique name of the current stranger.
+	generatedName = peopleList.get_child(storedStrangerIndex).strangerName
 
 ## Changes progress bar color based on [member progress].
 func _process(_delta):
@@ -155,8 +161,7 @@ func _on_settle() -> void:
 	## The regex engine.
 	var regex = RegEx.new()
 	regex.compile("\\d")
-	## The unique name of the current stranger.
-	var generatedName = peopleList.get_child(storedStrangerIndex).strangerName
+	
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
 	#arguedValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01) * ((ballSpectrum * 0.01) + 0.5)

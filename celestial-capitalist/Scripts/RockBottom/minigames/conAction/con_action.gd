@@ -21,10 +21,13 @@ extends Resources
 @onready var theRiskStuff = get_node("Severity")
 @onready var skill = get_node("../../../../Skills")
 @onready var quota = get_node("../../../../Quota")
+@onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
 
 @onready var texture = load("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 
 var targetIndex
+var storedStrangerIndex
+var generatedName
 
 #DO NOT MAKE THESE DIALOGUE OPTIONS TOO LONG, BECAUSE AFTER ONE SET OF LOADING THE TEXT THAT IS NOT
 #VISIBLE< THINGS START BREAKING
@@ -62,6 +65,10 @@ var random2
 var baseStakes
 var successModifier
 var random3 #determines skill point gain
+
+func generateName():
+	## The unique name of the current stranger.
+	generatedName = peopleList.get_child(storedStrangerIndex).strangerName
 
 func initiate(target):
 	risk = 50
@@ -157,11 +164,11 @@ func _on_goldilocks_settle_risk() -> void:
 	stakes = ((risk * 0.01) + 0.5) * baseStakes
 	
 	if (random2 * 100) * playerScore * successModifier * skill.charismaMod > stakes * 12:
-		ledger.addEntry(stakes, clock.theTime, strangerList.get_child(sellWind.currentStrangerIndex).name, "Scammed", texture)
-		genericTerminalText.targetText = "> " + strangerList.get_child(sellWind.currentStrangerIndex).name + ": " + strangerResponse
+		ledger.addEntry(stakes, clock.theTime, generatedName, "Scammed", texture)
+		genericTerminalText.targetText = "> " + generatedName + ": " + strangerResponse
 		genericTerminalText.targetText += "\n> System: Received $" + str(stakes)
 	else:
-		genericTerminalText.targetText = "> " + strangerList.get_child(sellWind.currentStrangerIndex).name + ": " + conFailsDialogue.pick_random()
+		genericTerminalText.targetText = "> " + generatedName + ": " + conFailsDialogue.pick_random()
 	sellWind.removeStranger(sellWind.currentStrangerIndex)
 	
 	#determine if new skill point

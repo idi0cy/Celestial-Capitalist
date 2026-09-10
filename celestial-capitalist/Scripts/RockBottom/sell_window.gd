@@ -269,6 +269,8 @@ func identifyTarget(id, index, displayName):
 	haggle.storedStrangerIndex = index
 	fakeInjury.storedStrangerIndex = index
 	begWindow.storedStrangerIndex = index
+	conGame.storedStrangerIndex = index
+	stealGame.storedStrangerIndex = index
 	
 	if approachButton.pressed.is_connected(approachStranger):
 		approachButton.pressed.disconnect(self.approachStranger)
@@ -334,6 +336,7 @@ func salesPitch(targetID):
 		minigameWindows.show()
 		pickToSell.openPickToSell()
 		haggle.targetID = targetID
+		haggle.generateName()
 
 ## Initiates the beg minigame.
 func begAction(targetID):
@@ -346,6 +349,7 @@ func begAction(targetID):
 		onStartMinigame()
 		begWindow.initiate(targetID)
 		minigameWindows.show()
+		begWindow.generateName()
 
 ## Initiates the fake injury minigame.
 func fakeInjuryAction(targetID):
@@ -372,6 +376,7 @@ func steal(targetID):
 		onStartMinigame()
 		stealGame.initiate(targetID)
 		minigameWindows.show()
+		stealGame.generateName()
 
 ## Initiates the con minigame.
 func conTarget(targetID):
@@ -385,6 +390,7 @@ func conTarget(targetID):
 		onStartMinigame()
 		conGame.initiate(targetID)
 		minigameWindows.show()
+		conGame.generateName()
 
 ## Initiates the haggle minigame.
 func _on_confirm_confirm_selection() -> void:
@@ -396,6 +402,7 @@ func _on_confirm_confirm_selection() -> void:
 	haggleDialogue.show()
 	haggleBar.show()
 	haggleDirective.show()
+	#haggle.generateName()
 
 ## Hides actions and the stranger icon.
 func onStartMinigame():

@@ -36,7 +36,12 @@ var random #skill point determiner
 var logosCount = 0
 var pathosCount = 0
 var ethosCount = 0
+
+var generatedName
 #endregion
+
+func generateName():
+	generatedName = peopleList.get_child(storedStrangerIndex).strangerName
 
 #region game
 ## Start the game with [member targetStranger].
@@ -90,7 +95,7 @@ func _on_done_stop_begging() -> void:
 		var regex = RegEx.new()
 		regex.compile("\\d")
 		## The current stranger's name.
-		var generatedName = peopleList.get_child(storedStrangerIndex).strangerName
+		
 		if (regex.search(generatedName)):
 			generatedName = generatedName.left(-1)
 		#2.

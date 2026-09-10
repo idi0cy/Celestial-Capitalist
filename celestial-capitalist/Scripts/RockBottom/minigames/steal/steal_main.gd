@@ -13,12 +13,19 @@ extends Node2D
 @onready var skill = get_node("../../../../Skills")
 @onready var strangerList = get_node("../../../../sellWind/PickTarget/PeopleList")
 @onready var quota = get_node("../../../../Quota")
+@onready var peopleList = get_node("../../../../sellWind/PickTarget/PeopleList")
 
 @onready var texture = load("res://assets/Sprites/RockBottom/ledgerWindow/donationIcon.png")
 
 var target
 var consequenceCheck
 var random #determines skill point gainage
+var generatedName
+var storedStrangerIndex
+
+func generateName():
+	## The unique name of the current stranger.
+	generatedName = peopleList.get_child(storedStrangerIndex).strangerName
 
 func initiate(targetIndex):
 	target = targetIndex
