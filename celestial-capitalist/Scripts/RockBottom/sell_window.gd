@@ -192,6 +192,7 @@ func genStrangers():
 		var generatedName = genName(allStrangers[randomStranger][0])
 		strangerButton.name = generatedName
 		strangerButton.set_script(personButtonScript)
+		strangerButton.strangerName = generatedName
 		strangerButton.baseInfo = allStrangers[randomStranger]
 		strangerButton.index = index
 		strangerButton.pressed.connect(identifyTarget.bind(randomStranger, index, generatedName))
@@ -456,10 +457,6 @@ func _on_vitals_button_open_vitals() -> void:
 	PeopleList.peopleListHidden = true
 	reset()
 func _on_skills_button_open_skill_tree() -> void:
-	sellWindowOpen = false
-	PeopleList.peopleListHidden = true
-	reset()
-func _on_digital_clock_open_time() -> void:
 	sellWindowOpen = false
 	PeopleList.peopleListHidden = true
 	reset()

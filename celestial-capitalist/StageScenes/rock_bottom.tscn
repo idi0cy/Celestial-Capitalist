@@ -3248,8 +3248,4 @@ wait_time = 180.0
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/sellWind/PickTarget/strangerRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/scavenge/pickLootable/lootRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/scavenge/lootResult/minigameWindow/timer" method="_on_digital_clock_on_time_changed"]
-[connection signal="openTime" from="digitalClock" to="CenterWindows/inventoryWind" method="_on_digital_clock_open_time"]
-[connection signal="openTime" from="digitalClock" to="CenterWindows/sellWind" method="_on_digital_clock_open_time"]
-[connection signal="openTime" from="digitalClock" to="CenterWindows/Ledger" method="_on_digital_clock_open_time"]
-[connection signal="openTime" from="digitalClock" to="CenterWindows/vitals" method="_on_digital_clock_open_time"]
 [connection signal="timeout" from="randomEvents/eventTimer" to="randomEvents" method="_on_event_timer_timeout"]

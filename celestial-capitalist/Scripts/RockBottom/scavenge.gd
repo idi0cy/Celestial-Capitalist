@@ -530,8 +530,6 @@ func _on_vitals_button_open_vitals() -> void:
 	scavengeOpen = false
 func _on_skills_button_open_skill_tree() -> void:
 	scavengeOpen = false
-func _on_digital_clock_open_time() -> void:
-	scavengeOpen = false
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	onButton()

@@ -200,6 +200,4 @@ func _on_ledger_button_open_ledger() -> void:
 	vitalsOpen = false
 func _on_skills_button_open_skill_tree() -> void:
 	vitalsOpen = false
-func _on_digital_clock_open_time() -> void:
-	vitalsOpen = false
 #endregion

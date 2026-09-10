@@ -90,7 +90,7 @@ func _on_done_stop_begging() -> void:
 		var regex = RegEx.new()
 		regex.compile("\\d")
 		## The current stranger's name.
-		var generatedName = peopleList.get_child(storedStrangerIndex).name
+		var generatedName = peopleList.get_child(storedStrangerIndex).strangerName
 		if (regex.search(generatedName)):
 			generatedName = generatedName.left(-1)
 		#2.
