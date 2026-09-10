@@ -122,6 +122,7 @@
 [ext_resource type="Texture2D" uid="uid://66r0s4h2ab4p" path="res://assets/Sprites/RockBottom/minigames/wallet.png" id="98_fah1x"]
 [ext_resource type="Texture2D" uid="uid://21tqqtqyuukm" path="res://assets/Sprites/RockBottom/buttonIcons/skillTreeIcon.png" id="99_exlge"]
 [ext_resource type="Script" uid="uid://7crunth4q0lp" path="res://Scripts/RockBottom/minigames/steal/strength_game.gd" id="100_oj5gc"]
+[ext_resource type="Texture2D" uid="uid://cjmmsmm5wvq8m" path="res://assets/Sprites/RockBottom/minigames/signal.png" id="102_dmfug"]
 [ext_resource type="Script" uid="uid://bm0swrp8b7v53" path="res://Scripts/RockBottom/vitals.gd" id="113_v5jsb"]
 [ext_resource type="Script" uid="uid://t1ittnl6l63o" path="res://Scripts/RockBottom/market.gd" id="114_ugxq0"]
 [ext_resource type="Script" uid="uid://bdaqeiwch0r0g" path="res://Scripts/RockBottom/product_list.gd" id="115_v60go"]
@@ -505,7 +506,6 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="sellWind" type="Node2D" parent="CenterWindows" unique_id=1492757036]
-visible = false
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
@@ -590,8 +590,10 @@ label_settings = SubResource("LabelSettings_r7ujp")
 script = ExtResource("22_2of7g")
 
 [node name="postApproach" type="Node2D" parent="CenterWindows/sellWind" unique_id=1469147129]
+visible = false
 
 [node name="Terminal" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=1548338584]
+visible = false
 position = Vector2(512, 391)
 
 [node name="termText" type="Label" parent="CenterWindows/sellWind/postApproach/Terminal" unique_id=47641209]
@@ -613,6 +615,7 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="theGuy" type="Sprite2D" parent="CenterWindows/sellWind/postApproach" unique_id=872769702]
+visible = false
 position = Vector2(576, 228)
 scale = Vector2(3, 3)
 texture = ExtResource("21_0m4ur")
@@ -819,6 +822,7 @@ texture = ExtResource("22_tdnta")
 script = ExtResource("25_leuqs")
 
 [node name="minigameWindows" type="Node2D" parent="CenterWindows/sellWind/postApproach" unique_id=611419590]
+visible = false
 
 [node name="pickToSell" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=371395790]
 visible = false
@@ -960,6 +964,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_bituw")
 text = "Confirm"
 
 [node name="Haggle" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows" unique_id=686576947]
+visible = false
 script = ExtResource("34_op3i2")
 
 [node name="haggleBox" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Haggle" unique_id=174875371]
@@ -1833,7 +1838,6 @@ text = "Strength"
 metadata/_edit_use_anchors_ = true
 
 [node name="stealthGame" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal" unique_id=876022194]
-visible = false
 script = ExtResource("94_v5jsb")
 
 [node name="backing" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=855389283]
@@ -1916,6 +1920,14 @@ z_index = -6
 position = Vector2(454, 209)
 scale = Vector2(4, 4)
 texture = ExtResource("25_r5csn")
+
+[node name="signal1" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=948610478]
+position = Vector2(408, 409)
+texture = ExtResource("102_dmfug")
+
+[node name="signal2" type="Sprite2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal/stealthGame" unique_id=754980744]
+position = Vector2(744, 409)
+texture = ExtResource("102_dmfug")
 
 [node name="strengthGame" type="Node2D" parent="CenterWindows/sellWind/postApproach/minigameWindows/Steal" unique_id=1857939151]
 visible = false
@@ -2696,6 +2708,7 @@ text = "Sell ten (10) items"
 metadata/_edit_use_anchors_ = true
 
 [node name="Skills" type="Node2D" parent="CenterWindows" unique_id=780210723]
+visible = false
 script = ExtResource("130_8m7ut")
 
 [node name="defaultBackground" type="Sprite2D" parent="CenterWindows/Skills" unique_id=894304253]
