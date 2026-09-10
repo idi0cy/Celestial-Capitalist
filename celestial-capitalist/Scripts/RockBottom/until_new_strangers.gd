@@ -12,5 +12,4 @@ func _ready():
 ## Update the progress bar and send updates to [SellWindow]
 func _on_digital_clock_on_time_changed() -> void:
 	value = clock.theTime % 60
-	print(value)
 	refresh.emit(value)

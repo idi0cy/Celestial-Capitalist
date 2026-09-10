@@ -68,9 +68,9 @@ func arbitration(points):
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
 	random = randf()
-	print(storedStrangerIndex)
-	#print(str(random * (sellWind.allStrangers[targetIndex][5] + 0.5) * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod))
-	#print(severity/100.0)
+	print("random: " + str(random))
+	print(str(random * (sellWind.allStrangers[targetIndex][5] + 0.5) * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod))
+	print(severity/100.0)
 	
 	if random * (sellWind.allStrangers[targetIndex][5] + 0.5) * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod > (severity/100.0):
 		ledger.addEntry(arguedVal, clock.theTime, generatedName, "Blackmail", blackmailIcon)
@@ -92,7 +92,7 @@ func arbitration(points):
 		quota.skillReqProgress += 1
 	
 	terminalText.fillText()
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(4).timeout
 	wrapItUp()
 
 func wrapItUp():
