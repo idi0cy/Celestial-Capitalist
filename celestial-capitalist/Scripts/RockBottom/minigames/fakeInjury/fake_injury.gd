@@ -21,6 +21,7 @@ var random
 var arguedVal = 0
 var storedStrangerIndex : int
 var random2 #skill point determining variable
+var generatedName
 
 func initiate(target):
 	targetIndex = target
@@ -30,6 +31,7 @@ func initiate(target):
 	FIbox.show()
 	minigame.hide()
 	show()
+	generatedName = peopleList.get_child(storedStrangerIndex).strangerName
 
 func _on_settle_settle_severity() -> void:
 	minigamePart()
@@ -62,13 +64,15 @@ func arbitration(points):
 	
 	var regex = RegEx.new()
 	regex.compile("\\d")
-	var generatedName = peopleList.get_child(storedStrangerIndex).strangerName
+	
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
 	random = randf()
-	print(str(random * (sellWind.allStrangers[targetIndex][5] + 0.5) * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod))
-	print(str(severity / 100.0))
-	if random * sellWind.allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod > (severity/100.0):
+	print(storedStrangerIndex)
+	#print(str(random * (sellWind.allStrangers[targetIndex][5] + 0.5) * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod))
+	#print(severity/100.0)
+	
+	if random * (sellWind.allStrangers[targetIndex][5] + 0.5) * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod > (severity/100.0):
 		ledger.addEntry(arguedVal, clock.theTime, generatedName, "Blackmail", blackmailIcon)
 		if (getEasterEggLine(generatedName) == "false"):
 			terminalText.targetText = "> " + generatedName + ": " + acceptLines.pick_random()

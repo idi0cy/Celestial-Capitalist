@@ -580,7 +580,7 @@ offset_bottom = 505.0
 theme_override_fonts/font = ExtResource("12_knhbb")
 theme_override_font_sizes/font_size = 15
 theme_override_styles/fill = ExtResource("35_mnkpu")
-max_value = 30.0
+max_value = 60.0
 script = ExtResource("24_xwnj6")
 
 [node name="explanation" type="Label" parent="CenterWindows/sellWind/PickTarget" unique_id=1367941442]
