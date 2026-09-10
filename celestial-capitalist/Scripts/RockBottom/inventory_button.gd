@@ -6,7 +6,12 @@ extends CCButton
 signal openInventory
 
 func _ready():
-	pass
+	interactable.writeTooltipTitle("Infinite Storage!")
+	interactable.writeTooltipContent(
+		"Despite being homeless, you appear
+		to have obtained a bottomless space
+		to store your items. You may also
+		directly use them from inside it.")
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here

@@ -6,7 +6,12 @@ extends CCButton
 signal openScavWind
 
 func _ready():
-	pass
+	interactable.writeTooltipTitle("Delittering")
+	interactable.writeTooltipContent(
+		"Scavenge stuff off the street for your
+		own purposes. Loot quality increases
+		with your balance and refreshes over
+		time. The rich get richer!")
 
 func _on_interactable_pressed() -> void:
 	if sellWindow.initiatingAction == false && scavenge.scavengeActive == false:

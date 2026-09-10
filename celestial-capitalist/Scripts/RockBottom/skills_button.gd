@@ -5,7 +5,10 @@ extends CCButton
 signal openSkillTree
 
 func _ready():
-	pass
+	interactable.writeTooltipTitle("Skills for Bills")
+	interactable.writeTooltipContent(
+		"Level various stats to improve your
+		performance in minigames.")
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here

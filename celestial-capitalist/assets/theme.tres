@@ -2,5 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="1_5x3i2"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j2pdf"]
+
 [resource]
 default_font = ExtResource("1_5x3i2")
+TooltipPanel/styles/panel = SubResource("StyleBoxEmpty_j2pdf")

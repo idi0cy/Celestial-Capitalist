@@ -6,7 +6,11 @@ extends CCButton
 signal openSellWind
 
 func _ready():
-	pass
+	interactable.writeTooltipTitle("Social Interaction")
+	interactable.writeTooltipContent(
+		"Talk to strangers and attempt to
+		coerce money out of them through
+		various means.")
 
 func _on_interactable_pressed() -> void:
 	if sellWindow.initiatingAction == false && scavenge.scavengeActive == false:

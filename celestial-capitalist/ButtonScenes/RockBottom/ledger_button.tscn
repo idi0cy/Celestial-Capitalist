@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d2gxg50tkryp3" path="res://assets/Sprites/RockBottom/buttonIcons/eventLogIcon.png" id="2_04f1d"]
 [ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="3_04f1d"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="4_eua0j"]
+[ext_resource type="Script" uid="uid://bnjgjbckghquh" path="res://Scripts/interactable.gd" id="4_k520t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4i60"]
 bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
@@ -55,6 +56,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_smiw5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6bnjb")
 text = "Ledger"
 icon = ExtResource("2_04f1d")
+script = ExtResource("4_k520t")
 metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="." unique_id=110006459]

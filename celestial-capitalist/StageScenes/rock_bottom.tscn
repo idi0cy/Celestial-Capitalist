@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://nw7xmbeqtfjo" path="res://assets/Sprites/RockBottom/quotaProgressRB.png" id="3_32v4e"]
 [ext_resource type="PackedScene" uid="uid://me6dpqlc2kap" path="res://ButtonScenes/RockBottom/scavenge_button.tscn" id="4_w43jm"]
 [ext_resource type="PackedScene" uid="uid://cexo5p5cylqbs" path="res://ButtonScenes/RockBottom/sell_button.tscn" id="5_1bthl"]
-[ext_resource type="PackedScene" uid="uid://d2e5kd40yy1wi" path="res://ButtonScenes/RockBottom/event_log.tscn" id="6_vc60y"]
 [ext_resource type="PackedScene" uid="uid://dsff4ik6t3wem" path="res://ButtonScenes/RockBottom/ledger_button.tscn" id="7_js5gw"]
 [ext_resource type="PackedScene" uid="uid://byo2ya3kbbunn" path="res://ButtonScenes/RockBottom/quota_button.tscn" id="8_6ui7u"]
 [ext_resource type="PackedScene" uid="uid://cpnuniqlelilx" path="res://ButtonScenes/RockBottom/inventory_button.tscn" id="9_fivl0"]
@@ -145,6 +144,7 @@
 [ext_resource type="Script" uid="uid://bx0bd4ibx07xt" path="res://Scripts/RockBottom/skills/more_perception.gd" id="136_b1rtc"]
 [ext_resource type="Script" uid="uid://d242jwb7oknec" path="res://Scripts/RockBottom/quota/sell_requirement.gd" id="136_yw1rv"]
 [ext_resource type="Script" uid="uid://dh4ojdti803sg" path="res://Scripts/RockBottom/skills/more_luck.gd" id="137_qqkov"]
+[ext_resource type="Script" uid="uid://bnjgjbckghquh" path="res://Scripts/interactable.gd" id="140_yw1rv"]
 [ext_resource type="Script" uid="uid://bdr0s4yfsqfwh" path="res://Scripts/RockBottom/random_events.gd" id="141_f6br3"]
 [ext_resource type="Texture2D" uid="uid://ct28wc4tsudpj" path="res://assets/Sprites/damageOverlay.png" id="144_vh5mt"]
 [ext_resource type="Script" uid="uid://cmwwky0qpdf51" path="res://Scripts/damage_overlay.gd" id="145_iysnt"]
@@ -330,10 +330,6 @@ position = Vector2(149, 167)
 
 [node name="sellButton" parent="InitButtons" unique_id=495763558 instance=ExtResource("5_1bthl")]
 position = Vector2(1005, 168)
-
-[node name="EventLog" parent="InitButtons" unique_id=1112858218 instance=ExtResource("6_vc60y")]
-visible = false
-position = Vector2(1004, 606)
 
 [node name="LedgerButton" parent="InitButtons" unique_id=190051087 instance=ExtResource("7_js5gw")]
 position = Vector2(1004, 596)
@@ -2700,7 +2696,6 @@ text = "Sell ten (10) items"
 metadata/_edit_use_anchors_ = true
 
 [node name="Skills" type="Node2D" parent="CenterWindows" unique_id=780210723]
-visible = false
 script = ExtResource("130_8m7ut")
 
 [node name="defaultBackground" type="Sprite2D" parent="CenterWindows/Skills" unique_id=894304253]
@@ -2763,7 +2758,7 @@ script = ExtResource("131_71gsy")
 position = Vector2(377, 276)
 texture = ExtResource("131_8m7ut")
 
-[node name="Button" type="Button" parent="CenterWindows/Skills/dextSkill/moreButton" unique_id=1292001401]
+[node name="interactable" type="Button" parent="CenterWindows/Skills/dextSkill/moreButton" unique_id=1292001401]
 offset_left = 393.0
 offset_top = 261.0
 offset_right = 424.0
@@ -2771,6 +2766,7 @@ offset_bottom = 291.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_g4v7s")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8m7ut")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_71gsy")
+script = ExtResource("140_yw1rv")
 
 [node name="StrengthSkill" type="Node2D" parent="CenterWindows/Skills" unique_id=1891993659]
 position = Vector2(115, 0)
@@ -2809,7 +2805,7 @@ script = ExtResource("134_3iw0c")
 position = Vector2(377, 276)
 texture = ExtResource("131_8m7ut")
 
-[node name="Button" type="Button" parent="CenterWindows/Skills/StrengthSkill/moreButton" unique_id=1795460943]
+[node name="interactable" type="Button" parent="CenterWindows/Skills/StrengthSkill/moreButton" unique_id=1795460943]
 offset_left = 393.0
 offset_top = 261.0
 offset_right = 424.0
@@ -2817,6 +2813,7 @@ offset_bottom = 291.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_g4v7s")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8m7ut")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_71gsy")
+script = ExtResource("140_yw1rv")
 
 [node name="charismaSkill" type="Node2D" parent="CenterWindows/Skills" unique_id=1754313939]
 position = Vector2(230, 0)
@@ -2855,7 +2852,7 @@ script = ExtResource("135_b0yxv")
 position = Vector2(377, 276)
 texture = ExtResource("131_8m7ut")
 
-[node name="Button" type="Button" parent="CenterWindows/Skills/charismaSkill/moreButton" unique_id=593330760]
+[node name="interactable" type="Button" parent="CenterWindows/Skills/charismaSkill/moreButton" unique_id=593330760]
 offset_left = 393.0
 offset_top = 261.0
 offset_right = 424.0
@@ -2863,6 +2860,7 @@ offset_bottom = 291.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_g4v7s")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8m7ut")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_71gsy")
+script = ExtResource("140_yw1rv")
 
 [node name="percSkill" type="Node2D" parent="CenterWindows/Skills" unique_id=1775105001]
 position = Vector2(345, 0)
@@ -2901,7 +2899,7 @@ script = ExtResource("136_b1rtc")
 position = Vector2(377, 276)
 texture = ExtResource("131_8m7ut")
 
-[node name="Button" type="Button" parent="CenterWindows/Skills/percSkill/moreButton" unique_id=795226074]
+[node name="interactable" type="Button" parent="CenterWindows/Skills/percSkill/moreButton" unique_id=795226074]
 offset_left = 393.0
 offset_top = 261.0
 offset_right = 424.0
@@ -2909,6 +2907,7 @@ offset_bottom = 291.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_g4v7s")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8m7ut")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_71gsy")
+script = ExtResource("140_yw1rv")
 
 [node name="luckSkill" type="Node2D" parent="CenterWindows/Skills" unique_id=1675210539]
 position = Vector2(0, 85)
@@ -2947,7 +2946,7 @@ script = ExtResource("137_qqkov")
 position = Vector2(377, 276)
 texture = ExtResource("131_8m7ut")
 
-[node name="Button" type="Button" parent="CenterWindows/Skills/luckSkill/moreButton" unique_id=2052421315]
+[node name="interactable" type="Button" parent="CenterWindows/Skills/luckSkill/moreButton" unique_id=2052421315]
 offset_left = 393.0
 offset_top = 261.0
 offset_right = 424.0
@@ -2955,6 +2954,7 @@ offset_bottom = 291.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_g4v7s")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8m7ut")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_71gsy")
+script = ExtResource("140_yw1rv")
 
 [node name="damageOverlay" type="Sprite2D" parent="CenterWindows" unique_id=2062084718]
 visible = false
@@ -3022,15 +3022,6 @@ wait_time = 180.0
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/market" method="_on_sell_button_open_sell_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/Quota" method="_on_sell_button_open_sell_wind"]
 [connection signal="openSellWind" from="InitButtons/sellButton" to="CenterWindows/Skills" method="_on_sell_button_open_sell_wind"]
-[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/inventoryWind" method="_on_event_log_open_log"]
-[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/sellWind" method="_on_event_log_open_log"]
-[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/Ledger" method="_on_event_log_open_log"]
-[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/scavenge" method="_on_event_log_open_log"]
-[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/terminal" method="_on_event_log_open_log"]
-[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/vitals" method="_on_event_log_open_log"]
-[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/market" method="_on_event_log_open_log"]
-[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/Quota" method="_on_event_log_open_log"]
-[connection signal="openLog" from="InitButtons/EventLog" to="CenterWindows/Skills" method="_on_event_log_open_log"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/inventoryWind" method="_on_ledger_button_open_ledger"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/sellWind" method="_on_ledger_button_open_ledger"]
 [connection signal="openLedger" from="InitButtons/LedgerButton" to="CenterWindows/Ledger" method="_on_open_ledger"]
@@ -3240,11 +3231,11 @@ wait_time = 180.0
 [connection signal="mouse_entered" from="CenterWindows/Quota/requirements/sellRequirement/inquire/interactable" to="CenterWindows/Quota/requirements/sellRequirement/inquire" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/Quota/requirements/sellRequirement/inquire/interactable" to="CenterWindows/Quota/requirements/sellRequirement/inquire" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/Quota/requirements/sellRequirement/inquire/interactable" to="CenterWindows/Quota/requirements/sellRequirement/inquire" method="_on_interactable_pressed"]
-[connection signal="pressed" from="CenterWindows/Skills/dextSkill/moreButton/Button" to="CenterWindows/Skills/dextSkill/moreButton" method="_on_button_pressed"]
-[connection signal="pressed" from="CenterWindows/Skills/StrengthSkill/moreButton/Button" to="CenterWindows/Skills/StrengthSkill/moreButton" method="_on_button_pressed"]
-[connection signal="pressed" from="CenterWindows/Skills/charismaSkill/moreButton/Button" to="CenterWindows/Skills/charismaSkill/moreButton" method="_on_button_pressed"]
-[connection signal="pressed" from="CenterWindows/Skills/percSkill/moreButton/Button" to="CenterWindows/Skills/percSkill/moreButton" method="_on_button_pressed"]
-[connection signal="pressed" from="CenterWindows/Skills/luckSkill/moreButton/Button" to="CenterWindows/Skills/luckSkill/moreButton" method="_on_button_pressed"]
+[connection signal="pressed" from="CenterWindows/Skills/dextSkill/moreButton/interactable" to="CenterWindows/Skills/dextSkill/moreButton" method="_on_button_pressed"]
+[connection signal="pressed" from="CenterWindows/Skills/StrengthSkill/moreButton/interactable" to="CenterWindows/Skills/StrengthSkill/moreButton" method="_on_button_pressed"]
+[connection signal="pressed" from="CenterWindows/Skills/charismaSkill/moreButton/interactable" to="CenterWindows/Skills/charismaSkill/moreButton" method="_on_button_pressed"]
+[connection signal="pressed" from="CenterWindows/Skills/percSkill/moreButton/interactable" to="CenterWindows/Skills/percSkill/moreButton" method="_on_button_pressed"]
+[connection signal="pressed" from="CenterWindows/Skills/luckSkill/moreButton/interactable" to="CenterWindows/Skills/luckSkill/moreButton" method="_on_button_pressed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/sellWind/PickTarget/strangerRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/scavenge/pickLootable/lootRefresh" method="_on_digital_clock_on_time_changed"]
 [connection signal="onTimeChanged" from="digitalClock" to="CenterWindows/scavenge/lootResult/minigameWindow/timer" method="_on_digital_clock_on_time_changed"]
