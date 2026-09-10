@@ -47,15 +47,14 @@ func _on_timer_timeout() -> void:
 func _ready():
 	interactable.writeTooltipTitle("Game Time")
 	interactable.writeTooltipContent(
-		"	Progresses one in-game minute every
+		"Progresses one in-game minute every
 		two IRL seconds. Over time, your vitals
 		will go down, strangers, loot, and the
 		market will refresh, and random events
 		will happen.")
 
 func _on_interactable_pressed() -> void:
-	if sellWindow.initiatingAction == false && scavenge.scavengeActive == false:
-		outerSprite.scale = paddingSize
+	outerSprite.scale = paddingSize
 	
 #func _input(event):
 #	if event.is_action_pressed("debug"):
