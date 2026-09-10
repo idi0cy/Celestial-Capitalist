@@ -69,25 +69,25 @@ func _process(_delta):
 func _on_promote_promote() -> void:
 	terminalText.targetText = "> You: " + promoteLines.pick_random() + "\n"
 	terminalText.fillText()
-	universalMinigame(1.5)
+	universalMinigame(1.25)
 
 ## Triggered on picking the promote option. Starts the minigame with risk 1.25 and sends appropriate line.
 func _on_urgency_urgency() -> void:
 	terminalText.targetText = "> You: " + urgencyLines.pick_random() + "\n"
 	terminalText.fillText()
-	universalMinigame(1.25)
+	universalMinigame(1.0)
 
 ## Triggered on picking the promote option. Starts the minigame with risk 1.0 and sends appropriate line.
 func _on_recommend_recommend() -> void:
 	terminalText.targetText = "> You: " + recommendLines.pick_random() + "\n"
 	terminalText.fillText()
-	universalMinigame(1.0)
+	universalMinigame(0.75)
 
 ## Triggered on picking the promote option. Starts the minigame with risk 2.0 and sends appropriate line.
 func _on_fearmonger_fear_monger() -> void:
 	terminalText.targetText = "> You: " + fearmongerLines.pick_random() + "\n"
 	terminalText.fillText()
-	universalMinigame(2.0)
+	universalMinigame(1.5)
 
 ## Starts the target minigame with [param risk]. Targets last for 1/[param risk] seconds and appear [member iterations] times.
 func universalMinigame(risk):
@@ -156,7 +156,7 @@ func _on_settle() -> void:
 	var regex = RegEx.new()
 	regex.compile("\\d")
 	## The unique name of the current stranger.
-	var generatedName = peopleList.get_child(storedStrangerIndex).name #something is going on here
+	var generatedName = peopleList.get_child(storedStrangerIndex).strangerName
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
 	#arguedValue = confirmItem.selected[1] * (confirmItem.selected[0][2] * 0.01) * ((ballSpectrum * 0.01) + 0.5)

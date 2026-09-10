@@ -62,7 +62,7 @@ func arbitration(points):
 	
 	var regex = RegEx.new()
 	regex.compile("\\d")
-	var generatedName = peopleList.get_child(storedStrangerIndex).name
+	var generatedName = peopleList.get_child(storedStrangerIndex).strangerName
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
 	random = randf()

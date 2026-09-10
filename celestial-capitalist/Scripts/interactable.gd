@@ -1,9 +1,9 @@
 class_name Interactable
 extends Button
-## A script for interactables with the [class CCButton] template scene. Controls tooltips. [br]
+## A script for interactables with the [CCButton] template scene. Controls tooltips. [br]
 ## [br]
 ## The methods below [method setContentColour], [method setTitleColour], [method writeTooltipContent], 
-## [method writeTooltipTitle] are meant to be called externally from the parent [class CCButton]. 
+## [method writeTooltipTitle] are meant to be called externally from the parent [CCButton]. 
 ## Call at ready to set a default tooltip.
 
 ## The tooltip template scene.

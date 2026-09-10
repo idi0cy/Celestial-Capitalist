@@ -37,7 +37,7 @@ extends InventoryHelper
 @onready var flavourText = get_node("lootResult/lootTurnout/itemDesc/flavourText")
 
 @onready var randomEvent = get_node("../../randomEvents")
-@onready var quota = get_node("../scavenge")
+@onready var quota = get_node("../Quota")
 @onready var skills = get_node("../Skills")
 #endregion
 
@@ -529,8 +529,6 @@ func _on_buy_button_open_shop() -> void:
 func _on_vitals_button_open_vitals() -> void:
 	scavengeOpen = false
 func _on_skills_button_open_skill_tree() -> void:
-	scavengeOpen = false
-func _on_digital_clock_open_time() -> void:
 	scavengeOpen = false
 
 func _on_scavenge_button_open_scav_wind() -> void:

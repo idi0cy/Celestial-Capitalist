@@ -7,8 +7,6 @@ extends CCButton
 ## The time. Why is it 'the' time? Who knows?
 var theTime = 720
 
-## Open the yet to be made clock screen.
-signal openTime
 ## Called when the time changes, every 2 seconds.
 signal onTimeChanged
 
@@ -47,13 +45,16 @@ func _on_timer_timeout() -> void:
 	onTimeChanged.emit()
 
 func _ready():
-	pass
+	interactable.writeTooltipTitle("Game Time")
+	interactable.writeTooltipContent(
+		"Progresses one in-game minute every
+		two IRL seconds. Over time, your vitals
+		will go down, strangers, loot, and the
+		market will refresh, and random events
+		will happen.")
 
 func _on_interactable_pressed() -> void:
-	if sellWindow.initiatingAction == false && scavenge.scavengeActive == false:
-		#insert the function of this placeholder button here
-		openTime.emit()
-		outerSprite.scale = paddingSize
+	outerSprite.scale = paddingSize
 	
 #func _input(event):
 #	if event.is_action_pressed("debug"):

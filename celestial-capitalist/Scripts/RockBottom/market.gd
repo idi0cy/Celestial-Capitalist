@@ -336,8 +336,6 @@ func _on_vitals_button_open_vitals() -> void:
 	marketOpen = false
 func _on_skills_button_open_skill_tree() -> void:
 	marketOpen = false
-func _on_digital_clock_open_time() -> void:
-	marketOpen = false
 func _on_scavenge_button_open_scav_wind() -> void:
 	marketOpen = false
 #endregion

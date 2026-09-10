@@ -58,5 +58,3 @@ func _on_vitals_button_open_vitals() -> void:
 	ledgerOpen = false
 func _on_skills_button_open_skill_tree() -> void:
 	ledgerOpen = false
-func _on_digital_clock_open_time() -> void:
-	ledgerOpen = false

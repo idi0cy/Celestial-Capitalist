@@ -34,5 +34,3 @@ func _on_ledger_button_open_ledger() -> void:
 	isOpen = false
 func _on_skills_button_open_skill_tree() -> void:
 	isOpen = false
-func _on_digital_clock_open_time() -> void:
-	isOpen = false
