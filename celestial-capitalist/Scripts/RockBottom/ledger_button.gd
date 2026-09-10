@@ -6,7 +6,11 @@ extends CCButton
 signal openLedger
 
 func _ready():
-	pass
+	interactable.writeTooltipTitle("Faults on Display")
+	interactable.writeTooltipContent(
+		"Tracks and displays your balance
+		daily in/outcome, and any change
+		to your balance.")
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here

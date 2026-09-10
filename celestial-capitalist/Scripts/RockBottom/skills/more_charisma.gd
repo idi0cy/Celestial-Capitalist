@@ -5,10 +5,15 @@ extends Node
 @onready var buttonSprite = get_node("buttonSprite")
 @onready var amountLabel = get_node("../amountLabel")
 @onready var pointCount = get_node("../../pointCount")
+@onready var interactable = get_node("interactable")
 #endregion
 
 func _ready():
 	amountLabel.text = str(skillsMain.charismaPoints)
+	interactable.writeTooltipTitle("Charisma")
+	interactable.writeTooltipContent(
+		"Increases performance in beg, con
+		and haggle.")
 
 func _on_button_pressed() -> void:
 	if skillsMain.points > 0 and skillsMain.charismaPoints < 10:

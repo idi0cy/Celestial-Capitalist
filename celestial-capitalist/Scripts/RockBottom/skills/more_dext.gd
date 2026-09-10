@@ -5,10 +5,15 @@ extends Node
 @onready var buttonSprite = get_node("buttonSprite")
 @onready var amountLabel = get_node("../amountLabel")
 @onready var pointCount = get_node("../../pointCount")
+@onready var interactable = get_node("interactable")
 #endregion
 
 func _ready():
 	amountLabel.text = str(skillsMain.dextPoints)
+	interactable.writeTooltipTitle("Dexterity")
+	interactable.writeTooltipContent(
+		"Increases performance in fake injury
+		and stealth steal.")
 
 func _on_button_pressed() -> void:
 	if skillsMain.points > 0 and skillsMain.dextPoints < 10:

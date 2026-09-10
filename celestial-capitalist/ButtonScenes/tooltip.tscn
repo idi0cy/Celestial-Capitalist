@@ -9,7 +9,8 @@
 [sub_resource type="LabelSettings" id="LabelSettings_fo6hq"]
 font = ExtResource("3_1ujb6")
 font_size = 10
-shadow_color = Color(0, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="tooltip" type="VBoxContainer" unique_id=1983789892]
 custom_minimum_size = Vector2(256, 125)

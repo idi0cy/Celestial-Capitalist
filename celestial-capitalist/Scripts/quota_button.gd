@@ -6,7 +6,10 @@ extends CCButton
 signal openQuota
 
 func _ready():
-	pass
+	interactable.writeTooltipTitle("Progression Quota")
+	interactable.writeTooltipContent(
+		"Fill out these goals to progress
+		to the next stage.")
 
 func _on_interactable_pressed() -> void:
 	if sellWindow.initiatingAction == false && scavenge.scavengeActive == false:

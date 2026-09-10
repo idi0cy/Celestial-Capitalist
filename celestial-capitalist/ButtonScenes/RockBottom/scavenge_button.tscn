@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://csfb53fek7npm" path="res://Scripts/RockBottom/scavenge_button.gd" id="1_inxc3"]
 [ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="3_1d24r"]
 [ext_resource type="Texture2D" uid="uid://ccklvl3jbm3nh" path="res://assets/Sprites/RockBottom/buttonIcons/ScavengeLogo.png" id="3_inxc3"]
+[ext_resource type="Script" uid="uid://bnjgjbckghquh" path="res://Scripts/interactable.gd" id="4_1d24r"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="4_dv8us"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4i60"]
@@ -56,6 +57,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_inxc3")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6bnjb")
 text = "Scavenge"
 icon = ExtResource("3_inxc3")
+script = ExtResource("4_1d24r")
 metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="." unique_id=110006459]
