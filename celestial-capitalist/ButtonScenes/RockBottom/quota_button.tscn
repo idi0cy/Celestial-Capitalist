@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="2_ruewe"]
 [ext_resource type="Texture2D" uid="uid://c66n0lk6h0usx" path="res://assets/Sprites/quotaIcon.png" id="3_3qwy0"]
 [ext_resource type="Texture2D" uid="uid://c3of86kfijmny" path="res://assets/Sprites/RockBottom/ascensionRequirementsBackground.png" id="4_blvvw"]
+[ext_resource type="Script" uid="uid://bnjgjbckghquh" path="res://Scripts/interactable.gd" id="4_ruewe"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="5_pt2aj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qwy0"]
@@ -50,6 +51,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_bqtei")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ruewe")
 text = "Quota"
 icon = ExtResource("3_3qwy0")
+script = ExtResource("4_ruewe")
 metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="." unique_id=110006459]

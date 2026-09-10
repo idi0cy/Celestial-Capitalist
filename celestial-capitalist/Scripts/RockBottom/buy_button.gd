@@ -6,7 +6,11 @@ extends CCButton
 signal openShop
 
 func _ready():
-	pass
+	interactable.writeTooltipTitle("Spending Habits")
+	interactable.writeTooltipContent(
+		"Buy from a friendly street stall!
+		Prices vary and a different stall
+		appears every day.")
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here

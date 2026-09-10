@@ -10,9 +10,6 @@ var theTime = 720
 ## Called when the time changes, every 2 seconds.
 signal onTimeChanged
 
-@onready var sellWindow = get_node("../CenterWindows/sellWind")
-@onready var scavenge = get_node("../CenterWindows/scavenge")
-
 ## Called every 2 seconds. Updates [member theTime] and the clock button's text.
 func _on_timer_timeout() -> void:
 	theTime += 1

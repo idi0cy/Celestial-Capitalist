@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cwi3dqsf2yslg" path="res://assets/Sprites/RockBottom/buttonIcons/inventoryIcon.png" id="3_0nnmr"]
 [ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="3_p8ruh"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="4_g60mb"]
+[ext_resource type="Script" uid="uid://bnjgjbckghquh" path="res://Scripts/interactable.gd" id="4_p8ruh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4i60"]
 bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
@@ -55,6 +56,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_bgckw")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6bnjb")
 text = "Inventory"
 icon = ExtResource("3_0nnmr")
+script = ExtResource("4_p8ruh")
 metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="." unique_id=110006459]

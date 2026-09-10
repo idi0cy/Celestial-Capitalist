@@ -6,7 +6,12 @@ extends CCButton
 signal openVitals
 
 func _ready():
-	pass
+	interactable.writeTooltipTitle("Health Goals")
+	interactable.writeTooltipContent(
+		"Displays your vital signs. If your
+		satiation decreases, your max health
+		also decreases. If your hydration
+		hits zero, take damage over time.")
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here

@@ -234,9 +234,9 @@ func genProducts():
 		var finalItem = tempLootTableResults.pick_random()
 		# 5.
 		## Random percentage * random lootable tier, rounded to the nearest whole.
-		var qualityPreDeviation = snapped((productQuality * randf()), 1)
+		var qualityPreDeviation = snapped(productQuality * randf(), 1)
 		## Final item quality.
-		var itemQual = randi_range(qualityPreDeviation - 15, qualityPreDeviation + 5)
+		var itemQual = randi_range(qualityPreDeviation - 10, qualityPreDeviation + 5)
 		if (itemQual <= 0):
 			itemQual = 1
 		# 6.

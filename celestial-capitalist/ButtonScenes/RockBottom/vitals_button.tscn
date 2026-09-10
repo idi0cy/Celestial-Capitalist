@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://rthkorkcrcir" path="res://assets/Sprites/RockBottom/rockBottomButton.png" id="2_g2xh6"]
 [ext_resource type="Texture2D" uid="uid://b5svpxflyd7pe" path="res://assets/Sprites/RockBottom/buttonIcons/vitalsIcon.png" id="2_qgqb8"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="3_qgqb8"]
+[ext_resource type="Script" uid="uid://bnjgjbckghquh" path="res://Scripts/interactable.gd" id="4_hxmr7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4i60"]
 bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
@@ -55,6 +56,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_bgckw")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6bnjb")
 text = "Vitals"
 icon = ExtResource("2_qgqb8")
+script = ExtResource("4_hxmr7")
 metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="." unique_id=110006459]
