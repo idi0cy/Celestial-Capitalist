@@ -1,0 +1,36 @@
+extends Node2D
+
+@onready var outerSprite = $outerSprite
+@onready var interactable = $interactable
+#@onready var enterDelay = get_node("../../Timers/menuDelay1")
+@onready var paddingSize = outerSprite.scale
+@onready var hoverScale = Vector2(paddingSize[0] + 0.5, paddingSize[1] + 0.5)
+var placeHolder = Vector2(0,0)
+var hovering = false
+var growSpeed = 0.1
+var moveSpeed = 2.0
+var movement = false
+
+signal getContext
+
+func _process(delta):
+	if hovering == true:
+		placeHolder = outerSprite.scale.lerp(hoverScale, growSpeed)
+	else:
+		placeHolder = outerSprite.scale.lerp(paddingSize, growSpeed)
+	outerSprite.scale = placeHolder
+
+func _on_interactable_mouse_entered() -> void:
+	hovering = true
+
+func _on_interactable_mouse_exited() -> void:
+	hovering = false
+
+func _on_interactable_pressed() -> void:
+	#insert the function of this placeholder button here
+	#print(self)
+	getContext.emit()
+
+func _on_menu_delay_1_timeout() -> void:
+	#movement = true
+	pass

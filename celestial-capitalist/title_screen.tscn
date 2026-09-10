@@ -14,6 +14,42 @@
 [ext_resource type="Texture2D" uid="uid://bv82ui6ee8y1j" path="res://assets/Sprites/TitleScreen/ccreditsBackG.png" id="10_xfn3p"]
 [ext_resource type="Texture2D" uid="uid://dehm0i00djgew" path="res://assets/Sprites/TitleScreen/exitButton.png" id="12_skmiq"]
 [ext_resource type="Script" uid="uid://dply3s1qftl1o" path="res://Scripts/TitleScreen/settings_popup.gd" id="13_lf08s"]
+[ext_resource type="Script" uid="uid://cr6yo6neswt4g" path="res://Scripts/TitleScreen/TitleButtonScripts/get_context.gd" id="15_kvwfe"]
+[ext_resource type="Script" uid="uid://oqposw4v5i5i" path="res://Scripts/TitleScreen/TitleButtonScripts/just_start.gd" id="15_l4tom"]
+[ext_resource type="Texture2D" uid="uid://d181nwov6ax2b" path="res://assets/Sprites/TitleScreen/buttonInIntro.png" id="15_q7w76"]
+[ext_resource type="Script" uid="uid://bkqsa22e6e1vv" path="res://Scripts/TitleScreen/TitleButtonScripts/start_from_intro.gd" id="15_wot2p"]
+[ext_resource type="Script" uid="uid://c61hidej8e7dt" path="res://Scripts/TitleScreen/TitleButtonScripts/exit_start_game_popup.gd" id="18_y8ura"]
+[ext_resource type="Script" uid="uid://do4t22a4dgac8" path="res://Scripts/TitleScreen/TitleButtonScripts/exit_tutorial_button.gd" id="20_aav61"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a64np"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g2tdu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7yan6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l4tom"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y8ura"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aav61"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4h4vs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fd0ao"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g3bb0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q7w76"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wot2p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvwfe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4crdw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r38mt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m6xo1"]
 
 [node name="TitleScreen" type="Node2D" unique_id=926425417]
 script = ExtResource("1_n1yhu")
@@ -128,6 +164,134 @@ text = "I lied.
 
 There are no settings yet."
 
+[node name="startGamePopup" type="Node2D" parent="." unique_id=196893863]
+visible = false
+
+[node name="choicePopup" type="Sprite2D" parent="startGamePopup" unique_id=442303981]
+position = Vector2(569, 350)
+scale = Vector2(4, 4)
+texture = ExtResource("10_xfn3p")
+
+[node name="Label" type="Label" parent="startGamePopup" unique_id=1347655838]
+offset_left = 337.0
+offset_top = 246.0
+offset_right = 377.0
+offset_bottom = 266.0
+text = "Start game or get some context?"
+
+[node name="startTheGame" type="Node2D" parent="startGamePopup" unique_id=1696593405]
+position = Vector2(572, 403)
+script = ExtResource("15_l4tom")
+
+[node name="outerSprite" type="Sprite2D" parent="startGamePopup/startTheGame" unique_id=983548178]
+scale = Vector2(4, 4)
+texture = ExtResource("15_q7w76")
+
+[node name="interactable" type="Button" parent="startGamePopup/startTheGame" unique_id=358770050]
+offset_left = -120.0
+offset_top = -24.0
+offset_right = 120.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a64np")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_g2tdu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7yan6")
+text = "Just Start the Game"
+
+[node name="getTheContext" type="Node2D" parent="startGamePopup" unique_id=200102521]
+position = Vector2(575, 324)
+script = ExtResource("15_kvwfe")
+
+[node name="outerSprite" type="Sprite2D" parent="startGamePopup/getTheContext" unique_id=1947145902]
+position = Vector2(-3, -9)
+scale = Vector2(4, 4)
+texture = ExtResource("15_q7w76")
+
+[node name="interactable" type="Button" parent="startGamePopup/getTheContext" unique_id=2112921329]
+offset_left = -123.0
+offset_top = -33.0
+offset_right = 117.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_l4tom")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y8ura")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_aav61")
+text = "Give Me the Context"
+
+[node name="exitThisPopup" type="Node2D" parent="startGamePopup" unique_id=61748792]
+script = ExtResource("18_y8ura")
+
+[node name="Sprite2D" type="Sprite2D" parent="startGamePopup/exitThisPopup" unique_id=1762165266]
+position = Vector2(573, 346)
+scale = Vector2(4, 4)
+texture = ExtResource("12_skmiq")
+
+[node name="interactable" type="Button" parent="startGamePopup/exitThisPopup" unique_id=1486552804]
+offset_left = 773.0
+offset_top = 246.0
+offset_right = 801.0
+offset_bottom = 274.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4h4vs")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_fd0ao")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_g3bb0")
+
+[node name="tutorialPopup" type="Node2D" parent="." unique_id=1902822575]
+visible = false
+z_index = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="tutorialPopup" unique_id=1930041807]
+position = Vector2(570, 335)
+scale = Vector2(6, 6)
+texture = ExtResource("10_xfn3p")
+
+[node name="Label" type="Label" parent="tutorialPopup" unique_id=443021972]
+custom_maximum_size = Vector2(692, 400)
+offset_left = 224.0
+offset_top = 181.0
+offset_right = 916.0
+offset_bottom = 431.0
+text = "Welcome to Celestial Capitalist!
+
+Let's cut to the chase. You're homeless and alone, and almost definitely single. You have practically nothing to your name. Actually, I'm not even going to give you one. That's just how impoverished you are. In order to survive, you are constantly forced to scavenge for goods, and sell scraps to pinch pennies. Your upbringing has forced you to contantly meet a larger quota, so you won't waste away. Five hundred dollars is only the beginning.
+
+The only good you own is yourself. You bought low, so now you sell high."
+autowrap_mode = 3
+
+[node name="startFromTutorial" type="Node2D" parent="tutorialPopup" unique_id=1545859815]
+script = ExtResource("15_wot2p")
+
+[node name="outerSprite" type="Sprite2D" parent="tutorialPopup/startFromTutorial" unique_id=1555238336]
+position = Vector2(568, 470)
+scale = Vector2(3, 3)
+texture = ExtResource("15_q7w76")
+
+[node name="interactable" type="Button" parent="tutorialPopup/startFromTutorial" unique_id=600022874]
+offset_left = 478.0
+offset_top = 452.0
+offset_right = 658.0
+offset_bottom = 488.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_q7w76")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_wot2p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kvwfe")
+text = "Start Game"
+
+[node name="exitThisPopup" type="Node2D" parent="tutorialPopup" unique_id=1964616104]
+script = ExtResource("20_aav61")
+
+[node name="Sprite2D" type="Sprite2D" parent="tutorialPopup/exitThisPopup" unique_id=288785064]
+position = Vector2(690, 279)
+scale = Vector2(4, 4)
+texture = ExtResource("12_skmiq")
+
+[node name="interactable" type="Button" parent="tutorialPopup/exitThisPopup" unique_id=1284989289]
+offset_left = 890.0
+offset_top = 179.0
+offset_right = 918.0
+offset_bottom = 207.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4crdw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_r38mt")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_m6xo1")
+
 [node name="loadingPopup" type="Node2D" parent="." unique_id=245911985]
 visible = false
 
@@ -154,3 +318,17 @@ text = "Loading the first stage..."
 [connection signal="timeout" from="Timers/capitalistTimer" to="CapitalistTitle" method="_on_capitalist_timer_timeout"]
 [connection signal="pressed" from="creditsPopUp/buttonToExit/exitButton" to="creditsPopUp" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="settingsPopup/buttonToExit/Button" to="settingsPopup" method="_on_button_pressed"]
+[connection signal="justStart" from="startGamePopup/startTheGame" to="." method="_on_start_the_game_just_start"]
+[connection signal="mouse_entered" from="startGamePopup/startTheGame/interactable" to="startGamePopup/startTheGame" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="startGamePopup/startTheGame/interactable" to="startGamePopup/startTheGame" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="startGamePopup/startTheGame/interactable" to="startGamePopup/startTheGame" method="_on_interactable_pressed"]
+[connection signal="getContext" from="startGamePopup/getTheContext" to="." method="_on_get_the_context_get_context"]
+[connection signal="mouse_entered" from="startGamePopup/getTheContext/interactable" to="startGamePopup/getTheContext" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="startGamePopup/getTheContext/interactable" to="startGamePopup/getTheContext" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="startGamePopup/getTheContext/interactable" to="startGamePopup/getTheContext" method="_on_interactable_pressed"]
+[connection signal="pressed" from="startGamePopup/exitThisPopup/interactable" to="startGamePopup/exitThisPopup" method="_on_interactable_pressed"]
+[connection signal="switchSceneFromIntro" from="tutorialPopup/startFromTutorial" to="." method="_on_start_from_tutorial_switch_scene_from_intro"]
+[connection signal="mouse_entered" from="tutorialPopup/startFromTutorial/interactable" to="tutorialPopup/startFromTutorial" method="_on_interactable_mouse_entered"]
+[connection signal="mouse_exited" from="tutorialPopup/startFromTutorial/interactable" to="tutorialPopup/startFromTutorial" method="_on_interactable_mouse_exited"]
+[connection signal="pressed" from="tutorialPopup/startFromTutorial/interactable" to="tutorialPopup/startFromTutorial" method="_on_interactable_pressed"]
+[connection signal="pressed" from="tutorialPopup/exitThisPopup/interactable" to="tutorialPopup/exitThisPopup" method="_on_interactable_pressed"]

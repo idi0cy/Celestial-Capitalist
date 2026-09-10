@@ -66,7 +66,9 @@ func arbitration(points):
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
 	random = randf()
-	if random * sellWind.allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod> (severity/100.0):
+	print(str(random * (sellWind.allStrangers[targetIndex][5] + 0.5) * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod))
+	print(str(severity / 100.0))
+	if random * sellWind.allStrangers[targetIndex][5] * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod > (severity/100.0):
 		ledger.addEntry(arguedVal, clock.theTime, generatedName, "Blackmail", blackmailIcon)
 		if (getEasterEggLine(generatedName) == "false"):
 			terminalText.targetText = "> " + generatedName + ": " + acceptLines.pick_random()
