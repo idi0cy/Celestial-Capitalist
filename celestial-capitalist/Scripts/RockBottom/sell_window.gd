@@ -63,6 +63,8 @@ var sellWindowOpen = false
 var initiatingAction = false
 ## Sent to action windows so they can remove the current stranger from the list if the player fails the game.
 var currentStrangerIndex
+## How much strangers have been removed to change the indexing
+var removedStrangers : int
 
 ## List of all strangers registered using [method SellWindow.newStranger]. Used to get data of a default stranger at runtime. Access a stranger using its name as key.
 @onready var allStrangers : Dictionary = {}
@@ -152,6 +154,7 @@ func _process(_delta):
 ## 1. Generate random amount of strangers based on time, [br]
 ## 2. Assembles stranger [TextureButton]s. [br]
 func genStrangers():
+	removedStrangers = 0
 	# 0.
 	for item in PeopleList.get_children():
 		PeopleList.remove_child(item)
@@ -209,6 +212,7 @@ func removeStranger(index):
 		if count == index:
 			PeopleList.remove_child(obj)
 			obj.queue_free()
+			removedStrangers += 1
 		count += 1
 
 ## Reset the sell window and its derivatives.
@@ -268,11 +272,11 @@ func identifyTarget(id, index, displayName):
 	personNameLabel.targetText = displayName
 	personNameLabel.fillText()
 	
-	haggle.storedStrangerIndex = index
-	fakeInjury.storedStrangerIndex = index
-	begWindow.storedStrangerIndex = index
-	conGame.storedStrangerIndex = index
-	stealGame.storedStrangerIndex = index
+	haggle.storedStrangerIndex = index - removedStrangers
+	fakeInjury.storedStrangerIndex = index - removedStrangers
+	begWindow.storedStrangerIndex = index - removedStrangers
+	conGame.storedStrangerIndex = index - removedStrangers
+	stealGame.storedStrangerIndex = index - removedStrangers
 	
 	if approachButton.pressed.is_connected(approachStranger):
 		approachButton.pressed.disconnect(self.approachStranger)

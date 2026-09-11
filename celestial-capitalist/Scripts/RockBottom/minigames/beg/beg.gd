@@ -41,11 +41,18 @@ var generatedName
 #endregion
 
 func generateName():
+	print(storedStrangerIndex)
 	generatedName = peopleList.get_child(storedStrangerIndex).strangerName
+	#fix this
 
 #region game
 ## Start the game with [member targetStranger].
 func initiate(targetID):
+	logosCount = 0
+	pathosCount = 0
+	ethosCount = 0
+	begProgress = 1
+	tries = 8
 	finishing = false
 	targetStranger = targetID
 	initiatingDone = false
