@@ -16,8 +16,9 @@ func openTerminal():
 	if !isOpen:
 		$termText.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
-func _on_vitals_button_open_vitals() -> void:
-	isOpen = false
+#func _on_vitals_button_open_vitals() -> void:
+	#isOpen = false
+	#pass
 func _on_scavenge_button_open_scav_wind() -> void:
 	isOpen = false
 func _on_sell_button_open_sell_wind() -> void:
