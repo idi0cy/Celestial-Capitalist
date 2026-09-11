@@ -92,8 +92,8 @@ func _process(_delta):
 			eventActive = true
 			currentZIndex += 2
 			if event_queue[0][3] == 1:
-				ledger.addEntry(Round(-(ledger.money * 0.15)), clock.theTime, "Unknown", "Robbed", moneyIcon)
 				newPopup.initiate("You've been robbed. You lost $" + str(Round(ledger.money * 0.15)))
+				ledger.addEntry(Round(-(ledger.money * 0.15)), clock.theTime, "Unknown", "Robbed", moneyIcon)
 				ledger.money -= Round(ledger.money * 0.15)
 			elif event_queue[0][3] == 2:
 				ledger.addEntry(Round((ledger.money * 0.15)), clock.theTime, "Unknown", "Donated", moneyIcon)
