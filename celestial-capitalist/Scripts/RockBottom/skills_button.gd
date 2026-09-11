@@ -8,7 +8,8 @@ func _ready():
 	interactable.writeTooltipTitle("Skills for Bills")
 	interactable.writeTooltipContent(
 		"Level various stats to improve your
-		performance in minigames.")
+		performance in minigames. Skill 
+		points are ganed by playing minigames")
 
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
