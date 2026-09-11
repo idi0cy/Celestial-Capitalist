@@ -50,9 +50,7 @@ func finished():
 	active = false
 	random = randf()
 	random2 = randf()
-	print(random * (score * 1.0 / ((totalIterations * 0.5) + 0.5)))
-	print(random2)
-	if random * (score * 1.0 / (totalIterations * 0.5)) * (difficulty) * skill.strengthMod> random2:
+	if random * (score * 1.0 / (totalIterations * 0.5)) * (difficulty) * skill.strengthMod > random2:
 		allDone.emit("success")
 	else:
 		allDone.emit("fail")

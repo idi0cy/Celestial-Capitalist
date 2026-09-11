@@ -19,6 +19,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed("click") and mouseIsOver:
 			notClickedYet = false
 			clicked.emit(abs(1 - (ring.scale.x / 0.75)))
+			#print(abs(1-(ring.scale.x/0.75)))
 			timer.stop()
 			inexorable()
 		if notClickedYet == true:
