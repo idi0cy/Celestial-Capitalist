@@ -500,7 +500,7 @@ text = "Use Item"
 
 [node name="termBackground" type="Sprite2D" parent="CenterWindows/inventoryWind" unique_id=1838963976]
 z_index = -1
-position = Vector2(576, 448)
+position = Vector2(576, 440)
 scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
@@ -2263,7 +2263,6 @@ autowrap_mode = 3
 clip_text = true
 
 [node name="terminal" type="Node2D" parent="CenterWindows" unique_id=191115621]
-visible = false
 position = Vector2(512, 391)
 script = ExtResource("96_y6hgw")
 
@@ -2696,6 +2695,7 @@ text = "Sell ten (10) items"
 metadata/_edit_use_anchors_ = true
 
 [node name="Skills" type="Node2D" parent="CenterWindows" unique_id=780210723]
+visible = false
 script = ExtResource("130_8m7ut")
 
 [node name="defaultBackground" type="Sprite2D" parent="CenterWindows/Skills" unique_id=894304253]

@@ -5,6 +5,7 @@ extends CCButton
 signal openSkillTree
 
 func _ready():
+	interactable.tooltipEnabled = true
 	interactable.writeTooltipTitle("Skills for Bills")
 	interactable.writeTooltipContent(
 		"Level various stats to improve your

@@ -3,6 +3,7 @@ extends CCButton
 ## Controls and stores sources of daily profits.
 
 func _ready():
+	interactable.tooltipEnabled = true
 	interactable.writeTooltipTitle("Daily Costs")
 	interactable.setContentColour(Color(0.0, 0.645, 0.24, 1.0))
 

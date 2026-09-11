@@ -42,6 +42,7 @@ func _on_timer_timeout() -> void:
 	onTimeChanged.emit()
 
 func _ready():
+	interactable.tooltipEnabled = true
 	interactable.writeTooltipTitle("Game Time")
 	interactable.writeTooltipContent(
 		"Progresses one in-game minute every

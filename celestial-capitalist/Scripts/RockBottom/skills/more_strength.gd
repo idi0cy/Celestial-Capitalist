@@ -9,6 +9,7 @@ extends Node
 #endregion
 
 func _ready():
+	interactable.tooltipEnabled = true
 	amountLabel.text = str(skillsMain.strengthPoints)
 	interactable.writeTooltipTitle("Strength")
 	interactable.writeTooltipContent(
@@ -22,3 +23,9 @@ func _on_button_pressed() -> void:
 		amountLabel.text = str(skillsMain.strengthPoints)
 		skillsMain.points -= 1
 		pointCount.text = "Skill Points: " + str(skillsMain.points)
+
+func addPoints(points:int):
+	if skillsMain.points > 0 and skillsMain.strengthPoints < 10:
+		skillsMain.strengthPoints += points
+		skillsMain.strengthMod = (skillsMain.strengthPoints / 20.0) + 0.9
+		amountLabel.text = str(skillsMain.strengthPoints)

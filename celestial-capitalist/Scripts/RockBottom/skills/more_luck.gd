@@ -9,6 +9,7 @@ extends Node
 #endregion
 
 func _ready():
+	interactable.tooltipEnabled = true
 	amountLabel.text = str(skillsMain.luckPoints)
 	interactable.writeTooltipTitle("Luck")
 	interactable.writeTooltipContent(
@@ -21,3 +22,9 @@ func _on_button_pressed() -> void:
 		amountLabel.text = str(skillsMain.luckPoints)
 		skillsMain.points -= 1
 		pointCount.text = "Skill Points: " + str(skillsMain.points)
+
+func addPoints(points:int):
+	if skillsMain.points > 0 and skillsMain.luckPoints < 10:
+		skillsMain.luckPoints += points
+		skillsMain.luckMod = (skillsMain.luckPoints / 20.0) + 0.9
+		amountLabel.text = str(skillsMain.luckPoints)

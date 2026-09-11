@@ -6,6 +6,7 @@ extends CCButton
 signal openInventory
 
 func _ready():
+	interactable.tooltipEnabled = true
 	interactable.writeTooltipTitle("Infinite Storage!")
 	interactable.writeTooltipContent(
 		"Despite being homeless, you appear
