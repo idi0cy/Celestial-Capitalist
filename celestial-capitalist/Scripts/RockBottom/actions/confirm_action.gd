@@ -12,9 +12,9 @@ var action = "No Action"
 
 signal confirmAction(theAction, targetID)
 
-func _ready():
-	pass
-	
+func resetAction():
+	action = "No Action"
+
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
 	confirmAction.emit(action, personID)
