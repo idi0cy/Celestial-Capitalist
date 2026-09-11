@@ -138,6 +138,7 @@ func _ready():
 		PeopleList.remove_child(item)
 		item.queue_free()
 	genStrangers()
+	confirmAction.interactable.text = "Take Action"
 
 func _process(_delta):
 	if sellWindowOpen == false:
@@ -434,7 +435,7 @@ func onButton():
 		refreshExplanation.fillText()
 		directiveFirst.show()
 		#genStrangers()
-		
+
 func _on_scavenge_button_open_scav_wind() -> void:
 	sellWindowOpen = false
 	PeopleList.peopleListHidden = true

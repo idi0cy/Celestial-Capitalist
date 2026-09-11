@@ -169,7 +169,9 @@ func _on_goldilocks_settle_risk() -> void:
 		genericTerminalText.targetText += "\n> System: Received $" + str(stakes)
 	else:
 		genericTerminalText.targetText = "> " + generatedName + ": " + conFailsDialogue.pick_random()
-	sellWind.removeStranger(sellWind.currentStrangerIndex)
+	if peopleList.get_child_count() >= storedStrangerIndex:
+		if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
+			sellWind.removeStranger(sellWind.currentStrangerIndex)
 	
 	#determine if new skill point
 	random3 = randf()

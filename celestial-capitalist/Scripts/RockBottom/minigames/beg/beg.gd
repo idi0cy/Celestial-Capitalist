@@ -104,7 +104,9 @@ func _on_done_stop_begging() -> void:
 				terminalText.targetText = "> " + generatedName + ": " + rejectLines.pick_random()
 			else:
 				terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
-			sellWindow.removeStranger(sellWindow.currentStrangerIndex)
+			if peopleList.get_child_count() >= storedStrangerIndex:
+				if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
+					sellWindow.removeStranger(sellWindow.currentStrangerIndex)
 		else:
 			## The amount of money begged.
 			var begVal = 1 * ((begProgress * 0.01) + 0.25) * (sellWindow.allStrangers[targetStranger][1] + 0.5)

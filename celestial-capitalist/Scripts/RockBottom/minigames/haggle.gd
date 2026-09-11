@@ -188,7 +188,9 @@ func _on_settle() -> void:
 			terminalText.targetText = "> " + generatedName + ": " + rejectLines.pick_random()
 		else:
 			terminalText.targetText = "> " + generatedName + ": " + getEasterEggLine(generatedName)
-		sellWindow.removeStranger(sellWindow.currentStrangerIndex)
+		if peopleList.get_child_count() >= storedStrangerIndex:
+			if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
+				sellWindow.removeStranger(sellWindow.currentStrangerIndex)
 	
 	#determine if skill point is gained
 	random3 = randf()

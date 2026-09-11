@@ -68,9 +68,9 @@ func arbitration(points):
 	if (regex.search(generatedName)):
 		generatedName = generatedName.left(-1)
 	random = randf()
-	print("random: " + str(random))
-	print(str(random * (sellWind.allStrangers[targetIndex][5] + 0.5) * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod))
-	print(severity/100.0)
+	#print("random: " + str(random))
+	#print(str(random * (sellWind.allStrangers[targetIndex][5] + 0.5) * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod))
+	#print(severity/100.0)
 	
 	if random * (sellWind.allStrangers[targetIndex][5] + 0.5) * (1.0 - (severity / 100.0)) * (points * 0.01 + 0.2) * skill.dextMod > (severity/100.0):
 		ledger.addEntry(arguedVal, clock.theTime, generatedName, "Blackmail", blackmailIcon)
@@ -96,7 +96,9 @@ func arbitration(points):
 	wrapItUp()
 
 func wrapItUp():
-	sellWind.removeStranger(sellWind.currentStrangerIndex)
+	if peopleList.get_child_count() >= storedStrangerIndex:
+		if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
+			sellWind.removeStranger(sellWind.currentStrangerIndex)
 	sellWind.onButton()
 
 func _on_lower_lower_severity() -> void:

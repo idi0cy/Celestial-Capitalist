@@ -62,7 +62,9 @@ func _on_stealth_game_finished(goodOrBad: Variant) -> void:
 			if consequenceCheck < 15:
 				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, strangerList.get_child(sellWind.currentStrangerIndex).name, "Stolen", texture)
 				terminalText.targetText = "> System: Successfully stole $" + str(10 * sellWind.allStrangers[target][1]) + ". The police have been called on you."
-				sellWind.removeStranger(sellWind.currentStrangerIndex)
+				if peopleList.get_child_count() >= storedStrangerIndex:
+					if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
+						sellWind.removeStranger(sellWind.currentStrangerIndex)
 			else:
 				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, strangerList.get_child(sellWind.currentStrangerIndex).name, "Stolen", texture)
 				terminalText.targetText = "> System: Successfully stole $" + str(10 * sellWind.allStrangers[target][1]) + " without being detected."
@@ -71,7 +73,9 @@ func _on_stealth_game_finished(goodOrBad: Variant) -> void:
 		if consequenceCheck < 25:
 			terminalText.targetText = "> System: You failed to steal from " + str(strangerList.get_child(sellWind.currentStrangerIndex).name) + ". The police have been called."
 			#TODO Please remember to have actual consequences for bottom
-			sellWind.removeStranger(sellWind.currentStrangerIndex)
+			if peopleList.get_child_count() >= storedStrangerIndex:
+				if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
+					sellWind.removeStranger(sellWind.currentStrangerIndex)
 		else:
 			terminalText.targetText = "> System: You failed to steal from " + str(strangerList.get_child(sellWind.currentStrangerIndex).name) + "."
 	
@@ -105,7 +109,9 @@ func _on_strength_game_all_done(result: Variant) -> void:
 	
 	terminalText.targetText += " The police have been called on you."
 	terminalText.fillText()
-	sellWind.removeStranger(sellWind.currentStrangerIndex)
+	if peopleList.get_child_count() >= storedStrangerIndex:
+		if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
+			sellWind.removeStranger(sellWind.currentStrangerIndex)
 	strengthGame.hide()
 	terminal.show()
 	theGuy.show()
