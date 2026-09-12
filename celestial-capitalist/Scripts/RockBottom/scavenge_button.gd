@@ -16,4 +16,4 @@ func _ready():
 func _on_interactable_pressed() -> void:
 	if sellWindow.initiatingAction == false && scavenge.scavengeActive == false:
 		openScavWind.emit()
-		outerSprite.scale = paddingSize
+	super()

@@ -149,6 +149,8 @@
 [ext_resource type="Script" uid="uid://bdr0s4yfsqfwh" path="res://Scripts/RockBottom/random_events.gd" id="141_f6br3"]
 [ext_resource type="Texture2D" uid="uid://ct28wc4tsudpj" path="res://assets/Sprites/damageOverlay.png" id="144_vh5mt"]
 [ext_resource type="Script" uid="uid://cmwwky0qpdf51" path="res://Scripts/damage_overlay.gd" id="145_iysnt"]
+[ext_resource type="AudioStream" uid="uid://ck8lebe0ju6ny" path="res://assets/soundEffects/universfield-click-button-140881.mp3" id="150_80ask"]
+[ext_resource type="Script" uid="uid://up6yuwvj4hrs" path="res://ButtonScenes/button_audio.gd" id="151_682th"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6xhon"]
 resource_local_to_scene = true
@@ -3016,6 +3018,13 @@ metadata/_edit_use_anchors_ = true
 wait_time = 180.0
 
 [node name="eventZone" type="Node2D" parent="randomEvents" unique_id=1822283314]
+
+[node name="sounds" type="Node2D" parent="." unique_id=353503482]
+
+[node name="buttonClicked" type="AudioStreamPlayer" parent="sounds" unique_id=1281473409]
+stream = ExtResource("150_80ask")
+volume_db = 10.0
+script = ExtResource("151_682th")
 
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/inventoryWind" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/sellWind" method="_on_scavenge_button_open_scav_wind"]

@@ -30,6 +30,7 @@ var growSpeed = 0.1
 signal buttonPressed
 
 func _ready():
+	#print(NewAutoloadScript.aButtonPressed)
 	interactable.icon = icon
 	interactable.text = text
 
@@ -48,4 +49,7 @@ func _on_interactable_mouse_exited() -> void:
 
 func _on_interactable_pressed() -> void:
 	buttonPressed.emit()
+	PleaseSendHelp.buttonGotPressed.emit()
+	#NewAutoloadScript.seek(0)
+	#NewAutoloadScript.play()
 	outerSprite.scale = paddingSize
