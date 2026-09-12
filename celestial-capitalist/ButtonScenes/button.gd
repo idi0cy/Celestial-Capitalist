@@ -48,6 +48,7 @@ func _on_interactable_mouse_exited() -> void:
 	hovering = false
 
 func _on_interactable_pressed() -> void:
+	#print("thing")
 	buttonPressed.emit()
 	PleaseSendHelp.buttonGotPressed.emit()
 	#NewAutoloadScript.seek(0)

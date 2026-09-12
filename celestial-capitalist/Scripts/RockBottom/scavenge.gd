@@ -271,6 +271,7 @@ func genLootables():
 		lootableButton.set_script(lootableButtonScript)
 		lootableButton.index = generatedIndex
 		lootableButton.pressed.connect(identifyTarget.bind(randomLootable, generatedIndex, allLootables[randomLootable][0]))
+		lootableButton.pressed.connect(triggerAudio)
 		lootableList.add_child(lootableButton)
 		lootableList.get_child(generatedIndex).name = allLootables[randomLootable][0]
 		generatedIndex += 1
@@ -476,9 +477,13 @@ func genLoot():
 		takeableLootButton.index = generatedIndex
 		var assembledItem = assembleItem(itemQual, finalItem, displayName)
 		takeableLootButton.pressed.connect(generateInfo.bind(itemDesc, assembledItem, takeableLootButton))
+		takeableLootButton.pressed.connect(triggerAudio)
 		lootBox.add_child(takeableLootButton)
 		lootBox.get_child(takeableLootButton.get_index()).name = finalItem[0]
 		generatedIndex += 1
+
+func triggerAudio():
+	PleaseSendHelp.buttonGotPressed.emit()
 
 ## Overrides [method InventoryHelper.generateInfo]. Updates the [ItemDesc] and take button to show. Connects the take button to the selected item.
 func generateInfo(desc, item, selectedLoot := TextureButton.new()):

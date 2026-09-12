@@ -22,3 +22,4 @@ func _on_button_pressed() -> void:
 		amountLabel.text = str(skillsMain.dextPoints)
 		skillsMain.points -= 1
 		pointCount.text = "Skill Points: " + str(skillsMain.points)
+		PleaseSendHelp.buttonGotPressed.emit()

@@ -16,4 +16,4 @@ func _on_interactable_pressed() -> void:
 		terminalText.targetText = "> System: Get the target to bet their money on a shady venture."
 		terminalText.fillText()
 		conning.emit()
-		outerSprite.scale = paddingSize
+	super()

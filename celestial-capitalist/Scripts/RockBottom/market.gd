@@ -252,10 +252,14 @@ func genProducts():
 		productButton.set_script(productButtonScript)
 		productButton.index = generatedIndex
 		productButton.pressed.connect(generateInfo.bind(itemDesc, assembleItem(itemQual, finalItem, displayName), productButton))
+		productButton.pressed.connect(triggerAudio)
 		productList.add_child(productButton)
 		productList.get_child(generatedIndex).name = finalItem[0]
 		generatedIndex += 1
 #endregion
+
+func triggerAudio():
+	PleaseSendHelp.buttonGotPressed.emit()
 
 #region buying and selecting
 ## Overrides [method InventoryHelper.generateInfo]. Updates the [ItemDesc] and buy button to show. Connects the buy button to the selected item.

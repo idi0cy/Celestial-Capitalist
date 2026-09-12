@@ -7,11 +7,13 @@ func initiate(text):
 	eventDesc.text = text
 
 func _on_back_button_pressed() -> void:
+	PleaseSendHelp.buttonGotPressed.emit()
 	get_parent().remove_child(self)
 	closed.emit()
 	self.queue_free()
 
 func _on_interactable_pressed() -> void:
+	PleaseSendHelp.buttonGotPressed.emit()
 	get_parent().remove_child(self)
 	closed.emit()
 	self.queue_free()

@@ -18,4 +18,4 @@ func resetAction():
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
 	confirmAction.emit(action, personID)
-	outerSprite.scale = paddingSize
+	super()

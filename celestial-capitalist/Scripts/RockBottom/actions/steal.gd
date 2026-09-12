@@ -16,4 +16,4 @@ func _on_interactable_pressed() -> void:
 		terminalText.targetText = "> System: Take the target's possessions without their consent."
 		terminalText.fillText()
 		stealStuff.emit()
-		outerSprite.scale = paddingSize
+	super()

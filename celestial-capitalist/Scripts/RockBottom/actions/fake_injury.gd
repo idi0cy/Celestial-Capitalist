@@ -16,4 +16,4 @@ func _on_interactable_pressed() -> void:
 		terminalText.targetText = "> System: Convince the target they have mortally wounded you, or convince the public to pressure them. Demand compensation."
 		terminalText.fillText()
 		fakeInjury.emit()
-		outerSprite.scale = paddingSize
+	super()

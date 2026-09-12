@@ -49,13 +49,17 @@ func openPickToSell():
 		invItem.assembledItem = obj
 		invItem.baseItem = obj[0]
 		invItem.pressed.connect(generateInfo.bind(itemDesc, invItem.assembledItem, count))
+		invItem.pressed.connect(triggerAudio)
 		invGrid.add_child(invItem)
 		count += 1
 	
 	#if hiding == false:
 		#closeIcons()
 	hiding = false
-	
+
+func triggerAudio():
+	PleaseSendHelp.buttonGotPressed.emit()
+
 ## Overrides [method InventoryHelper.generateInfo]. Updates the [InvItemDesc] to
 ## show and updates the selected index and assembled item of the confirm button.
 func generateInfo(desc, item, index := 0):

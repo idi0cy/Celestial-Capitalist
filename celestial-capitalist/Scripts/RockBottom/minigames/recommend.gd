@@ -8,4 +8,4 @@ func _ready():
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
 	recommend.emit()
-	outerSprite.scale = paddingSize
+	super()

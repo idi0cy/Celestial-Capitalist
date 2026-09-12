@@ -509,10 +509,10 @@ scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
 [node name="sellWind" type="Node2D" parent="CenterWindows" unique_id=1492757036]
+visible = false
 script = ExtResource("19_kqawt")
 
 [node name="PickTarget" type="Node2D" parent="CenterWindows/sellWind" unique_id=1710952998]
-visible = false
 
 [node name="PeopleList" type="HBoxContainer" parent="CenterWindows/sellWind/PickTarget" unique_id=2057357323]
 offset_left = 325.0
@@ -2083,6 +2083,7 @@ horizontal_alignment = 1
 script = ExtResource("22_2of7g")
 
 [node name="lootResult" type="Node2D" parent="CenterWindows/scavenge" unique_id=585207552]
+visible = false
 
 [node name="Terminal" type="Node2D" parent="CenterWindows/scavenge/lootResult" unique_id=782184732]
 position = Vector2(512, 391)
@@ -3023,7 +3024,7 @@ wait_time = 180.0
 
 [node name="buttonClicked" type="AudioStreamPlayer" parent="sounds" unique_id=1281473409]
 stream = ExtResource("150_80ask")
-volume_db = 10.0
+volume_db = -8.0
 script = ExtResource("151_682th")
 
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/inventoryWind" method="_on_scavenge_button_open_scav_wind"]

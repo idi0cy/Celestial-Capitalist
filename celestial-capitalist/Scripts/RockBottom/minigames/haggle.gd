@@ -131,6 +131,9 @@ func universalMinigame(risk):
 			await get_tree().create_timer(1).timeout
 		else:
 			await get_tree().create_timer(2).timeout
+		for item in $aimTrainZone.get_children():
+			$aimTrainZone.remove_child(item)
+			item.queue_free()
 	
 	aimTrainZone.hide()
 	pricingPlans.show()

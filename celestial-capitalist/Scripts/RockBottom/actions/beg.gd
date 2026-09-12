@@ -16,4 +16,4 @@ func _on_interactable_pressed() -> void:
 		terminalText.targetText = "> System: Guilt trip the target into providing you with fiscal relief."
 		terminalText.fillText()
 		begging.emit()
-		outerSprite.scale = paddingSize
+	super()

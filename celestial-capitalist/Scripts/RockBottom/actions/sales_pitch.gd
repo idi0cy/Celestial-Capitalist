@@ -16,4 +16,4 @@ func _on_interactable_pressed() -> void:
 		terminalText.targetText = "> System: Sell an item to this stranger. Minigame performance partially determines success."
 		terminalText.fillText()
 		salesPitch.emit()
-		outerSprite.scale = paddingSize
+	super()

@@ -33,3 +33,4 @@ func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
 	openSellInquiry.emit()
 	outerSprite.scale = paddingSize
+	PleaseSendHelp.buttonGotPressed.emit()

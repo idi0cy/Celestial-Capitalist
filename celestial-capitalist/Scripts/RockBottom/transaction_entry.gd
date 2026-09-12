@@ -89,3 +89,4 @@ func _on_interactable_mouse_exited() -> void:
 func _on_interactable_pressed() -> void:
 	windowExpanded = not windowExpanded
 	outerSprite.scale = paddingSize
+	PleaseSendHelp.buttonGotPressed.emit()

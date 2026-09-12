@@ -27,4 +27,4 @@ func _on_interactable_pressed() -> void:
 	hiding = true
 	pickToSell.hiding = true
 	confirmSelection.emit()
-	outerSprite.scale = paddingSize
+	super()

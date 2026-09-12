@@ -200,9 +200,13 @@ func genStrangers():
 		strangerButton.baseInfo = allStrangers[randomStranger]
 		strangerButton.index = index
 		strangerButton.pressed.connect(identifyTarget.bind(randomStranger, index, generatedName))
+		strangerButton.pressed.connect(triggerAudio)
 		PeopleList.add_child(strangerButton)
 		PeopleList.get_child(index).name = generatedName
 		index += 1
+
+func triggerAudio():
+	PleaseSendHelp.buttonGotPressed.emit()
 
 ## Removes a stranger at an index.
 func removeStranger(index):
