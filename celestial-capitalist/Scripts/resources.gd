@@ -115,6 +115,7 @@ func newItem(
 	{
 		"type": ["Attribute"],
 		"dext": 1,
+		"buffDuration": 60,
 		"useMessage": "You doodle with the pencil a little, scribbling on your arm. You feel more dexterous."
 	},
 	5,
@@ -142,6 +143,7 @@ func newItem(
 	{
 		"type": ["Attribute"],
 		"dext": 2,
+		"buffDuration": 120,
 		"useMessage": "You fiddle with the pen, scribbling and clicking. You feel more dexterous."
 	},
 	20,
@@ -161,6 +163,7 @@ func newItem(
 	{
 		"type": ["Consumable", "Attribute"],
 		"strength": 2,
+		"buffDuration": 80,
 		"useMessage": "You munch. It is good to munch. You feel stronger."
 	},
 	60,
@@ -171,6 +174,7 @@ func newItem(
 	{
 		"type": ["Consumable", "Attribute"],
 		"strength": 4,
+		"buffDuration": 60,
 		"useMessage": "You tear at the meat feverishly. You feel stronger."
 	},
 	80,
@@ -181,6 +185,7 @@ func newItem(
 	{
 		"type": ["Consumable", "Attribute"],
 		"strength": 1,
+		"buffDuration": 60,
 		"useMessage": "The cheese is absolutely supreme. You feel stronger."
 	},
 	40,
@@ -198,7 +203,8 @@ func newItem(
 @onready var cardboard = newItem("Cardboard",
 	{
 		"type": ["Consumable", "Attribute"],
-		"charisma": -1,
+		"charisma": -1, 
+		"buffDuration": 60,
 		"useMessage": "You're so hungry you eat it anyway. People gawk. You feel rather uncharismatic."
 	},
 	10,
@@ -209,6 +215,7 @@ func newItem(
 	{
 		"type": ["Consumable", "Attribute"],
 		"luck": 1,
+		"buffDuration": 60,
 		"useMessage": "It tastes a bit decayed, but no matter! You feel luckier."
 	},
 	45,
@@ -293,6 +300,7 @@ func newItem(
 	{
 		"type": ["Attribute"],
 		"charisma": 2,
+		"buffDuration": 80,
 		"useMessage": "You fiddle with the toilet paper and construct an intricate sculpture. An onlooker gawks at its majesty. You feel more charismatic."
 	},
 	30,
@@ -311,6 +319,7 @@ func newItem(
 	{
 		"type": ["Medication", "Attribute"],
 		"charisma": 2,
+		"buffDuration": 80,
 		"useMessage": "You rub the balm on your skin. You feel more charismatic."
 	},
 	0,
@@ -321,6 +330,7 @@ func newItem(
 	{
 		"type": ["Attribute"],
 		"strength": 5,
+		"buffDuration": 60,
 		"useMessage": "You feel incredibly angry at the world. Everything fucking sucks. You smash the computer in frustration - it feels good and you feel stronger."
 	},
 	400,
@@ -331,6 +341,7 @@ func newItem(
 	{
 		"type": ["Consumable", "Attribute"],
 		"luck": 4,
+		"buffDuration": 180,
 		"useMessage": "You have absorbed the cat and now feel very full. With its boundless power, you feel luckier."
 	},
 	300,
@@ -349,6 +360,7 @@ func newItem(
 	{
 		"type": ["Currency", "Attribute"],
 		"perc": 1,
+		"buffDuration": 60,
 		"useMessage": "You examine the coin and find it's worth little. You feel more perceptive."
 	},
 	2,
@@ -359,6 +371,7 @@ func newItem(
 	{
 		"type": ["Currency", "Attribute"],
 		"perc": 2,
+		"buffDuration": 120,
 		"useMessage": "You examine the bill and find it's worth a bit. You feel more perceptive."
 	},
 	20,
@@ -369,6 +382,7 @@ func newItem(
 	{
 		"type": ["Currency", "Attribute"],
 		"perc": 3,
+		"buffDuration": 180,
 		"useMessage": "You examine the cheque and find it's worth a useful amount. You feel more perceptive."
 	},
 	100,
@@ -379,6 +393,7 @@ func newItem(
 	{
 		"type": ["Currency", "Attribute"],
 		"perc": 4,
+		"buffDuration": 240,
 		"useMessage": "You examine the bond and find it's worth a lot. You feel more perceptive."
 	},
 	400,

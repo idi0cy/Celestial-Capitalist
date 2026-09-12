@@ -8,6 +8,8 @@ extends Node
 @onready var interactable = get_node("interactable")
 #endregion
 
+var tempPoints:int = 0
+
 func _ready():
 	interactable.tooltipEnabled = true
 	amountLabel.text = str(skillsMain.charismaPoints)
@@ -19,13 +21,28 @@ func _ready():
 func _on_button_pressed() -> void:
 	if skillsMain.points > 0 and skillsMain.charismaPoints < 10:
 		skillsMain.charismaPoints += 1
-		skillsMain.charismaMod = (skillsMain.charismaPoints / 20.0) + 0.9
-		amountLabel.text = str(skillsMain.charismaPoints)
+		update()
 		skillsMain.points -= 1
 		pointCount.text = "Skill Points: " + str(skillsMain.points)
 
 func addPoints(points:int):
 	if skillsMain.points > 0 and skillsMain.charismaPoints < 10:
 		skillsMain.charismaPoints += points
-		skillsMain.charismaMod = (skillsMain.charismaPoints / 20.0) + 0.9
-		amountLabel.text = str(skillsMain.charismaPoints)
+		update()
+
+func tempBuff(points:int):
+	tempPoints = points
+	skillsMain.charismaPoints += points
+	update()
+	amountLabel.modulate = Color.GOLD
+	
+func resetBuff():
+	skillsMain.charismaPoints -= tempPoints
+	update()
+	amountLabel.modulate = Color.WHITE
+	tempPoints = 0
+
+func update():
+	skillsMain.charismaMod = (skillsMain.charismaPoints / 20.0) + 0.9
+	amountLabel.text = str(skillsMain.charismaPoints)
+	

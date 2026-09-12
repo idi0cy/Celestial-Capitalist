@@ -69,7 +69,12 @@ script = ExtResource("4_02fqe")
 wait_time = 2.0
 autostart = true
 
+[node name="trueTime" type="Timer" parent="." unique_id=1509435257]
+wait_time = 0.1
+autostart = true
+
 [connection signal="mouse_entered" from="interactable" to="." method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="interactable" to="." method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="interactable" to="." method="_on_interactable_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="trueTime" to="." method="_on_true_time_timeout"]

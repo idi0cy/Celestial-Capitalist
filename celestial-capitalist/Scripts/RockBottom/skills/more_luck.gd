@@ -8,6 +8,8 @@ extends Node
 @onready var interactable = get_node("interactable")
 #endregion
 
+var tempPoints:int = 0 
+
 func _ready():
 	interactable.tooltipEnabled = true
 	amountLabel.text = str(skillsMain.luckPoints)
@@ -18,13 +20,27 @@ func _ready():
 func _on_button_pressed() -> void:
 	if skillsMain.points > 0 and skillsMain.luckPoints < 10:
 		skillsMain.luckPoints += 1
-		skillsMain.luckMod = (skillsMain.luckPoints / 20.0) + 0.9
-		amountLabel.text = str(skillsMain.luckPoints)
+		update()
 		skillsMain.points -= 1
 		pointCount.text = "Skill Points: " + str(skillsMain.points)
 
 func addPoints(points:int):
 	if skillsMain.points > 0 and skillsMain.luckPoints < 10:
 		skillsMain.luckPoints += points
-		skillsMain.luckMod = (skillsMain.luckPoints / 20.0) + 0.9
-		amountLabel.text = str(skillsMain.luckPoints)
+		update()
+
+func tempBuff(points:int):
+	tempPoints = points
+	skillsMain.luckPoints += points
+	update()
+	amountLabel.modulate = Color.GOLD
+	
+func resetBuff():
+	skillsMain.luckPoints -= tempPoints
+	update()
+	amountLabel.modulate = Color.WHITE
+	tempPoints = 0
+
+func update():
+	skillsMain.luckMod = (skillsMain.luckPoints / 20.0) + 0.9
+	amountLabel.text = str(skillsMain.luckPoints)

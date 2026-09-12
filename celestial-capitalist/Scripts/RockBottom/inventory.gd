@@ -55,6 +55,8 @@ func refreshInventory():
 @onready var charisma : Node = get_node("../Skills/charismaSkill/moreButton")
 @onready var perc : Node = get_node("../Skills/percSkill/moreButton")
 @onready var luck : Node = get_node("../Skills/luckSkill/moreButton")
+@onready var buffLabel : Node = get_node("../Skills/buffTime")
+@onready var buffBar : Node = get_node("../Skills/buffBar")
 
 @onready var vitals : Node = get_node("../vitals")
 @onready var ledger : Node = get_node("../Ledger")
@@ -153,6 +155,7 @@ func _on_use_item() -> void:
 					changes += "\n Gained " + str(health) + " health."
 					
 				if itemProperties.get("type").has("Attribute"):
+					var displayBuffs = ""
 					for i in [
 						["dext", dext],
 						["strength", strength],
@@ -161,9 +164,19 @@ func _on_use_item() -> void:
 						["luck", luck]
 					]:
 						if itemProperties.has(i[0]):
-							i[1].addPoints(itemProperties.get(i[0]))
+							i[1].tempBuff(itemProperties.get(i[0]))
 							changes += "\n Gained " + str(itemProperties.get(i[0])) + " " + i[0] + "."
+							var buffText = str(itemProperties.get(i[0])) + " " + i[0].to_upper() + " | "
+							if itemProperties.get(i[0]) > 0:
+								buffText = "+" + buffText
+							else:
+								buffText = "-" + buffText
+							displayBuffs = displayBuffs + buffText
 					removeItem(selectedItemIndex)
+					buffLabel.text = "Current Buff: " + itemInstance[2] + " | " + displayBuffs
+					buffBar.max_value = itemProperties.get("buffDuration")
+					buffBar.value = itemProperties.get("buffDuration")
+					buffBar.buff = true
 				openTerminal(4)
 				terminalText.targetText = itemProperties.get("useMessage") + changes
 				terminalText.fillText()
