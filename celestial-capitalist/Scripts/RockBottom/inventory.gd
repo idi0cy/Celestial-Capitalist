@@ -49,6 +49,15 @@ func refreshInventory():
 @onready var terminal : Node = get_node("../terminal")
 @onready var terminalText : Node = get_node("../terminal/termText")
 
+@onready var skills : Node = get_node("../Skills")
+@onready var dext : Node = get_node("../Skills/dextSkill/moreButton")
+@onready var strength : Node = get_node("../Skills/StrengthSkill/moreButton")
+@onready var charisma : Node = get_node("../Skills/charismaSkill/moreButton")
+@onready var perc : Node = get_node("../Skills/percSkill/moreButton")
+@onready var luck : Node = get_node("../Skills/luckSkill/moreButton")
+@onready var buffLabel : Node = get_node("../Skills/buffTime")
+@onready var buffBar : Node = get_node("../Skills/buffBar")
+
 @onready var vitals : Node = get_node("../vitals")
 @onready var ledger : Node = get_node("../Ledger")
 @onready var clock : Node = get_node("../../digitalClock")
@@ -99,6 +108,7 @@ func generateInfo(desc, item, index := 0):
 	selectedAssembledItem = item
 	itemDesc.itemSelected = true
 	itemDesc.selectedItem = item[0]
+	terminal.isOpen = false
 
 ## Code executed when the use item button is pressed. Checks item type for what function to be performed, performs it, and refreshes inventory. [br]
 ## [br]
@@ -108,38 +118,73 @@ func generateInfo(desc, item, index := 0):
 func _on_use_item() -> void:
 	if (selectedAssembledItem):
 		if selectedAssembledItem != []:
-			
-			if selectedAssembledItem[0][1] == "Currency":
-				
-				## Final value retrieved from assembled item
-				var itemVal = selectedAssembledItem[3]
-				ledger.addEntry(itemVal, clock.theTime, selectedAssembledItem[0][0],
-				"Redeemed", coinIcon)
-				removeItem(selectedItemIndex)
-				
-			elif selectedAssembledItem[0][1] == "Consumable":
-				if !(selectedAssembledItem[0][3] is String) || !(selectedAssembledItem[0][3] == 0):
-					if !(selectedAssembledItem[0][3] == 0):
-						## Final hydration retrieved from assembled item
-						var hydration = selectedAssembledItem[4]
-						vitals.changeHydration(hydration)
-						
-				if !(selectedAssembledItem[0][4] is String):
-					if !(selectedAssembledItem[0][4] == 0):
-						## Final satiation retrieved from assembled item
-						var satiation = selectedAssembledItem[5]
-						vitals.changeSatiation(satiation)
-				removeItem(selectedItemIndex)
-				
-			elif selectedAssembledItem[0][1] == "Medication":
-				print("1")
-				## Final health bonus calculated from assembled item quality and satiation
-				var health = snapped((selectedAssembledItem[1] * selectedAssembledItem[5] * 0.01), 1)
-				if vitals.health + health > 100:
-					vitals.health = 100
-				else:
-					vitals.health += health
-				removeItem(selectedItemIndex)
+			var itemInstance = selectedAssembledItem
+			var itemProperties = itemInstance[0][1]
+			if itemProperties.has("type"):
+				var changes = ""
+				if itemProperties.get("type").has("Currency"):
+					## Final value retrieved from assembled item
+					var itemVal = itemInstance[3]
+					ledger.addEntry(itemVal, clock.theTime, itemInstance[0][0],
+					"Redeemed", coinIcon)
+					removeItem(selectedItemIndex)
+					changes += "\n Redeemed $" + str(itemVal) + "."
+					
+				if itemProperties.get("type").has("Consumable"):
+					## Final satiation retrieved from assembled item
+					var satiation = itemInstance[5]
+					## Final hydration retrieved from assembled item
+					var hydration = itemInstance[4]
+					if !(itemInstance[0][3] is String):
+						if !(itemInstance[0][3] == 0):
+							vitals.changeHydration(hydration)
+					if !(itemInstance[0][4] is String):
+						if !(itemInstance[0][4] == 0):
+							vitals.changeSatiation(satiation)
+					removeItem(selectedItemIndex)
+					changes += "\n Gained " + str(hydration) + " hydration and " + str(satiation) + " satiation."
+					
+				if itemProperties.get("type").has("Medication"):
+					## Final health bonus calculated from assembled item quality and satiation
+					var health = snapped((itemInstance[1] * itemInstance[5] * 0.01), 1)
+					if vitals.health + health > 100:
+						vitals.health = 100
+					else:
+						vitals.health += health
+					removeItem(selectedItemIndex)
+					changes += "\n Gained " + str(health) + " health."
+					
+				if itemProperties.get("type").has("Attribute"):
+					var displayBuffs = ""
+					for i in [
+						["dext", dext],
+						["strength", strength],
+						["charisma", charisma],
+						["perc", perc],
+						["luck", luck]
+					]:
+						if itemProperties.has(i[0]):
+							i[1].tempBuff(itemProperties.get(i[0]))
+							changes += "\n Gained " + str(itemProperties.get(i[0])) + " " + i[0] + "."
+							var buffText = str(itemProperties.get(i[0])) + " " + i[0].to_upper() + " | "
+							if itemProperties.get(i[0]) > 0:
+								buffText = "+" + buffText
+							else:
+								buffText = "-" + buffText
+							displayBuffs = displayBuffs + buffText
+					removeItem(selectedItemIndex)
+					buffLabel.text = "Current Buff: " + itemInstance[2] + " | " + displayBuffs
+					buffBar.max_value = itemProperties.get("buffDuration")
+					buffBar.value = itemProperties.get("buffDuration")
+					buffBar.buff = true
+				openTerminal(4)
+				terminalText.targetText = itemProperties.get("useMessage") + changes
+				terminalText.fillText()
+
+func openTerminal(seconds:int):
+	terminal.isOpen = true
+	await get_tree().create_timer(seconds).timeout
+	terminal.isOpen = false
 #endregion
 
 #region screen opening/closing

@@ -6,6 +6,7 @@ extends CCButton
 signal openLedger
 
 func _ready():
+	interactable.tooltipEnabled = true
 	interactable.writeTooltipTitle("Faults on Display")
 	interactable.writeTooltipContent(
 		"Tracks and displays your balance

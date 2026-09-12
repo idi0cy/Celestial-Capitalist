@@ -148,6 +148,7 @@
 [ext_resource type="Script" uid="uid://bnjgjbckghquh" path="res://Scripts/interactable.gd" id="140_yw1rv"]
 [ext_resource type="Script" uid="uid://bdr0s4yfsqfwh" path="res://Scripts/RockBottom/random_events.gd" id="141_f6br3"]
 [ext_resource type="Texture2D" uid="uid://ct28wc4tsudpj" path="res://assets/Sprites/damageOverlay.png" id="144_vh5mt"]
+[ext_resource type="Script" uid="uid://bvorv3vdsxat5" path="res://Scripts/RockBottom/buff_bar.gd" id="145_dmfug"]
 [ext_resource type="Script" uid="uid://cmwwky0qpdf51" path="res://Scripts/damage_overlay.gd" id="145_iysnt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6xhon"]
@@ -502,7 +503,7 @@ text = "Use Item"
 
 [node name="termBackground" type="Sprite2D" parent="CenterWindows/inventoryWind" unique_id=1838963976]
 z_index = -1
-position = Vector2(576, 448)
+position = Vector2(576, 440)
 scale = Vector2(8, 8)
 texture = ExtResource("24_bgfic")
 
@@ -2968,6 +2969,23 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_g4v7s")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8m7ut")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_71gsy")
 script = ExtResource("140_yw1rv")
+
+[node name="buffBar" type="TextureProgressBar" parent="CenterWindows/Skills" unique_id=80532658]
+offset_left = 336.0
+offset_top = 438.0
+offset_right = 432.0
+offset_bottom = 448.0
+scale = Vector2(5, 5)
+texture_under = ExtResource("2_5xa78")
+texture_progress = ExtResource("125_qoy16")
+script = ExtResource("145_dmfug")
+
+[node name="buffTime" type="Label" parent="CenterWindows/Skills" unique_id=683531219]
+offset_left = 337.0
+offset_top = 410.0
+offset_right = 816.0
+offset_bottom = 430.0
+text = "Current Buff"
 
 [node name="damageOverlay" type="Sprite2D" parent="CenterWindows" unique_id=2062084718]
 visible = false

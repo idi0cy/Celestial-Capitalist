@@ -6,6 +6,7 @@ extends CCButton
 signal openShop
 
 func _ready():
+	interactable.tooltipEnabled = true
 	interactable.writeTooltipTitle("Spending Habits")
 	interactable.writeTooltipContent(
 		"Buy from a friendly street stall!
