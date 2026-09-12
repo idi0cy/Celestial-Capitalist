@@ -92,13 +92,11 @@ func _process(_delta):
 			eventActive = true
 			currentZIndex += 2
 			if event_queue[0][3] == 1:
-				newPopup.initiate("You've been robbed. You lost $" + str(Round(ledger.money * 0.15)))
-				ledger.addEntry(Round(-(ledger.money * 0.15)), clock.theTime, "Unknown", "Robbed", moneyIcon)
-				ledger.money -= Round(ledger.money * 0.15)
+				newPopup.initiate("You've been robbed. You lost $" + str(Round(ledger.money * 0.1)))
+				ledger.addEntry(Round(-(ledger.money * 0.1)), clock.theTime, "Unknown", "Robbed", moneyIcon)
 			elif event_queue[0][3] == 2:
-				ledger.addEntry(Round((ledger.money * 0.15)), clock.theTime, "Unknown", "Donated", moneyIcon)
-				newPopup.initiate("You find some money on the floor, and pick up $" + str(Round(ledger.money * 0.15)))
-				ledger.money += Round(ledger.money * 0.15)
+				newPopup.initiate("You find some money on the floor, and pick up $" + str(Round(ledger.money * 0.1)))
+				ledger.addEntry(Round((ledger.money * 0.1)), clock.theTime, "Unknown", "Donated", moneyIcon)
 			elif event_queue[0][3] == 3:
 				inventory.currentInv = []
 				newPopup.initiate("You've been arrested. Lose all your items.")
@@ -112,7 +110,6 @@ func _process(_delta):
 					random = randi_range(25,50)
 				newPopup.initiate("You were fined $" + str(random))
 				ledger.addEntry(-(random), clock.theTime, "The Law", "Fined", moneyIcon)
-				ledger.money -= random
 			elif event_queue[0][3] == 5:
 				if ledger.money < 25:
 					if ledger.money > 1:
@@ -123,12 +120,10 @@ func _process(_delta):
 					random = randi_range(1,25)
 				newPopup.initiate("You were swindled of $" + str(random))
 				ledger.addEntry(-(random), clock.theTime, "Viktor", "Robbed", moneyIcon)
-				ledger.money -= random
 			elif event_queue[0][3] == 6:
 				random = randi_range(5,25)
 				newPopup.initiate("A generous patron gives you $" + str(random))
 				ledger.addEntry(random, clock.theTime, "Unknown", "Donated", moneyIcon)
-				ledger.money += random
 			elif event_queue[0][3] == 7:
 				newPopup.initiate("Someone gifts you a burger. You get a burger.")
 				invItem = inventory.assembleItem(randi_range(75, 100), burger)
