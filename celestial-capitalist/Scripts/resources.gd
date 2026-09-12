@@ -78,7 +78,7 @@ const hoodieIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/
 ## [br]
 ## [b]Base Item Indexes:[/b] [br]
 ## 0 is item name, [br]
-## 1 is type, [br]
+## 1 is additional properties, [br]
 ## 2 is max value, [br]
 ## 3 is hydration value, [br]
 ## 4 is satiation value, [br]
@@ -88,12 +88,12 @@ const hoodieIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/
 ## [br]
 ## Values with "null" or 0 do not have that property/value attached to the item. [br]
 func newItem(
-		itemName : String, itemType : String,
+		itemName : String, itemProperties : Dictionary,
 		maxValue : int,
 		hydrationvalue, consumedvalue,
 		flavourtext : String,
 		smallTexture : Texture2D, texture : Texture2D):
-	var item = [itemName, itemType, maxValue, hydrationvalue, consumedvalue,
+	var item = [itemName, itemProperties, maxValue, hydrationvalue, consumedvalue,
 	flavourtext, smallTexture, texture]
 	allItems[itemName] = item
 	return item
@@ -102,157 +102,300 @@ func newItem(
 #region item default data
 #CRITICAL ITEM PROPERTIES STORED HERE SHOULD NEVER BE CHANGED
 #They aren't consts because those can't be @onreadied
-@onready var waterBottle = newItem("Water Bottle", "Consumable",
+@onready var waterBottle = newItem("Water Bottle", 
+	{
+		"type": ["Consumable"],
+		"useMessage": "You drink the water. Your throat feels slightly less dry."
+	},
 	8,
 	50, "null",
 	"A bottle of dihydrogen monoxide - very acidic and toxic. Handle with care.",
 	waterBottleInvIconSmall, waterBottleInvIcon)
-@onready var pencil = newItem("Pencil", "Object",
+@onready var pencil = newItem("Pencil",
+	{
+		"type": ["Attribute"],
+		"dext": 1,
+		"buffDuration": 60,
+		"useMessage": "You doodle with the pencil a little, scribbling on your arm. You feel more dexterous."
+	},
 	5,
 	"null", "null",
 	"You're very hungry and feel like taking a bite. The smell leads you on.",
 	pencilInvIconSmall, pencilInvIcon)
-@onready var burger = newItem("Burger", "Consumable",
+@onready var burger = newItem("Burger",
+	{
+		"type": ["Consumable"],
+		"useMessage": "You chomp down the burger. It's greasier than your unwashed hair..."
+	},
 	20,
 	5, 25,
 	"Too many calories - but simply too enticing... you must...",
 	hamburIconSmall, hamburIcon)
-@onready var appliance = newItem("Appliance", "Object",
+@onready var appliance = newItem("Appliance", 
+	{
+		"type": ["Gear"]
+	},
 	125,
 	"null", "null",
 	"A machine of sorts. You haven't been in a kitchen for a while - you don't even recognize it...",
 	applianceIconSmall, applianceIcon)
-@onready var pen = newItem("Pen", "Object",
+@onready var pen = newItem("Pen", 
+	{
+		"type": ["Attribute"],
+		"dext": 2,
+		"buffDuration": 120,
+		"useMessage": "You fiddle with the pen, scribbling and clicking. You feel more dexterous."
+	},
 	20,
 	"null", "null",
 	"It's almost out of ink. Tragic!",
 	penIconSmall, penIcon)
-@onready var sodaCan = newItem("Soda Can", "Consumable",
+@onready var sodaCan = newItem("Soda Can",
+	{
+		"type": ["Consumable"],
+		"useMessage": "You take a sip and then down the whole can. The carbonation has long gone."
+	},
 	15,
 	"null", 50,
 	"Poke or Cepsi?",
 	sodaCanIconSmall, sodaCanIcon)
-@onready var vegetables = newItem("Assorted Vegetables", "Consumable",
+@onready var vegetables = newItem("Assorted Vegetables",
+	{
+		"type": ["Consumable", "Attribute"],
+		"strength": 2,
+		"buffDuration": 80,
+		"useMessage": "You munch. It is good to munch. You feel stronger."
+	},
 	60,
 	30, 30,
 	"Store bought. You wrinkle your nose in hypocritical disgust.",
 	vegetablesIconSmall, vegetablesIcon)
-@onready var meats = newItem("Assorted Meats", "Consumable",
+@onready var meats = newItem("Assorted Meats",
+	{
+		"type": ["Consumable", "Attribute"],
+		"strength": 4,
+		"buffDuration": 60,
+		"useMessage": "You tear at the meat feverishly. You feel stronger."
+	},
 	80,
 	"null", 50,
 	"Grass fed beef!",
 	meatsIconSmall, meatsIcon)
-@onready var cheese = newItem("Cheese", "Consumable",
+@onready var cheese = newItem("Cheese",
+	{
+		"type": ["Consumable", "Attribute"],
+		"strength": 1,
+		"buffDuration": 60,
+		"useMessage": "The cheese is absolutely supreme. You feel stronger."
+	},
 	40,
 	"null", 10,
 	"I could put a cheesy joke here, but I'm feeling discheesed today.",
 	cheeseIconSmall, cheeseIcon)
-@onready var phone = newItem("Phone", "Object",
+@onready var phone = newItem("Phone",
+	{
+		"type": ["Gear"]
+	},
 	300,
 	"null", "null",
 	"You try to open it. Face ID stares blankly.",
 	phoneIconSmall, phoneIcon)
-@onready var cardboard = newItem("Cardboard", "Consumable",
+@onready var cardboard = newItem("Cardboard",
+	{
+		"type": ["Consumable", "Attribute"],
+		"charisma": -1, 
+		"buffDuration": 60,
+		"useMessage": "You're so hungry you eat it anyway. People gawk. You feel rather uncharismatic."
+	},
 	10,
 	"null", 5,
 	"You're cardly hungry. You're not hungry. You're not. Don't eat it.",
 	cardboardIconSmall, cardboardIcon)
-@onready var soySauce = newItem("Soy Sauce", "Consumable",
+@onready var soySauce = newItem("Soy Sauce",
+	{
+		"type": ["Consumable", "Attribute"],
+		"luck": 1,
+		"buffDuration": 60,
+		"useMessage": "It tastes a bit decayed, but no matter! You feel luckier."
+	},
 	45,
 	30, "null",
 	"The lifeblood of the universe!",
 	soySauceIconSmall, soySauceIcon)
-@onready var bag = newItem("Bag", "Object",
+@onready var bag = newItem("Bag",
+	{
+		"type": ["Gear"]
+	},
 	50,
 	"null", "null",
 	"You don't know enough about bags to decide whether this is a fancy one.",
 	bagIconSmall, bagIcon)
-@onready var headphones = newItem("Headphones", "OBject",
+@onready var headphones = newItem("Headphones",
+	{
+		"type": ["Gear"]
+	},
 	100,
 	"null", "null",
 	"You put them on and hear a strange rumbling from your abdomen. They work!",
 	headphonesIconSmall, headphonesIcon)
-@onready var paper = newItem("Paper", "Consumable",
+@onready var paper = newItem("Paper",
+	{
+		"type": ["Consumable"],
+		"charisma": -1,
+		"useMessage": "You eat the paper to various onlookers' shock. You feel less charismatic."
+	},
 	20,
 	"null", 2,
 	"It's just compressed plants, right?! Surely you can eat this!",
 	paperIconSmall, paperIcon)
-@onready var hoodie = newItem("Hoodie", "Clothing",
+@onready var hoodie = newItem("Hoodie",
+	{
+		"type": ["Gear"]
+	},
 	40,
 	"null", "null",
 	"Warm... soft... or maybe you're just hypothermic...",
 	hoodieIconSmall, hoodieIcon)
-@onready var shirt = newItem("Shirt", "Clothing",
+@onready var shirt = newItem("Shirt",
+	{
+		"type": ["Gear"]
+	},
 	50,
 	"null", "null",
 	"It's a plain t-shirt. A white void...",
 	shirtIconSmall, shirtIcon)
-@onready var pants = newItem("Pants", "Clothing",
+@onready var pants = newItem("Pants",
+	{
+		"type": ["Gear"]
+	},
 	50,
 	"null", "null",
 	"Neither thick enough nor thin enough. Uncomfortable.",
 	pantsIconSmall, pantsIcon)
-@onready var sunglasses = newItem("Sunglasses", "Clothing",
+@onready var sunglasses = newItem("Sunglasses",
+	{
+		"type": ["Gear"]
+	},
 	50,
 	"null", "null",
 	"The smog blocks the sun either way. Sunglasses are falling out of favour these days.",
 	sunglassesIconSmall, sunglassesIcon)
-@onready var hat = newItem("Hat", "Clothing",
+@onready var hat = newItem("Hat",
+	{
+		"type": ["Gear"]
+	},
 	30,
 	"null", "null",
 	"It's a hat... and I don't know what else to say here... if it's only this one that's 4th walling it's fine...",
 	hatIconSmall, hatIcon)
-@onready var shorts = newItem("Shorts", "Clothing",
+@onready var shorts = newItem("Shorts",
+	{
+		"type": ["Gear"]
+	},
 	40,
 	"null", "null",
 	"They seem kind of long for shorts?",
 	shortsIconSmall, shortsIcon)
-@onready var toiletPaper = newItem("Toilet Paper", "Object",
+@onready var toiletPaper = newItem("Toilet Paper",
+	{
+		"type": ["Attribute"],
+		"charisma": 2,
+		"buffDuration": 80,
+		"useMessage": "You fiddle with the toilet paper and construct an intricate sculpture. An onlooker gawks at its majesty. You feel more charismatic."
+	},
 	30,
 	"null", 2,
 	"The fortune this would have gone for a few years ago... but that's over now.",
 	toiletPaperIconSmall, toiletPaperIcon)
-@onready var ponder = newItem("Suspiciously Sharp Rabbit Puppet", "Object",
+@onready var ponder = newItem("Suspiciously Sharp Rabbit Puppet",
+	{
+		"type": ["Gear"]
+	},
 	700,
 	"null", "null",
 	"You ponder it's presence here. It's teeth are very sharp...",
 	ponderIconSmall, ponderIcon)
-@onready var skincare = newItem("Skincare Product", "Medication",
+@onready var skincare = newItem("Skincare Product",
+	{
+		"type": ["Medication", "Attribute"],
+		"charisma": 2,
+		"buffDuration": 80,
+		"useMessage": "You rub the balm on your skin. You feel more charismatic."
+	},
 	0,
 	30, "null",
-	"You really shouldn't eat it. But, colourful = tasty, right?!",
+	"Colourful = tasty... right?!",
 	skincareIconSmall, skincareIcon)
-@onready var computer = newItem("PC", "Object",
+@onready var computer = newItem("PC",
+	{
+		"type": ["Attribute"],
+		"strength": 5,
+		"buffDuration": 60,
+		"useMessage": "You feel incredibly angry at the world. Everything fucking sucks. You smash the computer in frustration - it feels good and you feel stronger."
+	},
 	400,
 	"null", "null",
 	"What a find! You quietly pluck the ram sticks out of it. The buyers won't notice.",
 	computerIconSmall, computerIcon)
-@onready var cat = newItem("Cat", "Consumable",
+@onready var cat = newItem("Cat",
+	{
+		"type": ["Consumable", "Attribute"],
+		"luck": 4,
+		"buffDuration": 180,
+		"useMessage": "You have absorbed the cat and now feel very full. With its boundless power, you feel luckier."
+	},
 	300,
 	"null", 50,
 	"It meows at you. You resist the urge to begin chowing down.",
 	catIconSmall, catIcon)
-@onready var briefcase = newItem("Briefcase", "Object",
+@onready var briefcase = newItem("Briefcase",
+	{
+		"type": ["Gear"]
+	},
 	50,
 	"null", "null",
 	"You briefly glance at it, then move on to more interesting things.",
 	briefcaseIconSmall, briefcaseIcon)
-@onready var coin = newItem("Coin", "Currency",
+@onready var coin = newItem("Coin",
+	{
+		"type": ["Currency", "Attribute"],
+		"perc": 1,
+		"buffDuration": 60,
+		"useMessage": "You examine the coin and find it's worth little. You feel more perceptive."
+	},
 	2,
 	"null", "null",
 	"Redeems up to 2 dollars.",
 	coinIconSmall, coinIcon)
-@onready var bill = newItem("Bill", "Currency",
+@onready var bill = newItem("Bill",
+	{
+		"type": ["Currency", "Attribute"],
+		"perc": 2,
+		"buffDuration": 120,
+		"useMessage": "You examine the bill and find it's worth a bit. You feel more perceptive."
+	},
 	20,
 	"null", "null",
 	"Redeems up to 20 dollars.",
 	billIconSmall, billIcon)
-@onready var cheque = newItem("Cheque", "Currency",
+@onready var cheque = newItem("Cheque",
+	{
+		"type": ["Currency", "Attribute"],
+		"perc": 3,
+		"buffDuration": 180,
+		"useMessage": "You examine the cheque and find it's worth a useful amount. You feel more perceptive."
+	},
 	100,
 	"null", "null",
 	"Redeems up to 100 dollars.",
 	chequeIconSmall, chequeIcon)
-@onready var bond = newItem("Bond", "Currency",
+@onready var bond = newItem("Bond",
+	{
+		"type": ["Currency", "Attribute"],
+		"perc": 4,
+		"buffDuration": 240,
+		"useMessage": "You examine the bond and find it's worth a lot. You feel more perceptive."
+	},
 	400,
 	"null", "null",
 	"Redeems up too 100-400 dollars.",

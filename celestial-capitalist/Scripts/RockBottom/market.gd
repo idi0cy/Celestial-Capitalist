@@ -147,7 +147,7 @@ func newStall(
 	}
 )
 
-@onready var clothing = newStall("Clothing", "random", "random",
+@onready var Gear = newStall("Gear", "random", "random",
 	{
 		shirt: 7,
 		sunglasses: 6,

@@ -43,8 +43,12 @@ func assembleItem(quality : int, baseItem : Array, displayName : String = baseIt
 	var satiation = 0
 	if baseItem[3] is int:
 		hydration = snapped((quality * baseItem[3] * 0.01), 1)
+	else:
+		hydration = 0
 	if baseItem[4] is int:
 		satiation = snapped((quality * baseItem[4] * 0.01), 1)
+	else:
+		satiation = 0
 	return [baseItem, quality, displayName, itemVal, hydration, satiation]
 
 ## Puts info to an [ItemDesc] node and its children from the node and the assembled item.

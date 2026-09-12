@@ -6,6 +6,7 @@ extends CCButton
 signal openQuota
 
 func _ready():
+	interactable.tooltipEnabled = true
 	interactable.writeTooltipTitle("Progression Quota")
 	interactable.writeTooltipContent(
 		"Fill out these goals to progress

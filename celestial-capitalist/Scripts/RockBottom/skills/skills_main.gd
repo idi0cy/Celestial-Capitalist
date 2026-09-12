@@ -1,4 +1,4 @@
-extends Node2D
+extends Resources
 
 @onready var pointCount = get_node("pointCount")
 

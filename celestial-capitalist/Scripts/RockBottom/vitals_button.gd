@@ -6,6 +6,7 @@ extends CCButton
 signal openVitals
 
 func _ready():
+	interactable.tooltipEnabled = true
 	interactable.writeTooltipTitle("Health Goals")
 	interactable.writeTooltipContent(
 		"Displays your vital signs. If your

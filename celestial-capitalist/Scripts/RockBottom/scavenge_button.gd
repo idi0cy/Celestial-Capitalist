@@ -6,6 +6,7 @@ extends CCButton
 signal openScavWind
 
 func _ready():
+	interactable.tooltipEnabled = true
 	interactable.writeTooltipTitle("Delittering")
 	interactable.writeTooltipContent(
 		"Scavenge stuff off the street for your

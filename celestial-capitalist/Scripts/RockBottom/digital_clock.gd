@@ -6,6 +6,8 @@ extends CCButton
 
 ## The time. Why is it 'the' time? Who knows?
 var theTime = 720
+## Float. Contains decimals to operate on intervals of 0.1 seconds.
+var trueTime:float = 720
 
 ## Called when the time changes, every 2 seconds.
 signal onTimeChanged
@@ -42,6 +44,7 @@ func _on_timer_timeout() -> void:
 	onTimeChanged.emit()
 
 func _ready():
+	interactable.tooltipEnabled = true
 	interactable.writeTooltipTitle("Game Time")
 	interactable.writeTooltipContent(
 		"Progresses one in-game minute every
@@ -56,3 +59,6 @@ func _on_interactable_pressed() -> void:
 #func _input(event):
 #	if event.is_action_pressed("debug"):
 #		theTime += 60
+
+func _on_true_time_timeout() -> void:
+	trueTime = snapped(trueTime + 0.1, 0.1)

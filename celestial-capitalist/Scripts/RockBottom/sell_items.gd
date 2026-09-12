@@ -6,6 +6,7 @@ extends CCButton
 signal openSellWind
 
 func _ready():
+	interactable.tooltipEnabled = true
 	interactable.writeTooltipTitle("Social Interaction")
 	interactable.writeTooltipContent(
 		"Talk to strangers and attempt to

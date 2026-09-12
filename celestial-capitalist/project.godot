@@ -21,7 +21,6 @@ PleaseSendHelp="*uid://mrf10syrmg2v"
 
 [display]
 
-window/size/mode=2
 window/stretch/mode="viewport"
 
 [editor_plugins]

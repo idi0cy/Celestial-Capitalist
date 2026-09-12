@@ -8,7 +8,6 @@ extends ItemDesc
 var selectedItem:Array
 ## Use Item [Button].
 @onready var useButton = get_node("button")
-
 ## Determines whether to show or hide [ItemDesc] based on [member ItemDesc.itemSelected].
 func _process(_delta):
 	if itemSelected == false:
@@ -16,7 +15,8 @@ func _process(_delta):
 	else:
 		show()
 		if (selectedItem):
-			if (selectedItem[1] == "Currency" || selectedItem[1] == "Consumable"):
-				useButton.show()
-			else:
-				useButton.hide()
+			if (selectedItem[1].has("type")):
+				if (!selectedItem[1].get("type").has("Gear")):
+					useButton.show()
+				else:
+					useButton.hide()

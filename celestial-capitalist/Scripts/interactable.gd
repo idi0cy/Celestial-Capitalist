@@ -9,17 +9,21 @@ extends Button
 ## The tooltip template scene.
 const tooltip = preload("res://ButtonScenes/tooltip.tscn")
 
+var tooltipEnabled:bool = false
 var tooltipContent : String = ""
 var tooltipTitle : String = ""
 var contentColour : Color = Color(1.0, 1.0, 1.0, 1.0)
 var titleColour : Color = Color(1.0, 1.0, 1.0, 1.0)
 
 func _make_custom_tooltip(_content:String) -> Control:
-	var tooltipInstance = tooltip.instantiate()
-	tooltipInstance.setText(tooltipTitle, tooltipContent)
-	tooltipInstance.get_node("control/title").modulate = titleColour
-	tooltipInstance.get_node("control/content").modulate = contentColour
-	return tooltipInstance
+	if tooltipEnabled == true:
+		var tooltipInstance = tooltip.instantiate()
+		tooltipInstance.setText(tooltipTitle, tooltipContent)
+		tooltipInstance.get_node("control/title").modulate = titleColour
+		tooltipInstance.get_node("control/content").modulate = contentColour
+		return tooltipInstance
+	else:
+		return null
 
 func setContentColour(color:Color):
 	contentColour = color
