@@ -20,6 +20,8 @@
 [ext_resource type="Script" uid="uid://bkqsa22e6e1vv" path="res://Scripts/TitleScreen/TitleButtonScripts/start_from_intro.gd" id="15_wot2p"]
 [ext_resource type="Script" uid="uid://c61hidej8e7dt" path="res://Scripts/TitleScreen/TitleButtonScripts/exit_start_game_popup.gd" id="18_y8ura"]
 [ext_resource type="Script" uid="uid://do4t22a4dgac8" path="res://Scripts/TitleScreen/TitleButtonScripts/exit_tutorial_button.gd" id="20_aav61"]
+[ext_resource type="AudioStream" uid="uid://ck8lebe0ju6ny" path="res://assets/soundEffects/universfield-click-button-140881.mp3" id="21_a64np"]
+[ext_resource type="Script" uid="uid://dn2b46or5enro" path="res://Scripts/TitleScreen/TitleButtonScripts/button_click_noised.gd" id="22_g2tdu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a64np"]
 
@@ -308,27 +310,41 @@ offset_bottom = 335.0
 theme_override_font_sizes/font_size = 25
 text = "Loading the first stage..."
 
+[node name="buttonClickNoised" type="AudioStreamPlayer" parent="." unique_id=1221764470]
+stream = ExtResource("21_a64np")
+script = ExtResource("22_g2tdu")
+
 [connection signal="switchScene" from="startButton" to="." method="_on_start_button_switch_scene"]
+[connection signal="switchScene" from="startButton" to="buttonClickNoised" method="_on_start_button_switch_scene"]
 [connection signal="creditsPressed" from="creditsButton" to="creditsPopUp" method="_on_credits_button_credits_pressed"]
+[connection signal="creditsPressed" from="creditsButton" to="buttonClickNoised" method="_on_credits_button_credits_pressed"]
 [connection signal="openSettings" from="settingsButton" to="settingsPopup" method="_on_settings_button_open_settings"]
+[connection signal="openSettings" from="settingsButton" to="buttonClickNoised" method="_on_settings_button_open_settings"]
 [connection signal="timeout" from="Timers/creditsDelay" to="creditsButton" method="_on_credits_delay_timeout"]
 [connection signal="timeout" from="Timers/menuDelay1" to="startButton" method="_on_menu_delay_1_timeout"]
 [connection signal="timeout" from="Timers/settingsDelay" to="settingsButton" method="_on_settings_delay_timeout"]
 [connection signal="timeout" from="Timers/celestialTimer" to="CelestialTitle" method="_on_celestial_timer_timeout"]
 [connection signal="timeout" from="Timers/capitalistTimer" to="CapitalistTitle" method="_on_capitalist_timer_timeout"]
 [connection signal="pressed" from="creditsPopUp/buttonToExit/exitButton" to="creditsPopUp" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="creditsPopUp/buttonToExit/exitButton" to="buttonClickNoised" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="settingsPopup/buttonToExit/Button" to="settingsPopup" method="_on_button_pressed"]
+[connection signal="pressed" from="settingsPopup/buttonToExit/Button" to="buttonClickNoised" method="_on_button_pressed"]
 [connection signal="justStart" from="startGamePopup/startTheGame" to="." method="_on_start_the_game_just_start"]
 [connection signal="mouse_entered" from="startGamePopup/startTheGame/interactable" to="startGamePopup/startTheGame" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="startGamePopup/startTheGame/interactable" to="startGamePopup/startTheGame" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="startGamePopup/startTheGame/interactable" to="startGamePopup/startTheGame" method="_on_interactable_pressed"]
+[connection signal="pressed" from="startGamePopup/startTheGame/interactable" to="buttonClickNoised" method="_on_interactable_pressed"]
 [connection signal="getContext" from="startGamePopup/getTheContext" to="." method="_on_get_the_context_get_context"]
 [connection signal="mouse_entered" from="startGamePopup/getTheContext/interactable" to="startGamePopup/getTheContext" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="startGamePopup/getTheContext/interactable" to="startGamePopup/getTheContext" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="startGamePopup/getTheContext/interactable" to="startGamePopup/getTheContext" method="_on_interactable_pressed"]
+[connection signal="pressed" from="startGamePopup/getTheContext/interactable" to="buttonClickNoised" method="_on_interactable_pressed"]
 [connection signal="pressed" from="startGamePopup/exitThisPopup/interactable" to="startGamePopup/exitThisPopup" method="_on_interactable_pressed"]
+[connection signal="pressed" from="startGamePopup/exitThisPopup/interactable" to="buttonClickNoised" method="_on_interactable_pressed"]
 [connection signal="switchSceneFromIntro" from="tutorialPopup/startFromTutorial" to="." method="_on_start_from_tutorial_switch_scene_from_intro"]
 [connection signal="mouse_entered" from="tutorialPopup/startFromTutorial/interactable" to="tutorialPopup/startFromTutorial" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="tutorialPopup/startFromTutorial/interactable" to="tutorialPopup/startFromTutorial" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="tutorialPopup/startFromTutorial/interactable" to="tutorialPopup/startFromTutorial" method="_on_interactable_pressed"]
+[connection signal="pressed" from="tutorialPopup/startFromTutorial/interactable" to="buttonClickNoised" method="_on_interactable_pressed"]
 [connection signal="pressed" from="tutorialPopup/exitThisPopup/interactable" to="tutorialPopup/exitThisPopup" method="_on_interactable_pressed"]
+[connection signal="pressed" from="tutorialPopup/exitThisPopup/interactable" to="buttonClickNoised" method="_on_interactable_pressed"]
