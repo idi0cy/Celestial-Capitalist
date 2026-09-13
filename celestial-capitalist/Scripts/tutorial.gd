@@ -33,13 +33,7 @@ func _on_tutorial() -> void:
 	tutorialText.targetText = "Welcome to Celestial Capitalist."
 	tutorialText.fillText()
 	tutorialEngaged = true
-	print(tutorialEngaged)
-	print(tutorialStage)
-	print(typingName)
-	print(lastScreen)
-
 func _process(_delta: float) -> void:
-	print(tutorialStage)
 	if tutorialStage != check && tutorialStage < 10:
 		tutorialText.targetText = lines.get(tutorialStage)
 		tutorialText.fillText()
@@ -59,7 +53,6 @@ func _process(_delta: float) -> void:
 
 func _input(event):
 	if event.is_action_pressed("click") && tutorialEngaged && !typingName && !lastScreen:
-		print(tutorialStage)
 		PleaseSendHelp.buttonGotPressed.emit()
 		if tutorialStage <= 8:
 			tutorialStage += 1
