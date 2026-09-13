@@ -16,6 +16,8 @@ signal switchSceneFromIntro
 func _ready():
 	#interactable.text = "Start Game"
 	enterDelay.start()
+	hide()
+	modulate.a = 0.0
 
 func _process(delta):
 	if hovering == true:
@@ -35,6 +37,8 @@ func _on_interactable_mouse_exited() -> void:
 func _on_interactable_pressed() -> void:
 	#insert the function of this placeholder button here
 	#print(self)
+	get_parent().tutorialStage = 10
+	get_node("../exitThisPopup").hide()
 	switchSceneFromIntro.emit()
 
 func _on_menu_delay_1_timeout() -> void:

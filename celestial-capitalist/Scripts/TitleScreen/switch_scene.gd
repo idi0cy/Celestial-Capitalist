@@ -14,7 +14,7 @@ func _on_start_button_switch_scene() -> void:
 	$tutorialPopup.hide()
 
 func _on_start_from_tutorial_switch_scene_from_intro() -> void:
-	$tutorialPopup.hide()
+	$tutorialPopup.startButton.hide()
 	$loadingPopup.show()
 	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://StageScenes/rock_bottom.tscn")

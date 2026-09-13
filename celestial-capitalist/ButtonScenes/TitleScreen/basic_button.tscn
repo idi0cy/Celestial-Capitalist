@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bnjamtaxxttyi"]
 
 [ext_resource type="FontFile" uid="uid://cfsn3iq7gkwy3" path="res://assets/fonts/minecraft_font.ttf" id="2_nw27a"]
-[ext_resource type="Texture2D" uid="uid://bb1dupv4y0m1a" path="res://assets/Sprites/buttonOuter.png" id="2_yaqkv"]
+[ext_resource type="Texture2D" uid="uid://d181nwov6ax2b" path="res://assets/Sprites/TitleScreen/buttonInIntro.png" id="2_w41yk"]
 [ext_resource type="Script" uid="uid://dhi5h3jxiuqdu" path="res://Scripts/outer_sprite.gd" id="5_6bnjb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4i60"]
-bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0.19607843)
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
 corner_detail = 1
 expand_margin_left = 5.0
 expand_margin_top = 5.0
@@ -13,10 +13,10 @@ expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhgbh"]
-bg_color = Color(0.09019608, 0.09019608, 0.09019608, 0.7294118)
+bg_color = Color(0.09019608, 0.09019608, 0.09019608, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bnjb"]
-bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0.49019608)
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
 corner_detail = 1
 expand_margin_left = 5.0
 expand_margin_top = 5.0
@@ -51,8 +51,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="outerSprite" type="Sprite2D" parent="." unique_id=110006459]
 z_index = 1
-scale = Vector2(6.423029, 1.4920406)
-texture = ExtResource("2_yaqkv")
+position = Vector2(0, 4)
+scale = Vector2(4, 4)
+texture = ExtResource("2_w41yk")
 script = ExtResource("5_6bnjb")
 
 [connection signal="mouse_entered" from="interactable" to="." method="_on_interactable_mouse_entered"]
