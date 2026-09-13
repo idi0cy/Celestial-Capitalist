@@ -1,18 +1,12 @@
-extends Node2D
+extends CCButton
 
-@onready var outerSprite = $outerSprite
-@onready var interactable = $interactable
-@onready var paddingSize = outerSprite.theScale
 @onready var textBox = $accountWind/textBox
-@onready var hoverScale = Vector2(paddingSize[0] + 0.35, paddingSize[1] + 0.35)
-var placeHolder = Vector2(0,0)
-var hovering = false
-var growSpeed = 0.1
 
 signal openAccWind
 
 func _ready():
-	pass
+	textBox.text = PleaseSendHelp.saveName
+	interactable.text = textBox.text
 
 func _process(_delta):
 	if hovering == true:
@@ -20,8 +14,6 @@ func _process(_delta):
 	else:
 		placeHolder = outerSprite.scale.lerp(paddingSize, growSpeed)
 	outerSprite.scale = placeHolder
-	if !(textBox.text.is_empty()):
-		interactable.text = textBox.text
 
 func _on_interactable_mouse_entered() -> void:
 	hovering = true
@@ -32,3 +24,8 @@ func _on_interactable_mouse_exited() -> void:
 func _on_interactable_pressed() -> void:
 	openAccWind.emit()
 	outerSprite.scale = paddingSize
+	super()
+	
+func _on_text_box_text_submitted(new_text: String) -> void:
+	PleaseSendHelp.saveName = new_text
+	interactable.text = textBox.text

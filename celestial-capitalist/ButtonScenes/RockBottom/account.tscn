@@ -89,3 +89,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="mouse_entered" from="interactable" to="." method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="interactable" to="." method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="interactable" to="." method="_on_interactable_pressed"]
+[connection signal="text_submitted" from="accountWind/textBox" to="." method="_on_text_box_text_submitted"]

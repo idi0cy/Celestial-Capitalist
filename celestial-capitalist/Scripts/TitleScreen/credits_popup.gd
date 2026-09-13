@@ -10,7 +10,7 @@ var wordBank = ["unfortunately", "terribly", "wonderfully", "generously",
 "pathetically", "awesomely", "obtusely", "moronically", "efficiently",
 "traditionally", "enjoyably", "stylishly", "significantly", "badly", "exhaustingly",
 "apparently", "somehow", "miraculously", "critically", "flawlessly", "imperfectly",
-"actually", "really", "painfully", "goofily", "suspiciously", "violently", "peacfully",
+"actually", "really", "painfully", "goofily", "suspiciously", "violently", "peacefully",
 "fearfully", "definitley", "half", "hilariously", "sympathetically", "fortunately",
 "luckily", "honestly", "genuinely", "conventionally", "legitimately", "illegally",
 "legally", "altruistically", "ethically", "unethically", "morally", "benevolently",
@@ -26,7 +26,7 @@ func _ready():
 	hide()
 
 func _on_credits_button_credits_pressed() -> void:
-	$RichTextLabel.text = "[color=yellow]Celestial Capitalist[/color] is a game [color=green]" + pickRandom() + "[/color] developed by [color=cyan]idi0cy[/color] and [color=red]Ratseer[/color]"
+	$RichTextLabel.text = "[color=pink]Celestial Capitalist[/color] is a game [color=pink]" + pickRandom() + "[/color] developed by [color=pink]idi0cy[/color] and [color=pink]Ratseer[/color], with contributions from [color=pink]Anythingpig[/color]."
 	show()
 
 func pickRandom():
