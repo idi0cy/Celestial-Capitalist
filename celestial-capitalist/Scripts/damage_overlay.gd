@@ -3,6 +3,7 @@ var tween
 
 func _ready() -> void:
 	modulate.a = 0.0
+	show()
 
 func fade(health:int):
 	if tween:

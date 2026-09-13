@@ -150,6 +150,7 @@
 [ext_resource type="Texture2D" uid="uid://ct28wc4tsudpj" path="res://assets/Sprites/damageOverlay.png" id="144_vh5mt"]
 [ext_resource type="Script" uid="uid://bvorv3vdsxat5" path="res://Scripts/RockBottom/buff_bar.gd" id="145_dmfug"]
 [ext_resource type="Script" uid="uid://cmwwky0qpdf51" path="res://Scripts/damage_overlay.gd" id="145_iysnt"]
+[ext_resource type="Texture2D" uid="uid://da7tf7kydjurk" path="res://assets/Sprites/blackOverlay.png" id="149_s04es"]
 [ext_resource type="AudioStream" uid="uid://ck8lebe0ju6ny" path="res://assets/soundEffects/universfield-click-button-140881.mp3" id="150_80ask"]
 [ext_resource type="Script" uid="uid://up6yuwvj4hrs" path="res://ButtonScenes/button_audio.gd" id="151_682th"]
 [ext_resource type="AudioStream" uid="uid://cytqe6equmqaj" path="res://assets/soundEffects/freesound_community-cash-register-purchase-87313.mp3" id="153_hd5ll"]
@@ -2994,12 +2995,18 @@ offset_bottom = 430.0
 text = "Current Buff"
 
 [node name="damageOverlay" type="Sprite2D" parent="CenterWindows" unique_id=2062084718]
-visible = false
 z_index = 5
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
 texture = ExtResource("144_vh5mt")
 script = ExtResource("145_iysnt")
+
+[node name="blackOverlay" type="Sprite2D" parent="CenterWindows" unique_id=900563260]
+visible = false
+z_index = 1000
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+texture = ExtResource("149_s04es")
 
 [node name="digitalClock" parent="." unique_id=327857382 instance=ExtResource("19_tsiob")]
 position = Vector2(402, 554)

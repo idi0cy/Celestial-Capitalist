@@ -65,6 +65,8 @@ const shortsIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/short
 const shortsIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/shortsSmall.png")
 const hoodieIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/hoodie.png")
 const hoodieIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/hoodieSmall.png")
+const twoBowlsOfChiliIcon = preload("res://assets/Sprites/RockBottom/inventoryIcons/twoBowlsOfChili.png")
+const twoBowlsOfChiliIconSmall = preload("res://assets/Sprites/RockBottom/inventoryIcons/twoBowlsOfChiliSmall.png")
 #endregion
 
 #region item methods
@@ -131,6 +133,18 @@ func newItem(
 	5, 25,
 	"Too many calories - but simply too enticing... you must...",
 	hamburIconSmall, hamburIcon)
+@onready var twoBowlsOfChili = newItem("Two Bowls of Chili",
+	{
+		"type": ["Consumable", "Attribute"],
+		"strength": 4,
+		"charisma": 4,
+		"buffDuration": 120,
+		"useMessage": "The chili blooms in your stomach. The cold, chilly air recedes for now... you feel stronger and more charismatic."
+	},
+	70,
+	25, 40,
+	"It's still warm and somehow hasn't spilled. Delightful...",
+	twoBowlsOfChiliIconSmall, twoBowlsOfChiliIcon)
 @onready var appliance = newItem("Appliance", 
 	{
 		"type": ["Gear"]

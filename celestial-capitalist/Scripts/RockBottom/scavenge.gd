@@ -125,6 +125,7 @@ func newLootable(
 		computer: 1,
 		cat: 2,
 		briefcase: 5,
+		twoBowlsOfChili: 1
 	})
 @onready var bagLootable = newLootable("Dropped Bag", 50, 4, 1,
 	bagLootableIcon,
@@ -149,7 +150,8 @@ func newLootable(
 		toiletPaper: 7,
 		ponder: 1,
 		skincare: 4,
-		cat: 2
+		cat: 2,
+		twoBowlsOfChili: 2
 	})
 @onready var package = newLootable("Discarded Package", 75, 3, 2,
 	packageIcon,
@@ -459,8 +461,10 @@ func genLoot():
 		var scorePercentage = snapped((drawn.score / reference.pixelCount), 0.01)
 		## Percentage scored * random lootable tier, rounded to the nearest whole.
 		var qualityPreDeviation = snapped((allLootables[storedLootable][1] * scorePercentage), 1)
+		print((allLootables[storedLootable][1] * scorePercentage))
+		print(skills.percMod)
 		## Final item quality.
-		var itemQual = randi_range(qualityPreDeviation - 10, qualityPreDeviation + 5) * skills.percMod/20
+		var itemQual = randi_range(qualityPreDeviation - 5, qualityPreDeviation + 5) * skills.percMod
 		if (itemQual <= 0):
 			itemQual = 1
 		# 6.

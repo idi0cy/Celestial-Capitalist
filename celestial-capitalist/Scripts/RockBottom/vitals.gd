@@ -21,6 +21,7 @@ extends Resources
 @onready var satiationLabel = get_node("satiation")
 @onready var hydrationLabel = get_node("hydration")
 @onready var deathScreen = get_node("../deathScreen")
+@onready var blackOverlay = get_node("../blackOverlay")
 @onready var gameOver = get_node("../deathScreen/gameOver")
 @onready var message = get_node("../deathScreen/message")
 @onready var stage = get_node("../deathScreen/stage")
@@ -48,6 +49,7 @@ var lastDehydrationTime:int = 720
 #region vitals logic
 func _ready() -> void:
 	deathScreen.hide()
+	
 	satiationBar.value = satiation
 	satiationLabel.text = "Satiation: " + str(satiation) + "%"
 	hydrationBar.value = hydration
@@ -163,7 +165,10 @@ func continuousFade():
 
 func _input(event):
 	if event.is_action_pressed("click") && health == 0:
-		get_tree().quit()
+		blackOverlay.show()
+		await get_tree().create_timer(4).timeout
+		blackOverlay.hide()
+		get_tree().change_scene_to_file("res://title_screen.tscn")
 	if event.is_action_pressed("debug"):
 		print("health: " + str(health))
 		print("hydration: " + str(hydration))
