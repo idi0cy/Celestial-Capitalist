@@ -25,6 +25,7 @@ extends Resources
 @onready var message = get_node("../deathScreen/message")
 @onready var stage = get_node("../deathScreen/stage")
 @onready var balance = get_node("../deathScreen/balance")
+@onready var deathSound = get_node("../../sounds/deathSound")
 #endregion
 
 #region variables
@@ -122,6 +123,7 @@ func changeHealth(value:int):
 		stage.fillText()
 		balance.targetText = "Balance: $" + str(ledger.money) + " | Highest: $" + str(ledger.highest)
 		balance.fillText()
+		deathSound.play()
 	elif hydration == 0:
 		condition = "DEHYDRATED"
 		if vitalsOpen:
@@ -168,7 +170,7 @@ func _input(event):
 		print("satiation: " + str(satiation))
 	
 	#if event.is_action_pressed("q"):
-	#	changeHealth(-10)
+		#changeHealth(-10)
 	#if event.is_action_pressed("w"):
 	#	changeHydration(-10)
 	#if event.is_action_pressed("e"):

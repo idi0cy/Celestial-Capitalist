@@ -261,6 +261,9 @@ func genProducts():
 func triggerAudio():
 	PleaseSendHelp.buttonGotPressed.emit()
 
+func triggerCashRegister():
+	PleaseSendHelp.somethingBought.emit()
+
 #region buying and selecting
 ## Overrides [method InventoryHelper.generateInfo]. Updates the [ItemDesc] and buy button to show. Connects the buy button to the selected item.
 func generateInfo(desc, item, selectedProduct := TextureButton.new()):
@@ -270,6 +273,8 @@ func generateInfo(desc, item, selectedProduct := TextureButton.new()):
 		buyButton.pressed.disconnect(self.buy)
 	if (selectedProduct.get_index() != null):
 		buyButton.pressed.connect(buy.bind(item, selectedProduct.get_index()))
+	if buyButton.pressed.is_connected(triggerCashRegister) == false:
+		buyButton.pressed.connect(triggerCashRegister)
 	buyButtonContainer.show()
 
 ## Removes a product from [member productList] at specified index.

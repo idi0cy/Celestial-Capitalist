@@ -152,6 +152,9 @@
 [ext_resource type="Script" uid="uid://cmwwky0qpdf51" path="res://Scripts/damage_overlay.gd" id="145_iysnt"]
 [ext_resource type="AudioStream" uid="uid://ck8lebe0ju6ny" path="res://assets/soundEffects/universfield-click-button-140881.mp3" id="150_80ask"]
 [ext_resource type="Script" uid="uid://up6yuwvj4hrs" path="res://ButtonScenes/button_audio.gd" id="151_682th"]
+[ext_resource type="AudioStream" uid="uid://cytqe6equmqaj" path="res://assets/soundEffects/freesound_community-cash-register-purchase-87313.mp3" id="153_hd5ll"]
+[ext_resource type="Script" uid="uid://4ytgv862xa50" path="res://Scripts/RockBottom/something_bought_audio.gd" id="153_s04es"]
+[ext_resource type="AudioStream" uid="uid://sw2c6fefcecq" path="res://assets/soundEffects/ikslatt-man-screaming-563491.mp3" id="155_ywk7j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6xhon"]
 resource_local_to_scene = true
@@ -3044,6 +3047,14 @@ wait_time = 180.0
 stream = ExtResource("150_80ask")
 volume_db = -8.0
 script = ExtResource("151_682th")
+
+[node name="chaChing" type="AudioStreamPlayer" parent="sounds" unique_id=1788487791]
+stream = ExtResource("153_hd5ll")
+volume_db = -8.0
+script = ExtResource("153_s04es")
+
+[node name="deathSound" type="AudioStreamPlayer" parent="sounds" unique_id=1035281504]
+stream = ExtResource("155_ywk7j")
 
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/inventoryWind" method="_on_scavenge_button_open_scav_wind"]
 [connection signal="openScavWind" from="InitButtons/scavengeButton" to="CenterWindows/sellWind" method="_on_scavenge_button_open_scav_wind"]
