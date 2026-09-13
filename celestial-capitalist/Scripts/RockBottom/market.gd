@@ -15,6 +15,7 @@ extends InventoryHelper
 @onready var ledger = get_node("../Ledger")
 @onready var inventory = get_node("../inventoryWind")
 @onready var clock = get_node("../../digitalClock")
+@onready var skills = get_node("../Skills")
 
 @onready var itemDesc = get_node("pickProduct/itemDesc")
 @onready var itemIcon = get_node("pickProduct/itemDesc/itemIcon")
@@ -104,6 +105,7 @@ func newStall(
 		waterBottle: 8,
 		cheese: 7,
 		burger: 8,
+		twoBowlsOfChili: 3
 	}
 )
 
@@ -120,6 +122,7 @@ func newStall(
 		toiletPaper: 7,
 		skincare: 4,
 		soySauce: 4,
+		twoBowlsOfChili: 2
 	}
 )
 
@@ -144,6 +147,7 @@ func newStall(
 		soySauce: 4,
 		bag: 4,
 		paper: 8,
+		twoBowlsOfChili: 1
 	}
 )
 
@@ -236,7 +240,7 @@ func genProducts():
 		## Random percentage * random lootable tier, rounded to the nearest whole.
 		var qualityPreDeviation = snapped(productQuality * randf(), 1)
 		## Final item quality.
-		var itemQual = randi_range(qualityPreDeviation - 10, qualityPreDeviation + 5)
+		var itemQual = randi_range(qualityPreDeviation - 5, qualityPreDeviation + 5) * skills.charismaMod
 		if (itemQual <= 0):
 			itemQual = 1
 		# 6.

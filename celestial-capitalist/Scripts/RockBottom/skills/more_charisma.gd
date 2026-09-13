@@ -16,7 +16,8 @@ func _ready():
 	interactable.writeTooltipTitle("Charisma")
 	interactable.writeTooltipContent(
 		"Increases performance in beg, con
-		and haggle.")
+		and haggle. Increases item qualities
+		in market.")
 
 func _on_button_pressed() -> void:
 	if skillsMain.points > 0 and skillsMain.charismaPoints < 10:
