@@ -277,8 +277,6 @@ func generateInfo(desc, item, selectedProduct := TextureButton.new()):
 		buyButton.pressed.disconnect(self.buy)
 	if (selectedProduct.get_index() != null):
 		buyButton.pressed.connect(buy.bind(item, selectedProduct.get_index()))
-	if buyButton.pressed.is_connected(triggerCashRegister) == false:
-		buyButton.pressed.connect(triggerCashRegister)
 	buyButtonContainer.show()
 
 ## Removes a product from [member productList] at specified index.
@@ -310,7 +308,7 @@ func buy(item, listIndex):
 					marketOpen = false
 				itemDesc.itemSelected = false
 				buyButtonContainer.hide()
-				
+				triggerCashRegister()
 #endregion
 
 #region screen
