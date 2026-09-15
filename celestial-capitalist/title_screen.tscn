@@ -112,14 +112,16 @@ script = ExtResource("9_xfn3p")
 
 [node name="creditsPopUp" type="Node2D" parent="." unique_id=1984987867]
 visible = false
+z_index = 31
 script = ExtResource("10_rhgbh")
 
 [node name="popupBackground" type="Sprite2D" parent="creditsPopUp" unique_id=2087709270]
 position = Vector2(578, 330)
-scale = Vector2(4, 4)
+scale = Vector2(7, 7)
 texture = ExtResource("10_xfn3p")
 
 [node name="buttonToExit" type="Node2D" parent="creditsPopUp" unique_id=635682182]
+position = Vector2(178, -82)
 
 [node name="exitButton" type="Button" parent="creditsPopUp/buttonToExit" unique_id=318424617]
 offset_left = 778.0
@@ -133,13 +135,25 @@ scale = Vector2(4, 4)
 texture = ExtResource("12_skmiq")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="creditsPopUp" unique_id=1169864353]
-offset_left = 346.0
-offset_top = 226.0
-offset_right = 776.0
-offset_bottom = 426.0
+offset_left = 172.0
+offset_top = 148.0
+offset_right = 962.0
+offset_bottom = 348.0
 theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
-text = "Celestial Capitalist is a game unfortunately developed by idi0cy and Ratseer"
+text = "Celestial Capitalist is a game unfortunately developed by idi0cy and Ratseer
+s"
+
+[node name="Label" type="Label" parent="creditsPopUp" unique_id=1586564042]
+offset_left = 165.0
+offset_top = 408.0
+offset_right = 1013.0
+offset_bottom = 509.0
+theme_override_font_sizes/font_size = 16
+text = "SFX:
+https://pixabay.com/sound-effects/people-man-screaming-563491/
+https://pixabay.com/sound-effects/film-special-effects-cha-ching-7053/
+https://pixabay.com/sound-effects/film-special-effects-click-button-140881/"
 
 [node name="settingsPopup" type="Node2D" parent="." unique_id=1691375184]
 visible = false
@@ -245,6 +259,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_fd0ao")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_g3bb0")
 
 [node name="tutorialPopup" type="Node2D" parent="." unique_id=1902822575]
+visible = false
 z_index = 20
 script = ExtResource("19_g3bb0")
 
