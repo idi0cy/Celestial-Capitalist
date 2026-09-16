@@ -170,8 +170,9 @@ func _on_goldilocks_settle_risk() -> void:
 	else:
 		genericTerminalText.targetText = "> " + generatedName + ": " + conFailsDialogue.pick_random()
 	if peopleList.get_child_count() >= storedStrangerIndex:
-		if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
-			sellWind.removeStranger(sellWind.currentStrangerIndex)
+		if len(peopleList - 1) <= storedStrangerIndex:
+			if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
+				sellWind.removeStranger(sellWind.currentStrangerIndex)
 	
 	#determine if new skill point
 	random3 = randf()
