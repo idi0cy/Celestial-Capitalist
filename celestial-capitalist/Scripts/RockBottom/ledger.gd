@@ -3,7 +3,7 @@ extends Node2D
 @onready var innerTransactionContainer = $transactionContainer/innerTransactionContainer
 @onready var balance = $sidebar/balance
 const entry_scene = preload("res://ButtonScenes/RockBottom/transaction_entry.tscn")
-var money = 50
+var money = 25
 var highest = money
 var ledgerOpen = false
 
