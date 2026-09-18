@@ -64,11 +64,11 @@ var storedLootable : String
 ## Lootables that appear at 0<=balance<=10 dollars
 var lvl1Lootables : Array[String] = ["Trash Can"]
 ## Lootables that appear at 10<balance<=100 dollars
-var lvl2Lootables : Array[String] = ["Trash Can", "Dropped Bag"]
+var lvl2Lootables : Array[String] = ["Dropped Bag"]
 ## Lootables that appear at 100<balance<=300 dollars
-var lvl3Lootables : Array[String] = ["Dropped Bag", "Discarded Package"]
+var lvl3Lootables : Array[String] = ["Discarded Package"]
 ## Lootables that appear at 300<balance<=700 dollars
-var lvl4Lootables : Array[String] = ["Discarded Package", "Heavy Briefcase"]
+var lvl4Lootables : Array[String] = ["Heavy Briefcase"]
 #endregion
 
 #region lootable methods
@@ -130,24 +130,24 @@ func newLootable(
 @onready var bagLootable = newLootable("Dropped Bag", 50, 4, 1,
 	bagLootableIcon,
 	{
-		waterBottle: 7,
+		waterBottle: 9,
 		burger: 5,
 		pen: 5,
 		sodaCan: 8,
-		vegetables: 8,
-		meats: 7,
-		cheese: 8,
+		vegetables: 3,
+		meats: 3,
+		cheese: 4,
 		phone: 3,
 		soySauce: 5,
 		bag: 8,
 		headphones: 3,
-		shirt: 7,
-		pants: 7,
+		shirt: 2,
+		pants: 3,
 		shorts: 5,
 		hat: 6,
 		sunglasses: 7,
 		hoodie: 6,
-		toiletPaper: 7,
+		toiletPaper: 8,
 		ponder: 1,
 		skincare: 4,
 		cat: 2,
@@ -249,10 +249,10 @@ func genLootables():
 	for i in lootableCount:
 		## The randomly generated lootable id.
 		var randomLootable : String
-		if ledger.money >= 0 and ledger.money <= 10:
+		if ledger.money >= 0 and ledger.money <= 100:
 			lootableCount = randi_range(4,5)
 			randomLootable = lvl1Lootables.pick_random()
-		elif ledger.money > 10 and ledger.money <= 100:
+		elif ledger.money > 100 and ledger.money <= 100:
 			lootableCount = randi_range(3,4)
 			randomLootable = lvl2Lootables.pick_random()
 		elif ledger.money > 100 and ledger.money <= 300:
