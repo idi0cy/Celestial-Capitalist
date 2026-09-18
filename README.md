@@ -7,6 +7,11 @@ From homelessness to world domination in a multitude of minigames.
 
 Celestial Capitalist is a semi-idle game where the player simultaneously builds and ascends the corporate ladder from the bottom of the street to the self-built throne at the top of the cosmos. Beg your way from homelessness, run a lemonade stand, scam grandmas on the internet, start a cult, play union-buster tower defence, and generally just have a grand stupid time while the world slowly bends to your will.
 
+Controls are all point and clicked + arrow keys for the Fake Injury minigame.
+
+Play/download at: https://ratseerofrattesse.itch.io/celestial-capitalist
+Or download on releases
+
 ---
 
 *By idi0cy and RatseerOfRattesse. Built for Hack Club Stardance.*
