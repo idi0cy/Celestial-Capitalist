@@ -36,8 +36,9 @@ extends Resources
 ## 3 is the value, [br]
 ## 4 is hydration, [br]
 ## 5 is satiation [br]
+## 6 is additional properties [br]
 ## [br]
-func assembleItem(quality : int, baseItem : Array, displayName : String = baseItem[0], priceCap : float = INF):
+func assembleItem(quality : int, baseItem : Array, additionalProperties : Dictionary = {}, displayName : String = baseItem[0], priceCap : float = INF):
 	var itemVal = snapped((quality * baseItem[2] * 0.01), 0.01)
 	if itemVal > priceCap:
 		itemVal = priceCap
@@ -51,7 +52,7 @@ func assembleItem(quality : int, baseItem : Array, displayName : String = baseIt
 		satiation = snapped((quality * baseItem[4] * 0.01), 1)
 	else:
 		satiation = 0
-	return [baseItem, quality, displayName, itemVal, hydration, satiation]
+	return [baseItem, quality, displayName, itemVal, hydration, satiation, additionalProperties]
 
 ## Puts info to an [ItemDesc] node and its children from the node and the assembled item.
 ## Override to attach custom behaviour on selecting an item.

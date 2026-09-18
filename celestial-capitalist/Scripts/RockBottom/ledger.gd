@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var innerTransactionContainer = $transactionContainer/innerTransactionContainer
 @onready var balance = $sidebar/balance
+@onready var quota = get_node("../Quota")
+
 const entry_scene = preload("res://ButtonScenes/RockBottom/transaction_entry.tscn")
 var money = 25
 var highest = money
@@ -25,11 +27,14 @@ func _process(_delta):
 func openLedger():
 	ledgerOpen = not ledgerOpen
 
-func addEntry(amount, time, party, subject, texture):
+func addEntry(amount, time, party, subject, texture, deduction : float = 0):
 	var entry_instance = entry_scene.instantiate()
 	innerTransactionContainer.add_child(entry_instance)
 	entry_instance.writeTransaction(amount, time, party, subject, texture)
 	changeBalance(amount)
+	if amount > 0:
+		if quota.cashReqProgress + amount - deduction > 0:
+			quota.cashReqProgress += amount - deduction
 
 func changeBalance(value):
 	money += value

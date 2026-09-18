@@ -479,7 +479,7 @@ func genLoot():
 		takeableLootButton.name = finalItem[0]
 		takeableLootButton.set_script(takeableLootButtonScript)
 		takeableLootButton.index = generatedIndex
-		var assembledItem = assembleItem(itemQual, finalItem, displayName)
+		var assembledItem = assembleItem(itemQual, finalItem, {}, displayName)
 		takeableLootButton.pressed.connect(generateInfo.bind(itemDesc, assembledItem, takeableLootButton))
 		takeableLootButton.pressed.connect(triggerAudio)
 		lootBox.add_child(takeableLootButton)

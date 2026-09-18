@@ -187,6 +187,7 @@ func openVitals():
 	vitalsOpen = not vitalsOpen
 	terminal.openTerminal()
 	changeHealth(0)
+	terminalText.modulate = Color.WHITE
 	
 func _open_vitals() -> void:
 	openVitals()

@@ -276,7 +276,7 @@ func genProducts():
 		productButton.name = finalItem[0]
 		productButton.set_script(productButtonScript)
 		productButton.index = generatedIndex
-		productButton.pressed.connect(generateInfo.bind(itemDesc, assembleItem(itemQual, finalItem, displayName, priceCap), productButton))
+		productButton.pressed.connect(generateInfo.bind(itemDesc, assembleItem(itemQual, finalItem, {"market": true}, displayName, priceCap), productButton))
 		productButton.pressed.connect(triggerAudio)
 		productList.add_child(productButton)
 		productList.get_child(generatedIndex).name = finalItem[0]

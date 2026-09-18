@@ -119,8 +119,8 @@ func _on_inquire_open_sell_inquiry() -> void:
 		cashReqLabel.set("theme_override_colors/font_color", Color(1, 1, 1, 1))
 		skillReqLabel.set("theme_override_colors/font_color", Color(1, 1, 1, 1))
 
-func _on_ledger_progress_task(value: Variant) -> void:
-	cashReqProgress += value
+#func _on_ledger_progress_task(value: Variant) -> void:
+#	cashReqProgress += value
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	hide()
