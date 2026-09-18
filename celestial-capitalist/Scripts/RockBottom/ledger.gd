@@ -43,9 +43,11 @@ func changeBalance(value):
 	if value > 0:
 		progressTask.emit(value)
 
-#func _input(event):
-#	if event.is_action_pressed("debug"):
-#		money += 20
+func _input(event):
+	if event.is_action_pressed("debug"):
+		quota.cashReqProgress = 500
+		quota.skillReqProgress = 15
+		quota.sellReqProgress = 10
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	ledgerOpen = false
