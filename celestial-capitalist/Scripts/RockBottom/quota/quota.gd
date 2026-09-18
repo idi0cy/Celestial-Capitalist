@@ -32,6 +32,7 @@ func _process(_delta):
 	if tasksDone == 3 and signalledAlready == false:
 		signalledAlready = true
 		quotaMet.emit()
+		$completePopup.show()
 	
 	if visible == true:
 		if cashReqProgress / 500.0 * 100 < 100:

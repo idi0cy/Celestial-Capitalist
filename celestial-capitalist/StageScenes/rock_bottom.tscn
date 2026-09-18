@@ -144,7 +144,10 @@
 [ext_resource type="Script" uid="uid://cjdwrnjgfimva" path="res://Scripts/RockBottom/quota/skill_inquire.gd" id="135_iysnt"]
 [ext_resource type="Script" uid="uid://bx0bd4ibx07xt" path="res://Scripts/RockBottom/skills/more_perception.gd" id="136_b1rtc"]
 [ext_resource type="Script" uid="uid://d242jwb7oknec" path="res://Scripts/RockBottom/quota/sell_requirement.gd" id="136_yw1rv"]
+[ext_resource type="Script" uid="uid://c2e83fgq0dh81" path="res://Scripts/complete_popup.gd" id="137_a2yci"]
 [ext_resource type="Script" uid="uid://dh4ojdti803sg" path="res://Scripts/RockBottom/skills/more_luck.gd" id="137_qqkov"]
+[ext_resource type="Texture2D" uid="uid://bv82ui6ee8y1j" path="res://assets/Sprites/TitleScreen/ccreditsBackG.png" id="138_hy6qu"]
+[ext_resource type="Texture2D" uid="uid://dehm0i00djgew" path="res://assets/Sprites/TitleScreen/exitButton.png" id="139_clkrr"]
 [ext_resource type="Script" uid="uid://bnjgjbckghquh" path="res://Scripts/interactable.gd" id="140_yw1rv"]
 [ext_resource type="Script" uid="uid://bdr0s4yfsqfwh" path="res://Scripts/RockBottom/random_events.gd" id="141_f6br3"]
 [ext_resource type="Texture2D" uid="uid://ct28wc4tsudpj" path="res://assets/Sprites/damageOverlay.png" id="144_vh5mt"]
@@ -2591,7 +2594,6 @@ label_settings = ExtResource("81_yt8l6")
 horizontal_alignment = 1
 
 [node name="Quota" type="Node2D" parent="CenterWindows" unique_id=510658322]
-visible = false
 script = ExtResource("125_va43e")
 
 [node name="popupBg" type="Sprite2D" parent="CenterWindows/Quota" unique_id=1647547799]
@@ -2713,6 +2715,51 @@ offset_right = 638.0
 offset_bottom = 354.0
 text = "Sell ten (10) items"
 metadata/_edit_use_anchors_ = true
+
+[node name="completePopup" type="Node2D" parent="CenterWindows/Quota" unique_id=2010911711]
+z_index = 1000
+script = ExtResource("137_a2yci")
+
+[node name="popupBackground" type="Sprite2D" parent="CenterWindows/Quota/completePopup" unique_id=1912123980]
+position = Vector2(578, 330)
+scale = Vector2(7, 7)
+texture = ExtResource("138_hy6qu")
+
+[node name="buttonToExit" type="Node2D" parent="CenterWindows/Quota/completePopup" unique_id=249042110]
+position = Vector2(178, -82)
+
+[node name="exitButton" type="Button" parent="CenterWindows/Quota/completePopup/buttonToExit" unique_id=753275883]
+offset_left = 778.0
+offset_top = 230.0
+offset_right = 806.0
+offset_bottom = 258.0
+
+[node name="outerSprite" type="Sprite2D" parent="CenterWindows/Quota/completePopup/buttonToExit" unique_id=1459381636]
+position = Vector2(578, 330)
+scale = Vector2(4, 4)
+texture = ExtResource("139_clkrr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterWindows/Quota/completePopup" unique_id=930400547]
+offset_left = 172.0
+offset_top = 148.0
+offset_right = 962.0
+offset_bottom = 517.0
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[font_size=20][color=pink]Thank you for playing Celestial Capitalist! You've hit the quota, and that's all of our content for now.[/color]
+
+Congratulations on completing [color=aqua]Stage 1: ROCK BOTTOM[/color].
+
+[color=pink]The next time we get rewarded for coding this, be assured that we shall make THE NEXT STAGE!!![/color]
+
+[font_size=12][color=pink]by the way, if you're interested in more of our work..
+
+ Ratseer has a WIP webcomic (and its old novel counterpart) called [color=aqua]Our Deities of Dreadful Ineptitude[/color] (ODODI). Give it a read :)
+
+[color=pink]and idi0cy's working on his novels [color=aqua]Deicidium[/color] and [color=aqua]Zero Sum[/color]. Keep an eye out!
+
+Ratseer on [url=https://bsky.app/profile/ratseerofrattesse.bsky.social]Bluesky[/url] and their site [url=https://ratseerofrattesse.github.io/]Halos-Castell[/url] (idi0cy has neglected to provide links, but he came up with the game so APPRECIATE)"
+horizontal_alignment = 1
 
 [node name="Skills" type="Node2D" parent="CenterWindows" unique_id=780210723]
 visible = false
@@ -3294,6 +3341,7 @@ bus = &"UI"
 [connection signal="mouse_entered" from="CenterWindows/Quota/requirements/sellRequirement/inquire/interactable" to="CenterWindows/Quota/requirements/sellRequirement/inquire" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="CenterWindows/Quota/requirements/sellRequirement/inquire/interactable" to="CenterWindows/Quota/requirements/sellRequirement/inquire" method="_on_interactable_mouse_exited"]
 [connection signal="pressed" from="CenterWindows/Quota/requirements/sellRequirement/inquire/interactable" to="CenterWindows/Quota/requirements/sellRequirement/inquire" method="_on_interactable_pressed"]
+[connection signal="pressed" from="CenterWindows/Quota/completePopup/buttonToExit/exitButton" to="CenterWindows/Quota/completePopup" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CenterWindows/Skills/dextSkill/moreButton/interactable" to="CenterWindows/Skills/dextSkill/moreButton" method="_on_button_pressed"]
 [connection signal="pressed" from="CenterWindows/Skills/StrengthSkill/moreButton/interactable" to="CenterWindows/Skills/StrengthSkill/moreButton" method="_on_button_pressed"]
 [connection signal="pressed" from="CenterWindows/Skills/charismaSkill/moreButton/interactable" to="CenterWindows/Skills/charismaSkill/moreButton" method="_on_button_pressed"]
