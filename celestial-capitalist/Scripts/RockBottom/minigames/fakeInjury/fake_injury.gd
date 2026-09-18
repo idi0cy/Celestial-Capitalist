@@ -96,10 +96,9 @@ func arbitration(points):
 	wrapItUp()
 
 func wrapItUp():
-	if peopleList.get_child_count() >= storedStrangerIndex:
-		if peopleList.get_child_count() - 1 <= storedStrangerIndex:
-			if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
-				sellWind.removeStranger(sellWind.currentStrangerIndex)
+	if peopleList.get_child_count() - 1 >= storedStrangerIndex:
+		if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
+			sellWind.removeStranger(sellWind.currentStrangerIndex)
 	sellWind.onButton()
 
 func _on_lower_lower_severity() -> void:
