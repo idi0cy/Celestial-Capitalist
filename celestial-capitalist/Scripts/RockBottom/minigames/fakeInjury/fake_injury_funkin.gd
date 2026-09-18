@@ -64,7 +64,10 @@ func runDeficit():
 
 func evaluate(distance):
 	if distance != 0:
-		points += (5 / distance + severity/10)
+		if severity < 40:
+			points += (5 / distance + 4)
+		else:
+			points += (5 / distance + severity/10)
 	else:
 		points += 25 + 10 / severity
 	points = floor(points)
