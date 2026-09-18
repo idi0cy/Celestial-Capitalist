@@ -240,8 +240,8 @@ func genProducts():
 		## Random percentage * random lootable tier, rounded to the nearest whole.
 		var qualityPreDeviation = snapped(productQuality * randf(), 1)
 		## Final item quality.
-		var itemQual = randi_range(qualityPreDeviation - 5, qualityPreDeviation + 5) * skills.charismaMod
-		if (itemQual <= 0):
+		var itemQual = snapped(randi_range(qualityPreDeviation - 5, qualityPreDeviation + 5) * skills.charismaMod, 0.01)
+		if (itemQual < 1):
 			itemQual = 1
 		# 6.
 		## Randomly generated display name.

@@ -464,7 +464,7 @@ func genLoot():
 		print((allLootables[storedLootable][1] * scorePercentage))
 		print(skills.percMod)
 		## Final item quality.
-		var itemQual = randi_range(qualityPreDeviation - 5, qualityPreDeviation + 5) * skills.percMod
+		var itemQual = snapped(randi_range(qualityPreDeviation - 5, qualityPreDeviation + 5) * skills.percMod, 0.01)
 		if (itemQual <= 0):
 			itemQual = 1
 		# 6.
