@@ -150,6 +150,9 @@ func _process(_delta):
 		self.show()
 	if refreshQueued == true && initiatingAction == false:
 		genStrangers()
+		actions.hide()
+		strangerSprite.hide()
+		terminal.hide()
 		refreshQueued = false
 
 #region stranger logic
