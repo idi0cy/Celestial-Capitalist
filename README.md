@@ -12,6 +12,11 @@ Controls are all point and clicked + arrow keys for the Fake Injury minigame.
 Play/download at: https://ratseerofrattesse.itch.io/celestial-capitalist
 Or download on releases
 
+<img width="1920" height="1080" alt="Screenshot 2026-09-18 010222" src="https://github.com/user-attachments/assets/156224d1-0bfe-4f79-9eb4-b5f4818b4616" />
+
+
+<img width="1920" height="1080" alt="Screenshot 2026-09-18 005515" src="https://github.com/user-attachments/assets/1cd595a3-1232-4bf8-81bf-c5df9b1acdd3" />
+
 ---
 
 *By idi0cy and RatseerOfRattesse. Built for Hack Club Stardance.*
