@@ -177,7 +177,7 @@ func _on_settle() -> void:
 	var normalValue = confirmItem.selected[3]
 	
 	#3.
-	if (randf() * 100) * (arguedValue / normalValue) < progress * skill.charismaMod:
+	if (randf() * 100) * (arguedValue / normalValue) * 0.9 < progress * skill.charismaMod:
 		if confirmItem.selected[6].get("market"): 
 			ledger.addEntry(arguedValue, clock.theTime, generatedName, confirmItem.selected[0][0], confirmItem.selected[0][-1], confirmItem.selected[3])
 		else:
