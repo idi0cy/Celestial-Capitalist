@@ -9,8 +9,11 @@ Celestial Capitalist is a semi-idle game where the player simultaneously builds 
 
 Controls are all point and clicked + arrow keys for the Fake Injury minigame.
 
-Play/download at: https://ratseerofrattesse.itch.io/celestial-capitalist
-Or download on releases
+Play/download at: https://ratseerofrattesse.itch.io/celestial-capitalist.
+
+Or download on releases.
+
+Windows only for the moment - will support more soon.
 
 <img width="1920" height="1080" alt="Screenshot 2026-09-18 010222" src="https://github.com/user-attachments/assets/156224d1-0bfe-4f79-9eb4-b5f4818b4616" />
 
