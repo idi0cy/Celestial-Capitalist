@@ -156,7 +156,6 @@ https://pixabay.com/sound-effects/film-special-effects-cha-ching-7053/
 https://pixabay.com/sound-effects/film-special-effects-click-button-140881/"
 
 [node name="settingsPopup" type="Node2D" parent="." unique_id=1691375184]
-visible = false
 script = ExtResource("13_lf08s")
 
 [node name="popupBackground" type="Sprite2D" parent="settingsPopup" unique_id=810797009]
@@ -177,15 +176,21 @@ position = Vector2(578, 330)
 scale = Vector2(4, 4)
 texture = ExtResource("12_skmiq")
 
-[node name="label" type="Label" parent="settingsPopup" unique_id=1059612424]
-offset_left = 350.0
-offset_top = 230.0
-offset_right = 800.0
-offset_bottom = 335.0
-theme_override_font_sizes/font_size = 25
-text = "I lied.
+[node name="HSlider" type="HSlider" parent="settingsPopup" unique_id=1571585909]
+offset_left = 346.0
+offset_top = 270.0
+offset_right = 810.0
+offset_bottom = 286.0
+max_value = 1.0
+step = 0.001
+value = 1.0
 
-There are no settings yet."
+[node name="Label" type="Label" parent="settingsPopup" unique_id=2142940303]
+offset_left = 347.0
+offset_top = 241.0
+offset_right = 411.0
+offset_bottom = 261.0
+text = "UI Sound: 100%"
 
 [node name="startGamePopup" type="Node2D" parent="." unique_id=196893863]
 visible = false
@@ -373,6 +378,7 @@ text = "Loading the first stage..."
 
 [node name="buttonClickNoised" type="AudioStreamPlayer" parent="." unique_id=1221764470]
 stream = ExtResource("21_a64np")
+bus = &"UI"
 script = ExtResource("22_g2tdu")
 
 [connection signal="switchScene" from="startButton" to="." method="_on_start_button_switch_scene"]
@@ -390,6 +396,8 @@ script = ExtResource("22_g2tdu")
 [connection signal="pressed" from="creditsPopUp/buttonToExit/exitButton" to="buttonClickNoised" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="settingsPopup/buttonToExit/Button" to="settingsPopup" method="_on_button_pressed"]
 [connection signal="pressed" from="settingsPopup/buttonToExit/Button" to="buttonClickNoised" method="_on_button_pressed"]
+[connection signal="changed" from="settingsPopup/HSlider" to="settingsPopup" method="_on_h_slider_changed"]
+[connection signal="value_changed" from="settingsPopup/HSlider" to="settingsPopup" method="_on_h_slider_value_changed"]
 [connection signal="justStart" from="startGamePopup/startTheGame" to="." method="_on_start_the_game_just_start"]
 [connection signal="mouse_entered" from="startGamePopup/startTheGame/interactable" to="startGamePopup/startTheGame" method="_on_interactable_mouse_entered"]
 [connection signal="mouse_exited" from="startGamePopup/startTheGame/interactable" to="startGamePopup/startTheGame" method="_on_interactable_mouse_exited"]
