@@ -5,7 +5,7 @@ extends Node2D
 @onready var quota = get_node("../Quota")
 
 const entry_scene = preload("res://ButtonScenes/RockBottom/transaction_entry.tscn")
-var money = 25
+var money = 0
 var highest = money
 var ledgerOpen = false
 
@@ -43,11 +43,11 @@ func changeBalance(value):
 	if value > 0:
 		progressTask.emit(value)
 
-func _input(event):
-	if event.is_action_pressed("debug"):
-		quota.cashReqProgress = 500
-		quota.skillReqProgress = 15
-		quota.sellReqProgress = 10
+#func _input(event):
+#	if event.is_action_pressed("debug"):
+#		quota.cashReqProgress = 500
+#		quota.skillReqProgress = 15
+#		quota.sellReqProgress = 10
 
 func _on_scavenge_button_open_scav_wind() -> void:
 	ledgerOpen = false

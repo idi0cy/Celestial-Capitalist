@@ -87,10 +87,13 @@ var selectedItemIndex : int
 ## Inventory contents. Takes assembled items only. Starter items can be added by passing a full assembled item or calling
 ## [method InventoryHelper.assembleItem].
 @onready var currentInv = [
-	assembleItem(25, waterBottle), assembleItem(50, waterBottle), 
-	assembleItem(75, waterBottle), assembleItem(10, pencil),
-	assembleItem(25, burger), assembleItem(50, burger),
-	assembleItem(50, burger),
+	assembleItem(75, waterBottle), assembleItem(50, waterBottle), 
+	assembleItem(75, waterBottle),
+	assembleItem(75, burger), assembleItem(75, burger),
+	assembleItem(75, burger), assembleItem(75, burger),
+	assembleItem(100, bill, {"noQuota": true}), assembleItem(100, bill, {"noQuota": true}),
+	assembleItem(100, coin, {"noQuota": true}), assembleItem(100, coin, {"noQuota": true}),
+	assembleItem(50, coin, {"noQuota": true})
 ]
 
 #region item methods
@@ -125,13 +128,18 @@ func _on_use_item() -> void:
 			var itemInstance = selectedAssembledItem
 			var itemProperties = itemInstance[0][1]
 			if itemProperties.has("type"):
+				var changed:bool = false
 				var changes = ""
 				if itemProperties.get("type").has("Currency"):
 					## Final value retrieved from assembled item
 					var itemVal = itemInstance[3]
-					ledger.addEntry(itemVal, clock.theTime, itemInstance[0][0],
+					if itemInstance[6].get("noQuota"):
+						ledger.addEntry(itemVal, clock.theTime, itemInstance[0][0],
+					"Redeemed", coinIcon, itemVal)
+					else:
+						ledger.addEntry(itemVal, clock.theTime, itemInstance[0][0],
 					"Redeemed", coinIcon)
-					removeItem(selectedItemIndex)
+					changed = true
 					changes += "\n Redeemed $" + str(itemVal) + "."
 					
 				if itemProperties.get("type").has("Consumable"):
@@ -145,7 +153,7 @@ func _on_use_item() -> void:
 					if !(itemInstance[0][4] is String):
 						if !(itemInstance[0][4] == 0):
 							vitals.changeSatiation(satiation)
-					removeItem(selectedItemIndex)
+					changed = true
 					changes += "\n Gained " + str(hydration) + " hydration and " + str(satiation) + " satiation."
 					
 				if itemProperties.get("type").has("Medication"):
@@ -155,7 +163,7 @@ func _on_use_item() -> void:
 						vitals.health = 100
 					else:
 						vitals.health += health
-					removeItem(selectedItemIndex)
+					changed = true
 					changes += "\n Gained " + str(health) + " health."
 					
 				if itemProperties.get("type").has("Attribute"):
@@ -176,11 +184,13 @@ func _on_use_item() -> void:
 							else:
 								buffText = "-" + buffText
 							displayBuffs = displayBuffs + buffText
-					removeItem(selectedItemIndex)
+					changed = true
 					buffLabel.text = "Current Buff: " + itemInstance[2] + " | " + displayBuffs
 					buffBar.max_value = itemProperties.get("buffDuration")
 					buffBar.value = itemProperties.get("buffDuration")
 					buffBar.buff = true
+				if changed == true:
+					removeItem(selectedItemIndex)
 				openTerminal(4)
 				terminalText.targetText = itemProperties.get("useMessage") + changes
 				terminalText.fillText()

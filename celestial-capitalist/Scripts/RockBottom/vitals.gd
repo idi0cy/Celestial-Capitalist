@@ -83,10 +83,10 @@ func changeHydration(value:int):
 		continuousFade()
 
 func _process(_delta: float):
-	if clock.theTime == lastSatiationTime + 30:
+	if clock.theTime == lastSatiationTime + 12:
 		changeSatiation(-1)
 		lastSatiationTime = clock.theTime
-	if clock.theTime == lastHydrationTime + 15:
+	if clock.theTime == lastHydrationTime + 8:
 		changeHydration(-1)
 		lastHydrationTime = clock.theTime
 	if clock.theTime == lastDehydrationTime + 2:
@@ -101,7 +101,6 @@ func _process(_delta: float):
 		
 ## Use to change health so the call can be intercepted and update the terminal, the window and other health dependent things.
 func changeHealth(value:int):
-	
 	if (health + value) < 0:
 		health = 0
 	elif (health + value) > 100:
@@ -169,10 +168,10 @@ func _input(event):
 		await get_tree().create_timer(4).timeout
 		blackOverlay.hide()
 		get_tree().change_scene_to_file("res://title_screen.tscn")
-	if event.is_action_pressed("debug"):
-		print("health: " + str(health))
-		print("hydration: " + str(hydration))
-		print("satiation: " + str(satiation))
+	#if event.is_action_pressed("debug"):
+	#	print("health: " + str(health))
+	#	print("hydration: " + str(hydration))
+	#	print("satiation: " + str(satiation))
 	
 	#if event.is_action_pressed("q"):
 		#changeHealth(-10)

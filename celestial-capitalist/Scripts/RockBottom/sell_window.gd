@@ -65,6 +65,7 @@ var initiatingAction = false
 var currentStrangerIndex
 ## How much strangers have been removed to change the indexing
 var removedStrangers : int
+var refreshQueued = false
 
 ## List of all strangers registered using [method SellWindow.newStranger]. Used to get data of a default stranger at runtime. Access a stranger using its name as key.
 @onready var allStrangers : Dictionary = {}
@@ -147,6 +148,9 @@ func _process(_delta):
 		self.hide()
 	else:
 		self.show()
+	if refreshQueued == true && initiatingAction == false:
+		genStrangers()
+		refreshQueued = false
 
 #region stranger logic
 ## Generates strangers. [br]
@@ -306,7 +310,7 @@ func approachStranger(id, place):
 ## Refreshes strangers when timer is up.
 func _on_stranger_refresh(theValue: Variant) -> void:
 	if theValue == 0:
-		genStrangers()
+		refreshQueued = true
 #endregion
 
 #region action logic

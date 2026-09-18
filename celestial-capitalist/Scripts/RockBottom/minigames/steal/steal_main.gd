@@ -55,29 +55,29 @@ func _on_stealth_option_use_stealth() -> void:
 func _on_stealth_game_finished(goodOrBad: Variant) -> void:
 	if goodOrBad == "success":
 		if stealthGame.perfection == true:
-			ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, strangerList.get_child(sellWind.currentStrangerIndex).name, "Stolen", texture)
+			ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, generatedName, "Stolen", texture)
 			terminalText.targetText = "> System: Successfully stole $" + str(10 * sellWind.allStrangers[target][1]) + " without being detected."
 		else:
 			consequenceCheck = randf()
 			if consequenceCheck < 15:
-				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, strangerList.get_child(sellWind.currentStrangerIndex).name, "Stolen", texture)
+				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, generatedName, "Stolen", texture)
 				terminalText.targetText = "> System: Successfully stole $" + str(10 * sellWind.allStrangers[target][1]) + ". The police have been called on you."
 				if peopleList.get_child_count() - 1 >= storedStrangerIndex:
 					if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
 						sellWind.removeStranger(sellWind.currentStrangerIndex)
 			else:
-				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, strangerList.get_child(sellWind.currentStrangerIndex).name, "Stolen", texture)
+				ledger.addEntry(10 * sellWind.allStrangers[target][1], clock.theTime, generatedName, "Stolen", texture)
 				terminalText.targetText = "> System: Successfully stole $" + str(10 * sellWind.allStrangers[target][1]) + " without being detected."
 	elif goodOrBad == "fail":
 		consequenceCheck = randf()
 		if consequenceCheck < 25:
-			terminalText.targetText = "> System: You failed to steal from " + str(strangerList.get_child(sellWind.currentStrangerIndex).name) + ". The police have been called."
+			terminalText.targetText = "> System: You failed to steal from " + str(generatedName) + ". The police have been called."
 			#TODO Please remember to have actual consequences for bottom
 			if peopleList.get_child_count() - 1 >= storedStrangerIndex:
 					if peopleList.get_child(storedStrangerIndex).strangerName == generatedName:
 						sellWind.removeStranger(sellWind.currentStrangerIndex)
 		else:
-			terminalText.targetText = "> System: You failed to steal from " + str(strangerList.get_child(sellWind.currentStrangerIndex).name) + "."
+			terminalText.targetText = "> System: You failed to steal from " + generatedName + "."
 	
 	#the skill point part
 	random = randf()

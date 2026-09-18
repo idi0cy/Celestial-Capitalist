@@ -8,9 +8,9 @@ func _ready():
 	#myThing.initiate(1, 0.9)
 	otherThing.initiate(0.9)
 
-func _on_strength_game_all_done(result: Variant) -> void:
+func _on_strength_game_all_done(_result: Variant) -> void:
 	pass # Replace with function body.
-	if result == "success":
-		print("passed on this side")
-	else:
-		print("bruh moment")
+	#if result == "success":
+	#	print("strength passed on this side")
+	#else:
+	#	print("strength bruh moment")

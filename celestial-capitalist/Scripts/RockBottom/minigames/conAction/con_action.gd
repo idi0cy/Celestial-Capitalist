@@ -161,9 +161,9 @@ func _on_goldilocks_settle_risk() -> void:
 	conTerminal.hide()
 	random2 = randf()
 	stakes = ((risk * 0.01) + 0.5) * baseStakes
-	print((random2 * 100) * playerScore * successModifier * skill.charismaMod)
-	print(stakes * 10)
-	print(random2)
+	#print((random2 * 100) * playerScore * successModifier * skill.charismaMod)
+	#print(stakes * 10)
+	#print(random2)
 	if (random2 * 100) * playerScore * successModifier * skill.charismaMod > stakes * 7:
 		ledger.addEntry(stakes, clock.theTime, generatedName, "Scammed", texture)
 		genericTerminalText.targetText = "> " + generatedName + ": " + strangerResponse

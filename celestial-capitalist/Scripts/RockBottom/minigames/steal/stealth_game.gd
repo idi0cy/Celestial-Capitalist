@@ -101,7 +101,7 @@ func makeProgress():
 		else:
 			$progressBar/TextureProgressBar.value -= 1/modifier
 		
-		print(progress)
+		#print(progress)
 		makeProgress()
 
 func failure():

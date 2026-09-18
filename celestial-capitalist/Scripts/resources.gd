@@ -130,7 +130,7 @@ func newItem(
 		"useMessage": "You chomp down the burger. It's greasier than your unwashed hair..."
 	},
 	10,
-	5, 25,
+	25, 5,
 	"Too many calories - but simply too enticing... you must...",
 	hamburIconSmall, hamburIcon)
 @onready var twoBowlsOfChili = newItem("Two Bowls of Chili",
@@ -390,7 +390,7 @@ func newItem(
 	},
 	10,
 	"null", "null",
-	"Redeems up to 20 dollars.",
+	"Redeems up to 10 dollars.",
 	billIconSmall, billIcon)
 @onready var cheque = newItem("Cheque",
 	{
@@ -401,7 +401,7 @@ func newItem(
 	},
 	50,
 	"null", "null",
-	"Redeems up to 100 dollars.",
+	"Redeems up to 50 dollars.",
 	chequeIconSmall, chequeIcon)
 @onready var bond = newItem("Bond",
 	{
@@ -412,7 +412,7 @@ func newItem(
 	},
 	100,
 	"null", "null",
-	"Redeems up too 100-400 dollars.",
+	"Redeems up to 100 dollars.",
 	bondIconSmall, bondIcon)
 #endregion
 

@@ -76,9 +76,9 @@ func closePopup():
 	eventActive = false
 	currentZIndex -= 2
 	
-func _input(event):
-	if event.is_action_pressed("debug"):
-		print("eventZ: " + str(currentZIndex))
+#func _input(event):
+#	if event.is_action_pressed("debug"):
+	#	print("eventZ: " + str(currentZIndex))
 
 func _process(_delta):
 	eventProg.value = (180 - floor(eventTimer.time_left)) / 180.0 * 100
