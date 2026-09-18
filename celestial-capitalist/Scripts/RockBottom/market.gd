@@ -6,6 +6,7 @@ extends InventoryHelper
 
 #region nodes
 @onready var productList = get_node("pickProduct/productList")
+@onready var rerollButton = get_node("pickProduct/rerollButton")
 @onready var buyButton = get_node("pickProduct/buyButton/interactable")
 @onready var buyButtonContainer = get_node("pickProduct/buyButton")
 @onready var stallNameDisplay = get_node("pickProduct/directive")
@@ -84,14 +85,14 @@ func newStall(
 	trashCanIcon,
 	{
 		[
-			"Crystal Wash", "Medication", 0,
-			30, 70,
+			"Crystal Wash", "Medication", 30,
+			20, 40,
 			"A magical cleaning remedy that you totally shouldn't drink.",
 			skincareIconSmall, skincareIcon
 		]: 10,
 		[
-			"Healing Ointment", "Medication", 0,
-			80, "null",
+			"Healing Ointment", "Medication", 40,
+			40, "null",
 			"Cheap, effective health recovery. Tastes like congealed magic, though.",
 			waterBottleInvIconSmall, waterBottleInvIcon
 		]: 10
@@ -168,9 +169,15 @@ func _ready():
 
 #region generation
 func _on_reroll_button_pressed() -> void:
-	if ledger.money >= 50:
+	if ledger.money >= rerollButton.rerollCost:
 		genStall()
-		ledger.addEntry(-50, clock.theTime, "Market", "Reroll", refreshIcon)
+		ledger.addEntry(-rerollButton.rerollCost, clock.theTime, "Market", "Reroll", refreshIcon)
+	rerollButton.rerollCost += 2
+	rerollButton.interactable.writeTooltipContent(
+		"Simple reroll - but be careful!!! Rerolling the market
+		will increase the cost of the next reroll by $2!!!!
+		Prices reset every in-game day.
+		- $" + str(rerollButton.rerollCost))
 
 ## Generates the day's stall and sets the screen to represent it.
 func genStall():
@@ -240,7 +247,21 @@ func genProducts():
 		## Random percentage * random lootable tier, rounded to the nearest whole.
 		var qualityPreDeviation = snapped(productQuality * randf(), 1)
 		## Final item quality.
-		var itemQual = snapped(randi_range(qualityPreDeviation - 5, qualityPreDeviation + 5) * skills.charismaMod, 0.01)
+		var priceCap:int
+		if ledger.money >= 0 and ledger.money <= 75:
+			priceCap = 10
+		elif ledger.money > 75 and ledger.money <= 150:
+			priceCap = 20
+		elif ledger.money > 150 and ledger.money <= 300:
+			priceCap = 35
+		elif ledger.money > 300 and ledger.money <= 500:
+			priceCap = 50
+		elif ledger.money < 0:
+			priceCap = 10
+		else:
+			priceCap = 10
+			
+		var itemQual = snapped(randi_range(qualityPreDeviation - 10, qualityPreDeviation + 5) * skills.charismaMod, 0.01)
 		if (itemQual < 1):
 			itemQual = 1
 		# 6.
@@ -255,7 +276,7 @@ func genProducts():
 		productButton.name = finalItem[0]
 		productButton.set_script(productButtonScript)
 		productButton.index = generatedIndex
-		productButton.pressed.connect(generateInfo.bind(itemDesc, assembleItem(itemQual, finalItem, displayName), productButton))
+		productButton.pressed.connect(generateInfo.bind(itemDesc, assembleItem(itemQual, finalItem, displayName, priceCap), productButton))
 		productButton.pressed.connect(triggerAudio)
 		productList.add_child(productButton)
 		productList.get_child(generatedIndex).name = finalItem[0]
@@ -330,6 +351,7 @@ func _process(_delta):
 		self.show()
 	if clock.theTime == 0:
 		genStall()
+		rerollButton.rerollCost = 10
 
 func _on_ledger_button_open_ledger() -> void:
 	marketOpen = false

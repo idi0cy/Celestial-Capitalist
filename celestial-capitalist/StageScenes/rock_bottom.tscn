@@ -404,7 +404,6 @@ script = ExtResource("17_107vu")
 [node name="CenterWindows" type="Node2D" parent="." unique_id=97508153]
 
 [node name="inventoryWind" type="Node2D" parent="CenterWindows" unique_id=718695114]
-visible = false
 script = ExtResource("16_lfg33")
 
 [node name="scrollContainer" type="ScrollContainer" parent="CenterWindows/inventoryWind" unique_id=666278843]
@@ -2995,6 +2994,7 @@ offset_bottom = 430.0
 text = "Current Buff"
 
 [node name="damageOverlay" type="Sprite2D" parent="CenterWindows" unique_id=2062084718]
+visible = false
 z_index = 5
 position = Vector2(576, 324)
 scale = Vector2(2, 2)

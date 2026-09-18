@@ -109,8 +109,8 @@ func newItem(
 		"type": ["Consumable"],
 		"useMessage": "You drink the water. Your throat feels slightly less dry."
 	},
-	8,
-	50, "null",
+	5,
+	30, "null",
 	"A bottle of dihydrogen monoxide - very acidic and toxic. Handle with care.",
 	waterBottleInvIconSmall, waterBottleInvIcon)
 @onready var pencil = newItem("Pencil",
@@ -129,7 +129,7 @@ func newItem(
 		"type": ["Consumable"],
 		"useMessage": "You chomp down the burger. It's greasier than your unwashed hair..."
 	},
-	20,
+	10,
 	5, 25,
 	"Too many calories - but simply too enticing... you must...",
 	hamburIconSmall, hamburIcon)
@@ -141,15 +141,15 @@ func newItem(
 		"buffDuration": 120,
 		"useMessage": "The chili blooms in your stomach. The cold, chilly air recedes for now... you feel stronger and more charismatic."
 	},
-	70,
-	25, 40,
+	35,
+	25, 30,
 	"It's still warm and somehow hasn't spilled. Delightful...",
 	twoBowlsOfChiliIconSmall, twoBowlsOfChiliIcon)
 @onready var appliance = newItem("Appliance", 
 	{
 		"type": ["Gear"]
 	},
-	125,
+	40,
 	"null", "null",
 	"A machine of sorts. You haven't been in a kitchen for a while - you don't even recognize it...",
 	applianceIconSmall, applianceIcon)
@@ -170,7 +170,7 @@ func newItem(
 		"useMessage": "You take a sip and then down the whole can. The carbonation has long gone."
 	},
 	15,
-	"null", 50,
+	"null", 20,
 	"Poke or Cepsi?",
 	sodaCanIconSmall, sodaCanIcon)
 @onready var vegetables = newItem("Assorted Vegetables",
@@ -180,7 +180,7 @@ func newItem(
 		"buffDuration": 80,
 		"useMessage": "You munch. It is good to munch. You feel stronger."
 	},
-	60,
+	30,
 	30, 30,
 	"Store bought. You wrinkle your nose in hypocritical disgust.",
 	vegetablesIconSmall, vegetablesIcon)
@@ -191,7 +191,7 @@ func newItem(
 		"buffDuration": 60,
 		"useMessage": "You tear at the meat feverishly. You feel stronger."
 	},
-	80,
+	40,
 	"null", 50,
 	"Grass fed beef!",
 	meatsIconSmall, meatsIcon)
@@ -202,7 +202,7 @@ func newItem(
 		"buffDuration": 60,
 		"useMessage": "The cheese is absolutely supreme. You feel stronger."
 	},
-	40,
+	20,
 	"null", 10,
 	"I could put a cheesy joke here, but I'm feeling discheesed today.",
 	cheeseIconSmall, cheeseIcon)
@@ -210,7 +210,7 @@ func newItem(
 	{
 		"type": ["Gear"]
 	},
-	300,
+	80,
 	"null", "null",
 	"You try to open it. Face ID stares blankly.",
 	phoneIconSmall, phoneIcon)
@@ -232,7 +232,7 @@ func newItem(
 		"buffDuration": 60,
 		"useMessage": "It tastes a bit decayed, but no matter! You feel luckier."
 	},
-	45,
+	10,
 	30, "null",
 	"The lifeblood of the universe!",
 	soySauceIconSmall, soySauceIcon)
@@ -240,7 +240,7 @@ func newItem(
 	{
 		"type": ["Gear"]
 	},
-	50,
+	30,
 	"null", "null",
 	"You don't know enough about bags to decide whether this is a fancy one.",
 	bagIconSmall, bagIcon)
@@ -248,7 +248,7 @@ func newItem(
 	{
 		"type": ["Gear"]
 	},
-	100,
+	50,
 	"null", "null",
 	"You put them on and hear a strange rumbling from your abdomen. They work!",
 	headphonesIconSmall, headphonesIcon)
@@ -266,7 +266,7 @@ func newItem(
 	{
 		"type": ["Gear"]
 	},
-	40,
+	30,
 	"null", "null",
 	"Warm... soft... or maybe you're just hypothermic...",
 	hoodieIconSmall, hoodieIcon)
@@ -274,7 +274,7 @@ func newItem(
 	{
 		"type": ["Gear"]
 	},
-	50,
+	40,
 	"null", "null",
 	"It's a plain t-shirt. A white void...",
 	shirtIconSmall, shirtIcon)
@@ -282,7 +282,7 @@ func newItem(
 	{
 		"type": ["Gear"]
 	},
-	50,
+	35,
 	"null", "null",
 	"Neither thick enough nor thin enough. Uncomfortable.",
 	pantsIconSmall, pantsIcon)
@@ -290,7 +290,7 @@ func newItem(
 	{
 		"type": ["Gear"]
 	},
-	50,
+	30,
 	"null", "null",
 	"The smog blocks the sun either way. Sunglasses are falling out of favour these days.",
 	sunglassesIconSmall, sunglassesIcon)
@@ -298,7 +298,7 @@ func newItem(
 	{
 		"type": ["Gear"]
 	},
-	30,
+	25,
 	"null", "null",
 	"It's a hat... and I don't know what else to say here... if it's only this one that's 4th walling it's fine...",
 	hatIconSmall, hatIcon)
@@ -306,7 +306,7 @@ func newItem(
 	{
 		"type": ["Gear"]
 	},
-	40,
+	30,
 	"null", "null",
 	"They seem kind of long for shorts?",
 	shortsIconSmall, shortsIcon)
@@ -317,7 +317,7 @@ func newItem(
 		"buffDuration": 80,
 		"useMessage": "You fiddle with the toilet paper and construct an intricate sculpture. An onlooker gawks at its majesty. You feel more charismatic."
 	},
-	30,
+	15,
 	"null", 2,
 	"The fortune this would have gone for a few years ago... but that's over now.",
 	toiletPaperIconSmall, toiletPaperIcon)
@@ -325,7 +325,7 @@ func newItem(
 	{
 		"type": ["Gear"]
 	},
-	700,
+	200,
 	"null", "null",
 	"You ponder it's presence here. It's teeth are very sharp...",
 	ponderIconSmall, ponderIcon)
@@ -336,7 +336,7 @@ func newItem(
 		"buffDuration": 80,
 		"useMessage": "You rub the balm on your skin. You feel more charismatic."
 	},
-	0,
+	25,
 	30, "null",
 	"Colourful = tasty... right?!",
 	skincareIconSmall, skincareIcon)
@@ -347,7 +347,7 @@ func newItem(
 		"buffDuration": 60,
 		"useMessage": "You feel incredibly angry at the world. Everything fucking sucks. You smash the computer in frustration - it feels good and you feel stronger."
 	},
-	400,
+	100,
 	"null", "null",
 	"What a find! You quietly pluck the ram sticks out of it. The buyers won't notice.",
 	computerIconSmall, computerIcon)
@@ -358,7 +358,7 @@ func newItem(
 		"buffDuration": 180,
 		"useMessage": "You have absorbed the cat and now feel very full. With its boundless power, you feel luckier."
 	},
-	300,
+	150,
 	"null", 50,
 	"It meows at you. You resist the urge to begin chowing down.",
 	catIconSmall, catIcon)
@@ -366,7 +366,7 @@ func newItem(
 	{
 		"type": ["Gear"]
 	},
-	50,
+	25,
 	"null", "null",
 	"You briefly glance at it, then move on to more interesting things.",
 	briefcaseIconSmall, briefcaseIcon)
@@ -388,7 +388,7 @@ func newItem(
 		"buffDuration": 120,
 		"useMessage": "You examine the bill and find it's worth a bit. You feel more perceptive."
 	},
-	20,
+	10,
 	"null", "null",
 	"Redeems up to 20 dollars.",
 	billIconSmall, billIcon)
@@ -399,7 +399,7 @@ func newItem(
 		"buffDuration": 180,
 		"useMessage": "You examine the cheque and find it's worth a useful amount. You feel more perceptive."
 	},
-	100,
+	50,
 	"null", "null",
 	"Redeems up to 100 dollars.",
 	chequeIconSmall, chequeIcon)
@@ -410,7 +410,7 @@ func newItem(
 		"buffDuration": 240,
 		"useMessage": "You examine the bond and find it's worth a lot. You feel more perceptive."
 	},
-	400,
+	100,
 	"null", "null",
 	"Redeems up too 100-400 dollars.",
 	bondIconSmall, bondIcon)

@@ -102,26 +102,26 @@ func newLootable(
 		pencil: 8,
 		burger: 6,
 		appliance: 3,
-		pen: 5,
+		pen: 8,
 		sodaCan: 5,
-		vegetables: 5,
-		meats: 4,
+		vegetables: 3,
+		meats: 3,
 		cheese: 5,
 		phone: 2,
 		cardboard: 7,
-		soySauce: 4,
+		soySauce: 3,
 		bag: 4,
 		headphones: 3,
 		paper: 8,
-		shirt: 7,
-		pants: 7,
+		shirt: 4,
+		pants: 3,
 		shorts: 5,
-		hat: 5,
+		hat: 6,
 		sunglasses: 6,
 		hoodie: 5,
-		toiletPaper: 6,
+		toiletPaper: 8,
 		ponder: 1,
-		skincare: 3,
+		skincare: 7,
 		computer: 1,
 		cat: 2,
 		briefcase: 5,
@@ -130,14 +130,11 @@ func newLootable(
 @onready var bagLootable = newLootable("Dropped Bag", 50, 4, 1,
 	bagLootableIcon,
 	{
-		waterBottle: 9,
-		burger: 5,
-		pen: 5,
+		waterBottle: 8,
+		burger: 6,
+		pen: 7,
 		sodaCan: 8,
-		vegetables: 3,
-		meats: 3,
-		cheese: 4,
-		phone: 3,
+		cheese: 7,
 		soySauce: 5,
 		bag: 8,
 		headphones: 3,
@@ -150,7 +147,7 @@ func newLootable(
 		toiletPaper: 8,
 		ponder: 1,
 		skincare: 4,
-		cat: 2,
+		cat: 1,
 		twoBowlsOfChili: 2
 	})
 @onready var package = newLootable("Discarded Package", 75, 3, 2,
@@ -164,13 +161,14 @@ func newLootable(
 		headphones: 6,
 		paper: 8,
 		shirt: 7,
-		pants: 7,
-		shorts: 7,
+		pants: 6,
+		shorts: 5,
 		hoodie: 8,
 		ponder: 1,
 		skincare: 8,
 		computer: 2,
 		cat: 2,
+		twoBowlsOfChili: 2
 	})
 @onready var briefcaseLootable = newLootable("Heavy Briefcase", 100, 2, 3,
 	briefcaseLootableIcon,
@@ -184,10 +182,11 @@ func newLootable(
 		cat: 2,
 		briefcase: 7,
 		phone : 3,
-		coin : 5,
+		coin : 7,
 		bill: 6,
-		cheque: 7,
-		bond: 6
+		cheque: 4,
+		bond: 2,
+		twoBowlsOfChili: 2
 	})
 #endregion
 
@@ -232,14 +231,20 @@ func genLootables():
 	#2.
 	## How many lootables will be generated
 	var lootableCount : int
-	if ledger.money >= 0 and ledger.money <= 10:
+	if ledger.money >= 0 and ledger.money <= 75:
 		lootableCount = 4
-	elif ledger.money > 10 and ledger.money <= 100:
+		lootRefresh.maxStep = 5
+	elif ledger.money > 75 and ledger.money <= 150:
 		lootableCount = randi_range(3,4)
-	elif ledger.money > 100 and ledger.money <= 300:
+		lootRefresh.maxStep = 4
+	elif ledger.money > 150 and ledger.money <= 300:
 		lootableCount = randi_range(2,3)
-	elif ledger.money > 300 and ledger.money <= 700:
+		lootRefresh.maxStep = 2
+	elif ledger.money > 300 and ledger.money <= 500:
 		lootableCount = randi_range(1,2)
+		lootRefresh.maxStep = 0.5
+	elif ledger.money < 0:
+		lootableCount = 4
 	else:
 		lootableCount = 1
 
@@ -249,20 +254,17 @@ func genLootables():
 	for i in lootableCount:
 		## The randomly generated lootable id.
 		var randomLootable : String
-		if ledger.money >= 0 and ledger.money <= 100:
-			lootableCount = randi_range(4,5)
+		if ledger.money >= 0 and ledger.money <= 75:
 			randomLootable = lvl1Lootables.pick_random()
-		elif ledger.money > 100 and ledger.money <= 100:
-			lootableCount = randi_range(3,4)
+		elif ledger.money > 75 and ledger.money <= 150:
 			randomLootable = lvl2Lootables.pick_random()
-		elif ledger.money > 100 and ledger.money <= 300:
-			lootableCount = randi_range(2,3)
+		elif ledger.money > 150 and ledger.money <= 300:
 			randomLootable = lvl3Lootables.pick_random()
-		elif ledger.money > 300 and ledger.money <= 700:
-			lootableCount = randi_range(1,2)
+		elif ledger.money > 300 and ledger.money <= 500:
 			randomLootable = lvl4Lootables.pick_random()
+		elif ledger.money < 0:
+			randomLootable = lvl1Lootables.pick_random()
 		else:
-			lootableCount = 1
 			randomLootable = allLootables.keys().pick_random()
 
 		#4.
@@ -461,10 +463,8 @@ func genLoot():
 		var scorePercentage = snapped((drawn.score / reference.pixelCount), 0.01)
 		## Percentage scored * random lootable tier, rounded to the nearest whole.
 		var qualityPreDeviation = snapped((allLootables[storedLootable][1] * scorePercentage), 1)
-		print((allLootables[storedLootable][1] * scorePercentage))
-		print(skills.percMod)
 		## Final item quality.
-		var itemQual = snapped(randi_range(qualityPreDeviation - 5, qualityPreDeviation + 5) * skills.percMod, 0.01)
+		var itemQual = snapped(randi_range(qualityPreDeviation - 20, qualityPreDeviation + 5) * skills.percMod, 0.01)
 		if (itemQual <= 0):
 			itemQual = 1
 		# 6.

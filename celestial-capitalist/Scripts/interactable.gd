@@ -32,7 +32,7 @@ func setTitleColour(color:Color):
 	titleColour = color
 
 func writeTooltipContent(content:String):
-	tooltipContent += content
+	tooltipContent = content
 
 func writeTooltipTitle(title:String):
 	tooltipTitle = title

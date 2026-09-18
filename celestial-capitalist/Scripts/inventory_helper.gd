@@ -37,8 +37,10 @@ extends Resources
 ## 4 is hydration, [br]
 ## 5 is satiation [br]
 ## [br]
-func assembleItem(quality : int, baseItem : Array, displayName : String = baseItem[0]):
+func assembleItem(quality : int, baseItem : Array, displayName : String = baseItem[0], priceCap : float = INF):
 	var itemVal = snapped((quality * baseItem[2] * 0.01), 0.01)
+	if itemVal > priceCap:
+		itemVal = priceCap
 	var hydration = 0
 	var satiation = 0
 	if baseItem[3] is int:
