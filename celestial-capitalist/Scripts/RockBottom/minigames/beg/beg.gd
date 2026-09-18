@@ -106,7 +106,7 @@ func _on_done_stop_begging() -> void:
 		if (regex.search(generatedName)):
 			generatedName = generatedName.left(-1)
 		#2.
-		if begProgress < 25:
+		if begProgress < 22:
 			if (getEasterEggLine(generatedName) == "false"):
 				terminalText.targetText = "> " + generatedName + ": " + rejectLines.pick_random()
 			else:
