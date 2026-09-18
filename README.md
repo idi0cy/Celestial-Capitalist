@@ -13,7 +13,7 @@ Play/download at: https://ratseerofrattesse.itch.io/celestial-capitalist.
 
 Or download on releases.
 
-Windows only for the moment - will support more soon.
+Windows only for the moment - will support more soon. Unzip and run ccap1.0exe.
 
 <img width="1920" height="1080" alt="Screenshot 2026-09-18 010222" src="https://github.com/user-attachments/assets/156224d1-0bfe-4f79-9eb4-b5f4818b4616" />
 
