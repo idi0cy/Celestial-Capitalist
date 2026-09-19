@@ -29,3 +29,8 @@ func _on_interactable_pressed() -> void:
 func _on_text_box_text_submitted(new_text: String) -> void:
 	PleaseSendHelp.saveName = new_text
 	interactable.text = textBox.text
+
+
+func _on_text_box_text_changed(new_text: String) -> void:
+	PleaseSendHelp.saveName = new_text
+	interactable.text = textBox.text
